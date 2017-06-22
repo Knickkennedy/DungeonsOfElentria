@@ -14,8 +14,8 @@ import roguelike.AI.playerAi;
 import roguelike.Level.Level;
 
 public class MobStore {
-	public String mobFileName = "assets/Mobs.txt";
-	public String playerFileName = "assets/HumanPlayer.txt";
+	public String mobFileName = "/Mobs.txt";
+	public String playerFileName = "/HumanPlayer.txt";
 	public Scanner playerFile = null;
 	public Scanner mobFile = null;
 	public Level thisLevel;
@@ -190,8 +190,7 @@ public class MobStore {
 	}
 	
 	private static Scanner openMobFile(String fileName) throws FileNotFoundException{
-		File file = new File(fileName);
-		Scanner sc = new Scanner(file);
+		Scanner sc = new Scanner(MobStore.class.getResourceAsStream(fileName));
 		return sc;
 	}
 }

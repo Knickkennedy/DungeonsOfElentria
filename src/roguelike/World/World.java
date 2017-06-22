@@ -1,5 +1,4 @@
 package roguelike.World;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class World {
 	private Point start;
 	public List <String> messages = new ArrayList <String> ();
 	private HashMap <Integer, Level> levels = new HashMap <Integer, Level> ();
-	private String surface = "assets/surface.txt";
+	private String surface = "/surface.txt";
 	private Scanner surfaceFile = null;
 	private Point entranceCoordinates;
 	
@@ -167,8 +166,7 @@ public class World {
 	}
 	
 	private static Scanner openFile(String fileName) throws FileNotFoundException{
-		File file = new File(fileName);
-		Scanner scanner = new Scanner(file);
+		Scanner scanner = new Scanner(World.class.getResourceAsStream(fileName));
 		return scanner;
 	}
 }

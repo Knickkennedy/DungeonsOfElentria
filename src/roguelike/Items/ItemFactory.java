@@ -12,7 +12,7 @@ import roguelike.Level.Level;
 import roguelike.utility.RandomGen;
 
 public class ItemFactory {
-	public String itemFileName = "assets/Items.txt";
+	public String itemFileName = "/Items.txt";
 	public Scanner itemFile = null;
 	public Level thisLevel;
 	public HashMap <String, Color> colorDictionary = new HashMap <String, Color> ();
@@ -230,8 +230,7 @@ public class ItemFactory {
 	}
 	
 	private static Scanner openItemFile(String fileName) throws FileNotFoundException{
-		File file = new File(fileName);
-		Scanner sc = new Scanner(file);
+		Scanner sc = new Scanner(ItemFactory.class.getResourceAsStream(fileName));
 		return sc;
 	}
 }
