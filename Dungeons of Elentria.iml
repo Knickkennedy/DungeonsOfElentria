@@ -16,18 +16,18 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
-      <library name="asciiPanel.jar">
+      <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/asciiPanel.jar!/" />
+          <root url="jar://$MODULE_DIR$/library/asciiPanel.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="squidlib-util-3.0.0-b8.jar">
+      <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/squidlib-util-3.0.0-b8.jar!/" />
+          <root url="jar://$MODULE_DIR$/library/squidlib-util-3.0.0-b8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
