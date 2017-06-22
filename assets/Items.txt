@@ -1,0 +1,44 @@
+name					:	item type	:	symbol	:	color	:	weight	:	effect
+															
+											POTIONS
+potion of healing		:	potion		:	!		:	brightWhite	:	1.0		:	weak healing
+potion of strong healing:	potion		:	!		:	brightWhite	:	1.5		:	strong healing
+
+potion of weak poison	:	potion		:	!		:	red			:	1.0		:	weak poison
+potion of strong poison :	potion		:	!		:	red			:	1.0		:	strong poison
+
+name				:	item type	:	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	dodge	:	armor	:	weight
+
+											WEAPONS
+iron shortsword		:	weapon		:	(		:	gray	:		1	:	1		:	6		:		0		:		0	:	0		:	3.5
+iron longsword		:	weapon		:	(		:	gray	:		0	:	1		:	8		:		0		:		0	:	0		:	4.5
+
+steel shortsword	:	weapon		:	(		:	white	:		2	:	1		:	6		:		2		:		0	:	0		:	2.5
+steel longsword		:	weapon		:	(		:	white	:		1	:	1		:	8		:		2		:		0	:	0		:	3.5
+
+mithril shortsword	:	weapon		:	(		:	blue	:		3	:	2		:	6		:		2		:		0	:	0		:	2.0
+
+
+
+name				:	item type	:	symbol	:	color	:	to-Hit	:	damage	:	dodge	:	armor	:	weight
+
+											CHESTPIECES
+leather armor		:	chestpiece	:	[		:	brown	:		0	:	0		:	5		:	0		:	15.0
+iron breastplate	:	chestpiece	:	[		:	gray	:		0	:	0		:	0		:	2		:	25.0
+adamantium armor	:	chestpiece	:	[		:	white	:		0	:	0		:	25		:	25		:	2.5
+
+											HELMETS
+leather helmet		:	helmet		:	[		:	brown	:		0	:	0		:	1		:	0		:	1.5
+iron cap			:	helmet		:	[		:	gray	:		0	:	0		:	0		:	1		:	3.0
+
+											LEGGINGS
+leather pants		:	cuisses		:	[		:	brown	:		0	:	0		:	3		:	0		:	3.5
+iron cuisses		:	cuisses		:	[		:	gray	:		0	:	0		:	0		:	1		:	8.0
+
+											BRACERS
+leather bracers		:	greaves		:	[		:	brown	:		0	:	0		:	1		:	0		:	2.0
+iron greaves		:	greaves		:	[		:	gray	:		0	:	0		:	0		:	1		:	4.0
+
+											BOOTS
+leather boots		:	boots		:	[		:	brown	:		0	:	0		:	1		:	0		:	3.0
+iron boots			:	boots		:	[		:	gray	:		0	:	0		:	0		:	1		:	4.5

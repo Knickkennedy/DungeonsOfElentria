@@ -1,0 +1,2 @@
+symbol	:	color		:	strength	:	constitution	:	dexterity	:	intelligence	:	wisdom	:	charisma	:	Perception
+@		:	brightWhite	:	10			:	99				:	10			:	10				:	10		:	10			:	10
