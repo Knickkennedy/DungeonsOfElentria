@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Dungeons of Elentria:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="Dungeons of Elentria.jar">
+      <element id="module-output" name="Dungeons of Elentria" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/library/asciiPanel.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/library/squidlib-util-3.0.0-b8.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
