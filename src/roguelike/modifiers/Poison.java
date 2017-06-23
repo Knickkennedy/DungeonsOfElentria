@@ -3,8 +3,12 @@ package roguelike.modifiers;
 import roguelike.Mob.BaseEntity;
 
 public class Poison implements Effect{
-	private int duration, damage;
-	public Poison(int damage, int duration){ this.duration = duration; this.damage = damage;}
+	private int duration;
+    private int damage;
+	public Poison(int damage, int duration){
+        this.damage = damage;
+		this.duration = duration;
+	}
 	
 	public int damage(){ return this.damage; }
 	public void setDamage(int damage){ this.damage = damage; }
@@ -20,7 +24,7 @@ public class Poison implements Effect{
 	
 	public void update(BaseEntity entity){
 		this.duration--;
-		entity.modifyHP(-damage, "died of poison.");
+		entity.modifyHP(-damage(), "died of poison.");
 	}
 	
 	public void end(BaseEntity entity){

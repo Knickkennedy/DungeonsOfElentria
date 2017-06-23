@@ -20,9 +20,9 @@ public class MobStore {
 	public Scanner mobFile = null;
 	public Level thisLevel;
 	public HashMap <String, Color> colorDictionary = new HashMap <String, Color> ();
-	public HashMap <String, EnemyEntity> enemyDictionary = new HashMap <String, EnemyEntity> ();
-	public List <EnemyEntity> enemyList = new ArrayList <EnemyEntity> ();
+	public HashMap <Integer, String> enemyDictionary = new HashMap <> ();
 	public List <String> messages;
+	private int enemyCount;
 	
 	public void initializeColors(){
 		colorDictionary.put("brightGreen", AsciiPanel.brightGreen);
@@ -35,11 +35,8 @@ public class MobStore {
 		try{ mobFile = openMobFile(mobFileName); }
 		catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
 		
-		String name = null, ai = null;
-		char glyph = 0;
-		Color color = null;
-		int HP = 0, attack = 0, armor = 0, dodge = 0;
-		String[] tokens = null, effects = null;
+		String name = null;
+		String[] tokens = null;
 		
 		while(mobFile.hasNextLine()){
 			String tempLine = mobFile.nextLine();
@@ -49,39 +46,8 @@ public class MobStore {
 			tokens = tempLine.split(":");
 			if(!tokens[0].trim().equals("name")){
 				name = tokens[0].trim();
-				glyph = tokens[1].trim().charAt(0);
-				color = colorDictionary.get(tokens[2].trim());
-				HP = Integer.parseInt(tokens[3].trim());
-				attack = Integer.parseInt(tokens[4].trim());
-				armor = Integer.parseInt(tokens[5].trim());
-				dodge = Integer.parseInt(tokens[6].trim());
-				effects = tokens[7].trim().split(", ");
-				ai = tokens[8].trim();
-				
-				EnemyEntity newEnemy = new EnemyEntity(thisLevel, glyph, color);
-				newEnemy.setName(name);
-				newEnemy.setAttack(attack);
-				newEnemy.setArmor(armor);
-				newEnemy.setMaxHP(HP);
-				newEnemy.setDodge(dodge);
-				newEnemy.setIsPlayer(false);
-				newEnemy.setVisionRadius(10);
-				
-				if(ai == "aggressive"){
-					new AggressiveAI(newEnemy, thisLevel.player);
-				}
-				
-				for(String effect : effects){
-					if(effect.equals("weak poison")){
-						newEnemy.setPoisonType(effect);
-					}
-					else if(effect.equals("strong poison")){
-						newEnemy.setPoisonType(effect);
-					}
-				}
-				
-				enemyDictionary.put(name, newEnemy);
-				enemyList.add(newEnemy);
+				enemyDictionary.put(enemyCount, name);
+				enemyCount++;
 			}
 		}
 		
@@ -89,6 +55,7 @@ public class MobStore {
 	}
 	
 	public MobStore(Level level, List <String> messages){
+		enemyCount = 0;
 		initializeColors();
 		initializeEnemyDictionary();
 		this.messages = messages;

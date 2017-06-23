@@ -161,7 +161,7 @@ public class World {
 	public void initializeMobsOnLevel(){
 		for(int i = 0; i < 25; i++){
 			int roll = RandomGen.rand(0, mobStore.enemyDictionary.size() - 1);
-			mobStore.newEnemy(mobStore.enemyList.get(roll).name());
+			mobStore.newEnemy(mobStore.enemyDictionary.get(roll));
 		}
 	}
 	

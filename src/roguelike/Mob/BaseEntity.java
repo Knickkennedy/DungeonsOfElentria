@@ -244,7 +244,7 @@ public class BaseEntity implements EntityInterface{
 				done.add(effect);
 			}
 		}
-		
+
 		effects.removeAll(done);
 	}
 	

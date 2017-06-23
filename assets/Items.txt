@@ -1,5 +1,5 @@
 name					:	item type	:	symbol	:	color	:	weight	:	effect
-															
+
 											POTIONS
 potion of healing		:	potion		:	!		:	brightWhite	:	1.0		:	weak healing
 potion of strong healing:	potion		:	!		:	brightWhite	:	1.5		:	strong healing

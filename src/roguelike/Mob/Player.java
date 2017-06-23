@@ -255,7 +255,10 @@ public class Player extends BaseEntity{
 		equipItem(startingItems.newItem("iron cuisses"));
 		equipItem(startingItems.newItem("leather boots"));
 		equipItem(startingItems.newItem("iron greaves"));
-		inventory().add(startingItems.newItem("potion of strong healing"));
+		inventory().add(startingItems.newItem("potion of strong poison"));
+		inventory().add(startingItems.newItem("potion of strong poison"));
+		inventory().add(startingItems.newItem("potion of weak poison"));
+		inventory().add(startingItems.newItem("potion of weak poison"));
 	}
 	
 	public void meleeAttack(BaseEntity otherEntity){ commonAttack(otherEntity, attackDamage(), otherEntity.name()); }

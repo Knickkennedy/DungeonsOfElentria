@@ -23,8 +23,9 @@ public class Potion extends BaseItem{
 		}
 		else if(effectName.equals("strong poison")){
 			int totalLength = 0;
+			int roll = 0;
 			for(int i = 0; i < 4; i++){
-				int roll = RandomGen.rand(1, 3);
+				roll = RandomGen.rand(1, 3);
 				totalLength += roll;
 			}
 			setEffect(new Poison(2, totalLength));
