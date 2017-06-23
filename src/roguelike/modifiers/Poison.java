@@ -2,12 +2,11 @@ package roguelike.modifiers;
 
 import roguelike.Mob.BaseEntity;
 
-public class Poison implements Effect{
-	private int duration;
+public class Poison extends Effect {
     private int damage;
-	public Poison(int damage, int duration){
-        this.damage = damage;
-		this.duration = duration;
+	public Poison(int dam, int dur){
+	    super(dur);
+        this.damage = dam;
 	}
 	
 	public int damage(){ return this.damage; }
@@ -23,7 +22,7 @@ public class Poison implements Effect{
 	}
 	
 	public void update(BaseEntity entity){
-		this.duration--;
+		updateDuration(1);
 		entity.modifyHP(-damage(), "died of poison.");
 	}
 	
@@ -35,6 +34,5 @@ public class Poison implements Effect{
 			entity.doAction("The %s looks relieved.", entity.name());
 		}
 	}
-	
-	public boolean isDone(){ return duration < 1; }
+
 }

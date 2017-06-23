@@ -3,6 +3,7 @@ package roguelike.Items;
 import java.awt.Color;
 
 import roguelike.modifiers.Effect;
+import roguelike.modifiers.EffectInterface;
 
 public class BaseItem implements ItemInterface, Comparable <BaseItem>{
 	private String name, appearance, itemType;

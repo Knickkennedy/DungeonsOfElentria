@@ -2,10 +2,13 @@ package roguelike.modifiers;
 
 import roguelike.Mob.BaseEntity;
 
-public class Healing implements Effect{
-	private int duration, heal;
+public class Healing extends Effect {
+	private int heal;
 	
-	public Healing(int heal, int duration){ this.heal = heal; this.duration = duration; }
+	public Healing(int heal, int duration){
+	    super(duration);
+		this.heal = heal;
+	}
 	
 	public int healing(){ return this.heal; }
 	public void setHealing(int heal){ this.heal = heal; }
@@ -20,10 +23,7 @@ public class Healing implements Effect{
 	}
 	
 	public void update(BaseEntity entity){
-		duration--;
+		updateDuration(1);
 		entity.modifyHP(heal, "died of healing?");
 	}
-	
-	public void end(BaseEntity entity){}
-	public boolean isDone(){ return duration < 1; }
 }

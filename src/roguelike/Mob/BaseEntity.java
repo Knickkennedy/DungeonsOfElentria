@@ -238,6 +238,7 @@ public class BaseEntity implements EntityInterface{
 		List <Effect> done = new ArrayList <Effect> ();
 		
 		for(Effect effect : effects){
+		    System.out.println(effect.duration());
 			effect.update(this);
 			if(effect.isDone()){
 				effect.end(this);

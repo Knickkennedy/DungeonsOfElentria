@@ -124,7 +124,6 @@ public class World {
 	
 	public void goDownALevel(){
 		if(levels.containsKey(currentLevel.levelNumber + 1)){
-			levels.get(currentLevel.levelNumber + 1).mobs.add(player);
 			player.setLevel(levels.get(currentLevel.levelNumber + 1));
 			levels.get(currentLevel.levelNumber).mobs.remove(player);
 			setCurrentLevel(levels.get(getCurrentLevel().levelNumber + 1));
@@ -142,7 +141,6 @@ public class World {
 			tempLevel.setPlayer(player);
 			tempLevel.addAtUpStaircase(player);
 			player.setLevel(tempLevel);
-			tempLevel.mobs.add(player);
 			currentLevel.remove(player);
 			tempLevel.levelNumber = currentLevel.levelNumber + 1;
 			setCurrentLevel(tempLevel);
