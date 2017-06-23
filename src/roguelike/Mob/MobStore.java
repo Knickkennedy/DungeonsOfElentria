@@ -20,7 +20,9 @@ public class MobStore {
 	public Scanner mobFile = null;
 	public Level thisLevel;
 	public HashMap <String, Color> colorDictionary = new HashMap <String, Color> ();
-	public HashMap <Integer, String> enemyDictionary = new HashMap <> ();
+	public HashMap <Integer, String> dangerOneEnemies = new HashMap <> ();
+	public HashMap <Integer, String> dangerTwoEnemies = new HashMap <> ();
+	public HashMap <Integer, String> dangerThreeEnemies = new HashMap <> ();
 	public List <String> messages;
 	private int enemyCount;
 	
@@ -46,8 +48,15 @@ public class MobStore {
 			tokens = tempLine.split(":");
 			if(!tokens[0].trim().equals("name")){
 				name = tokens[0].trim();
-				enemyDictionary.put(enemyCount, name);
-				enemyCount++;
+				if(Integer.parseInt(tokens[9].trim()) == 1){
+				    dangerOneEnemies.put(dangerOneEnemies.size() + 1, name);
+                }
+                else if(Integer.parseInt(tokens[9].trim()) == 2){
+				    dangerTwoEnemies.put(dangerTwoEnemies.size() + 1, name);
+                }
+                else if(Integer.parseInt(tokens[9].trim()) == 3){
+                    dangerThreeEnemies.put(dangerThreeEnemies.size() + 1, name);
+                }
 			}
 		}
 		

@@ -53,7 +53,7 @@ public class Level{
 		this.roomFlag = new boolean[width][height];
 		this.revealed = new boolean[width][height];
 		this.levelID = "Dungeon Floor";
-		this.dangerLevel = 0;
+		this.dangerLevel = 1;
 		}
 
 	public Level(Tile[][] map, int screenWidth, int mapHeight){
@@ -69,10 +69,12 @@ public class Level{
 		this.roomFlag = new boolean[width][height];
 		this.revealed = new boolean[width][height];
 		this.levelID = "Surface";
-		this.dangerLevel = 0;
+		this.dangerLevel = 1;
 		setPathFinding();
 	}
-	
+
+	public void setDangerLevel(int depth){ this.dangerLevel = depth; }
+
 	public Level getLevel(){
 		return this;
 	}
@@ -94,7 +96,7 @@ public class Level{
 	}
 	
 	public void update(){
-		List <BaseEntity> toUpdate = new ArrayList <BaseEntity> (mobs);
+		List <BaseEntity> toUpdate = new ArrayList <> (mobs);
 		for(BaseEntity bE : toUpdate){
 			if(player.currentHP() < 1) { return;	}
 				bE.update();

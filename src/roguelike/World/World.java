@@ -143,6 +143,9 @@ public class World {
 			player.setLevel(tempLevel);
 			currentLevel.remove(player);
 			tempLevel.levelNumber = currentLevel.levelNumber + 1;
+			if(tempLevel.levelNumber > 2){
+			    tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
+            }
 			setCurrentLevel(tempLevel);
 			initializeMobsOnLevel();
 			createRandomItems();
@@ -157,10 +160,38 @@ public class World {
 	}
 	
 	public void initializeMobsOnLevel(){
-		for(int i = 0; i < 25; i++){
-			int roll = RandomGen.rand(0, mobStore.enemyDictionary.size() - 1);
-			mobStore.newEnemy(mobStore.enemyDictionary.get(roll));
+		if(currentLevel.dangerLevel == 1){
+			for(int i = 0; i < 25; i++){
+			    int dangerCheck = RandomGen.rand(1, 100);
+			    if(dangerCheck < 98) {
+                    int roll = RandomGen.rand(1, mobStore.dangerOneEnemies.size());
+                    mobStore.newEnemy(mobStore.dangerOneEnemies.get(roll));
+                }
+                else{
+			        int roll = RandomGen.rand(1, mobStore.dangerTwoEnemies.size());
+			        mobStore.newEnemy(mobStore.dangerTwoEnemies.get(roll));
+                }
+            }
 		}
+		else if(currentLevel.dangerLevel == 2){
+		    for(int i = 0; i < 25; i++){
+                int dangerCheck = RandomGen.rand(1, 100);
+                if(dangerCheck < 98) {
+                    int roll = RandomGen.rand(1, mobStore.dangerTwoEnemies.size());
+                    mobStore.newEnemy(mobStore.dangerTwoEnemies.get(roll));
+                }
+                else{
+                    int roll = RandomGen.rand(1, mobStore.dangerThreeEnemies.size());
+                    mobStore.newEnemy(mobStore.dangerThreeEnemies.get(roll));
+                }
+            }
+        }
+        else{
+            for(int i = 0; i < 25; i++){
+                int roll = RandomGen.rand(1, mobStore.dangerThreeEnemies.size());
+                mobStore.newEnemy(mobStore.dangerThreeEnemies.get(roll));
+            }
+        }
 	}
 	
 	private static Scanner openFile(String fileName) throws FileNotFoundException{

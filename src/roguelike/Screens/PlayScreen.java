@@ -111,7 +111,8 @@ public class PlayScreen implements Screen {
 	            	}
 	            }
 	        }
-		terminal.write(world.getCurrentLevel().levelID, 0, mapHeight);
+		String temp = "Depth: " + String.valueOf(world.getCurrentLevel().levelNumber) + ", Danger: " + String.valueOf(world.getCurrentLevel().dangerLevel);
+		terminal.write(temp, 0, mapHeight);
 	}
 	
 	public void doAction(Point currentDirection){
