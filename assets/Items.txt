@@ -1,28 +1,39 @@
+											POTIONS
+
 name					:	item type	:	symbol	:	color	:	weight	:	effect
 
-											POTIONS
 potion of healing		:	potion		:	!		:	brightWhite	:	1.0		:	weak healing
 potion of strong healing:	potion		:	!		:	brightWhite	:	1.5		:	strong healing
 
 potion of weak poison	:	potion		:	!		:	red			:	1.0		:	weak poison
 potion of strong poison :	potion		:	!		:	red			:	1.0		:	strong poison
 
+
+
+											MELEE WEAPONS
+
 name				:	item type	:	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	dodge	:	armor	:	weight
 
-											WEAPONS
-iron shortsword		:	weapon		:	(		:	gray	:		1	:	1		:	6		:		0		:		0	:	0		:	3.5
-iron longsword		:	weapon		:	(		:	gray	:		0	:	1		:	8		:		0		:		0	:	0		:	4.5
+iron shortsword		:	melee weapon	:	(	:	gray	:		1	:	1		:	6		:		0		:		0	:	0		:	3.5
+iron longsword		:	melee weapon	:	(	:	gray	:		0	:	1		:	8		:		0		:		0	:	0		:	4.5
 
-steel shortsword	:	weapon		:	(		:	white	:		2	:	1		:	6		:		2		:		0	:	0		:	2.5
-steel longsword		:	weapon		:	(		:	white	:		1	:	1		:	8		:		2		:		0	:	0		:	3.5
+steel shortsword	:	melee weapon	:	(	:	white	:		2	:	1		:	6		:		2		:		0	:	0		:	2.5
+steel longsword		:	melee weapon	:	(	:	white	:		1	:	1		:	8		:		2		:		0	:	0		:	3.5
 
-mithril shortsword	:	weapon		:	(		:	blue	:		3	:	2		:	6		:		2		:		0	:	0		:	2.0
+mithril shortsword	:	melee weapon	:	(	:	blue	:		3	:	2		:	6		:		2		:		0	:	0		:	2.0
+
+                                            RANGED WEAPONS
+
+name				:	item type	:	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	range   :   dodge	:	armor	:	weight
+
+short bow           :   ranged weapon   :   )   :   brown   :       1   :   1       :   6       :       0       :       5   :       0   :   0       :   3.0
 
 
+
+											CHESTPIECES
 
 name				:	item type	:	symbol	:	color	:	to-Hit	:	damage	:	dodge	:	armor	:	weight
 
-											CHESTPIECES
 leather armor		:	chestpiece	:	[		:	brown	:		0	:	0		:	5		:	0		:	15.0
 iron breastplate	:	chestpiece	:	[		:	gray	:		0	:	0		:	0		:	2		:	25.0
 adamantium armor	:	chestpiece	:	[		:	white	:		0	:	0		:	25		:	25		:	2.5

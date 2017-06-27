@@ -30,7 +30,7 @@ public class FireWeaponScreen extends TargetingScreen{
 	@Override
 	public void selectCoordinate(Coord[] target) {
 		for(int i = 0; i < target.length; i++) {
-		    if(isAcceptable(target[i])) {
+		    if(isAcceptable(target[i]) && i < player.getRangedWeapon().getRange()) {
                 if ((player.level().glyph(target[i].x, target[i].y) == Tile.DOOR_CLOSED.glyph())
                         || (player.level().glyph(target[i].x, target[i].y) == Tile.WALL.glyph())
                         || (player.level().glyph(target[i].x, target[i].y) == Tile.PERM_WALL.glyph())) {
@@ -38,12 +38,16 @@ public class FireWeaponScreen extends TargetingScreen{
                     break;
                 } else if (player.level().checkForMob(target[i].x, target[i].y) != null) {
                     BaseEntity otherEntity = player.level().checkForMob(target[i].x, target[i].y);
-                    player.rangedAttack(otherEntity);
+                    player.rangedAttack(otherEntity, player.getRangedWeapon());
                     break;
                 }
                 else if(player.level().checkForMob(target[i].x, target[i].y) == null && i == target.length - 1){
                     player.notify("You hit nothing.");
                 }
+            }
+            else if(i >= player.getRangedWeapon().getRange()){
+		        player.notify("Your arrow thuds into the earth.");
+		        break;
             }
             else{
 		        break;

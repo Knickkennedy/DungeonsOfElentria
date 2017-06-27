@@ -3,7 +3,7 @@ package roguelike.Items;
 import java.awt.Color;
 
 public class Weapon extends BaseItem{
-	private int damageBonus, numberOfDiceRolled;
+	private int damageBonus, numberOfDiceRolled, range;
 	
 	public Weapon(String name, char glyph, Color color, String itemType, double weight, int toHit, int numDice, int attack, int attackBonus, int dodge, int armor){
 		super(name, glyph, color, itemType, weight);
@@ -14,7 +14,11 @@ public class Weapon extends BaseItem{
 		this.setArmorValue(armor);
 		this.setNumberOfDiceRolled(numDice);
 	}
-	
+
+	public int getRange(){ return this.range; }
+	public void setRange(int range){ this.range = range; }
+	public void modifyRange(int modification){ this.range += modification; }
+
 	public int damageBonus(){ return this.damageBonus; }
 	public void setDamageBonus(int bonus){ this.damageBonus = bonus; }
 	public void modifyDamageBonus(int modification){ this.damageBonus += modification; }

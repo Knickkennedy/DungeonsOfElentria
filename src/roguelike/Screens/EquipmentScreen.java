@@ -20,19 +20,23 @@ public class EquipmentScreen implements Screen{
 		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.maxCarryWeight());
 		String helmet = String.format(" a - %-15s : - %s", "Helmet", player.helmetString());
 		String armor = String.format(" b - %-15s : - %s", "Chest Piece", player.chestpieceString());
-		String rightHand = String.format(" c - %-15s : - %s", "Right Hand", player.weaponString());
-		String legs = String.format(" d - %-15s : - %s", "Cuisses", player.cuissesString());
-		String ankles = String.format(" e - %-15s : - %s", "Greaves", player.greavesString());
-		String boots = String.format(" f - %-15s : - %s", "boots", player.bootsString());
+		String rightHand = String.format(" c - %-15s : - %s", "Right Hand", player.rightHandString());
+		String leftHand = String.format(" d - %-15s : - %s", "Left Hand", player.leftHandString());
+		String legs = String.format(" e - %-15s : - %s", "Cuisses", player.cuissesString());
+		String ankles = String.format(" f - %-15s : - %s", "Greaves", player.greavesString());
+		String boots = String.format(" g - %-15s : - %s", "Boots", player.bootsString());
+		String ranged = String.format(" h - %-15s : - %s", "Ranged Weapon", player.rangedWeaponString());
 		terminal.clear(' ', 0, 0, 88, 28);
 		terminal.writeCenter(stats, 1);
 		terminal.writeCenter(weight, 2);
 		terminal.write(helmet, 0, 4);
 		terminal.write(armor, 0, 5);
 		terminal.write(rightHand, 0, 6);
-		terminal.write(legs, 0, 7);
-		terminal.write(ankles, 0, 8);
-		terminal.write(boots, 0, 9);
+		terminal.write(leftHand, 0, 7);
+		terminal.write(legs, 0, 8);
+		terminal.write(ankles, 0, 9);
+		terminal.write(boots, 0, 10);
+		terminal.write(ranged, 0, 11);
 		for(int i = 5; i < 83; i++){
 			terminal.write('_', i, 3);
 		}
@@ -53,59 +57,77 @@ public class EquipmentScreen implements Screen{
 			return null;
 		}
 		case KeyEvent.VK_A: {
-			if(player.helmet() != null){
+			if(player.getHelmet() != null){
 				player.unequipHelmet();
 			}
 			else{
-				subscreen = new EquipScreen(player, "helmet");
+				subscreen = new EquipScreen(player, "helmet", 'A');
 			}
 			break;
 		}
 		case KeyEvent.VK_B: {
-			if(player.chestpiece() != null){
+			if(player.getChestpiece() != null){
 				player.unequipChestpiece();
 			}
 			else{
-				subscreen = new EquipScreen(player, "chestpiece");
+				subscreen = new EquipScreen(player, "chestpiece", 'B');
 			}
 			break;
 		}
 		case KeyEvent.VK_C: {
-			if(player.weapon() != null){
-				player.unequipWeapon();
+			if(player.getRightHand() != null){
+				player.unequipRightHand();
 			}
 			else{
-				subscreen = new EquipScreen(player, "weapon");
+				subscreen = new EquipScreen(player, "melee weapon", 'C');
 			}
 			break;
 		}
-		case KeyEvent.VK_D: {
-			if(player.cuisses() != null){
+            case KeyEvent.VK_D: {
+                if(player.getLeftHand() != null){
+                    player.unequipLeftHand();
+                }
+                else{
+                    subscreen = new EquipScreen(player, "melee weapon", 'D');
+                }
+                break;
+            }
+		case KeyEvent.VK_E: {
+			if(player.getCuisses() != null){
 				player.unequipCuisses();
 			}
 			else{
-				subscreen = new EquipScreen(player, "cuisses");
-			}
-			break;
-		}
-		case KeyEvent.VK_E: {
-			if(player.greaves() != null){
-				player.unequipGreaves();
-			}
-			else{
-				subscreen = new EquipScreen(player, "greaves");
+				subscreen = new EquipScreen(player, "cuisses", 'E');
 			}
 			break;
 		}
 		case KeyEvent.VK_F: {
-			if(player.boots() != null){
-				player.unequipBoots();
+			if(player.getGreaves() != null){
+				player.unequipGreaves();
 			}
 			else{
-				subscreen = new EquipScreen(player, "boots");
+				subscreen = new EquipScreen(player, "greaves", 'F');
 			}
 			break;
 		}
+		case KeyEvent.VK_G: {
+			if(player.getBoots() != null){
+				player.unequipBoots();
+			}
+			else{
+				subscreen = new EquipScreen(player, "boots", 'G');
+			}
+			break;
+		}
+            case KeyEvent.VK_H:{
+                if(player.getRangedWeapon() != null){
+                    player.unequipRangedWeapon();
+                }
+                else{
+                    subscreen = new EquipScreen(player, "ranged weapon", 'H');
+                }
+                break;
+            }
 		}
 		}
 		return this;

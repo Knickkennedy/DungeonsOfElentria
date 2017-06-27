@@ -13,7 +13,7 @@ import roguelike.modifiers.*;
 import roguelike.utility.RandomGen;
 
 public class BaseEntity implements EntityInterface{
-	private Level level;
+	public Level level;
 	private char glyph;
 	private Color color;
 	private String name, causeOfDeath;
@@ -35,7 +35,9 @@ public class BaseEntity implements EntityInterface{
 		this.effects = new ArrayList <Effect> ();
 		this.poisonType = "none";
 	}
-	
+
+	public BaseAI getAi(){ return this.ai; }
+
 	public Tile realTile(int x, int y){ return this.level().tile(x, y); }
 	
 	public List <Effect> effects(){ return this.effects; }

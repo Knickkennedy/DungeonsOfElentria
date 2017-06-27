@@ -9,7 +9,9 @@ import roguelike.utility.RandomGen;
 public class Player extends BaseEntity{
 	
 	private int strength, constitution, dexterity, intelligence, wisdom, charisma, perception, toHitBonus, damageModifier, numOfDice;
-	private Weapon weapon;
+	private Weapon leftHand;
+	private Weapon rightHand;
+	private Weapon rangedWeapon;
 	private Boots boots;
 	private Greaves greaves;
 	private Cuisses cuisses;
@@ -38,20 +40,23 @@ public class Player extends BaseEntity{
 		setName("Hero");
 	}
 	
-	public Weapon weapon(){ return this.weapon; }
-	public Boots boots(){ return this.boots; }
-	public Greaves greaves(){ return this.greaves; }
-	public Cuisses cuisses(){ return this.cuisses; }
-	public Chestpiece chestpiece(){ return this.chestpiece; }
-	public Helmet helmet(){ return this.helmet; }
+	public Weapon getLeftHand(){ return this.leftHand; }
+	public Weapon getRightHand(){ return this.rightHand; }
+	public Weapon getRangedWeapon(){ return this.rangedWeapon; }
+	public Boots getBoots(){ return this.boots; }
+	public Greaves getGreaves(){ return this.greaves; }
+	public Cuisses getCuisses(){ return this.cuisses; }
+	public Chestpiece getChestpiece(){ return this.chestpiece; }
+	public Helmet getHelmet(){ return this.helmet; }
 	
-	public String helmetString(){ return this.helmet == null ? "" : this.helmet().name(); }
-	public String chestpieceString(){ return this.chestpiece == null ? "" : this.chestpiece().name(); }
-	public String cuissesString(){ return this.cuisses == null ? "" : this.cuisses().name(); }
-	public String greavesString(){ return this.greaves == null ? "" : this.greaves().name(); }
-	public String bootsString(){ return this.boots == null ? "" : this.boots().name(); }
-	public String weaponString(){ return this.weapon == null ? "" : this.weapon().name(); }
-	
+	public String helmetString(){ return this.helmet == null ? "" : this.helmet.name(); }
+	public String chestpieceString(){ return this.chestpiece == null ? "" : this.chestpiece.name(); }
+	public String cuissesString(){ return this.cuisses == null ? "" : this.cuisses.name(); }
+	public String greavesString(){ return this.greaves == null ? "" : this.greaves.name(); }
+	public String bootsString(){ return this.boots == null ? "" : this.boots.name(); }
+	public String leftHandString(){ return this.leftHand == null ? "" : this.leftHand.name(); }
+	public String rightHandString(){ return this.rightHand == null ? "" : this.rightHand.name(); }
+	public String rangedWeaponString(){ return this.rangedWeapon == null ? "" : this.rangedWeapon.name(); }
 	
 	public int strength(){ return this.strength; }
 	public void setStrength(int strength){ this.strength = strength; }
@@ -103,29 +108,53 @@ public class Player extends BaseEntity{
 		else if(random > 90){ maxHealth += 5; }
 		this.setMaxHP(maxHealth);
 	}
-	
-	public void unequipWeapon(){
-		equipment().remove(weapon);
-		inventory().add(weapon);
-		setNumOfDice(1);
-		setAttack(3);
-		updateToHitBonus(-weapon.toHit());
-		updateDamageModifier(-weapon.damageBonus());
-		this.weapon = null;
-	}
-	
-	public void equipWeapon(Weapon weapon){ 
-		if(inventory().contains(weapon)){
-			inventory().remove(weapon);
-		}
-		this.weapon = weapon;
-		setNumOfDice(weapon.numberOfDiceRolled());
-		setAttack(weapon.damageValue());
-		updateToHitBonus(weapon.toHit());
-		updateDamageModifier(weapon.damageBonus());
-		equipment().add(weapon);
-	}
-	
+
+	public void unequipLeftHand(){
+        equipment().remove(leftHand);
+        inventory().add(leftHand);
+        setNumOfDice(1);
+        setAttack(3);
+        this.leftHand = null;
+    }
+
+    public void equipLeftHand(Weapon weapon){
+        if(inventory().contains(weapon)){
+            inventory().remove(weapon);
+        }
+        this.leftHand = weapon;
+        equipment().add(weapon);
+    }
+
+    public void unequipRightHand(){
+        equipment().remove(rightHand);
+        inventory().add(rightHand);
+        setNumOfDice(1);
+        setAttack(3);
+        this.rightHand = null;
+    }
+
+    public void equipRightHand(Weapon weapon){
+        if(inventory().contains(weapon)){
+            inventory().remove(weapon);
+        }
+        this.rightHand = weapon;
+        equipment().add(weapon);
+    }
+
+    public void unequipRangedWeapon(){
+        equipment().remove(rangedWeapon);
+        inventory().add(rangedWeapon);
+        this.rangedWeapon = null;
+    }
+
+    public void equipRangedWeapon(Weapon weapon){
+        if(inventory().contains(weapon)){
+            inventory().remove(weapon);
+        }
+        this.rangedWeapon = weapon;
+        equipment().add(weapon);
+    }
+
 	public void unequipHelmet(){
 		equipment().remove(helmet);
 		inventory().add(helmet);
@@ -226,53 +255,87 @@ public class Player extends BaseEntity{
 		equipment().add(greaves);
 		}
 	
-	public void equipItem(BaseItem itemToEquip){
-		if(itemToEquip.itemType().equals("weapon")){
-			equipWeapon((Weapon)itemToEquip);
+	public void equipItem(BaseItem itemToEquip, char input){
+		if(input == 'A'){
+            equipHelmet((Helmet)itemToEquip);
 		}
-		else if(itemToEquip.itemType().equals("helmet")){
-			equipHelmet((Helmet)itemToEquip);
+		else if(input == 'B'){
+            equipChestpiece((Chestpiece)itemToEquip);
 		}
-		else if(itemToEquip.itemType().equals("cuisses")){
+		else if(input == 'C'){
+		    equipRightHand((Weapon)itemToEquip);
+        }
+        else if(input == 'D'){
+		    equipLeftHand((Weapon)itemToEquip);
+        }
+		else if(input == 'E'){
 			equipCuisses((Cuisses)itemToEquip);
 		}
-		else if(itemToEquip.itemType().equals("greaves")){
+		else if(input == 'F'){
 			equipGreaves((Greaves)itemToEquip);
 		}
-		else if(itemToEquip.itemType().equals("boots")){
+		else if(input == 'G'){
 			equipBoots((Boots)itemToEquip);
 		}
-		else if(itemToEquip.itemType().equals("chestpiece")){
-			equipChestpiece((Chestpiece)itemToEquip);
+		else if(input == 'H'){
+			equipRangedWeapon((Weapon)itemToEquip);
 		}
 	}
 	
 	public void initializeStartingGear(){
 		ItemFactory startingItems = new ItemFactory(this.level());
-		equipItem(startingItems.newItem("iron shortsword"));
-		equipItem(startingItems.newItem("iron cap"));
-		equipItem(startingItems.newItem("leather armor"));
-		equipItem(startingItems.newItem("iron cuisses"));
-		equipItem(startingItems.newItem("leather boots"));
-		equipItem(startingItems.newItem("iron greaves"));
+		equipItem(startingItems.newItem("iron shortsword"), 'C');
+		equipItem(startingItems.newItem("iron cap"), 'A');
+		equipItem(startingItems.newItem("leather armor"), 'B');
+		equipItem(startingItems.newItem("iron cuisses"), 'E');
+		equipItem(startingItems.newItem("leather boots"), 'G');
+		equipItem(startingItems.newItem("iron greaves"), 'F');
+		equipItem(startingItems.newItem("short bow"), 'H');
 		inventory().add(startingItems.newItem("potion of strong poison"));
 		inventory().add(startingItems.newItem("potion of strong poison"));
 		inventory().add(startingItems.newItem("potion of weak poison"));
 		inventory().add(startingItems.newItem("potion of weak poison"));
 	}
-	
-	public void meleeAttack(BaseEntity otherEntity){ commonAttack(otherEntity, attackDamage(), otherEntity.name()); }
-	
-	private void commonAttack(BaseEntity otherEntity, int attackDamage, String otherName){
+
+    public void move(int x, int y){
+        if(x == 0 && y == 0){ return; }
+        if(this.level.isWall(this.x + x, this.y + y)){ notify("You bump into the %s.", level.tile(this.x + x, this.y + y).details()); }
+        BaseEntity otherEntity = this.level.checkForMob(this.x + x, this.y + y);
+        if(otherEntity == null){
+            if(this.level.hasItemAlready(this.x + x, this.y + y)){
+                notify("You see %s here.", this.level.checkItems(this.x + x, this.y + y).name());
+            }
+            getAi().onEnter(this.x + x, this.y + y, this.level);
+        }
+        else if(!isPlayer() && !otherEntity.isPlayer()){
+            return;
+        }
+        else{
+            if(rightHand != null) {
+                meleeAttack(otherEntity, rightHand);
+            }
+            else if(leftHand != null){
+                meleeAttack(otherEntity, leftHand);
+            }
+            else{
+                meleeAttack(otherEntity);
+            }
+        }
+    }
+
+	public void meleeAttack(BaseEntity otherEntity, Weapon weaponUsed){ commonAttack(otherEntity, weaponUsed); }
+	public void rangedAttack(BaseEntity otherEntity, Weapon weaponUsed){ commonAttack(otherEntity, weaponUsed); }
+
+	private void commonAttack(BaseEntity otherEntity, Weapon weaponUsed){
 		int toHitRoll = RandomGen.rand(1, 100);
 		int diceRoll = 0, tempDamage = 0;
-		toHitRoll += toHitBonus();
+		toHitRoll += toHitBonus() + weaponUsed.toHit();
 		
-		for(int numberOfDice = 0; numberOfDice < weapon().numberOfDiceRolled(); numberOfDice++){
-			diceRoll = RandomGen.rand(1, attackDamage);
-			tempDamage += diceRoll;
-		}
-		tempDamage += damageModifier();
+            for(int numberOfDice = 0; numberOfDice < weaponUsed.numberOfDiceRolled(); numberOfDice++){
+                diceRoll = RandomGen.rand(1, weaponUsed.damageValue());
+                tempDamage += diceRoll;
+            }
+		tempDamage += damageModifier() + weaponUsed.damageBonus();
 		int damageAmount = tempDamage - otherEntity.armor();
 		String action;
 		

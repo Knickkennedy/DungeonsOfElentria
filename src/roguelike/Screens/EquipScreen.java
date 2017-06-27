@@ -16,12 +16,14 @@ public class EquipScreen implements Screen{
 	public Player player;
 	public String alphabet = "abcdefghijklmnopqrstuvwxyz";
 	public String itemToEquip;
-	public TreeMap <String, Integer> tempList = new TreeMap <String, Integer> ();
-	public List <BaseItem> equipList = new ArrayList <BaseItem> ();
+	public char input;
+	public TreeMap <String, Integer> tempList = new TreeMap <> ();
+	public List <BaseItem> equipList = new ArrayList <> ();
 	
-	public EquipScreen(Player player, String itemToEquip){
+	public EquipScreen(Player player, String itemToEquip, char inp){
 		this.player = player;
 		this.itemToEquip = itemToEquip;
+		this.input = inp;
 		initializeTempList();
 	}
 	
@@ -62,7 +64,7 @@ public class EquipScreen implements Screen{
 		
 		if(alphabet.indexOf(characterInput) > -1
 			&& tempList.size() > alphabet.indexOf(characterInput)){
-			player.equipItem(equipList.get(alphabet.indexOf(characterInput)));
+			player.equipItem(equipList.get(alphabet.indexOf(characterInput)), input);
 		}
 		
 		return null;

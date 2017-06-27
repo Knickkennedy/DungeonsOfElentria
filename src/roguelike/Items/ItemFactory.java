@@ -15,7 +15,7 @@ public class ItemFactory {
 	public String itemFileName = "/Items.txt";
 	public Scanner itemFile = null;
 	public Level thisLevel;
-	public HashMap <String, Color> colorDictionary = new HashMap <String, Color> ();
+	public HashMap <String, Color> colorDictionary = new HashMap <> ();
 	public HashMap <Integer, String> itemDictionary = new HashMap <> ();
 	private int itemCount;
 	
@@ -77,7 +77,7 @@ public class ItemFactory {
 		String name = null, itemType = null, effect = null;
 		char glyph = 0;
 		Color color = null;
-		int toHitBonus = 0, numOfDice = 0, attack = 0, attackBonus = 0, dodge = 0, armor = 0;
+		int toHitBonus = 0, numOfDice = 0, attack = 0, attackBonus = 0, dodge = 0, armor = 0, range = 0;
 		double weight = 0.0;
 		String[] tokens = null, effects = null;
 		
@@ -123,6 +123,20 @@ public class ItemFactory {
                 armor = Integer.parseInt(tokens[9].trim());
                 weight = Double.parseDouble(tokens[10].trim());
             }
+            else if (tokens.length == 12 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
+                name = tokens[0].trim();
+                itemType = tokens[1].trim();
+                glyph = tokens[2].trim().charAt(0);
+                color = colorDictionary.get(tokens[3].trim());
+                toHitBonus = Integer.parseInt(tokens[4].trim());
+                numOfDice = Integer.parseInt(tokens[5].trim());
+                attack = Integer.parseInt(tokens[6].trim());
+                attackBonus = Integer.parseInt(tokens[7].trim());
+                range = Integer.parseInt(tokens[8].trim());
+                dodge = Integer.parseInt(tokens[9].trim());
+                armor = Integer.parseInt(tokens[10].trim());
+                weight = Double.parseDouble(tokens[11].trim());
+            }
         }
 		if(itemType.equals("chestpiece")){
 			Chestpiece newChestpiece = new Chestpiece(name, glyph, color, itemType, weight, toHitBonus, attack, dodge, armor);
@@ -149,15 +163,20 @@ public class ItemFactory {
 			Potion newPotion = new Potion(name, glyph, color, itemType, weight, effect);
 			return newPotion;
 		}
-		else if(itemType.equals("weapon")){
-			Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, numOfDice, attack, attackBonus, dodge, armor);
-			return newWeapon;
-		}
+		else if(itemType.equals("melee weapon")){
+            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, numOfDice, attack, attackBonus, dodge, armor);
+            return newWeapon;
+        }
+        else if(itemType.equals("ranged weapon")){
+            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, numOfDice, attack, attackBonus, dodge, armor);
+            newWeapon.setRange(range);
+            return newWeapon;
+        }
 		else{
 			return null;
 		}
 	}
-	
+
 	public void newItemAtRandomLocation(){
 		int roll = RandomGen.rand(0, itemDictionary.size() - 1);
 		this.thisLevel.addAtEmptyLocation(newItem(itemDictionary.get(roll)));
