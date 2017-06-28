@@ -6,23 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/BaseEntity.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/BaseEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/Player.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/EquipScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/EquipScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/EquipmentScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/EquipmentScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/HumanPlayer.txt" afterPath="$PROJECT_DIR$/assets/HumanPlayer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Items.txt" afterPath="$PROJECT_DIR$/assets/Items.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/Weapon.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/Weapon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Screens/EquipScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/Screens/EquipScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Screens/EquipmentScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/Screens/EquipmentScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" />
-    </list>
+    <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -103,8 +87,8 @@
           <file leaf-file-name="FireWeaponScreen.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="456">
-                  <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+                <state relative-caret-position="303">
+                  <caret line="40" column="50" lean-forward="true" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
                   <folding />
                 </state>
               </provider>
@@ -1267,8 +1251,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+        <state relative-caret-position="303">
+          <caret line="40" column="50" lean-forward="true" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
           <folding />
         </state>
       </provider>
