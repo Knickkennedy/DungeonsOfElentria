@@ -12,15 +12,13 @@ public class TargetingScreen implements Screen{
 
 	public Point currentDirection = new Point(0, 0);
 	protected Player player;
-	protected String caption;
 	protected int x, y;
 	protected Coord[] targetLine;
 	
-	public TargetingScreen(Player player, String caption) {
+	public TargetingScreen(Player player) {
 		this.player = player;
 		this.x = player.x;
 		this.y = player.y;
-		this.caption = caption;
 		targetLine = Bresenham.line2D_(player.x, player.y, player.x, player.y);
 	}
 	
@@ -41,24 +39,29 @@ public class TargetingScreen implements Screen{
 	}
 
 	public void updateTargetLine(Point direction) {
-		if(x + direction.x >= player.level().width || x + direction.x < 0) {
-                x += 0;
-            }
-            else if(y + direction.y >= player.level().height || y + direction.y < 0) {
-                y += 0;
-            }
-            else {
-                x += direction.x;
-                y += direction.y;
-            }
-            Coord[] tempLine = Bresenham.line2D_(player.x, player.y, x, y);
-            if(tempLine.length > 1) {
-                targetLine = Bresenham.line2D_(tempLine[1].x, tempLine[1].y, x, y);
-            }
-            else{
-                targetLine = Bresenham.line2D_(player.x, player.y, x, y);
+        if (x + direction.x >= player.level().width || x + direction.x < 0) {
+            x += 0;
+        } else if (y + direction.y >= player.level().height || y + direction.y < 0) {
+            y += 0;
+        } else if (x + direction.x > player.x + player.getRangedWeapon().getRange()) {
+            x += 0;
+        } else if (x + direction.x < player.x - player.getRangedWeapon().getRange()) {
+            x += 0;
+        } else if(y + direction.y > player.y + player.getRangedWeapon().getRange()){
+            y += 0;
+        } else if(y + direction.y < player.y - player.getRangedWeapon().getRange()){
+            y += 0;
+        } else {
+            x += direction.x;
+            y += direction.y;
         }
-	}
+        Coord[] tempLine = Bresenham.line2D_(player.x, player.y, x, y);
+        if (tempLine.length > 1) {
+            targetLine = Bresenham.line2D_(tempLine[1].x, tempLine[1].y, x, y);
+        } else {
+            targetLine = Bresenham.line2D_(player.x, player.y, x, y);
+        }
+    }
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {

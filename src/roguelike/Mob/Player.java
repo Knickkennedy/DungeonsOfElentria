@@ -6,6 +6,9 @@ import roguelike.Items.*;
 import roguelike.Level.Level;
 import roguelike.utility.RandomGen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player extends BaseEntity{
 	
 	private int strength, constitution, dexterity, intelligence, wisdom, charisma, perception, toHitBonus, damageModifier, numOfDice;
@@ -17,6 +20,7 @@ public class Player extends BaseEntity{
 	private Cuisses cuisses;
 	private Chestpiece chestpiece;
 	private Helmet helmet;
+	private List <Weapon> ammunition;
 	
 	public Player(Level level, char glyph, Color color, int strength, int constitution, int dexterity, int intelligence, int wisdom, int charisma, int perception){
 		super(level, glyph, color);
@@ -36,6 +40,7 @@ public class Player extends BaseEntity{
 		setMaxCarryWeight(this.strength * 15);
 		setInventory(this);
 		setEquipment(this);
+		ammunition = new ArrayList<>();
 		initializeStartingGear();
 		setName("Hero");
 	}

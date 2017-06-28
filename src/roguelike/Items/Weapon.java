@@ -5,13 +5,11 @@ import java.awt.Color;
 public class Weapon extends BaseItem{
 	private int damageBonus, numberOfDiceRolled, range;
 	
-	public Weapon(String name, char glyph, Color color, String itemType, double weight, int toHit, int numDice, int attack, int attackBonus, int dodge, int armor){
+	public Weapon(String name, char glyph, Color color, String itemType, double weight, int toHit, int numDice, int attack, int attackBonus){
 		super(name, glyph, color, itemType, weight);
 		this.setDamageValue(attack);
 		this.setDamageBonus(attackBonus);
 		this.setToHit(toHit);
-		this.setDodgeValue(dodge);
-		this.setArmorValue(armor);
 		this.setNumberOfDiceRolled(numDice);
 	}
 

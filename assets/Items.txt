@@ -28,7 +28,11 @@ name				:	item type	:	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	ra
 
 short bow           :   ranged weapon   :   )   :   brown   :       1   :   1       :   6       :       0       :       5   :       0   :   0       :   3.0
 
+                                            AMMUNITION
 
+name                :   item type   :   symbol  :   color   :   to-Hit  :   Dice    :   attack  :   attack Bonus:   weight
+
+iron arrow          :   ammunition  :   /       :   gray    :   1       :   1       :   6       :   0           :   0.0
 
 											CHESTPIECES
 

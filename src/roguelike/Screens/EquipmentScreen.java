@@ -128,6 +128,8 @@ public class EquipmentScreen implements Screen{
                 }
                 break;
             }
+			case KeyEvent.VK_I:{
+			}
 		}
 		}
 		return this;
