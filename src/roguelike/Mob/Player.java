@@ -8,6 +8,7 @@ import roguelike.utility.RandomGen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Player extends BaseEntity{
 	
@@ -20,7 +21,7 @@ public class Player extends BaseEntity{
 	private Cuisses cuisses;
 	private Chestpiece chestpiece;
 	private Helmet helmet;
-	private List <Weapon> ammunition;
+	private List <Weapon> arrows;
 	
 	public Player(Level level, char glyph, Color color, int strength, int constitution, int dexterity, int intelligence, int wisdom, int charisma, int perception){
 		super(level, glyph, color);
@@ -40,7 +41,7 @@ public class Player extends BaseEntity{
 		setMaxCarryWeight(this.strength * 15);
 		setInventory(this);
 		setEquipment(this);
-		ammunition = new ArrayList<>();
+		arrows = new ArrayList<>();
 		initializeStartingGear();
 		setName("Hero");
 	}
@@ -53,6 +54,7 @@ public class Player extends BaseEntity{
 	public Cuisses getCuisses(){ return this.cuisses; }
 	public Chestpiece getChestpiece(){ return this.chestpiece; }
 	public Helmet getHelmet(){ return this.helmet; }
+	public List <Weapon> getArrows(){ return this.arrows; }
 	
 	public String helmetString(){ return this.helmet == null ? "" : this.helmet.name(); }
 	public String chestpieceString(){ return this.chestpiece == null ? "" : this.chestpiece.name(); }
@@ -62,7 +64,15 @@ public class Player extends BaseEntity{
 	public String leftHandString(){ return this.leftHand == null ? "" : this.leftHand.name(); }
 	public String rightHandString(){ return this.rightHand == null ? "" : this.rightHand.name(); }
 	public String rangedWeaponString(){ return this.rangedWeapon == null ? "" : this.rangedWeapon.name(); }
-	
+	public String arrowString(){
+	    if(arrows.isEmpty()){
+	        return "";
+        }
+        else{
+	        return arrows.get(0).name() + " x " + arrows.size();
+        }
+    }
+
 	public int strength(){ return this.strength; }
 	public void setStrength(int strength){ this.strength = strength; }
 	
@@ -259,6 +269,35 @@ public class Player extends BaseEntity{
 		updateDamageModifier(greaves.damageValue());
 		equipment().add(greaves);
 		}
+
+    public void equipArrows(Weapon arrow){
+	    List <BaseItem> tempList = new ArrayList<>();
+	    for(BaseItem item : inventory().getInventory()){
+	        if(item.name().equalsIgnoreCase(arrow.name())){
+	            tempList.add(item);
+            }
+        }
+        if(!tempList.isEmpty()){
+	        for(BaseItem item : tempList){
+	            equipment().add(item);
+	            arrows.add((Weapon)item);
+	            inventory().remove(item);
+            }
+        }
+        else{
+            equipment().add(arrow);
+            arrows.add(arrow);
+        }
+    }
+
+    public void unequipArrows(){
+        int index = arrows.size() - 1;
+        for(Weapon arrow : arrows){
+            equipment().remove(arrow);
+            inventory().add(arrow);
+        }
+        arrows.clear();
+    }
 	
 	public void equipItem(BaseItem itemToEquip, char input){
 		if(input == 'A'){
@@ -285,6 +324,9 @@ public class Player extends BaseEntity{
 		else if(input == 'H'){
 			equipRangedWeapon((Weapon)itemToEquip);
 		}
+		else if(input == 'I'){
+		    equipArrows((Weapon)itemToEquip);
+        }
 	}
 	
 	public void initializeStartingGear(){
@@ -296,6 +338,9 @@ public class Player extends BaseEntity{
 		equipItem(startingItems.newItem("leather boots"), 'G');
 		equipItem(startingItems.newItem("iron greaves"), 'F');
 		equipItem(startingItems.newItem("short bow"), 'H');
+		for(int i = 0; i < 30; i++){
+		    equipItem(startingItems.newItem("iron arrow"), 'I');
+        }
 		inventory().add(startingItems.newItem("potion of strong poison"));
 		inventory().add(startingItems.newItem("potion of strong poison"));
 		inventory().add(startingItems.newItem("potion of weak poison"));
@@ -328,8 +373,21 @@ public class Player extends BaseEntity{
         }
     }
 
+    public void consumeEquippedArrow(int x, int y){
+        int roll = RandomGen.rand(1, 100);
+        if(roll > 25){
+            level().addAtSpecificLocation(arrows.get(0), x, y);
+            equipment().remove(arrows.get(0));
+            arrows.remove(0);
+        }
+        else{
+            equipment().remove(arrows.get(0));
+            arrows.remove(0);
+        }
+    }
+
 	public void meleeAttack(BaseEntity otherEntity, Weapon weaponUsed){ commonAttack(otherEntity, weaponUsed); }
-	public void rangedAttack(BaseEntity otherEntity, Weapon weaponUsed){ commonAttack(otherEntity, weaponUsed); }
+	public void rangedAttack(BaseEntity otherEntity, Weapon weaponUsed, List <Weapon> ammunition){ commonRangedAttack(otherEntity, weaponUsed, ammunition); }
 
 	private void commonAttack(BaseEntity otherEntity, Weapon weaponUsed){
 		int toHitRoll = RandomGen.rand(1, 100);
@@ -348,6 +406,26 @@ public class Player extends BaseEntity{
 		else if(damageAmount < 1){ action = "deflect"; doDeflectAction(action, otherEntity); }
 		else{ action = "attack"; doAttackAction(action, otherEntity, damageAmount); otherEntity.modifyHP(-damageAmount, "killed by a " + name()); }
 	}
+
+    private void commonRangedAttack(BaseEntity otherEntity, Weapon weaponUsed, List <Weapon> ammunition){
+        int toHitRoll = RandomGen.rand(1, 100);
+        int diceRoll = 0, tempDamage = 0;
+        toHitRoll += toHitBonus() + weaponUsed.toHit() + ammunition.get(0).toHit();
+
+        for(int numberOfDice = 0; numberOfDice < ammunition.get(0).numberOfDiceRolled(); numberOfDice++){
+            diceRoll = RandomGen.rand(1, ammunition.get(0).damageValue());
+            tempDamage += diceRoll;
+        }
+        tempDamage += damageModifier() + weaponUsed.damageBonus() + ammunition.get(0).damageBonus();
+        int damageAmount = tempDamage - otherEntity.armor();
+        String action;
+
+        consumeEquippedArrow(otherEntity.x, otherEntity.y);
+
+        if(toHitRoll < otherEntity.dodge()){ action = "dodge"; doDeflectAction(action, otherEntity); }
+        else if(damageAmount < 1){ action = "deflect"; doDeflectAction(action, otherEntity); }
+        else{ action = "attack"; doAttackAction(action, otherEntity, damageAmount); otherEntity.modifyHP(-damageAmount, "killed by a " + name()); }
+    }
 	
 	
 	

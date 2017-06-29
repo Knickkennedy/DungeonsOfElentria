@@ -26,6 +26,7 @@ public class EquipmentScreen implements Screen{
 		String ankles = String.format(" f - %-15s : - %s", "Greaves", player.greavesString());
 		String boots = String.format(" g - %-15s : - %s", "Boots", player.bootsString());
 		String ranged = String.format(" h - %-15s : - %s", "Ranged Weapon", player.rangedWeaponString());
+		String arrows = String.format(" i - %-15s : - %s", "Ammunition", player.arrowString());
 		terminal.clear(' ', 0, 0, 88, 28);
 		terminal.writeCenter(stats, 1);
 		terminal.writeCenter(weight, 2);
@@ -37,6 +38,7 @@ public class EquipmentScreen implements Screen{
 		terminal.write(ankles, 0, 9);
 		terminal.write(boots, 0, 10);
 		terminal.write(ranged, 0, 11);
+		terminal.write(arrows, 0, 12);
 		for(int i = 5; i < 83; i++){
 			terminal.write('_', i, 3);
 		}
@@ -129,6 +131,12 @@ public class EquipmentScreen implements Screen{
                 break;
             }
 			case KeyEvent.VK_I:{
+				if(!player.getArrows().isEmpty()){
+					player.unequipArrows();
+				}
+				else{
+					subscreen = new EquipScreen(player, "ammunition", 'I');
+				}
 			}
 		}
 		}

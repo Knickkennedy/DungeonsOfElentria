@@ -47,7 +47,8 @@ public class ItemFactory {
 				|| (tempLine.contains("LEGGINGS"))
 				|| (tempLine.contains("BRACERS"))
 				|| (tempLine.contains("BOOTS"))
-				|| (tempLine.contains("POTIONS"))){
+				|| (tempLine.contains("POTIONS"))
+                || (tempLine.contains("AMMO"))){
 				continue;
 			}
 			tokens = tempLine.split(":");
@@ -90,7 +91,7 @@ public class ItemFactory {
                     || (tempLine.contains("BRACERS"))
                     || (tempLine.contains("BOOTS"))
                     || (tempLine.contains("POTIONS"))
-					|| (tempLine.contains("AMMUNITION"))) {
+					|| (tempLine.contains("AMMO"))) {
                 continue;
             }
             tokens = tempLine.split(":");
@@ -111,7 +112,7 @@ public class ItemFactory {
                 dodge = Integer.parseInt(tokens[6].trim());
                 armor = Integer.parseInt(tokens[7].trim());
                 weight = Double.parseDouble(tokens[8].trim());
-            }   else if (tokens.length == 9 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (tokens[1].trim().equals("ammunition"))) {
+            }   else if (tokens.length == 10 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (tokens[1].trim().equals("ammunition"))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
@@ -121,6 +122,17 @@ public class ItemFactory {
                 attack = Integer.parseInt(tokens[6].trim());
                 attackBonus = Integer.parseInt(tokens[7].trim());
                 weight = Double.parseDouble(tokens[8].trim());
+            } else if (tokens.length == 10 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName) && (tokens[1].trim().equals("ranged weapon")))) {
+                name = tokens[0].trim();
+                itemType = tokens[1].trim();
+                glyph = tokens[2].trim().charAt(0);
+                color = colorDictionary.get(tokens[3].trim());
+                toHitBonus = Integer.parseInt(tokens[4].trim());
+                attackBonus = Integer.parseInt(tokens[5].trim());
+                range = Integer.parseInt(tokens[6].trim());
+                dodge = Integer.parseInt(tokens[7].trim());
+                armor = Integer.parseInt(tokens[8].trim());
+                weight = Double.parseDouble(tokens[9].trim());
             } else if (tokens.length == 11 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
@@ -133,20 +145,6 @@ public class ItemFactory {
                 dodge = Integer.parseInt(tokens[8].trim());
                 armor = Integer.parseInt(tokens[9].trim());
                 weight = Double.parseDouble(tokens[10].trim());
-            }
-            else if (tokens.length == 12 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
-                name = tokens[0].trim();
-                itemType = tokens[1].trim();
-                glyph = tokens[2].trim().charAt(0);
-                color = colorDictionary.get(tokens[3].trim());
-                toHitBonus = Integer.parseInt(tokens[4].trim());
-                numOfDice = Integer.parseInt(tokens[5].trim());
-                attack = Integer.parseInt(tokens[6].trim());
-                attackBonus = Integer.parseInt(tokens[7].trim());
-                range = Integer.parseInt(tokens[8].trim());
-                dodge = Integer.parseInt(tokens[9].trim());
-                armor = Integer.parseInt(tokens[10].trim());
-                weight = Double.parseDouble(tokens[11].trim());
             }
         }
 		if(itemType.equals("chestpiece")){
@@ -175,20 +173,24 @@ public class ItemFactory {
 			return newPotion;
 		}
 		else if(itemType.equals("melee weapon")){
-            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, numOfDice, attack, attackBonus);
+            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, attackBonus);
+            newWeapon.setNumberOfDiceRolled(numOfDice);
+            newWeapon.setDamageValue(attack);
             newWeapon.setDodgeValue(dodge);
             newWeapon.setArmorValue(armor);
             return newWeapon;
         }
         else if(itemType.equals("ranged weapon")){
-            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, numOfDice, attack, attackBonus);
+            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, attackBonus);
             newWeapon.setRange(range);
             newWeapon.setDodgeValue(dodge);
             newWeapon.setArmorValue(armor);
             return newWeapon;
         }
         else if(itemType.equals("ammunition")){
-            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, numOfDice, attack, attackBonus);
+            Weapon newWeapon = new Weapon(name, glyph, color, itemType, weight, toHitBonus, attackBonus);
+            newWeapon.setNumberOfDiceRolled(numOfDice);
+            newWeapon.setDamageValue(attack);
             return newWeapon;
         }
 		else{

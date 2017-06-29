@@ -26,13 +26,13 @@ public class Inventory {
 		if(owner.currentCarryWeight() + item.weight() <= owner.maxCarryWeight()){
 			inventory.add(item);
 			Collections.sort(inventory);
+            currentWeight += item.weight();
 		}
 		else{
 			owner.notify("You are carrying too much to pick up the %s.", item.details());
 		}
-		currentWeight += item.weight();
 	}
-	
+
 	public void remove(BaseItem item){
 		if(inventory.contains(item)){
 			inventory.remove(item);

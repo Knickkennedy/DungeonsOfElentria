@@ -152,11 +152,11 @@ public class PlayScreen implements Screen {
 		case 'I':{ subscreen = new InventoryScreen(world.getPlayer()); break;}
 		case 'p':{ world.getPlayer().pickupItem(); break;}
 		case 't':{
-		    if(world.getPlayer().getRangedWeapon() != null) {
+		    if(world.getPlayer().getRangedWeapon() != null && !world.getPlayer().getArrows().isEmpty()) {
                 subscreen = new FireWeaponScreen(world.getCurrentLevel().player);
             }
             else{
-		        world.getPlayer().notify("You don't have a bow equipped.");
+		        world.getPlayer().notify("You don't have the correct equipment.");
             }
 			    break;}
 		case '>':{

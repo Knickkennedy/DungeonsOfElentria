@@ -24,15 +24,15 @@ mithril shortsword	:	melee weapon	:	(	:	blue	:		3	:	2		:	6		:		2		:		0	:	0		:	2.
 
                                             RANGED WEAPONS
 
-name				:	item type	:	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	range   :   dodge	:	armor	:	weight
+name				:	item type	    :	symbol	:	color	:	to-Hit	:	attack Bonus:	range   :   dodge	:	armor	:	weight
 
-short bow           :   ranged weapon   :   )   :   brown   :       1   :   1       :   6       :       0       :       5   :       0   :   0       :   3.0
+short bow           :   ranged weapon   :   )       :   brown   :       1   :       0       :       5   :       0   :   0       :   3.0
 
-                                            AMMUNITION
+                                            AMMO
 
-name                :   item type   :   symbol  :   color   :   to-Hit  :   Dice    :   attack  :   attack Bonus:   weight
+name                :   item type   :   symbol  :   color   :   to-Hit  :   Dice    :   attack  :   attack Bonus:   weight  :   effect
 
-iron arrow          :   ammunition  :   /       :   gray    :   1       :   1       :   6       :   0           :   0.0
+iron arrow          :   ammunition  :   /       :   gray    :   1       :   1       :   6       :   0           :   0.0     :
 
 											CHESTPIECES
 

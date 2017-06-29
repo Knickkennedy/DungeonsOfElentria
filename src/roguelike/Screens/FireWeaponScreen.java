@@ -35,13 +35,15 @@ public class FireWeaponScreen extends TargetingScreen{
                         || (player.level().glyph(target[i].x, target[i].y) == Tile.WALL.glyph())
                         || (player.level().glyph(target[i].x, target[i].y) == Tile.PERM_WALL.glyph())) {
                     player.notify("You hit a %s.", player.level().tile(target[i].x, target[i].y).details());
+                    player.consumeEquippedArrow(target[i].x, target[i].y);
                     break;
                 } else if (player.level().checkForMob(target[i].x, target[i].y) != null) {
                     BaseEntity otherEntity = player.level().checkForMob(target[i].x, target[i].y);
-                    player.rangedAttack(otherEntity, player.getRangedWeapon());
+                    player.rangedAttack(otherEntity, player.getRangedWeapon(), player.getArrows());
                     break;
                 }
                 else if(player.level().checkForMob(target[i].x, target[i].y) == null && i == target.length - 1){
+                    player.consumeEquippedArrow(target[i].x, target[i].y);
                     player.notify("You hit nothing.");
                 }
             }
