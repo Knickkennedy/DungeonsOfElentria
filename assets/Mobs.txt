@@ -1,15 +1,15 @@
-name				:	symbol	:	color		:	HP	:	attack	:	armor	: dodge	:	effects						:	AI          :   Danger
+name				:	symbol	:	color		:	HP	:	Mana    :    HP Regen   :   Mana Regen  :   attack  :	armor	: dodge	:	AI          :   Danger  :   effects
 
 								INSECT FAMILY
-giant hornet drone	:	h		:	white		:	5	:	6		:	1		:	5	:	weak poison, HP regen		:	aggressive  :   1
-giant hornet warrior:	h		:	gray		:	10	:	8		:	1		:	10	:	strong poison				:	aggressive  :   2
+giant hornet drone	:	h		:	white		:	5	:	0       :   25          :   25          :   6		:	1		:	5	:	aggressive  :   1       :   weak poison
+giant hornet warrior:	h		:	gray		:	10	:	0       :   30          :   30          :   8		:	1		:	10	:	aggressive  :   2       :   strong poison
 
 								GOBLIN FAMILY
 
-goblin				:	g		:	brightGreen	:	7	:	6		:	1		: 	5	:	none						:	aggressive  :   1
-goblin warrior		:	g		:	darkGreen	:	10	:	6		:	2		: 	5	:	none						:	aggressive  :   1
-goblin captain		:	g		:	darkGreen	:	15	:	6		:	3		: 	5	:	none						:	aggressive  :   2
+goblin				:	g		:	brightGreen	:	7	:	0       :   25          :   25          :   6		:	1		: 	5	:	aggressive  :   1       :   none
+goblin warrior		:	g		:	darkGreen	:	10	:	0       :   30          :   30          :   6		:	2		: 	5	:	aggressive  :   1       :   none
+goblin captain		:	g		:	darkGreen	:	15	:	0       :   35          :   35          :   6		:	3		: 	5	:	aggressive  :   2       :   none
 
 								BOSSES
 
-Elena				:	E		:	blue		:	20	:	6		:	3		: 	5	:	weak poison, HP regen		:	aggressive  :   3
+Elena				:	E		:	blue		:	20	:	0       :   50          :   50          :   6		:   3		: 	5   :   aggressive  :   3       :   weak poison

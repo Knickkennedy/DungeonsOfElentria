@@ -34,6 +34,7 @@ public class Player extends BaseEntity{
 		setPerception(perception);
 		setVisionRadius(perception / 2 + 1);
 		setPlayerHP();
+		setMaxMana((int)(intelligence*2.5));
 		setToHitBonus();
 		setDodgeChance();
 		setDamageModifier();

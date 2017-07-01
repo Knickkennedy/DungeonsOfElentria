@@ -40,7 +40,7 @@ public class PlayScreen implements Screen {
 		displayTiles(terminal);
 		displayMessages(terminal, messages);
 
-		String health = String.format("Hp: %d/%d", world.getPlayer().currentHP(), world.getPlayer().maxHP());
+		String health = String.format("Hp: %d/%d Mp: %d/%d", world.getPlayer().currentHP(), world.getPlayer().maxHP(), world.getPlayer().getCurrentMana(), world.getPlayer().getMaxMana());
 		terminal.write(health, 0, mapHeight + 1);
 		String stats = "";
 		if (world.getPlayer().getRightHand() != null) {

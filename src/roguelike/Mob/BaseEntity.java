@@ -20,20 +20,22 @@ public class BaseEntity implements EntityInterface{
 	private BaseAI ai;
 	private boolean isPlayer;
 	public int x, y;
-	private int maxHP, currentHP, attackDamage, armor, dodge, visionRadius;
+	private int maxHP, currentHP, currentMana, maxMana, healthRegen, manaRegen, healthRegenCooldown, manaRegenCooldown, attackDamage, armor, dodge, visionRadius;
 	private double maxCarryWeight;
 	private Inventory inventory;
 	private Inventory equipment;
 	private List <Effect> effects;
-	private String poisonType;
+	private List <String> offensiveEffects;
 	
 	public BaseEntity(Level level, char glyph, Color color){
+		healthRegenCooldown = 1000;
+		manaRegenCooldown = 1000;
 		this.level = level;
 		this.glyph = glyph;
 		this.color = color;
 		this.isPlayer = false;
-		this.effects = new ArrayList <Effect> ();
-		this.poisonType = "none";
+		this.effects = new ArrayList <> ();
+		offensiveEffects = new ArrayList<>();
 	}
 
 	public BaseAI getAi(){ return this.ai; }
@@ -41,10 +43,11 @@ public class BaseEntity implements EntityInterface{
 	public Tile realTile(int x, int y){ return this.level().tile(x, y); }
 	
 	public List <Effect> effects(){ return this.effects; }
-	
-	public String poisonType(){ return this.poisonType; }
-	public void setPoisonType(String poisonType){ this.poisonType = poisonType; }
-	
+
+	public List <String> getOffensiveEffects(){ return this.offensiveEffects; }
+	public void setOffensiveEffects(List <String> effects){ this.offensiveEffects = effects; }
+	public void addOffensiveEffect(String offensiveEffect){ this.offensiveEffects.add(offensiveEffect); }
+
 	public void setMaxCarryWeight(int carryWeight){ this.maxCarryWeight = carryWeight; }
 	public double maxCarryWeight(){ return this.maxCarryWeight; }
 	public double currentCarryWeight(){ 
@@ -74,7 +77,22 @@ public class BaseEntity implements EntityInterface{
 	
 	public int maxHP(){ return this.maxHP; }
 	public void setMaxHP(int amount){ this.maxHP = amount; this.currentHP = amount; }
-	
+	public void setHealthRegenRate(int regenRate){ this.healthRegen = regenRate; }
+
+	public int getMaxMana(){ return this.maxMana; }
+	public void setMaxMana(int amount){ this.maxMana = amount; this.currentMana = amount; }
+	public void setManaRegenRate(int regenRate){ this.manaRegen = regenRate; }
+
+	public int getCurrentMana(){ return this.currentMana; }
+	public void setCurrentMana(int amount){
+		if(this.currentMana + amount > this.maxMana){
+			this.currentMana = this.maxMana;
+		}
+		else{
+			this.currentMana += amount;
+		}
+	}
+
 	public int currentHP(){ return this.currentHP; }
 	public void setCurrentHP(int amount){ 
 		if(this.currentHP + amount > this.maxHP){
@@ -169,31 +187,32 @@ public class BaseEntity implements EntityInterface{
 			action = "attack";
 			doAttackAction(action, otherEntity, damageAmount);
 			otherEntity.modifyHP(-damageAmount, "killed by a " + this.name());
-			poisonAttack(otherEntity);
+			specialAttack(otherEntity);
 		}
 	}
 	
-	public void poisonAttack(BaseEntity otherEntity){
+	public void specialAttack(BaseEntity otherEntity){
 		int poisonRoll = RandomGen.rand(1, 100);
-		if(poisonType().equals("weak poison") && poisonRoll >= 75){
-			int totalLength = 0;
-			for(int i = 0; i < 4; i++){
-				int roll = RandomGen.rand(1, 3);
-				totalLength += roll;
+		for(String effect : offensiveEffects){
+			if (effect.equals("weak poison") && poisonRoll >= 75) {
+				int totalLength = 0;
+				for (int i = 0; i < 4; i++) {
+					int roll = RandomGen.rand(1, 3);
+					totalLength += roll;
+				}
+				Poison newPoison = new Poison(1, totalLength);
+				newPoison.start(otherEntity);
+				otherEntity.effects().add(newPoison);
+			} else if (effect.equals("strong poison") && poisonRoll >= 60) {
+				int totalLength = 0;
+				for (int i = 0; i < 4; i++) {
+					int roll = RandomGen.rand(1, 3);
+					totalLength += roll;
+				}
+				Poison newPoison = new Poison(2, totalLength);
+				newPoison.start(otherEntity);
+				otherEntity.effects().add(newPoison);
 			}
-			Poison newPoison = new Poison(1, totalLength);
-			newPoison.start(otherEntity);
-			otherEntity.effects().add(newPoison);
-		}
-		else if(poisonType().equals("strong poison") && poisonRoll >= 60){
-			int totalLength = 0;
-			for(int i = 0; i < 4; i++){
-				int roll = RandomGen.rand(1, 3);
-				totalLength += roll;
-			}
-			Poison newPoison = new Poison(2, totalLength);
-			newPoison.start(otherEntity);
-			otherEntity.effects().add(newPoison);
 		}
 	}
 	
@@ -214,6 +233,10 @@ public class BaseEntity implements EntityInterface{
 			doAction("die");
 			this.level.remove(this);
 		}
+	}
+
+	public void modifyMana(int amount){
+		setCurrentMana(amount);
 	}
 	
 	public void doAction(String message, Object...params){
@@ -266,8 +289,26 @@ public class BaseEntity implements EntityInterface{
 		effect.start(this);
 		effects.add(effect);
 	}
-	
-	public void update(){ 
+
+	public void regenerateHealth(){
+		healthRegenCooldown -= healthRegen;
+		if(healthRegenCooldown < 1){
+			modifyHP(1, "");
+			healthRegenCooldown += 1000;
+		}
+	}
+
+	public void regenerateMana(){
+		manaRegenCooldown -= manaRegen;
+		if(manaRegenCooldown < 1){
+			modifyMana(1);
+			manaRegenCooldown += 1000;
+		}
+	}
+
+	public void update(){
+		regenerateHealth();
+		regenerateMana();
 		ai.onUpdate();
 		updateEffects();
 		}
