@@ -82,7 +82,7 @@ public class MobStore {
 		String name = null, ai = null;
 		char glyph = 0;
 		Color color = null;
-		int HP = 0, MP = 0, attack = 0, armor = 0, dodge = 0, healthRegen = 0, manaRegen = 0;
+		int HP = 0, MP = 0, attack = 0, armor = 0, dodge = 0, healthRegen = 0, manaRegen = 0, range = 0, rangedDamage = 0;
 		String[] tokens = null, effects = null;
 		
 		while(mobFile.hasNextLine()){
@@ -99,7 +99,9 @@ public class MobStore {
 				attack = Integer.parseInt(tokens[7].trim());
 				armor = Integer.parseInt(tokens[8].trim());
 				dodge = Integer.parseInt(tokens[9].trim());
-                ai = tokens[10].trim();
+				range = Integer.parseInt(tokens[10].trim());
+				rangedDamage = Integer.parseInt(tokens[11].trim());
+                ai = tokens[12].trim();
 				effects = tokens[tokens.length - 1].trim().split(", ");
 
 			}

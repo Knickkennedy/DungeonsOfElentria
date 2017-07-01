@@ -1,15 +1,16 @@
-name				:	symbol	:	color		:	HP	:	Mana    :    HP Regen   :   Mana Regen  :   attack  :	armor	: dodge	:	AI          :   Danger  :   effects
+name				:	symbol	:	color		:	HP	:	Mana    :    HP Regen   :   Mana Regen  :   attack  :	armor	: dodge	:	range   :   ranged damage   :   AI          :   Danger  :   effects
 
 								INSECT FAMILY
-giant hornet drone	:	h		:	white		:	5	:	0       :   25          :   25          :   6		:	1		:	5	:	aggressive  :   1       :   weak poison
-giant hornet warrior:	h		:	gray		:	10	:	0       :   30          :   30          :   8		:	1		:	10	:	aggressive  :   2       :   strong poison
+giant hornet drone	:	h		:	white		:	5	:	0       :   25          :   25          :   6		:	1		:	5	:	0       :   0               :   aggressive  :   1       :   weak poison
+giant hornet warrior:	h		:	gray		:	10	:	0       :   30          :   30          :   8		:	1		:	10	:	0       :   0               :   aggressive  :   2       :   strong poison
 
 								GOBLIN FAMILY
 
-goblin				:	g		:	brightGreen	:	7	:	0       :   25          :   25          :   6		:	1		: 	5	:	aggressive  :   1       :   none
-goblin warrior		:	g		:	darkGreen	:	10	:	0       :   30          :   30          :   6		:	2		: 	5	:	aggressive  :   1       :   none
-goblin captain		:	g		:	darkGreen	:	15	:	0       :   35          :   35          :   6		:	3		: 	5	:	aggressive  :   2       :   none
+goblin				:	g		:	brightGreen	:	7	:	0       :   25          :   25          :   6		:	1		: 	5	:	0       :   0               :   aggressive  :   1       :   none
+goblin spear thrower:   g       :   brightGreen :   7   :   0       :   25          :   25          :   6       :   1       :   5   :   5       :   6               :   aggressive  :   1       :   none
+goblin warrior		:	g		:	darkGreen	:	10	:	0       :   30          :   30          :   6		:	2		: 	5	:	0       :   0               :   aggressive  :   1       :   none
+goblin captain		:	g		:	darkGreen	:	15	:	0       :   35          :   35          :   6		:	3		: 	5	:	0       :   0               :   aggressive  :   2       :   none
 
 								BOSSES
 
-Elena				:	E		:	blue		:	20	:	0       :   50          :   50          :   6		:   3		: 	5   :   aggressive  :   3       :   weak poison
+Elena				:	E		:	blue		:	20	:	0       :   50          :   50          :   6		:   3		: 	5   :   0        :   0              :   aggressive  :   3       :   weak poison
