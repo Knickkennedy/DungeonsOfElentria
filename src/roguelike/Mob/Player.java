@@ -340,6 +340,7 @@ public class Player extends BaseEntity{
 		equipItem(startingItems.newItem("short bow"), 'H');
 		for(int i = 0; i < 30; i++){
 		    equipItem(startingItems.newItem("iron arrow"), 'I');
+			inventory().add(startingItems.newItem("steel arrow"));
         }
 		inventory().add(startingItems.newItem("potion of strong poison"));
 		inventory().add(startingItems.newItem("potion of strong poison"));

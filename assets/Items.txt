@@ -32,8 +32,8 @@ short bow           :   ranged weapon   :   )       :   brown   :       1   :   
 
 name                :   item type   :   symbol  :   color   :   to-Hit  :   Dice    :   attack  :   attack Bonus:   weight
 
-iron arrow          :   ammunition  :   /       :   gray    :   1       :   1       :   6       :   0           :   0.0
-
+iron arrow          :   ammunition  :   /       :   gray    :   0       :   1       :   6       :   0           :   0.0
+steel arrow         :   ammunition  :   /       :   white   :   1       :   1       :   6       :   1           :   0.0
 											CHESTPIECES
 
 name				:	item type	:	symbol	:	color	:	to-Hit	:	damage	:	dodge	:	armor	:	weight

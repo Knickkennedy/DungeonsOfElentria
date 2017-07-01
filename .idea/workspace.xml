@@ -7,36 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Armor.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Armor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/BaseItem.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/BaseItem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Boots.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Boots.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Chestpiece.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Chestpiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Cuisses.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Cuisses.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Greaves.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Greaves.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Helmet.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Helmet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Inventory.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Inventory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Potion.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Potion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Weapon.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Weapon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Level/Level.class" afterPath="$PROJECT_DIR$/bin/roguelike/Level/Level.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/BaseEntity.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/BaseEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/MobStore.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/MobStore.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/EquipScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/EquipScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/EquipmentScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/EquipmentScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/FireWeaponScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/FireWeaponScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/LoseScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/LoseScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/StartScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/StartScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/WinScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/WinScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/World/World.class" afterPath="$PROJECT_DIR$/bin/roguelike/World/World.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/modifiers/Effect.class" afterPath="$PROJECT_DIR$/bin/roguelike/modifiers/Effect.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/modifiers/Healing.class" afterPath="$PROJECT_DIR$/bin/roguelike/modifiers/Healing.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/modifiers/Poison.class" afterPath="$PROJECT_DIR$/bin/roguelike/modifiers/Poison.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/utility/Point.class" afterPath="$PROJECT_DIR$/bin/roguelike/utility/Point.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Items.txt" afterPath="$PROJECT_DIR$/assets/Items.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/.gitignore" afterPath="$PROJECT_DIR$/bin/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/Weapon.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/Weapon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,13 +20,13 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7735399">
+    <splitter split-orientation="horizontal" split-proportion="0.5357568">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ItemFactory.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ItemFactory.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
+                <state relative-caret-position="322">
                   <caret line="179" column="43" lean-forward="false" selection-start-line="179" selection-start-column="43" selection-end-line="179" selection-end-column="43" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -68,7 +40,11 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="2550">
                   <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                    <element signature="e#2469#2470#0" expanded="false" />
+                    <element signature="e#2498#2499#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -79,21 +55,17 @@
                 <state relative-caret-position="2397">
                   <caret line="150" column="78" lean-forward="false" selection-start-line="150" selection-start-column="78" selection-end-line="150" selection-end-column="78" />
                   <folding>
-                    <marker date="1498880068481" expanded="true" signature="1665:2111" ph="{...}" />
-                    <marker date="1498880068481" expanded="true" signature="2167:2691" ph="{...}" />
-                    <marker date="1498880068481" expanded="true" signature="2742:3837" ph="{...}" />
-                    <marker date="1498880068481" expanded="true" signature="3885:4200" ph="{...}" />
-                    <marker date="1498880068481" expanded="true" signature="4262:6906" ph="{...}" />
+                    <element signature="imports" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-316">
-                  <caret line="376" column="20" lean-forward="false" selection-start-line="376" selection-start-column="20" selection-end-line="376" selection-end-column="20" />
+                <state relative-caret-position="170">
+                  <caret line="342" column="64" lean-forward="false" selection-start-line="342" selection-start-column="64" selection-end-line="342" selection-end-column="64" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -106,7 +78,9 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="476">
                   <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -114,17 +88,13 @@
           <file leaf-file-name="BaseEntity.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2193">
+                <state relative-caret-position="2176">
                   <caret line="140" column="13" lean-forward="false" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="13" />
                   <folding>
-                    <element signature="imports" expanded="true" />
-                    <marker date="1498880068467" expanded="true" signature="7196:7432" ph="{...}" />
-                    <marker date="1498880068467" expanded="true" signature="7483:7726" ph="{...}" />
-                    <marker date="1498880068467" expanded="true" signature="7758:8021" ph="{...}" />
-                    <marker date="1498880068467" expanded="true" signature="8057:8116" ph="{...}" />
-                    <marker date="1498880068467" expanded="true" signature="8154:8214" ph="{...}" />
-                    <marker date="1498880068467" expanded="true" signature="8254:8335" ph="{...}" />
-                    <marker date="1498880068467" expanded="true" signature="8359:8401" ph="{...}" />
+                    <element signature="e#3435#3436#0" expanded="false" />
+                    <element signature="e#3485#3486#0" expanded="false" />
+                    <element signature="e#4842#4843#0" expanded="false" />
+                    <element signature="e#4915#4916#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -155,7 +125,9 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="119">
                   <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -168,7 +140,7 @@
             <entry file="file://$PROJECT_DIR$/assets/Items.txt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="340">
-                  <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+                  <caret line="35" column="119" lean-forward="false" selection-start-line="35" selection-start-column="119" selection-end-line="35" selection-end-column="119" />
                   <folding />
                 </state>
               </provider>
@@ -179,7 +151,9 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="952">
                   <caret line="66" column="85" lean-forward="false" selection-start-line="66" selection-start-column="85" selection-end-line="66" selection-end-column="85" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -187,9 +161,13 @@
           <file leaf-file-name="FireWeaponScreen.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
+                <state relative-caret-position="578">
                   <caret line="39" column="63" lean-forward="false" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                    <element signature="e#258#259#0" expanded="false" />
+                    <element signature="e#278#279#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -199,7 +177,11 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="68">
                   <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                    <element signature="e#1943#1944#0" expanded="false" />
+                    <element signature="e#1961#1962#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -209,7 +191,11 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="595">
                   <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                    <element signature="e#318#319#0" expanded="false" />
+                    <element signature="e#345#346#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -219,7 +205,11 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="459">
                   <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                    <element signature="e#400#401#0" expanded="false" />
+                    <element signature="e#427#428#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -280,10 +270,10 @@
         <option value="$PROJECT_DIR$/src/roguelike/Screens/EquipmentScreen.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" />
-        <option value="$PROJECT_DIR$/src/roguelike/Mob/Player.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Items/Weapon.java" />
-        <option value="$PROJECT_DIR$/assets/Items.txt" />
         <option value="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" />
+        <option value="$PROJECT_DIR$/assets/Items.txt" />
+        <option value="$PROJECT_DIR$/src/roguelike/Mob/Player.java" />
       </list>
     </option>
   </component>
@@ -394,8 +384,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -632,7 +621,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -932,9 +922,9 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30338266" sideWeight="0.54583335" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30338266" sideWeight="0.54791665" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30338266" sideWeight="0.45416668" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30338266" sideWeight="0.45208332" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -979,7 +969,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
           <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -994,7 +986,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="44" column="54" lean-forward="false" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#278#279#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1003,11 +999,7 @@
         <state relative-caret-position="1581">
           <caret line="102" column="78" lean-forward="false" selection-start-line="102" selection-start-column="78" selection-end-line="102" selection-end-column="78" />
           <folding>
-            <marker date="1498880068481" expanded="true" signature="1665:2111" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="2167:2691" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="2742:3837" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="3885:4200" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="4262:6906" ph="{...}" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1030,7 +1022,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
           <caret line="51" column="33" lean-forward="true" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1122,7 +1116,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,7 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1194,7 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1209,7 +1200,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
           <caret line="98" column="61" lean-forward="false" selection-start-line="98" selection-start-column="61" selection-end-line="98" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1225,7 +1215,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2550">
           <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2469#2470#0" expanded="false" />
+            <element signature="e#2498#2499#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1246,17 +1240,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2193">
+        <state relative-caret-position="2176">
           <caret line="140" column="13" lean-forward="false" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1498880068467" expanded="true" signature="7196:7432" ph="{...}" />
-            <marker date="1498880068467" expanded="true" signature="7483:7726" ph="{...}" />
-            <marker date="1498880068467" expanded="true" signature="7758:8021" ph="{...}" />
-            <marker date="1498880068467" expanded="true" signature="8057:8116" ph="{...}" />
-            <marker date="1498880068467" expanded="true" signature="8154:8214" ph="{...}" />
-            <marker date="1498880068467" expanded="true" signature="8254:8335" ph="{...}" />
-            <marker date="1498880068467" expanded="true" signature="8359:8401" ph="{...}" />
+            <element signature="e#3435#3436#0" expanded="false" />
+            <element signature="e#3485#3486#0" expanded="false" />
+            <element signature="e#4842#4843#0" expanded="false" />
+            <element signature="e#4915#4916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1265,7 +1255,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1273,7 +1265,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="66" column="85" lean-forward="false" selection-start-line="66" selection-start-column="85" selection-end-line="66" selection-end-column="85" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1281,7 +1275,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1943#1944#0" expanded="false" />
+            <element signature="e#1961#1962#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1289,7 +1287,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#318#319#0" expanded="false" />
+            <element signature="e#345#346#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1297,7 +1299,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#400#401#0" expanded="false" />
+            <element signature="e#427#428#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1305,7 +1311,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1314,29 +1322,19 @@
         <state relative-caret-position="2397">
           <caret line="150" column="78" lean-forward="false" selection-start-line="150" selection-start-column="78" selection-end-line="150" selection-end-column="78" />
           <folding>
-            <marker date="1498880068481" expanded="true" signature="1665:2111" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="2167:2691" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="2742:3837" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="3885:4200" ph="{...}" />
-            <marker date="1498880068481" expanded="true" signature="4262:6906" ph="{...}" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="578">
           <caret line="39" column="63" lean-forward="false" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-316">
-          <caret line="376" column="20" lean-forward="false" selection-start-line="376" selection-start-column="20" selection-end-line="376" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#278#279#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1352,15 +1350,25 @@
     <entry file="file://$PROJECT_DIR$/assets/Items.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <caret line="35" column="119" lean-forward="false" selection-start-line="35" selection-start-column="119" selection-end-line="35" selection-end-column="119" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="322">
           <caret line="179" column="43" lean-forward="false" selection-start-line="179" selection-start-column="43" selection-end-line="179" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="342" column="64" lean-forward="false" selection-start-line="342" selection-start-column="64" selection-end-line="342" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
