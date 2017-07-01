@@ -102,7 +102,7 @@ public class ItemFactory {
                 color = colorDictionary.get(tokens[3].trim());
                 weight = Double.parseDouble(tokens[4].trim());
                 effect = tokens[5].trim();
-            } else if (tokens.length == 9 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
+            } else if (tokens.length == 9 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (!tokens[1].trim().equals("ammunition"))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
@@ -112,7 +112,7 @@ public class ItemFactory {
                 dodge = Integer.parseInt(tokens[6].trim());
                 armor = Integer.parseInt(tokens[7].trim());
                 weight = Double.parseDouble(tokens[8].trim());
-            }   else if (tokens.length == 10 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (tokens[1].trim().equals("ammunition"))) {
+            }   else if (tokens.length == 9 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (tokens[1].trim().equals("ammunition"))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);

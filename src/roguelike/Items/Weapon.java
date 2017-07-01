@@ -22,4 +22,10 @@ public class Weapon extends BaseItem{
     public int numberOfDiceRolled(){ return this.numberOfDiceRolled; }
     public void setNumberOfDiceRolled(int num){ this.numberOfDiceRolled = num; }
     public void modifyNumberOfDiceRolled(int modification){ this.numberOfDiceRolled += modification; }
+
+    public String toString(){
+        return "Name: " + name() + "\nDamage: " + damageValue() + "\nBonus Damage: " + damageBonus() + "\nTo Hit Bonus: "
+                + toHit() + "\nNumber of Dice: " + numberOfDiceRolled();
+    }
+
 }
