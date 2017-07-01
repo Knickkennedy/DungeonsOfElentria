@@ -4,9 +4,9 @@ import java.util.*;
 import roguelike.Level.Level;
 import roguelike.Mob.BaseEntity;
 
-public class playerAi extends BaseAI{
+public class playerAI extends BaseAI{
 	private List <String> messages;
-	public playerAi(BaseEntity mob, List <String> messages){
+	public playerAI(BaseEntity mob, List <String> messages){
 		super(mob);
 		this.messages = messages;
 	}

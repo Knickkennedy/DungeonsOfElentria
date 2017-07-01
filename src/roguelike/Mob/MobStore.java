@@ -1,16 +1,15 @@
 package roguelike.Mob;
 
 import java.awt.Color;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import asciiPanel.AsciiPanel;
 import roguelike.AI.AggressiveAI;
-import roguelike.AI.playerAi;
+import roguelike.AI.RangedAI;
+import roguelike.AI.playerAI;
 import roguelike.Level.Level;
 
 public class MobStore {
@@ -116,14 +115,19 @@ public class MobStore {
 		newEnemy.setHealthRegenRate(healthRegen);
 		newEnemy.setManaRegenRate(manaRegen);
 		newEnemy.setDodge(dodge);
+		newEnemy.setRange(range);
+		newEnemy.setRangedDamage(rangedDamage);
 		newEnemy.setIsPlayer(false);
 		newEnemy.setVisionRadius(10);
 		
 		thisLevel.addAtEmptyLocation(newEnemy);
 		
 		if(ai.equals("aggressive")){
-			new AggressiveAI(newEnemy, thisLevel.player);
+			new AggressiveAI(newEnemy);
 		}
+		else if(ai.equals("ranged")){
+		    new RangedAI(newEnemy);
+        }
 		
 		for(String effect : effects){
 			if(effect.equals("weak poison")){
@@ -169,7 +173,7 @@ public class MobStore {
 		Player newPlayer = new Player(this.thisLevel, glyph, color, strength, constitution, dexterity, intelligence, wisdom, charisma, perception);
 		newPlayer.setHealthRegenRate(healthRegen);
 		newPlayer.setManaRegenRate(manaRegen);
-		new playerAi(newPlayer, messages);
+		new playerAI(newPlayer, messages);
 		return newPlayer;
 	}
 	

@@ -20,7 +20,7 @@ public class BaseEntity implements EntityInterface{
 	private BaseAI ai;
 	private boolean isPlayer;
 	public int x, y;
-	private int maxHP, currentHP, currentMana, maxMana, healthRegen, manaRegen, healthRegenCooldown, manaRegenCooldown, attackDamage, armor, dodge, visionRadius;
+	private int maxHP, currentHP, currentMana, maxMana, healthRegen, manaRegen, healthRegenCooldown, manaRegenCooldown, attackDamage, range, rangedDamage, armor, dodge, visionRadius;
 	private double maxCarryWeight;
 	private Inventory inventory;
 	private Inventory equipment;
@@ -63,7 +63,13 @@ public class BaseEntity implements EntityInterface{
 	
 	public Level level(){ return this.level; }
 	public void setLevel(Level level){ this.level = level; }
-	
+
+	public int getRange(){ return this.range; }
+	public void setRange(int amount){ this.range = amount; }
+
+	public int getRangedDamage(){ return this.rangedDamage; }
+	public void setRangedDamage(int amount){ this.rangedDamage = amount; }
+
 	public String name(){ return this.name; }
 	public void setName(String name){ this.name = name; }
 	
@@ -166,7 +172,7 @@ public class BaseEntity implements EntityInterface{
 	}
 	
 	public void rangedAttack(BaseEntity otherEntity) {
-		commonAttack(otherEntity, this.attackDamage(), otherEntity.name());
+		commonAttack(otherEntity, this.getRangedDamage(), otherEntity.name());
 	}
 	
 	private void commonAttack(BaseEntity otherEntity, int attackDamage, Object...params){
@@ -190,7 +196,23 @@ public class BaseEntity implements EntityInterface{
 			specialAttack(otherEntity);
 		}
 	}
-	
+
+	public boolean isNextTo(BaseEntity otherEntity){
+		int xCheck = Math.abs(this.x - otherEntity.x);
+		int yCheck = Math.abs(this.y - otherEntity.y);
+
+		if(xCheck > 1 || yCheck > 1){ return false; }
+		else{ return true; }
+	}
+
+	public boolean isWithinRange(BaseEntity otherEntity){
+		int xCheck = Math.abs(this.x - otherEntity.x);
+		int yCheck = Math.abs(this.y - otherEntity.y);
+
+		if(xCheck > getRange() || yCheck > getRange()){ return false; }
+		else{ return true; }
+	}
+
 	public void specialAttack(BaseEntity otherEntity){
 		int poisonRoll = RandomGen.rand(1, 100);
 		for(String effect : offensiveEffects){

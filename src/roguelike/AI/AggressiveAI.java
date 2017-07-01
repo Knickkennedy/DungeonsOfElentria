@@ -8,7 +8,7 @@ public class AggressiveAI extends BaseAI{
 	public Player player;
 	private boolean hasSeenPlayer;
 	
-	public AggressiveAI(EnemyEntity mob, Player player){
+	public AggressiveAI(EnemyEntity mob){
 		super(mob);
 		hasSeenPlayer = false;
 	}
