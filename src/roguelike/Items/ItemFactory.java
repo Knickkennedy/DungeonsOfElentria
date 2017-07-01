@@ -17,6 +17,9 @@ public class ItemFactory {
 	public Level thisLevel;
 	public HashMap <String, Color> colorDictionary = new HashMap <> ();
 	public HashMap <Integer, String> itemDictionary = new HashMap <> ();
+	public HashMap <Integer, String> dangerOneItems = new HashMap<>();
+	public HashMap <Integer, String> dangerTwoItems = new HashMap<>();
+	public HashMap <Integer, String> dangerThreeItems = new HashMap<>();
 	private int itemCount;
 	
 	public ItemFactory(Level level){
@@ -54,8 +57,15 @@ public class ItemFactory {
 			tokens = tempLine.split(":");
 			if(!tokens[0].trim().equals("name")){
 				name = tokens[0].trim();
-				itemDictionary.put(itemCount, name);
-				itemCount++;
+				if(Integer.parseInt(tokens[tokens.length - 1].trim()) == 1){
+					dangerOneItems.put(dangerOneItems.size() + 1, name);
+				}
+				else if(Integer.parseInt(tokens[tokens.length - 1].trim()) == 2){
+					dangerTwoItems.put(dangerTwoItems.size() + 1, name);
+				}
+				else if(Integer.parseInt(tokens[tokens.length - 1].trim()) == 3){
+					dangerThreeItems.put(dangerThreeItems.size() + 1, name);
+				}
 			}
 		}
 		itemFile.close();
@@ -95,14 +105,14 @@ public class ItemFactory {
                 continue;
             }
             tokens = tempLine.split(":");
-            if (tokens.length == 6 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
+            if (tokens[1].trim().equals("potion") && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
                 color = colorDictionary.get(tokens[3].trim());
                 weight = Double.parseDouble(tokens[4].trim());
                 effect = tokens[5].trim();
-            } else if (tokens.length == 9 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (!tokens[1].trim().equals("ammunition"))) {
+            } else if (!tokens[1].trim().equals("ammunition") && (tokens[0].trim().equals(itemName)) && (tokens[2].trim().charAt(0) == '[')) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
@@ -112,7 +122,7 @@ public class ItemFactory {
                 dodge = Integer.parseInt(tokens[6].trim());
                 armor = Integer.parseInt(tokens[7].trim());
                 weight = Double.parseDouble(tokens[8].trim());
-            }   else if (tokens.length == 9 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName)) && (tokens[1].trim().equals("ammunition"))) {
+            }   else if (tokens[1].trim().equals("ammunition") && (tokens[0].trim().equals(itemName))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
@@ -122,7 +132,7 @@ public class ItemFactory {
                 attack = Integer.parseInt(tokens[6].trim());
                 attackBonus = Integer.parseInt(tokens[7].trim());
                 weight = Double.parseDouble(tokens[8].trim());
-            } else if (tokens.length == 10 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName) && (tokens[1].trim().equals("ranged weapon")))) {
+            } else if (tokens[1].trim().equals("ranged weapon") && (tokens[0].trim().equals(itemName))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
@@ -133,7 +143,7 @@ public class ItemFactory {
                 dodge = Integer.parseInt(tokens[7].trim());
                 armor = Integer.parseInt(tokens[8].trim());
                 weight = Double.parseDouble(tokens[9].trim());
-            } else if (tokens.length == 11 && !tokens[0].trim().equals("name") && (tokens[0].trim().equals(itemName))) {
+            } else if (tokens[1].trim().equals("melee weapon") && (tokens[0].trim().equals(itemName))) {
                 name = tokens[0].trim();
                 itemType = tokens[1].trim();
                 glyph = tokens[2].trim().charAt(0);
@@ -196,11 +206,6 @@ public class ItemFactory {
 		else{
 			return null;
 		}
-	}
-
-	public void newItemAtRandomLocation(){
-		int roll = RandomGen.rand(0, itemDictionary.size() - 1);
-		this.thisLevel.addAtEmptyLocation(newItem(itemDictionary.get(roll)));
 	}
 	
 	private static Scanner openItemFile(String fileName) throws FileNotFoundException{

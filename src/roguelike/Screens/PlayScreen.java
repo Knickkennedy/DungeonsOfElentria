@@ -39,20 +39,27 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		displayTiles(terminal);
 		displayMessages(terminal, messages);
-		
+
 		String health = String.format("Hp: %d/%d", world.getPlayer().currentHP(), world.getPlayer().maxHP());
 		terminal.write(health, 0, mapHeight + 1);
-		
-		String stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d", 
-				world.getPlayer().toHitBonus(), world.getPlayer().numOfDice(), 
-				world.getPlayer().attackDamage(), 
-				world.getPlayer().damageModifier(), world.getPlayer().armor());
+		String stats = "";
+		if (world.getPlayer().getRightHand() != null) {
+			stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
+                    world.getPlayer().getRightHand().toHit(), world.getPlayer().getRightHand().numberOfDiceRolled(),
+                    world.getPlayer().getRightHand().damageValue(), world.getPlayer().getRightHand().damageBonus(),
+                    world.getPlayer().armor());
+		} else {
+		    stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
+                    world.getPlayer().toHitBonus(), world.getPlayer().numOfDice(),
+                    world.getPlayer().attackDamage(),
+                    world.getPlayer().damageModifier(), world.getPlayer().armor());
+		}
 		terminal.write(stats, 0, mapHeight + 2);
-		
-		if(subscreen != null){
+
+		if (subscreen != null) {
 			subscreen.displayOutput(terminal);
 		}
-		
+
 	}
 	
 	public void displayMessages(AsciiPanel terminal, List <String> messages){

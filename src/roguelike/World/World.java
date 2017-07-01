@@ -148,14 +148,43 @@ public class World {
             }
 			setCurrentLevel(tempLevel);
 			initializeMobsOnLevel();
-			createRandomItems();
+			initializeItemsOnLevel();
 			levels.put(currentLevel.levelNumber, currentLevel);
 		}
 	}
 	
-	public void createRandomItems(){
-		for(int i = 0; i < 25; i++){
-			itemStore.newItemAtRandomLocation();
+	public void initializeItemsOnLevel(){
+		if(currentLevel.dangerLevel == 1){
+			for(int i = 0; i < 25; i++){
+				int dangerCheck = RandomGen.rand(1, 100);
+				if(dangerCheck < 98) {
+					int roll = RandomGen.rand(1, itemStore.dangerOneItems.size());
+					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
+				}
+				else{
+					int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
+					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
+				}
+			}
+		}
+		else if(currentLevel.dangerLevel == 2){
+			for(int i = 0; i < 25; i++){
+				int dangerCheck = RandomGen.rand(1, 100);
+				if(dangerCheck < 98) {
+					int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
+					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
+				}
+				else{
+					int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
+					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+				}
+			}
+		}
+		else{
+			for(int i = 0; i < 25; i++){
+				int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
+				getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+			}
 		}
 	}
 	
