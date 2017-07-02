@@ -133,62 +133,119 @@ public class PlayScreen implements Screen {
 	
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		if(subscreen != null){
-			subscreen = subscreen.respondToUserInput(key);
-		}
-		else{
-		switch (key.getKeyCode()){
-		case KeyEvent.VK_ESCAPE: return new LoseScreen();
-		case KeyEvent.VK_ENTER: return new WinScreen();
-		case KeyEvent.VK_NUMPAD4:{ currentDirection = Point.WEST; doAction(currentDirection); break;}
-		case KeyEvent.VK_NUMPAD6:{ currentDirection = Point.EAST; doAction(currentDirection); break;}
-		case KeyEvent.VK_NUMPAD8:{ currentDirection = Point.NORTH; doAction(currentDirection); break;}
-		case KeyEvent.VK_NUMPAD2:{ currentDirection = Point.SOUTH; doAction(currentDirection); break;}
-		case KeyEvent.VK_NUMPAD7:{ currentDirection = Point.NORTH_WEST; doAction(currentDirection); break;}
-		case KeyEvent.VK_NUMPAD9:{ currentDirection = Point.NORTH_EAST; doAction(currentDirection);	break;}
-		case KeyEvent.VK_NUMPAD1:{ currentDirection = Point.SOUTH_WEST;	doAction(currentDirection);	break;}
-		case KeyEvent.VK_NUMPAD3:{ currentDirection = Point.SOUTH_EAST;	doAction(currentDirection);	break;}
-		case KeyEvent.VK_NUMPAD5:{ currentDirection = Point.WAIT; doAction(currentDirection); break;}
-		default:{ currentDirection = Point.WAIT; doAction(currentDirection);}
-		}
-		
-		switch(key.getKeyChar()){
-		case 'd':{ subscreen = new DropScreen(world.getPlayer()); break;}
-		case 'D':{ subscreen = new DrinkScreen(world.getPlayer()); break;}
-		case 'i':{ subscreen = new EquipmentScreen(world.getPlayer()); break;}
-		case 'I':{ subscreen = new InventoryScreen(world.getPlayer()); break;}
-		case 'p':{ world.getPlayer().pickupItem(); break;}
-		case 't':{
-		    if(world.getPlayer().getRangedWeapon() != null && !world.getPlayer().getArrows().isEmpty()) {
-                subscreen = new FireWeaponScreen(world.getCurrentLevel().player);
+        if (subscreen != null) {
+                subscreen = subscreen.respondToUserInput(key);
+            } else {
+                switch (key.getKeyCode()) {
+                    case KeyEvent.VK_ESCAPE:
+                        return new LoseScreen();
+                    case KeyEvent.VK_ENTER:
+                        return new WinScreen();
+                    case KeyEvent.VK_NUMPAD4: {
+                        currentDirection = Point.WEST;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD6: {
+                        currentDirection = Point.EAST;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD8: {
+                        currentDirection = Point.NORTH;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD2: {
+                        currentDirection = Point.SOUTH;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD7: {
+                        currentDirection = Point.NORTH_WEST;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD9: {
+                        currentDirection = Point.NORTH_EAST;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD1: {
+                        currentDirection = Point.SOUTH_WEST;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD3: {
+                        currentDirection = Point.SOUTH_EAST;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    case KeyEvent.VK_NUMPAD5: {
+                        currentDirection = Point.WAIT;
+                        doAction(currentDirection);
+                        break;
+                    }
+                    default: {
+                        currentDirection = Point.WAIT;
+                        doAction(currentDirection);
+                    }
+                }
+
+            switch (key.getKeyChar()) {
+                case 'd': {
+                    subscreen = new DropScreen(world.getPlayer());
+                    break;
+                }
+                case 'D': {
+                    subscreen = new DrinkScreen(world.getPlayer());
+                    break;
+                }
+                case 'i': {
+                    subscreen = new EquipmentScreen(world.getPlayer());
+                    break;
+                }
+                case 'I': {
+                    subscreen = new InventoryScreen(world.getPlayer());
+                    break;
+                }
+                case 'p': {
+                    world.getPlayer().pickupItem();
+                    break;
+                }
+                case 't': {
+                    if (world.getPlayer().getRangedWeapon() != null && !world.getPlayer().getArrows().isEmpty()) {
+                        subscreen = new FireWeaponScreen(world.getCurrentLevel().player);
+                    } else {
+                        world.getPlayer().notify("You don't have the correct equipment.");
+                    }
+                    break;
+                }
+                case '>': {
+                    if (world.getCurrentLevel().tile(world.getPlayer().x, world.getPlayer().y) == Tile.STAIRS_DOWN
+                            || world.getCurrentLevel().tile(world.getPlayer().x, world.getPlayer().y) == Tile.CAVE) {
+                        world.goDownALevel();
+                    } else {
+                        world.getPlayer().notify("There's no way to go down from here.");
+                    }
+                    break;
+                }
+                case '<': {
+                    if (world.getCurrentLevel().tile(world.getPlayer().x, world.getPlayer().y) == Tile.STAIRS_UP) {
+                        world.goUpALevel();
+                    } else {
+                        world.getPlayer().notify("There's no way to go up from here.");
+                    }
+                    break;
+                }
+                case '?': {
+                    subscreen = new HelpScreen();
+                    break;
+                }
             }
-            else{
-		        world.getPlayer().notify("You don't have the correct equipment.");
-            }
-			    break;}
-		case '>':{
-			if(world.getCurrentLevel().tile(world.getPlayer().x, world.getPlayer().y) == Tile.STAIRS_DOWN
-					|| world.getCurrentLevel().tile(world.getPlayer().x, world.getPlayer().y) == Tile.CAVE){
-				world.goDownALevel(); 
-			}
-			else{
-				world.getPlayer().notify("There's no way to go down from here.");
-			}
-			break;
-			}
-		case '<':{ 
-			if(world.getCurrentLevel().tile(world.getPlayer().x, world.getPlayer().y) == Tile.STAIRS_UP){
-				world.goUpALevel(); 
-			}
-			else{
-				world.getPlayer().notify("There's no way to go up from here.");
-			}
-			break;
-			}
-		}
-		}
-		
-		if(world.getPlayer().currentHP() < 1) { return new LoseScreen(); }
+        }
+
+        if(world.getPlayer().currentHP() < 1) { return new LoseScreen(); }
 		
 		if(subscreen == null && !key.isShiftDown()){ world.getCurrentLevel().update();}
 		
