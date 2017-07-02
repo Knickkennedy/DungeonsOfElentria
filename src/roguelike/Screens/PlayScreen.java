@@ -137,10 +137,6 @@ public class PlayScreen implements Screen {
                 subscreen = subscreen.respondToUserInput(key);
             } else {
                 switch (key.getKeyCode()) {
-                    case KeyEvent.VK_ESCAPE:
-                        return new LoseScreen();
-                    case KeyEvent.VK_ENTER:
-                        return new WinScreen();
                     case KeyEvent.VK_NUMPAD4: {
                         currentDirection = Point.WEST;
                         doAction(currentDirection);
