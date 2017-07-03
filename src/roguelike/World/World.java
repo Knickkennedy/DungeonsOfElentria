@@ -189,6 +189,9 @@ public class World {
 	}
 	
 	public void initializeMobsOnLevel(){
+		System.out.println(mobStore.dangerOneEnemies.size());
+		System.out.println(mobStore.dangerTwoEnemies.size());
+		System.out.println(mobStore.dangerThreeEnemies.size());
 		if(currentLevel.dangerLevel == 1){
 			for(int i = 0; i < 25; i++){
 			    int dangerCheck = RandomGen.rand(1, 100);

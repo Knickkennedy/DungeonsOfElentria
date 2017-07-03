@@ -1,2 +1,10 @@
-strength	:	constitution	:	dexterity	:	intelligence	:	wisdom	:	charisma	:	Perception  :   HP Regen    :   Mana Regen
-10			:	99				:	10			:	10				:	10		:	10			:	15          :   50          :   50
+Name            :   Hero
+Strength	    :   10
+Constitution	:   99
+Dexterity	    :	10
+Intelligence	:	10
+Wisdom	        :	10
+Charisma	    :	10
+Perception      :   15
+HP Regen        :   50
+Mana Regen      :   50

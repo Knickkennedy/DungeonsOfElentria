@@ -25,7 +25,7 @@ public class BaseEntity implements EntityInterface{
 	private Inventory inventory;
 	private Inventory equipment;
 	private List <Effect> effects;
-	private List <String> offensiveEffects;
+	private List <Effect> offensiveEffects;
 	
 	public BaseEntity(Level level, char glyph, Color color){
 		healthRegenCooldown = 1000;
@@ -38,15 +38,27 @@ public class BaseEntity implements EntityInterface{
 		offensiveEffects = new ArrayList<>();
 	}
 
+	public BaseEntity(Level level){
+		healthRegenCooldown = 1000;
+		manaRegenCooldown = 1000;
+		this.level = level;
+		this.isPlayer = false;
+		this.effects = new ArrayList<>();
+		offensiveEffects = new ArrayList<>();
+	}
+
 	public BaseAI getAi(){ return this.ai; }
+
+	public void setGlyph(char glyph){ this.glyph = glyph; }
+	public void setColor(Color color){ this.color = color; }
 
 	public Tile realTile(int x, int y){ return this.level().tile(x, y); }
 	
 	public List <Effect> effects(){ return this.effects; }
 
-	public List <String> getOffensiveEffects(){ return this.offensiveEffects; }
-	public void setOffensiveEffects(List <String> effects){ this.offensiveEffects = effects; }
-	public void addOffensiveEffect(String offensiveEffect){ this.offensiveEffects.add(offensiveEffect); }
+	public List <Effect> getOffensiveEffects(){ return this.offensiveEffects; }
+	public void setOffensiveEffects(List <Effect> effects){ this.offensiveEffects = effects; }
+	public void addOffensiveEffect(Effect offensiveEffect){ this.offensiveEffects.add(offensiveEffect); }
 
 	public void setMaxCarryWeight(int carryWeight){ this.maxCarryWeight = carryWeight; }
 	public double maxCarryWeight(){ return this.maxCarryWeight; }
@@ -214,9 +226,12 @@ public class BaseEntity implements EntityInterface{
 	}
 
 	public void specialAttack(BaseEntity otherEntity){
-		int poisonRoll = RandomGen.rand(1, 100);
-		for(String effect : offensiveEffects){
-			if (effect.equals("weak poison") && poisonRoll >= 75) {
+		int specialAttackRoll = RandomGen.rand(1, 100);
+		for(Effect effect : offensiveEffects){
+		    if(specialAttackRoll < effect.getChanceToProc()){
+		        effect.start(otherEntity);
+		        otherEntity.effects().add(effect);
+			/*if (effect.equals("weak poison") && poisonRoll >= 75) {
 				int totalLength = 0;
 				for (int i = 0; i < 4; i++) {
 					int roll = RandomGen.rand(1, 3);
@@ -233,7 +248,7 @@ public class BaseEntity implements EntityInterface{
 				}
 				Poison newPoison = new Poison(2, totalLength);
 				newPoison.start(otherEntity);
-				otherEntity.effects().add(newPoison);
+				otherEntity.effects().add(newPoison);*/
 			}
 		}
 	}

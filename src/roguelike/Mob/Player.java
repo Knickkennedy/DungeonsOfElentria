@@ -22,31 +22,57 @@ public class Player extends BaseEntity{
 	private Chestpiece chestpiece;
 	private Helmet helmet;
 	private List <Weapon> arrows;
-	
-	public Player(Level level, char glyph, Color color, int strength, int constitution, int dexterity, int intelligence, int wisdom, int charisma, int perception){
+
+	public Player(Level level, char glyph, Color color){
 		super(level, glyph, color);
-		setStrength(strength);
-		setConstitution(constitution);
-		setDexterity(dexterity);
-		setIntelligence(intelligence);
-		setWisdom(wisdom);
-		setCharisma(charisma);
-		setPerception(perception);
-		setVisionRadius(perception / 2 + 1);
-		setPlayerHP();
-		setMaxMana((int)(intelligence*2.5));
-		setToHitBonus();
-		setDodgeChance();
-		setDamageModifier();
-		setIsPlayer(true);
-		setMaxCarryWeight(this.strength * 15);
-		setInventory(this);
-		setEquipment(this);
-		arrows = new ArrayList<>();
-		initializeStartingGear();
-		setName("Hero");
 	}
-	
+
+	public void initializeHero(){
+        setToHitBonus();
+        setDodgeChance();
+        setDamageModifier();
+        setIsPlayer(true);
+        setInventory(this);
+        setEquipment(this);
+        arrows = new ArrayList<>();
+        initializeStartingGear();
+        setName("Hero");
+    }
+
+	public void setAttribute(String attribute, int value){
+		if(attribute.equals("Strength")){
+			setStrength(value);
+            setMaxCarryWeight(this.strength * 15);
+		}
+		else if(attribute.equals("Constitution")){
+			setConstitution(value);
+            setPlayerHP();
+		}
+		else if(attribute.equals("Dexterity")){
+			setDexterity(value);
+		}
+		else if(attribute.equals("Intelligence")){
+			setIntelligence(value);
+            setMaxMana((int)(intelligence*2.5));
+		}
+		else if(attribute.equals("Wisdom")){
+			setWisdom(value);
+		}
+		else if(attribute.equals("Charisma")){
+			setCharisma(value);
+		}
+		else if(attribute.equals("Perception")){
+			setPerception(value);
+            setVisionRadius(perception / 2 + 1);
+		}
+		else if(attribute.equals("HP Regen")){
+			setHealthRegenRate(value);
+		}
+		else if(attribute.equals("Mana regen")){
+			setManaRegenRate(value);
+		}
+	}
+
 	public Weapon getLeftHand(){ return this.leftHand; }
 	public Weapon getRightHand(){ return this.rightHand; }
 	public Weapon getRangedWeapon(){ return this.rangedWeapon; }

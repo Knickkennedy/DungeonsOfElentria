@@ -1,17 +1,115 @@
-name				:	symbol	:	color		:	HP	:	Mana    :    HP Regen   :   Mana Regen  :   attack  :	armor	: dodge	:	range   :   ranged damage   :   AI          :   Danger  :   effects
+INSECT FAMILY
 
-								INSECT FAMILY
-giant hornet drone	:	h		:	white		:	5	:	0       :   25          :   25          :   6		:	1		:	5	:	0       :   0               :   aggressive  :   1       :   weak poison
-giant hornet warrior:	h		:	gray		:	10	:	0       :   30          :   30          :   8		:	1		:	10	:	0       :   0               :   aggressive  :   2       :   strong poison
+name            :   giant hornet drone
+symbol          :   h
+color           :   white
+AI              :   aggressive
+effects         :   poison - 1 - 10 - 75, poison - 1 - 15 - 50
+health          :   7
+mana            :   0
+health regen    :   25
+mana regen      :   25
+damage          :   6
+armor           :   0
+dodge           :   10
+range           :   0
+ranged damage   :   0
+danger level    :   1
 
-								GOBLIN FAMILY
+name            :   giant hornet warrior
+symbol          :   h
+color           :   gray
+AI              :   aggressive
+effects         :   poison - 2 - 10 - 50, poison - 1 - 10 - 50
+health          :   10
+mana            :   0
+health regen    :   50
+mana regen      :   50
+damage          :   6
+armor           :   2
+dodge           :   15
+range           :   0
+ranged damage   :   0
+danger level    :   2
 
-goblin				:	g		:	brightGreen	:	7	:	0       :   25          :   25          :   6		:	1		: 	5	:	0       :   0               :   aggressive  :   1       :   none
-goblin rockthrower  :   g       :   brightGreen :   7   :   0       :   25          :   25          :   4       :   1       :   5   :   3       :   6               :   ranged      :   1       :   none
-goblin spearthrower :   g       :   brightGreen :   10  :   0       :   25          :   25          :   6       :   1       :   5   :   5       :   8               :   ranged      :   2       :   none
-goblin warrior		:	g		:	darkGreen	:	10	:	0       :   30          :   30          :   6		:	2		: 	5	:	0       :   0               :   aggressive  :   1       :   none
-goblin captain		:	g		:	darkGreen	:	15	:	0       :   35          :   35          :   6		:	3		: 	5	:	0       :   0               :   aggressive  :   2       :   none
+GOBLIN FAMILY
 
-								BOSSES
+name            :   goblin
+symbol          :   g
+color           :   brightGreen
+AI              :   aggressive
+effects         :   none
+health          :   7
+mana            :   0
+health regen    :   25
+mana regen      :   25
+damage          :   6
+armor           :   1
+dodge           :   5
+range           :   0
+ranged damage   :   0
+danger level    :   1
 
-Elena				:	E		:	blue		:	50	:	0       :   50          :   50          :   6		:   3		: 	5   :   0        :   0              :   aggressive  :   3       :   weak poison
+name            :   goblin rockthrower
+symbol          :   g
+color           :   brightGreen
+AI              :   ranged
+effects         :   none
+health          :   7
+mana            :   0
+health regen    :   25
+mana regen      :   25
+damage          :   4
+armor           :   1
+dodge           :   5
+range           :   3
+ranged damage   :   6
+danger level    :   1
+
+name            :   goblin spearthrower
+symbol          :   g
+color           :   brightGreen
+AI              :   ranged
+effects         :   none
+health          :   10
+mana            :   0
+health regen    :   25
+mana regen      :   25
+damage          :   6
+armor           :   1
+dodge           :   5
+range           :   5
+ranged damage   :   8
+danger level    :   2
+
+name            :   goblin warrior
+symbol          :   g
+color           :   darkGreen
+AI              :   aggressive
+effects         :   none
+health          :   10
+mana            :   0
+health regen    :   30
+mana regen      :   30
+damage          :   6
+armor           :   2
+dodge           :   5
+range           :   0
+ranged damage   :   0
+danger level    :   2
+
+name            :   goblin captain
+symbol          :   g
+color           :   darkGreen
+AI              :   aggressive
+effects         :   none
+health          :   15
+mana            :   0
+health regen    :   50
+mana regen      :   50
+damage          :   8
+armor           :   3
+dodge           :   10
+range           :   0
+ranged damage   :   0
+danger level    :   3
