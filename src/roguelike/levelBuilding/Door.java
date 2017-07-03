@@ -20,7 +20,7 @@ public class Door {
 		this.glyph = '/';
 		return Tile.DOOR_OPEN;
 	}
-	
+
 	public boolean overlaps(Door d){
 		return ((this.x + 1 == d.x && this.y == d.y) || (this.x - 1 == d.x && this.y == d.y) || (this.x == d.x && this.y + 1 == d.y) || (this.x == d.x && this.y - 1 == d.y));
 	}

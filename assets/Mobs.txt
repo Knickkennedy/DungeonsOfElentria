@@ -14,4 +14,4 @@ goblin captain		:	g		:	darkGreen	:	15	:	0       :   35          :   35          
 
 								BOSSES
 
-Elena				:	E		:	blue		:	20	:	0       :   50          :   50          :   6		:   3		: 	5   :   0        :   0              :   aggressive  :   3       :   weak poison
+Elena				:	E		:	blue		:	50	:	0       :   50          :   50          :   6		:   3		: 	5   :   0        :   0              :   aggressive  :   3       :   weak poison

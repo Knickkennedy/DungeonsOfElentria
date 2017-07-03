@@ -118,7 +118,7 @@ public class Level{
 		}
 		return null;
 	}
-	
+
 	public void removeItem(BaseItem item){
 		items.remove(item);
 	}

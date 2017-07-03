@@ -166,7 +166,7 @@ public class BaseEntity implements EntityInterface{
 			meleeAttack(otherEntity);
 		}
 	}
-	
+
 	public void meleeAttack(BaseEntity otherEntity){
 		commonAttack(otherEntity, this.attackDamage(), otherEntity.name());
 	}
