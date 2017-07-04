@@ -134,6 +134,22 @@ danger level    :   2
 
 ORC FAMILY
 
+name            :   orc grunt
+symbol          :   o
+color           :   brightGreen
+AI              :   aggressive
+effects         :   none
+health          :   15
+mana            :   0
+health regen    :   50
+mana regen      :   50
+damage          :   6
+armor           :   3
+dodge           :   5
+range           :   0
+ranged damage   :   0
+danger level    :   1
+
 name            :   orc warrior
 symbol          :   o
 color           :   gray
