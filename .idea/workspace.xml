@@ -7,43 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/.gitignore" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/AI/AggressiveAI.class" afterPath="$PROJECT_DIR$/bin/roguelike/AI/AggressiveAI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/AI/BaseAI.class" afterPath="$PROJECT_DIR$/bin/roguelike/AI/BaseAI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Applications/ApplicationMain.class" afterPath="$PROJECT_DIR$/bin/roguelike/Applications/ApplicationMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Armor.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Armor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/BaseItem.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/BaseItem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Boots.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Boots.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Chestpiece.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Chestpiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Cuisses.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Cuisses.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Greaves.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Greaves.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Helmet.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Helmet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Inventory.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Inventory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/ItemInterface.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/ItemInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Potion.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Potion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Weapon.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Weapon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/EntityInterface.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/EntityInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/DrinkScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/DrinkScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/DropScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/DropScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/EquipScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/EquipScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/EquipmentScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/EquipmentScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/FireWeaponScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/FireWeaponScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/InventoryScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/InventoryScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/LoseScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/LoseScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/Screen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/Screen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/StartScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/StartScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/TargetingScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/TargetingScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/WinScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/WinScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/levelBuilding/Room.class" afterPath="$PROJECT_DIR$/bin/roguelike/levelBuilding/Room.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/levelBuilding/Tile.class" afterPath="$PROJECT_DIR$/bin/roguelike/levelBuilding/Tile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/modifiers/EffectInterface.class" afterPath="$PROJECT_DIR$/bin/roguelike/modifiers/EffectInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/modifiers/Healing.class" afterPath="$PROJECT_DIR$/bin/roguelike/modifiers/Healing.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/utility/ELOS.class" afterPath="$PROJECT_DIR$/bin/roguelike/utility/ELOS.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/utility/Point.class" afterPath="$PROJECT_DIR$/bin/roguelike/utility/Point.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/utility/RandomGen.class" afterPath="$PROJECT_DIR$/bin/roguelike/utility/RandomGen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Mobs.txt" afterPath="$PROJECT_DIR$/assets/Mobs.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,18 +28,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="2840">
                   <caret line="80" column="55" lean-forward="false" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-                  <folding>
-                    <element signature="imports" expanded="false" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MobStore.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="MobStore.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2120">
-                  <caret line="61" column="23" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+                <state relative-caret-position="438">
+                  <caret line="90" column="36" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -131,7 +94,7 @@
           <file leaf-file-name="EnemyEntity.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="960">
+                <state relative-caret-position="1240">
                   <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -150,7 +113,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Effect.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Effect.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/roguelike/modifiers/Effect.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="360">
@@ -177,8 +140,8 @@
           <file leaf-file-name="Mobs.txt" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="974">
-                  <caret line="32" column="21" lean-forward="false" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+                <state relative-caret-position="1171">
+                  <caret line="150" column="21" lean-forward="false" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -246,10 +209,10 @@
         <option value="$PROJECT_DIR$/src/roguelike/modifiers/Effect.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" />
         <option value="$PROJECT_DIR$/src/roguelike/World/World.java" />
-        <option value="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java" />
         <option value="$PROJECT_DIR$/assets/testMob.txt" />
         <option value="$PROJECT_DIR$/assets/Mobs.txt" />
+        <option value="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
       </list>
     </option>
   </component>
@@ -360,6 +323,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -620,7 +584,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -916,11 +879,10 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.48539385" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29338396" sideWeight="0.5109375" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29446855" sideWeight="0.5109375" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29338396" sideWeight="0.4890625" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -939,6 +901,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.48539385" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1267,14 +1230,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/modifiers/Poison.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8720">
@@ -1284,14 +1239,6 @@
             <element signature="e#4851#4852#0" expanded="true" />
             <element signature="e#4901#4902#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/World/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7600">
-          <caret line="199" column="75" lean-forward="false" selection-start-line="199" selection-start-column="75" selection-end-line="199" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1307,27 +1254,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2840">
           <caret line="80" column="55" lean-forward="false" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2120">
-          <caret line="61" column="23" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1339,18 +1266,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="974">
-          <caret line="32" column="21" lean-forward="false" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/modifiers/Effect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/modifiers/Poison.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1240">
+          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/World/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7600">
+          <caret line="199" column="75" lean-forward="false" selection-start-line="199" selection-start-column="75" selection-end-line="199" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1171">
+          <caret line="150" column="21" lean-forward="false" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="90" column="36" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
           <folding />
         </state>
       </provider>

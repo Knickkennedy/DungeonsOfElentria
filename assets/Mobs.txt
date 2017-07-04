@@ -16,56 +16,6 @@ range           :   0
 ranged damage   :   0
 danger level    :   3
 
-name            :   Kassie
-symbol          :   K
-color           :   white
-AI              :   aggressive
-effects         :   none
-health          :   100
-mana            :   500
-health regen    :   200
-mana regen      :   200
-damage          :   10
-armor           :   1
-dodge           :   0
-range           :   0
-ranged damage   :   0
-danger level    :   3
-
-INSECT FAMILY
-
-name            :   giant hornet drone
-symbol          :   h
-color           :   white
-AI              :   aggressive
-effects         :   poison - 1 - 10 - 75, poison - 1 - 15 - 50
-health          :   7
-mana            :   0
-health regen    :   25
-mana regen      :   25
-damage          :   6
-armor           :   0
-dodge           :   10
-range           :   0
-ranged damage   :   0
-danger level    :   1
-
-name            :   giant hornet warrior
-symbol          :   h
-color           :   gray
-AI              :   aggressive
-effects         :   poison - 2 - 10 - 50, poison - 1 - 10 - 50
-health          :   10
-mana            :   0
-health regen    :   50
-mana regen      :   50
-damage          :   6
-armor           :   2
-dodge           :   15
-range           :   0
-ranged damage   :   0
-danger level    :   2
-
 GOBLIN FAMILY
 
 name            :   goblin
@@ -147,3 +97,55 @@ dodge           :   10
 range           :   0
 ranged damage   :   0
 danger level    :   3
+
+INSECT FAMILY
+
+name            :   giant hornet drone
+symbol          :   h
+color           :   white
+AI              :   aggressive
+effects         :   poison - 1 - 10 - 75, poison - 1 - 15 - 50
+health          :   7
+mana            :   0
+health regen    :   25
+mana regen      :   25
+damage          :   6
+armor           :   0
+dodge           :   10
+range           :   0
+ranged damage   :   0
+danger level    :   1
+
+name            :   giant hornet warrior
+symbol          :   h
+color           :   gray
+AI              :   aggressive
+effects         :   poison - 2 - 10 - 50, poison - 1 - 10 - 50
+health          :   10
+mana            :   0
+health regen    :   50
+mana regen      :   50
+damage          :   6
+armor           :   2
+dodge           :   15
+range           :   0
+ranged damage   :   0
+danger level    :   2
+
+ORC FAMILY
+
+name            :   orc warrior
+symbol          :   o
+color           :   gray
+AI              :   aggressive
+effects         :   none
+health          :   15
+mana            :   0
+health regen    :   75
+mana regen      :   75
+damage          :   8
+armor           :   3
+dodge           :   5
+range           :   0
+ranged damage   :   0
+danger level    :   2
