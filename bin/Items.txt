@@ -1,0 +1,59 @@
+											POTIONS
+
+name					:	item type	:	symbol	:	color	    :	weight	:	effect          :   Danger Level
+
+potion of weak healing	:	potion		:	!		:	brightWhite	:	1.0		:	weak healing    :   1
+potion of strong healing:	potion		:	!		:	brightWhite	:	1.5		:	strong healing  :   2
+
+potion of weak poison	:	potion		:	!		:	red			:	1.0		:	weak poison     :   1
+potion of strong poison :	potion		:	!		:	red			:	1.0		:	strong poison   :   2
+
+
+
+											MELEE WEAPONS
+
+name				:	item type	    :	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	dodge	:	armor	:	weight  :   Danger Level
+
+iron shortsword		:	melee weapon	:	(	    :	gray	:		1	:	1		:	6		:		0		:		0	:	0		:	3.5     :   1
+iron longsword		:	melee weapon	:	(	    :	gray	:		0	:	1		:	8		:		0		:		0	:	0		:	4.5     :   1
+
+steel shortsword	:	melee weapon	:	(	    :	white	:		2	:	1		:	6		:		2		:		0	:	0		:	2.5     :   2
+steel longsword		:	melee weapon	:	(	    :	white	:		1	:	1		:	8		:		2		:		0	:	0		:	3.5     :   2
+
+mithril shortsword	:	melee weapon	:	(	    :	blue	:		3	:	2		:	6		:		2		:		0	:	0		:	2.0     :   3
+
+                                            RANGED WEAPONS
+
+name				:	item type	    :	symbol	:	color	:	to-Hit	:	attack Bonus:	range   :   dodge	:	armor	:	weight  :   Danger Level
+
+short bow           :   ranged weapon   :   )       :   brown   :       1   :       0       :       5   :       0   :   0       :   3.0     :   1
+
+                                            AMMO
+
+name                :   item type   :   symbol  :   color   :   to-Hit  :   Dice    :   attack  :   attack Bonus:   weight  :   Danger Level
+
+iron arrow          :   ammunition  :   /       :   gray    :   0       :   1       :   6       :   0           :   0.0     :   1
+steel arrow         :   ammunition  :   /       :   white   :   1       :   1       :   6       :   1           :   0.0     :   2
+											CHESTPIECES
+
+name				:	item type	:	symbol	:	color	:	to-Hit	:	damage	:	dodge	:	armor	:	weight  :   Danger Level
+
+leather armor		:	chestpiece	:	[		:	brown	:		0	:	0		:	5		:	0		:	15.0    :   1
+iron breastplate	:	chestpiece	:	[		:	gray	:		0	:	0		:	0		:	2		:	25.0    :   2
+adamantium armor	:	chestpiece	:	[		:	white	:		0	:	0		:	25		:	25		:	2.5     :   3
+
+											HELMETS
+leather helmet		:	helmet		:	[		:	brown	:		0	:	0		:	1		:	0		:	1.5     :   1
+iron cap			:	helmet		:	[		:	gray	:		0	:	0		:	0		:	1		:	3.0     :   2
+
+											LEGGINGS
+leather pants		:	cuisses		:	[		:	brown	:		0	:	0		:	3		:	0		:	3.5     :   1
+iron cuisses		:	cuisses		:	[		:	gray	:		0	:	0		:	0		:	1		:	8.0     :   2
+
+											BRACERS
+leather bracers		:	greaves		:	[		:	brown	:		0	:	0		:	1		:	0		:	2.0     :   1
+iron greaves		:	greaves		:	[		:	gray	:		0	:	0		:	0		:	1		:	4.0     :   2
+
+											BOOTS
+leather boots		:	boots		:	[		:	brown	:		0	:	0		:	1		:	0		:	3.0     :   1
+iron boots			:	boots		:	[		:	gray	:		0	:	0		:	0		:	1		:	4.5     :   2
