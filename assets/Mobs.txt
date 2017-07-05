@@ -152,7 +152,7 @@ danger level    :   1
 
 name            :   orc warrior
 symbol          :   o
-color           :   gray
+color           :   darkGreen
 AI              :   aggressive
 effects         :   none
 health          :   15
