@@ -16,7 +16,7 @@ public class DropScreen implements Screen{
 	private Player player;
 	public String alphabet = "abcdefghijklmnopqrstuvwxyz";
 	public Map <String, Integer> tempList = new TreeMap <String, Integer> ();
-	public List <BaseItem> dropList = new ArrayList <BaseItem> ();
+	public List <Item> dropList = new ArrayList <Item> ();
 	private Screen subscreen;
 
 	public DropScreen(Player player){
@@ -25,7 +25,7 @@ public class DropScreen implements Screen{
 	}
 	
 	public void initializeTempList(){
-		for(BaseItem itemToRead : player.inventory().getInventory()){
+		for(Item itemToRead : player.inventory().getInventory()){
 			Integer frequency = tempList.get(itemToRead.name());
 			if(frequency == null){
 				tempList.put(itemToRead.name(), new Integer(1));

@@ -1,59 +1,255 @@
-											POTIONS
+<Potions>
+<Healing effect numbers are - number of dice - dice size - duration>
+<Poison effect numbers are - number of dice - dice size - damage per tick>
 
-name					:	item type	:	symbol	:	color	    :	weight	:	effect          :   Danger Level
+name            :   potion of weak healing
+item type       :   potion
+symbol          :   (
+color           :   brightWhite
+weight          :   1.0
+effects         :   healing - 5 - 3 - 1
 
-potion of weak healing	:	potion		:	!		:	brightWhite	:	1.0		:	weak healing    :   1
-potion of strong healing:	potion		:	!		:	brightWhite	:	1.5		:	strong healing  :   2
+name            :   potion of weak poison
+item type       :   potion
+symbol          :   (
+color           :   brightWhite
+weight          :   1.0
+effects         :   poison - 5 - 3 - 1
 
-potion of weak poison	:	potion		:	!		:	red			:	1.0		:	weak poison     :   1
-potion of strong poison :	potion		:	!		:	red			:	1.0		:	strong poison   :   2
+<Melee Weapons>
 
+name            :   iron shortsword
+item type       :   melee weapon
+symbol          :   (
+color           :   gray
+to hit bonus    :   1
+dice rolled     :   1
+damage          :   6
+damage bonus    :   0
+dodge           :   0
+armor           :   0
+weight          :   3.5
+danger level    :   1
 
+name            :   iron longsword
+item type       :   melee weapon
+symbol          :   (
+color           :   gray
+to hit bonus    :   1
+dice rolled     :   1
+damage          :   8
+damage bonus    :   0
+dodge           :   0
+armor           :   0
+weight          :   4.5
+danger level    :   1
 
-											MELEE WEAPONS
+name            :   steel shortsword
+item type       :   melee weapon
+symbol          :   (
+color           :   white
+to hit bonus    :   0
+dice rolled     :   1
+damage          :   6
+damage bonus    :   2
+dodge           :   0
+armor           :   0
+weight          :   3.0
+danger level    :   2
 
-name				:	item type	    :	symbol	:	color	:	to-Hit	:	Dice	:	attack	:	attack Bonus:	dodge	:	armor	:	weight  :   Danger Level
+name            :   steel longsword
+item type       :   melee weapon
+symbol          :   (
+color           :   white
+to hit bonus    :   1
+dice rolled     :   1
+damage          :   8
+damage bonus    :   2
+dodge           :   0
+armor           :   0
+weight          :   4.0
+danger level    :   2
 
-iron shortsword		:	melee weapon	:	(	    :	gray	:		1	:	1		:	6		:		0		:		0	:	0		:	3.5     :   1
-iron longsword		:	melee weapon	:	(	    :	gray	:		0	:	1		:	8		:		0		:		0	:	0		:	4.5     :   1
+name            :   mithril shortsword
+item type       :   melee weapon
+symbol          :   (
+color           :   blue
+to hit bonus    :   1
+dice rolled     :   2
+damage          :   6
+damage bonus    :   1
+dodge           :   0
+armor           :   0
+weight          :   2.5
+danger level    :   3
 
-steel shortsword	:	melee weapon	:	(	    :	white	:		2	:	1		:	6		:		2		:		0	:	0		:	2.5     :   2
-steel longsword		:	melee weapon	:	(	    :	white	:		1	:	1		:	8		:		2		:		0	:	0		:	3.5     :   2
+name            :   mithril longsword
+item type       :   melee weapon
+symbol          :   (
+color           :   blue
+to hit bonus    :   1
+dice rolled     :   2
+damage          :   8
+damage bonus    :   1
+dodge           :   0
+armor           :   0
+weight          :   3.0
+danger level    :   3
 
-mithril shortsword	:	melee weapon	:	(	    :	blue	:		3	:	2		:	6		:		2		:		0	:	0		:	2.0     :   3
+<Ranged Weapons>
 
-                                            RANGED WEAPONS
+name            :   short bow
+item type       :   ranged weapon
+symbol          :   )
+color           :   brown
+to hit bonus    :   1
+damage bonus    :   0
+range           :   5
+dodge           :   0
+armor           :   0
+weight          :   3.0
+danger level    :   1
 
-name				:	item type	    :	symbol	:	color	:	to-Hit	:	attack Bonus:	range   :   dodge	:	armor	:	weight  :   Danger Level
+<Ranged Ammunition>
 
-short bow           :   ranged weapon   :   )       :   brown   :       1   :       0       :       5   :       0   :   0       :   3.0     :   1
+name            :   iron arrow
+item type       :   ammunition
+symbol          :   /
+color           :   gray
+to hit bonus    :   0
+dice rolled     :   1
+damage          :   6
+damage bonus    :   0
+weight          :   0.0
+danger level    :   1
 
-                                            AMMO
+name            :   steel arrow
+item type       :   ammunition
+symbol          :   /
+color           :   white
+to hit bonus    :   1
+dice rolled     :   1
+damage          :   6
+damage bonus    :   1
+weight          :   0.0
+danger level    :   1
 
-name                :   item type   :   symbol  :   color   :   to-Hit  :   Dice    :   attack  :   attack Bonus:   weight  :   Danger Level
+<Chestpieces>
 
-iron arrow          :   ammunition  :   /       :   gray    :   0       :   1       :   6       :   0           :   0.0     :   1
-steel arrow         :   ammunition  :   /       :   white   :   1       :   1       :   6       :   1           :   0.0     :   2
-											CHESTPIECES
+name            :   leather armor
+item type       :   chestpiece
+symbol          :   [
+color           :   brown
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   0
+dodge           :   5
+weight          :   15.0
+danger level    :   1
 
-name				:	item type	:	symbol	:	color	:	to-Hit	:	damage	:	dodge	:	armor	:	weight  :   Danger Level
+name            :   iron breastplate
+item type       :   chestpiece
+symbol          :   [
+color           :   gray
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   2
+dodge           :   0
+weight          :   25.0
+danger level    :   1
 
-leather armor		:	chestpiece	:	[		:	brown	:		0	:	0		:	5		:	0		:	15.0    :   1
-iron breastplate	:	chestpiece	:	[		:	gray	:		0	:	0		:	0		:	2		:	25.0    :   2
-adamantium armor	:	chestpiece	:	[		:	white	:		0	:	0		:	25		:	25		:	2.5     :   3
+<Helmets>
 
-											HELMETS
-leather helmet		:	helmet		:	[		:	brown	:		0	:	0		:	1		:	0		:	1.5     :   1
-iron cap			:	helmet		:	[		:	gray	:		0	:	0		:	0		:	1		:	3.0     :   2
+name            :   leather helmet
+item type       :   helmet
+symbol          :   [
+color           :   brown
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   0
+dodge           :   1
+weight          :   1.5
+danger level    :   1
 
-											LEGGINGS
-leather pants		:	cuisses		:	[		:	brown	:		0	:	0		:	3		:	0		:	3.5     :   1
-iron cuisses		:	cuisses		:	[		:	gray	:		0	:	0		:	0		:	1		:	8.0     :   2
+name            :   iron cap
+item type       :   helmet
+symbol          :   [
+color           :   gray
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   1
+dodge           :   0
+weight          :   2.5
+danger level    :   1
 
-											BRACERS
-leather bracers		:	greaves		:	[		:	brown	:		0	:	0		:	1		:	0		:	2.0     :   1
-iron greaves		:	greaves		:	[		:	gray	:		0	:	0		:	0		:	1		:	4.0     :   2
+<Leggings>
 
-											BOOTS
-leather boots		:	boots		:	[		:	brown	:		0	:	0		:	1		:	0		:	3.0     :   1
-iron boots			:	boots		:	[		:	gray	:		0	:	0		:	0		:	1		:	4.5     :   2
+name            :   leather pants
+item type       :   cuisses
+symbol          :   [
+color           :   brown
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   0
+dodge           :   5
+weight          :   3.5
+danger level    :   1
+
+name            :   iron cuisses
+item type       :   cuisses
+symbol          :   [
+color           :   gray
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   2
+dodge           :   0
+weight          :   8.0
+danger level    :   2
+
+<Greaves>
+
+name            :   leather greaves
+item type       :   greaves
+symbol          :   [
+color           :   brown
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   0
+dodge           :   3
+weight          :   2.0
+danger level    :   1
+
+name            :   iron greaves
+item type       :   greaves
+symbol          :   [
+color           :   gray
+to hit bonus    :   1
+damage bonus    :   0
+armor           :   1
+dodge           :   0
+weight          :   3.0
+danger level    :   2
+
+<Boots>
+
+name            :   leather boots
+item type       :   boots
+symbol          :   [
+color           :   brown
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   0
+dodge           :   1
+weight          :   3.0
+danger level    :   1
+
+name            :   iron boots
+item type       :   boots
+symbol          :   [
+color           :   gray
+to hit bonus    :   0
+damage bonus    :   0
+armor           :   1
+dodge           :   0
+weight          :   3.0
+danger level    :   1

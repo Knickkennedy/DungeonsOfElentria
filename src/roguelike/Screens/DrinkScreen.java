@@ -9,14 +9,14 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Items.BaseItem;
+import roguelike.Items.Item;
 import roguelike.Mob.Player;
 
 public class DrinkScreen implements Screen{
 	public Player player;
 	public String alphabet = "abcdefghijklmnopqrstuvwxyz";
 	public TreeMap <String, Integer> tempList = new TreeMap <String, Integer> ();
-	public List <BaseItem> useList = new ArrayList <BaseItem> ();
+	public List <Item> useList = new ArrayList <Item> ();
 	
 	public DrinkScreen(Player player){
 		this.player = player;
@@ -24,7 +24,7 @@ public class DrinkScreen implements Screen{
 	}
 	
 	public void initializeTempList(){
-		for(BaseItem possibleItems : player.inventory().getInventory()){
+		for(Item possibleItems : player.inventory().getInventory()){
 			if(possibleItems.itemType().equals("potion")){
 				Integer frequency = tempList.get(possibleItems.name());
 				if(frequency == null){

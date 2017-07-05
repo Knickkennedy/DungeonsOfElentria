@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import roguelike.AI.BaseAI;
-import roguelike.Items.BaseItem;
+import roguelike.Items.Item;
 import roguelike.Items.Inventory;
 import roguelike.Level.Level;
 import roguelike.levelBuilding.Tile;
@@ -141,18 +141,23 @@ public class BaseEntity implements EntityInterface{
 	}
 	
 	public void pickupItem(){
-		BaseItem itemToPickUp = this.level().checkItems(this.x, this.y);
+		Item itemToPickUp = this.level().checkItems(this.x, this.y);
 		if(itemToPickUp != null){
-			this.notify("You pick up the %s.", itemToPickUp.name());
-			inventory().add(itemToPickUp);
-			this.level().removeItem(itemToPickUp);
+		    if(currentCarryWeight() + itemToPickUp.weight() < maxCarryWeight()) {
+                this.notify("You pick up the %s.", itemToPickUp.name());
+                inventory().add(itemToPickUp);
+                this.level().removeItem(itemToPickUp);
+            }
+            else{
+		        this.notify("You are carrying too much to pick up the %s.", itemToPickUp.name());
+            }
 		}
 		else{
 			this.notify("There is nothing to pick up here.");
 		}
 	}
 	
-	public void dropItem(BaseItem itemToDrop){
+	public void dropItem(Item itemToDrop){
 		this.level().addAtSpecificLocation(itemToDrop, this.x, this.y);
 		this.inventory().remove(itemToDrop);
 		this.notify("You drop %s", itemToDrop.name());
@@ -231,24 +236,6 @@ public class BaseEntity implements EntityInterface{
 		    if(specialAttackRoll < effect.getChanceToProc()){
 		        effect.start(otherEntity);
 		        otherEntity.effects().add(effect);
-			/*if (effect.equals("weak poison") && poisonRoll >= 75) {
-				int totalLength = 0;
-				for (int i = 0; i < 4; i++) {
-					int roll = RandomGen.rand(1, 3);
-					totalLength += roll;
-				}
-				Poison newPoison = new Poison(1, totalLength);
-				newPoison.start(otherEntity);
-				otherEntity.effects().add(newPoison);
-			} else if (effect.equals("strong poison") && poisonRoll >= 60) {
-				int totalLength = 0;
-				for (int i = 0; i < 4; i++) {
-					int roll = RandomGen.rand(1, 3);
-					totalLength += roll;
-				}
-				Poison newPoison = new Poison(2, totalLength);
-				newPoison.start(otherEntity);
-				otherEntity.effects().add(newPoison);*/
 			}
 		}
 	}
@@ -311,13 +298,15 @@ public class BaseEntity implements EntityInterface{
 		effects.removeAll(done);
 	}
 	
-	public void drink(BaseItem item){
+	public void drink(Item item){
 		doAction("drink a " + item.name());
 		consume(item);
 	}
 	
-	public void consume(BaseItem item){
-		addEffect(item.effect());
+	public void consume(Item item){
+		for(Effect effect : item.effects()){
+			addEffect(effect);
+		}
 		inventory().remove(item);
 	}
 	

@@ -22,7 +22,7 @@ public class InventoryScreen implements Screen{
 	}
 	
 	public void initializeTempList(){
-		for(BaseItem itemToRead : player.inventory().getInventory()){
+		for(Item itemToRead : player.inventory().getInventory()){
 			Integer frequency = tempList.get(itemToRead.name());
 			if(frequency == null){
 				tempList.put(itemToRead.name(), new Integer(1));

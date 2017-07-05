@@ -8,20 +8,12 @@ import roguelike.utility.RandomGen;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Player extends BaseEntity{
 	
 	private int strength, constitution, dexterity, intelligence, wisdom, charisma, perception, toHitBonus, damageModifier, numOfDice;
-	private Weapon leftHand;
-	private Weapon rightHand;
-	private Weapon rangedWeapon;
-	private Boots boots;
-	private Greaves greaves;
-	private Cuisses cuisses;
-	private Chestpiece chestpiece;
-	private Helmet helmet;
-	private List <Weapon> arrows;
+	private Item leftHand, rightHand, rangedWeapon, boots, greaves, cuisses, chestpiece, helmet;
+	private List <Item> arrows;
 
 	public Player(Level level, char glyph, Color color){
 		super(level, glyph, color);
@@ -73,15 +65,15 @@ public class Player extends BaseEntity{
 		}
 	}
 
-	public Weapon getLeftHand(){ return this.leftHand; }
-	public Weapon getRightHand(){ return this.rightHand; }
-	public Weapon getRangedWeapon(){ return this.rangedWeapon; }
-	public Boots getBoots(){ return this.boots; }
-	public Greaves getGreaves(){ return this.greaves; }
-	public Cuisses getCuisses(){ return this.cuisses; }
-	public Chestpiece getChestpiece(){ return this.chestpiece; }
-	public Helmet getHelmet(){ return this.helmet; }
-	public List <Weapon> getArrows(){ return this.arrows; }
+	public Item getLeftHand(){ return this.leftHand; }
+	public Item getRightHand(){ return this.rightHand; }
+	public Item getRangedWeapon(){ return this.rangedWeapon; }
+	public Item getBoots(){ return this.boots; }
+	public Item getGreaves(){ return this.greaves; }
+	public Item getCuisses(){ return this.cuisses; }
+	public Item getChestpiece(){ return this.chestpiece; }
+	public Item getHelmet(){ return this.helmet; }
+	public List <Item> getArrows(){ return this.arrows; }
 	
 	public String helmetString(){ return this.helmet == null ? "" : this.helmet.name(); }
 	public String chestpieceString(){ return this.chestpiece == null ? "" : this.chestpiece.name(); }
@@ -159,7 +151,7 @@ public class Player extends BaseEntity{
         this.leftHand = null;
     }
 
-    public void equipLeftHand(Weapon weapon){
+    public void equipLeftHand(Item weapon){
         if(inventory().contains(weapon)){
             inventory().remove(weapon);
         }
@@ -175,7 +167,7 @@ public class Player extends BaseEntity{
         this.rightHand = null;
     }
 
-    public void equipRightHand(Weapon weapon){
+    public void equipRightHand(Item weapon){
         if(inventory().contains(weapon)){
             inventory().remove(weapon);
         }
@@ -189,7 +181,7 @@ public class Player extends BaseEntity{
         this.rangedWeapon = null;
     }
 
-    public void equipRangedWeapon(Weapon weapon){
+    public void equipRangedWeapon(Item weapon){
         if(inventory().contains(weapon)){
             inventory().remove(weapon);
         }
@@ -201,18 +193,18 @@ public class Player extends BaseEntity{
 		equipment().remove(helmet);
 		inventory().add(helmet);
 		updateArmor(-helmet.armorValue());
-		updateToHitBonus(-helmet.toHit());
+		updateToHitBonus(-helmet.getToHitBonus());
 		updateDamageModifier(-helmet.damageValue());
 		this.helmet = null;
 	}
 	
-	public void equipHelmet(Helmet helmet){ 
+	public void equipHelmet(Item helmet){
 		if(inventory().contains(helmet)){
 			inventory().remove(helmet);
 		}
 		this.helmet = helmet;
 		updateArmor(helmet.armorValue());
-		updateToHitBonus(helmet.toHit());
+		updateToHitBonus(helmet.getToHitBonus());
 		updateDamageModifier(helmet.damageValue());
 		equipment().add(helmet);
 		}
@@ -221,18 +213,18 @@ public class Player extends BaseEntity{
 		equipment().remove(chestpiece);
 		inventory().add(chestpiece);
 		updateArmor(-chestpiece.armorValue());
-		updateToHitBonus(-chestpiece.toHit());
+		updateToHitBonus(-chestpiece.getToHitBonus());
 		updateDamageModifier(-chestpiece.damageValue());
 		this.chestpiece = null;
 	}
 	
-	public void equipChestpiece(Chestpiece chestpiece){ 
+	public void equipChestpiece(Item chestpiece){
 		if(inventory().contains(chestpiece)){
 			inventory().remove(chestpiece);
 		}
 		this.chestpiece = chestpiece; 
 		updateArmor(chestpiece.armorValue());
-		updateToHitBonus(chestpiece.toHit());
+		updateToHitBonus(chestpiece.getToHitBonus());
 		updateDamageModifier(chestpiece.damageValue());
 		equipment().add(chestpiece);
 		}
@@ -241,18 +233,18 @@ public class Player extends BaseEntity{
 		equipment().remove(cuisses);
 		inventory().add(cuisses);
 		updateArmor(-cuisses.armorValue());
-		updateToHitBonus(-cuisses.toHit());
+		updateToHitBonus(-cuisses.getToHitBonus());
 		updateDamageModifier(-cuisses.damageValue());
 		this.cuisses = null;
 	}
 	
-	public void equipCuisses(Cuisses cuisses){ 
+	public void equipCuisses(Item cuisses){
 		if(inventory().contains(cuisses)){
 			inventory().remove(cuisses);
 		}
 		this.cuisses = cuisses;
 		updateArmor(cuisses.armorValue());
-		updateToHitBonus(cuisses.toHit());
+		updateToHitBonus(cuisses.getToHitBonus());
 		updateDamageModifier(cuisses.damageValue());
 		equipment().add(cuisses);
 		}
@@ -261,18 +253,18 @@ public class Player extends BaseEntity{
 		equipment().remove(boots);
 		inventory().add(boots);
 		updateArmor(-boots.armorValue());
-		updateToHitBonus(-boots.toHit());
+		updateToHitBonus(-boots.getToHitBonus());
 		updateDamageModifier(-boots.damageValue());
 		this.boots = null;
 	}
 	
-	public void equipBoots(Boots boots){ 
+	public void equipBoots(Item boots){
 		if(inventory().contains(boots)){
 			inventory().remove(boots);
 		}
 		this.boots = boots;
 		updateArmor(boots.armorValue());
-		updateToHitBonus(boots.toHit());
+		updateToHitBonus(boots.getToHitBonus());
 		updateDamageModifier(boots.damageValue());
 		equipment().add(boots);
 		}
@@ -281,33 +273,33 @@ public class Player extends BaseEntity{
 		equipment().remove(greaves);
 		inventory().add(greaves);
 		updateArmor(-greaves.armorValue());
-		updateToHitBonus(-greaves.toHit());
+		updateToHitBonus(-greaves.getToHitBonus());
 		updateDamageModifier(-greaves.damageValue());
 		this.greaves = null;
 	}
 	
-	public void equipGreaves(Greaves greaves){
+	public void equipGreaves(Item greaves){
 		if(inventory().contains(greaves)){
 			inventory().remove(greaves);
 		}
 		this.greaves = greaves;
 		updateArmor(greaves.armorValue());
-		updateToHitBonus(greaves.toHit());
+		updateToHitBonus(greaves.getToHitBonus());
 		updateDamageModifier(greaves.damageValue());
 		equipment().add(greaves);
 		}
 
-    public void equipArrows(Weapon arrow){
-	    List <BaseItem> tempList = new ArrayList<>();
-	    for(BaseItem item : inventory().getInventory()){
+    public void equipArrows(Item arrow){
+	    List <Item> tempList = new ArrayList<>();
+	    for(Item item : inventory().getInventory()){
 	        if(item.name().equalsIgnoreCase(arrow.name())){
 	            tempList.add(item);
             }
         }
         if(!tempList.isEmpty()){
-	        for(BaseItem item : tempList){
+	        for(Item item : tempList){
 	            equipment().add(item);
-	            arrows.add((Weapon)item);
+	            arrows.add(item);
 	            inventory().remove(item);
             }
         }
@@ -319,60 +311,58 @@ public class Player extends BaseEntity{
 
     public void unequipArrows(){
         int index = arrows.size() - 1;
-        for(Weapon arrow : arrows){
+        for(Item arrow : arrows){
             equipment().remove(arrow);
             inventory().add(arrow);
         }
         arrows.clear();
     }
 	
-	public void equipItem(BaseItem itemToEquip, char input){
+	public void equipItem(Item itemToEquip, char input){
 		if(input == 'A'){
-            equipHelmet((Helmet)itemToEquip);
+            equipHelmet(itemToEquip);
 		}
 		else if(input == 'B'){
-            equipChestpiece((Chestpiece)itemToEquip);
+            equipChestpiece(itemToEquip);
 		}
 		else if(input == 'C'){
-		    equipRightHand((Weapon)itemToEquip);
+		    equipRightHand(itemToEquip);
         }
         else if(input == 'D'){
-		    equipLeftHand((Weapon)itemToEquip);
+		    equipLeftHand(itemToEquip);
         }
 		else if(input == 'E'){
-			equipCuisses((Cuisses)itemToEquip);
+			equipCuisses(itemToEquip);
 		}
 		else if(input == 'F'){
-			equipGreaves((Greaves)itemToEquip);
+			equipGreaves(itemToEquip);
 		}
 		else if(input == 'G'){
-			equipBoots((Boots)itemToEquip);
+			equipBoots(itemToEquip);
 		}
 		else if(input == 'H'){
-			equipRangedWeapon((Weapon)itemToEquip);
+			equipRangedWeapon(itemToEquip);
 		}
 		else if(input == 'I'){
-		    equipArrows((Weapon)itemToEquip);
+		    equipArrows(itemToEquip);
         }
 	}
 	
 	public void initializeStartingGear(){
 		ItemFactory startingItems = new ItemFactory(this.level());
 		equipItem(startingItems.newItem("iron shortsword"), 'C');
-		equipItem(startingItems.newItem("iron cap"), 'A');
+		equipItem(startingItems.newItem("leather helmet"), 'A');
 		equipItem(startingItems.newItem("leather armor"), 'B');
-		equipItem(startingItems.newItem("iron cuisses"), 'E');
+		equipItem(startingItems.newItem("leather pants"), 'E');
 		equipItem(startingItems.newItem("leather boots"), 'G');
-		equipItem(startingItems.newItem("iron greaves"), 'F');
+		equipItem(startingItems.newItem("leather greaves"), 'F');
 		equipItem(startingItems.newItem("short bow"), 'H');
 		for(int i = 0; i < 30; i++){
 		    equipItem(startingItems.newItem("iron arrow"), 'I');
-			inventory().add(startingItems.newItem("steel arrow"));
+		    inventory().add(startingItems.newItem("steel arrow"));
         }
-		inventory().add(startingItems.newItem("potion of strong poison"));
-		inventory().add(startingItems.newItem("potion of strong poison"));
-		inventory().add(startingItems.newItem("potion of weak poison"));
-		inventory().add(startingItems.newItem("potion of weak poison"));
+        inventory().add(startingItems.newItem("potion of weak healing"));
+        inventory().add(startingItems.newItem("potion of weak poison"));
 	}
 
     public void move(int x, int y){
@@ -414,13 +404,13 @@ public class Player extends BaseEntity{
         }
     }
 
-	public void meleeAttack(BaseEntity otherEntity, Weapon weaponUsed){ commonAttack(otherEntity, weaponUsed); }
-	public void rangedAttack(BaseEntity otherEntity, Weapon weaponUsed, List <Weapon> ammunition){ commonRangedAttack(otherEntity, weaponUsed, ammunition); }
+	public void meleeAttack(BaseEntity otherEntity, Item weaponUsed){ commonAttack(otherEntity, weaponUsed); }
+	public void rangedAttack(BaseEntity otherEntity, Item weaponUsed, List <Item> ammunition){ commonRangedAttack(otherEntity, weaponUsed, ammunition); }
 
-	private void commonAttack(BaseEntity otherEntity, Weapon weaponUsed){
+	private void commonAttack(BaseEntity otherEntity, Item weaponUsed){
 		int toHitRoll = RandomGen.rand(1, 100);
 		int diceRoll = 0, tempDamage = 0;
-		toHitRoll += toHitBonus() + weaponUsed.toHit();
+		toHitRoll += toHitBonus() + weaponUsed.getToHitBonus();
 		
             for(int numberOfDice = 0; numberOfDice < weaponUsed.numberOfDiceRolled(); numberOfDice++){
                 diceRoll = RandomGen.rand(1, weaponUsed.damageValue());
@@ -435,10 +425,10 @@ public class Player extends BaseEntity{
 		else{ action = "attack"; doAttackAction(action, otherEntity, damageAmount); otherEntity.modifyHP(-damageAmount, "killed by a " + name()); }
 	}
 
-    private void commonRangedAttack(BaseEntity otherEntity, Weapon weaponUsed, List <Weapon> ammunition){
+    private void commonRangedAttack(BaseEntity otherEntity, Item weaponUsed, List <Item> ammunition){
         int toHitRoll = RandomGen.rand(1, 100);
         int diceRoll = 0, tempDamage = 0;
-        toHitRoll += toHitBonus() + weaponUsed.toHit() + ammunition.get(0).toHit();
+        toHitRoll += toHitBonus() + weaponUsed.getToHitBonus() + ammunition.get(0).getToHitBonus();
 
         for(int numberOfDice = 0; numberOfDice < ammunition.get(0).numberOfDiceRolled(); numberOfDice++){
             diceRoll = RandomGen.rand(1, ammunition.get(0).damageValue());

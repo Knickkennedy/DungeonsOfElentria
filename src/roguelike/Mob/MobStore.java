@@ -29,12 +29,11 @@ public class MobStore {
 		String name = null;
 		String[] tokens = null;
 		int danger = 0;
-		boolean found = false;
 		
 		while(mobFile.hasNextLine()){
             String tempLine = mobFile.nextLine();
 
-			if((tempLine.isEmpty()) || (tempLine.contains("INSECT FAMILY")) || (tempLine.contains("GOBLIN FAMILY")) || (tempLine.contains("BOSSES"))){
+			if((tempLine.isEmpty()) || (tempLine.contains("FAMILY")) || (tempLine.contains("BOSSES"))){
 				continue;
 			}
 			tokens = tempLine.split(":");
@@ -72,10 +71,7 @@ public class MobStore {
 	public EnemyEntity newEnemy(String entityName){
         try{ mobFile = openMobFile(mobFileName); }
         catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
-        char glyph = 0;
-        Color color = null;
-        String tokens[] = null;
-        String AI = null;
+        String tokens[];
         EnemyEntity newEnemy = new EnemyEntity(thisLevel);
 
         boolean found = false;

@@ -18,7 +18,7 @@ public class EquipScreen implements Screen{
 	public String itemToEquip;
 	public char input;
 	public TreeMap <String, Integer> tempList = new TreeMap <> ();
-	public List <BaseItem> equipList = new ArrayList <> ();
+	public List <Item> equipList = new ArrayList <> ();
 	
 	public EquipScreen(Player player, String itemToEquip, char inp){
 		this.player = player;
@@ -28,7 +28,7 @@ public class EquipScreen implements Screen{
 	}
 	
 	public void initializeTempList(){
-		for(BaseItem possibleItems : player.inventory().getInventory()){
+		for(Item possibleItems : player.inventory().getInventory()){
 			if(possibleItems.itemType().equals(itemToEquip)){
 				Integer frequency = tempList.get(possibleItems.name());
 				if(frequency == null){

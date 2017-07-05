@@ -45,7 +45,7 @@ public class PlayScreen implements Screen {
 		String stats = "";
 		if (world.getPlayer().getRightHand() != null) {
 			stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
-                    world.getPlayer().getRightHand().toHit(), world.getPlayer().getRightHand().numberOfDiceRolled(),
+                    world.getPlayer().getRightHand().getToHitBonus(), world.getPlayer().getRightHand().numberOfDiceRolled(),
                     world.getPlayer().getRightHand().damageValue(), world.getPlayer().getRightHand().damageBonus(),
                     world.getPlayer().armor());
 		} else {
