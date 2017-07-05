@@ -30,6 +30,8 @@ public class Inventory {
 		}
 	}
 
+	public int size(){ return inventory.size(); }
+
 	public void remove(Item item){
 		if(inventory.contains(item)){
 			inventory.remove(item);

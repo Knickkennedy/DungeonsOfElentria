@@ -33,6 +33,7 @@ dodge           :   5
 range           :   0
 ranged damage   :   0
 danger level    :   1
+drops           :   dangerOneItems - 3 - 100.0, iron shortsword - 1 - 60.0
 
 name            :   goblin rockthrower
 symbol          :   g

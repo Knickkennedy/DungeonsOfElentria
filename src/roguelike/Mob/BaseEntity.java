@@ -160,8 +160,10 @@ public class BaseEntity implements EntityInterface{
 	public void dropItem(Item itemToDrop){
 		this.level().addAtSpecificLocation(itemToDrop, this.x, this.y);
 		this.inventory().remove(itemToDrop);
-		this.notify("You drop %s", itemToDrop.name());
-	}
+		if(isPlayer) {
+            this.notify("You drop %s", itemToDrop.name());
+        }
+		}
 	
 	public boolean canSee(int x, int y) { return this.ai.canSee(x, y); }
 	public boolean canEnter(int x, int y){ return this.level.tile(x, y).canEnter(); }
@@ -254,10 +256,17 @@ public class BaseEntity implements EntityInterface{
 		setCurrentHP(amount);
 		this.causeOfDeath = causeOfDeath;
 		if(this.currentHP() < 1){
-			doAction("die");
-			this.level.remove(this);
+			death();
 		}
 	}
+
+	public void death(){
+	    doAction("die");
+	    for(int i = 0; i < inventory().size(); i++){
+	        dropItem(inventory().getInventory().get(i));
+        }
+	    level.remove(this);
+    }
 
 	public void modifyMana(int amount){
 		setCurrentMana(amount);

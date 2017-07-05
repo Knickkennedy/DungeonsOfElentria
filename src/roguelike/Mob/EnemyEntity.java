@@ -6,22 +6,19 @@ import java.util.HashMap;
 import asciiPanel.AsciiPanel;
 import roguelike.AI.AggressiveAI;
 import roguelike.AI.RangedAI;
+import roguelike.Items.ItemFactory;
 import roguelike.Level.Level;
 import roguelike.modifiers.*;
+import roguelike.utility.RandomGen;
 
 public class EnemyEntity extends BaseEntity{
 
     public HashMap<String, Color> colorDictionary = new HashMap <> ();
-
-	public EnemyEntity(Level level, char glyph, Color color){ 
-		super(level, glyph, color);
-		setMaxCarryWeight(9999);
-		setInventory(this);
-		setVisionRadius(5);
-	}
+    private ItemFactory itemStore;
 
 	public EnemyEntity(Level level){
 	    super(level);
+	    itemStore = new ItemFactory(level);
 	    initializeColors();
 	    setMaxCarryWeight(9999);
 	    setInventory(this);
@@ -68,6 +65,37 @@ public class EnemyEntity extends BaseEntity{
                         Poison newPoison = new Poison(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]));
                         newPoison.setChanceToProc(Integer.parseInt(tokens[3].trim()));
                         addOffensiveEffect(newPoison);
+                    }
+                }
+            }
+        }
+        else if(attribute.equals("drops")){
+            String dropArray[];
+            String drops[] = value.split(", ");
+            int chances = 0;
+            double odds = 0.0;
+            for(String drop : drops){
+                dropArray = drop.split(" - ");
+                chances = Integer.parseInt(dropArray[1].trim());
+                odds = Double.parseDouble(dropArray[2].trim());
+                for(int i = 0; i < chances; i++){
+                    double check = RandomGen.dRand(0.0, 100.0);
+                    if(check < odds){
+                        if(dropArray[0].trim().equals("dangerOneItems")){
+                            int roll = RandomGen.rand(1, itemStore.dangerOneItems.size());
+                            inventory().add(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
+                        }
+                        else if(dropArray[0].trim().equals("dangerTwoItems")){
+                            int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
+                            inventory().add(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
+                        }
+                        else if(dropArray[0].trim().equals("dangerThreeItems")){
+                            int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
+                            inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+                        }
+                        else {
+                            inventory().add(itemStore.newItem(dropArray[0].trim()));
+                        }
                     }
                 }
             }
