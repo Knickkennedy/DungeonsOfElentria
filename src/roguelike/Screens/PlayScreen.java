@@ -42,17 +42,10 @@ public class PlayScreen implements Screen {
 		String health = String.format("Hp: %d/%d Mp: %d/%d", world.getPlayer().currentHP(), world.getPlayer().maxHP(), world.getPlayer().getCurrentMana(), world.getPlayer().getMaxMana());
 		terminal.write(health, 0, mapHeight + 1);
 		String stats = "";
-		if (world.getPlayer().getRightHand() != null) {
-			stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
-                    world.getPlayer().getRightHand().getToHitBonus(), world.getPlayer().getRightHand().numberOfDiceRolled(),
-                    world.getPlayer().getRightHand().damageValue(), world.getPlayer().getRightHand().damageBonus(),
-                    world.getPlayer().armor());
-		} else {
-		    stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
-                    world.getPlayer().toHitBonus(), world.getPlayer().numOfDice(),
-                    world.getPlayer().attackDamage(),
-                    world.getPlayer().damageModifier(), world.getPlayer().armor());
-		}
+        stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
+                    world.getPlayer().toHitBonus(), world.getPlayer().diceInfo(),
+                    world.getPlayer().damageInfo(),
+                    world.getPlayer().bonusToDamage(), world.getPlayer().armor());
 		terminal.write(stats, 0, mapHeight + 2);
 
 		if (subscreen != null) {

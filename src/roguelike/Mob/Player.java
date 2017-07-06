@@ -11,7 +11,8 @@ import java.util.List;
 
 public class Player extends BaseEntity{
 	
-	private int strength, constitution, dexterity, intelligence, wisdom, charisma, perception, toHitBonus, damageModifier, numOfDice;
+	private int strength, constitution, dexterity, intelligence, wisdom, charisma, perception;
+	private int bonusToHit, leftHandDamage, rightHandDamage, bonusToDamage, leftHandNumberOfDice, rightHandNumberOfDice, rangedDamage, bonusRangedDamage, bonusRangedToHit, rangedNumberOfDice;
 	private Item leftHand, rightHand, rangedWeapon, boots, greaves, cuisses, chestpiece, helmet;
 	private List <Item> rangedAmmunition;
 
@@ -20,9 +21,9 @@ public class Player extends BaseEntity{
 	}
 
 	public void initializeHero(){
-        setToHitBonus();
+        setBaseBonusToHit();
         setDodgeChance();
-        setDamageModifier();
+        setBaseBonusToDamage();
         setIsPlayer(true);
         setInventory(this);
         setEquipment(this);
@@ -113,18 +114,21 @@ public class Player extends BaseEntity{
 	public int perception() { return this.perception; }
 	public void setPerception(int perception) { this.perception = perception; }
 
-	public int damageModifier(){ return this.damageModifier; }
-	public void setDamageModifier(){ this.damageModifier = this.strength / 2 - 5; }
-	public void updateDamageModifier(int damageBonus){ this.damageModifier += damageBonus; }
+	public int bonusToDamage(){ return this.bonusToDamage; }
+	public void setBaseBonusToDamage(){
+	    this.bonusToDamage = this.strength / 2 - 5;
+	    bonusRangedDamage = this.strength / 2 - 5 + this.dexterity / 2 - 5;
+	}
+	public void updateBonusToDamage(int damageBonus){ this.bonusToDamage += damageBonus; }
 
-	public int toHitBonus(){ return this.toHitBonus; }
-	public void setToHitBonus(){ this.toHitBonus = this.strength / 2 - 5 + this.dexterity / 2 - 5; }
-	public void updateToHitBonus(int update){ this.toHitBonus += update; }
+	public int toHitBonus(){ return this.bonusToHit; }
+	public void setBaseBonusToHit(){
+	    this.bonusToHit = this.strength / 2 - 5 + this.dexterity / 2 - 5;
+	    bonusRangedToHit = this.strength / 2 - 5 + this.dexterity / 2 - 5;
+	}
+	public void updateToHitBonus(int update){ this.bonusToHit += update; }
 
 	public void setDodgeChance(){ setDodge(this.dexterity / 2 - 5); }
-
-	public void setNumOfDice(int numOfDice){ this.numOfDice = numOfDice; }
-	public int numOfDice(){ return this.numOfDice; }
 	
 	public void setPlayerHP(){
 		int maxHealth = this.constitution * 2;
@@ -143,11 +147,33 @@ public class Player extends BaseEntity{
 		this.setMaxHP(maxHealth);
 	}
 
+	public int diceInfo(){
+	    if(rightHand != null){
+	        return rightHandNumberOfDice;
+        }
+        else{
+	        return leftHandNumberOfDice;
+        }
+    }
+
+    public int damageInfo(){
+	    if(rightHand != null){
+	        return rightHandDamage;
+        }
+        else{
+	        return leftHandDamage;
+        }
+    }
+
 	public void unequipLeftHand(){
         equipment().remove(leftHand);
         inventory().add(leftHand);
-        setNumOfDice(1);
-        setAttack(3);
+        leftHandDamage = 3;
+        bonusToDamage -= leftHand.damageBonus();
+        bonusToHit -= leftHand.getToHitBonus();
+        leftHandNumberOfDice = 1;
+        updateArmor(-leftHand.armorValue());
+        updateDodge(-leftHand.dodgeValue());
         this.leftHand = null;
     }
 
@@ -156,14 +182,25 @@ public class Player extends BaseEntity{
             inventory().remove(weapon);
         }
         this.leftHand = weapon;
+        leftHandDamage = leftHand.damageValue();
+        bonusToDamage += leftHand.damageBonus();
+        bonusToHit += leftHand.getToHitBonus();
+        updateArmor(leftHand.armorValue());
+        updateDodge(leftHand.dodgeValue());
+        leftHandNumberOfDice = leftHand.numberOfDiceRolled();
+
         equipment().add(weapon);
     }
 
     public void unequipRightHand(){
         equipment().remove(rightHand);
         inventory().add(rightHand);
-        setNumOfDice(1);
-        setAttack(3);
+        rightHandDamage = 3;
+        bonusToDamage -= rightHand.damageBonus();
+        bonusToHit -= rightHand.getToHitBonus();
+        rightHandNumberOfDice = 1;
+        updateArmor(-rightHand.armorValue());
+        updateDodge(-rightHand.dodgeValue());
         this.rightHand = null;
     }
 
@@ -172,12 +209,23 @@ public class Player extends BaseEntity{
             inventory().remove(weapon);
         }
         this.rightHand = weapon;
+        rightHandDamage = rightHand.damageValue();
+        bonusToDamage += rightHand.damageBonus();
+        bonusToHit += rightHand.getToHitBonus();
+        updateArmor(rightHand.armorValue());
+        updateDodge(rightHand.dodgeValue());
+        rightHandNumberOfDice = rightHand.numberOfDiceRolled();
+
         equipment().add(weapon);
     }
 
     public void unequipRangedWeapon(){
         equipment().remove(rangedWeapon);
         inventory().add(rangedWeapon);
+        bonusRangedToHit -= rangedWeapon.getToHitBonus();
+        bonusRangedDamage -= rangedWeapon.damageBonus();
+        updateArmor(-rangedWeapon.armorValue());
+        updateDodge(-rangedWeapon.dodgeValue());
         this.rangedWeapon = null;
         setRange(strength / 5 + 1);
     }
@@ -187,6 +235,10 @@ public class Player extends BaseEntity{
             inventory().remove(weapon);
         }
         this.rangedWeapon = weapon;
+        bonusRangedToHit += rangedWeapon.getToHitBonus();
+        bonusRangedDamage += rangedWeapon.damageBonus();
+        updateArmor(rangedWeapon.armorValue());
+        updateDodge(rangedWeapon.dodgeValue());
         equipment().add(weapon);
         setRange(weapon.getRange());
     }
@@ -196,7 +248,8 @@ public class Player extends BaseEntity{
 		inventory().add(helmet);
 		updateArmor(-helmet.armorValue());
 		updateToHitBonus(-helmet.getToHitBonus());
-		updateDamageModifier(-helmet.damageValue());
+		updateBonusToDamage(-helmet.damageBonus());
+		updateDodge(-helmet.dodgeValue());
 		this.helmet = null;
 	}
 	
@@ -207,7 +260,8 @@ public class Player extends BaseEntity{
 		this.helmet = helmet;
 		updateArmor(helmet.armorValue());
 		updateToHitBonus(helmet.getToHitBonus());
-		updateDamageModifier(helmet.damageValue());
+		updateBonusToDamage(helmet.damageBonus());
+		updateDodge(helmet.dodgeValue());
 		equipment().add(helmet);
 		}
 	
@@ -216,7 +270,8 @@ public class Player extends BaseEntity{
 		inventory().add(chestpiece);
 		updateArmor(-chestpiece.armorValue());
 		updateToHitBonus(-chestpiece.getToHitBonus());
-		updateDamageModifier(-chestpiece.damageValue());
+		updateBonusToDamage(-chestpiece.damageBonus());
+		updateDodge(-chestpiece.dodgeValue());
 		this.chestpiece = null;
 	}
 	
@@ -227,7 +282,8 @@ public class Player extends BaseEntity{
 		this.chestpiece = chestpiece;
 		updateArmor(chestpiece.armorValue());
 		updateToHitBonus(chestpiece.getToHitBonus());
-		updateDamageModifier(chestpiece.damageValue());
+		updateBonusToDamage(chestpiece.damageBonus());
+		updateDodge(chestpiece.dodgeValue());
 		equipment().add(chestpiece);
 		}
 	
@@ -236,7 +292,8 @@ public class Player extends BaseEntity{
 		inventory().add(cuisses);
 		updateArmor(-cuisses.armorValue());
 		updateToHitBonus(-cuisses.getToHitBonus());
-		updateDamageModifier(-cuisses.damageValue());
+		updateBonusToDamage(-cuisses.damageBonus());
+		updateDodge(-cuisses.dodgeValue());
 		this.cuisses = null;
 	}
 	
@@ -247,7 +304,8 @@ public class Player extends BaseEntity{
 		this.cuisses = cuisses;
 		updateArmor(cuisses.armorValue());
 		updateToHitBonus(cuisses.getToHitBonus());
-		updateDamageModifier(cuisses.damageValue());
+		updateBonusToDamage(cuisses.damageBonus());
+		updateDodge(cuisses.dodgeValue());
 		equipment().add(cuisses);
 		}
 	
@@ -256,7 +314,8 @@ public class Player extends BaseEntity{
 		inventory().add(boots);
 		updateArmor(-boots.armorValue());
 		updateToHitBonus(-boots.getToHitBonus());
-		updateDamageModifier(-boots.damageValue());
+		updateBonusToDamage(-boots.damageBonus());
+		updateDodge(-boots.dodgeValue());
 		this.boots = null;
 	}
 	
@@ -267,7 +326,8 @@ public class Player extends BaseEntity{
 		this.boots = boots;
 		updateArmor(boots.armorValue());
 		updateToHitBonus(boots.getToHitBonus());
-		updateDamageModifier(boots.damageValue());
+		updateBonusToDamage(boots.damageBonus());
+		updateDodge(boots.dodgeValue());
 		equipment().add(boots);
 		}
 	
@@ -276,7 +336,8 @@ public class Player extends BaseEntity{
 		inventory().add(greaves);
 		updateArmor(-greaves.armorValue());
 		updateToHitBonus(-greaves.getToHitBonus());
-		updateDamageModifier(-greaves.damageValue());
+		updateBonusToDamage(-greaves.damageBonus());
+		updateDodge(-greaves.dodgeValue());
 		this.greaves = null;
 	}
 	
@@ -287,7 +348,8 @@ public class Player extends BaseEntity{
 		this.greaves = greaves;
 		updateArmor(greaves.armorValue());
 		updateToHitBonus(greaves.getToHitBonus());
-		updateDamageModifier(greaves.damageValue());
+		updateBonusToDamage(greaves.damageBonus());
+		updateDodge(greaves.dodgeValue());
 		equipment().add(greaves);
 		}
 
@@ -309,6 +371,10 @@ public class Player extends BaseEntity{
             equipment().add(ammunition);
             rangedAmmunition.add(ammunition);
         }
+        bonusRangedDamage += rangedAmmunition.get(0).damageBonus();
+        bonusRangedToHit += rangedAmmunition.get(0).getToHitBonus();
+        rangedNumberOfDice = rangedAmmunition.get(0).numberOfDiceRolled();
+        rangedDamage = rangedAmmunition.get(0).damageValue();
     }
 
     public void unequipRangedAmmunition(){
@@ -317,6 +383,10 @@ public class Player extends BaseEntity{
             equipment().remove(arrow);
             inventory().add(arrow);
         }
+        bonusRangedDamage -= rangedAmmunition.get(0).damageBonus();
+        bonusRangedToHit -= rangedAmmunition.get(0).getToHitBonus();
+        rangedNumberOfDice = 0;
+        rangedDamage = 0;
         rangedAmmunition.clear();
     }
 	
@@ -413,13 +483,21 @@ public class Player extends BaseEntity{
 	private void commonAttack(BaseEntity otherEntity, Item weaponUsed){
 		int toHitRoll = RandomGen.rand(1, 100);
 		int diceRoll = 0, tempDamage = 0;
-		toHitRoll += toHitBonus() + weaponUsed.getToHitBonus();
-		
-            for(int numberOfDice = 0; numberOfDice < weaponUsed.numberOfDiceRolled(); numberOfDice++){
-                diceRoll = RandomGen.rand(1, weaponUsed.damageValue());
+		toHitRoll += toHitBonus();
+
+		if(weaponUsed.equals(leftHand)) {
+            for (int numberOfDice = 0; numberOfDice < leftHandNumberOfDice; numberOfDice++) {
+                diceRoll = RandomGen.rand(1, leftHandDamage);
                 tempDamage += diceRoll;
             }
-		tempDamage += damageModifier() + weaponUsed.damageBonus();
+        }
+        else{
+            for (int numberOfDice = 0; numberOfDice < rightHandNumberOfDice; numberOfDice++) {
+                diceRoll = RandomGen.rand(1, rightHandDamage);
+                tempDamage += diceRoll;
+            }
+        }
+		tempDamage += bonusToDamage();
 		int damageAmount = tempDamage - otherEntity.armor();
 		String action;
 		
@@ -458,22 +536,12 @@ public class Player extends BaseEntity{
     private void commonRangedAttack(BaseEntity otherEntity, Item weaponUsed, List <Item> ammunition){
         int toHitRoll = RandomGen.rand(1, 100);
         int diceRoll = 0, tempDamage = 0;
-        if(weaponUsed != null) {
-            toHitRoll += toHitBonus() + weaponUsed.getToHitBonus() + ammunition.get(0).getToHitBonus();
-        }
-        else{
-            toHitRoll += toHitBonus() + ammunition.get(0).getToHitBonus();
-        }
-        for(int numberOfDice = 0; numberOfDice < ammunition.get(0).numberOfDiceRolled(); numberOfDice++){
-            diceRoll = RandomGen.rand(1, ammunition.get(0).damageValue());
+        toHitRoll += bonusRangedToHit;
+        for(int numberOfDice = 0; numberOfDice < rangedNumberOfDice; numberOfDice++){
+            diceRoll = RandomGen.rand(1, rangedDamage);
             tempDamage += diceRoll;
         }
-        if(weaponUsed != null) {
-            tempDamage += damageModifier() + weaponUsed.damageBonus() + ammunition.get(0).damageBonus();
-        }
-        else{
-            tempDamage += damageModifier() + ammunition.get(0).damageBonus();
-        }
+        tempDamage += bonusRangedDamage;
         int damageAmount = tempDamage - otherEntity.armor();
         String action;
 

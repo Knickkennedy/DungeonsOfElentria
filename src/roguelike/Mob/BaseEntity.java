@@ -81,6 +81,7 @@ public class BaseEntity implements EntityInterface{
 
 	public int getRangedDamage(){ return this.rangedDamage; }
 	public void setRangedDamage(int amount){ this.rangedDamage = amount; }
+	public void updateRangedDamage(int update){ this.rangedDamage += update; }
 
 	public String name(){ return this.name; }
 	public void setName(String name){ this.name = name; }
@@ -130,6 +131,7 @@ public class BaseEntity implements EntityInterface{
 	
 	public int dodge(){ return this.dodge; }
 	public void setDodge(int dodge){ this.dodge = dodge; }
+	public void updateDodge(int update){ this.dodge += update; }
 	
 	public int visionRadius(){ return this.visionRadius; }
 	public void setVisionRadius(int visionRadius){ this.visionRadius = visionRadius; }
