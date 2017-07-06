@@ -16,6 +16,8 @@ public class ItemFactory {
 	public HashMap <Integer, String> dangerOneItems = new HashMap<>();
 	public HashMap <Integer, String> dangerTwoItems = new HashMap<>();
 	public HashMap <Integer, String> dangerThreeItems = new HashMap<>();
+	public HashMap <Integer, String> stackableItems = new HashMap<>();
+	public HashMap <Integer, String> arrows = new HashMap<>();
 	private int itemCount;
 	
 	public ItemFactory(Level level){
@@ -42,27 +44,32 @@ public class ItemFactory {
 		while(itemFile.hasNextLine()){
 			String tempLine = itemFile.nextLine();
 
-			if((tempLine.isEmpty()) || (tempLine.startsWith("<"))){
+			if((tempLine.isEmpty()) || (tempLine.contains("<>"))){
 				continue;
 			}
 
-			tokens = tempLine.split(":");
-			if(tokens[0].trim().equals("name")) {
-				name = tokens[1].trim();
-			}
-			if(tokens[0].trim().equals("danger level")){
-				danger = Integer.parseInt(tokens[1].trim());
-				if(danger == 1){
-					dangerOneItems.put(dangerOneItems.size() + 1, name);
-				}
-				else if(danger == 2){
-					dangerTwoItems.put(dangerTwoItems.size() + 1, name);
-				}
-				else if(danger == 3){
-					dangerThreeItems.put(dangerThreeItems.size() + 1, name);
-				}
-			}
-		}
+            tokens = tempLine.split(":");
+            if (tokens[0].trim().equals("name")) {
+                name = tokens[1].trim();
+            }
+            if (tokens[0].trim().equals("danger level")) {
+                if (tokens[1].trim().equals("stackable")) {
+                    stackableItems.put(stackableItems.size() + 1, name);
+                } else if(tokens[1].trim().equals("arrows")){
+                    arrows.put(arrows.size() + 1, name);
+                }
+                else {
+                    danger = Integer.parseInt(tokens[1].trim());
+                }
+                if (danger == 1) {
+                    dangerOneItems.put(dangerOneItems.size() + 1, name);
+                } else if (danger == 2) {
+                    dangerTwoItems.put(dangerTwoItems.size() + 1, name);
+                } else if (danger == 3) {
+                    dangerThreeItems.put(dangerThreeItems.size() + 1, name);
+                }
+            }
+        }
 		itemFile.close();
 	}
 	

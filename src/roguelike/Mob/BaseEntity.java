@@ -260,11 +260,21 @@ public class BaseEntity implements EntityInterface{
 		}
 	}
 
+	public void dropAllItems(){
+	    List <Item> tempList = new ArrayList<>();
+	    for(Item item : inventory().getInventory()){
+	        tempList.add(item);
+        }
+
+        for(Item item : tempList){
+	        dropItem(item);
+        }
+
+    }
+
 	public void death(){
 	    doAction("die");
-	    for(int i = 0; i < inventory().size(); i++){
-	        dropItem(inventory().getInventory().get(i));
-        }
+	    dropAllItems();
 	    level.remove(this);
     }
 

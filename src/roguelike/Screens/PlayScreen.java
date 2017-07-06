@@ -9,7 +9,6 @@ import roguelike.World.World;
 import roguelike.levelBuilding.Tile;
 import roguelike.utility.Point;
 import squidpony.squidgrid.FOV;
-import squidpony.squidgrid.mapping.DungeonUtility;
 
 public class PlayScreen implements Screen {
 	
@@ -210,10 +209,8 @@ public class PlayScreen implements Screen {
                     break;
                 }
                 case 't': {
-                    if (world.getPlayer().getRangedWeapon() != null && !world.getPlayer().getArrows().isEmpty()) {
+                    if (world.getPlayer().checkIfAmmunitionAndRangedWeaponMatch()) {
                         subscreen = new FireWeaponScreen(world.getCurrentLevel().player);
-                    } else {
-                        world.getPlayer().notify("You don't have the correct equipment.");
                     }
                     break;
                 }

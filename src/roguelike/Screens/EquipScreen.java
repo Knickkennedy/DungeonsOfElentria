@@ -29,7 +29,7 @@ public class EquipScreen implements Screen{
 	
 	public void initializeTempList(){
 		for(Item possibleItems : player.inventory().getInventory()){
-			if(possibleItems.itemType().equals(itemToEquip)){
+			if(possibleItems.itemType().contains(itemToEquip)){
 				Integer frequency = tempList.get(possibleItems.name());
 				if(frequency == null){
 					tempList.put(possibleItems.name(), new Integer(1));

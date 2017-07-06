@@ -43,13 +43,13 @@ public class TargetingScreen implements Screen{
             x += 0;
         } else if (y + direction.y >= player.level().height || y + direction.y < 0) {
             y += 0;
-        } else if (x + direction.x > player.x + player.getRangedWeapon().getRange()) {
+        } else if (x + direction.x > player.x + player.getRange()) {
             x += 0;
-        } else if (x + direction.x < player.x - player.getRangedWeapon().getRange()) {
+        } else if (x + direction.x < player.x - player.getRange()) {
             x += 0;
-        } else if(y + direction.y > player.y + player.getRangedWeapon().getRange()){
+        } else if(y + direction.y > player.y + player.getRange()){
             y += 0;
-        } else if(y + direction.y < player.y - player.getRangedWeapon().getRange()){
+        } else if(y + direction.y < player.y - player.getRange()){
             y += 0;
         } else {
             x += direction.x;

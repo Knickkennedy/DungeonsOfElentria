@@ -84,7 +84,7 @@ public class MobStore {
             if(found && tempLine.isEmpty()){
                 break;
             }
-            if ((tempLine.isEmpty()) || (tempLine.contains("FAMILY")) || (tempLine.contains("BOSSES"))) {
+            if ((tempLine.isEmpty()) || (tempLine.contains("<>"))) {
                 continue;
             }
             if (tokens[0].trim().equals("name") && tokens[1].trim().equals(entityName)) {

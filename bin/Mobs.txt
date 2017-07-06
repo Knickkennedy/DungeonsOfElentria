@@ -1,4 +1,4 @@
-BOSSES
+<BOSSES>
 
 name            :   Elena
 symbol          :   E
@@ -16,7 +16,7 @@ range           :   0
 ranged damage   :   0
 danger level    :   3
 
-GOBLIN FAMILY
+<GOBLINS>
 
 name            :   goblin
 symbol          :   g
@@ -33,7 +33,24 @@ dodge           :   5
 range           :   0
 ranged damage   :   0
 danger level    :   1
-drops           :   dangerOneItems - 3 - 100.0, iron shortsword - 1 - 60.0
+drops           :   dangerOneItems - 3 - 30.0, iron shortsword - 1 - 60.0
+
+name            :   goblin archer
+symbol          :   g
+color           :   brightGreen
+AI              :   ranged
+effects         :   none
+health          :   7
+mana            :   0
+health regen    :   25
+mana regen      :   25
+damage          :   3
+armor           :   0
+dodge           :   10
+range           :   6
+ranged damage   :   6
+danger level    :   1
+drops           :   dangerOneItems - 3 - 30.0, arrows - 20 - 50.0
 
 name            :   goblin rockthrower
 symbol          :   g
@@ -50,6 +67,7 @@ dodge           :   5
 range           :   3
 ranged damage   :   6
 danger level    :   1
+drops           :   dangerOneItems - 5 - 25.0, stackableItems - 10 - 60.0
 
 name            :   goblin spearthrower
 symbol          :   g
@@ -66,6 +84,7 @@ dodge           :   5
 range           :   5
 ranged damage   :   8
 danger level    :   2
+drops           :   dangerOneItems - 5 - 25.0, iron spear - 1 - 80.0
 
 name            :   goblin warrior
 symbol          :   g
@@ -99,7 +118,7 @@ range           :   0
 ranged damage   :   0
 danger level    :   3
 
-INSECT FAMILY
+<INSECTS>
 
 name            :   giant hornet drone
 symbol          :   h
@@ -133,7 +152,7 @@ range           :   0
 ranged damage   :   0
 danger level    :   2
 
-ORC FAMILY
+<ORCS>
 
 name            :   orc grunt
 symbol          :   o

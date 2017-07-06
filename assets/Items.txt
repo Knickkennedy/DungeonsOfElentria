@@ -18,6 +18,19 @@ effects         :   poison - 5 - 3 - 1
 
 <Melee Weapons>
 
+name            :   iron spear
+item type       :   melee weapon
+symbol          :   (
+color           :   gray
+to hit bonus    :   0
+dice rolled     :   1
+damage          :   8
+damage bonus    :   0
+dodge           :   5
+armor           :   0
+weight          :   4.5
+danger level    :   2
+
 name            :   iron shortsword
 item type       :   melee weapon
 symbol          :   (
@@ -99,7 +112,7 @@ danger level    :   3
 <Ranged Weapons>
 
 name            :   short bow
-item type       :   ranged weapon
+item type       :   ranged weapon - bow
 symbol          :   )
 color           :   brown
 to hit bonus    :   1
@@ -113,7 +126,7 @@ danger level    :   1
 <Ranged Ammunition>
 
 name            :   iron arrow
-item type       :   ammunition
+item type       :   bow ammunition
 symbol          :   /
 color           :   gray
 to hit bonus    :   0
@@ -121,10 +134,10 @@ dice rolled     :   1
 damage          :   6
 damage bonus    :   0
 weight          :   0.0
-danger level    :   1
+danger level    :   arrows
 
 name            :   steel arrow
-item type       :   ammunition
+item type       :   bow ammunition
 symbol          :   /
 color           :   white
 to hit bonus    :   1
@@ -132,7 +145,17 @@ dice rolled     :   1
 damage          :   6
 damage bonus    :   1
 weight          :   0.0
-danger level    :   1
+danger level    :   arrows
+
+name            :   rock
+item type       :   thrown ammunition
+symbol          :   *
+color           :   gray
+to hit bonus    :   1
+dice rolled     :   1
+damage          :   4
+damage bonus    :   0
+danger level    :   stackable
 
 <Chestpieces>
 
@@ -142,7 +165,7 @@ symbol          :   [
 color           :   brown
 to hit bonus    :   0
 damage bonus    :   0
-armor           :   0
+armor           :   2
 dodge           :   5
 weight          :   15.0
 danger level    :   1
@@ -153,7 +176,7 @@ symbol          :   [
 color           :   gray
 to hit bonus    :   0
 damage bonus    :   0
-armor           :   2
+armor           :   4
 dodge           :   0
 weight          :   25.0
 danger level    :   1
@@ -166,7 +189,7 @@ symbol          :   [
 color           :   brown
 to hit bonus    :   0
 damage bonus    :   0
-armor           :   10
+armor           :   0
 dodge           :   1
 weight          :   1.5
 danger level    :   1
@@ -214,7 +237,7 @@ symbol          :   [
 color           :   brown
 to hit bonus    :   0
 damage bonus    :   0
-armor           :   0
+armor           :   1
 dodge           :   3
 weight          :   2.0
 danger level    :   1

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import asciiPanel.AsciiPanel;
 import roguelike.AI.AggressiveAI;
 import roguelike.AI.RangedAI;
+import roguelike.Items.Item;
 import roguelike.Items.ItemFactory;
 import roguelike.Level.Level;
 import roguelike.modifiers.*;
@@ -92,6 +93,13 @@ public class EnemyEntity extends BaseEntity{
                         else if(dropArray[0].trim().equals("dangerThreeItems")){
                             int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
                             inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+                        } else if(dropArray[0].trim().equals("arrows")){
+                            int roll = RandomGen.rand(1, itemStore.arrows.size());
+                            inventory().add(itemStore.newItem(itemStore.arrows.get(roll)));
+                        }
+                        else if(dropArray[0].trim().equals("stackableItems")){
+                            int roll = RandomGen.rand(1, itemStore.stackableItems.size());
+                            inventory().add(itemStore.newItem(itemStore.stackableItems.get(roll)));
                         }
                         else {
                             inventory().add(itemStore.newItem(dropArray[0].trim()));
