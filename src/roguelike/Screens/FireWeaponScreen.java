@@ -1,5 +1,6 @@
 package roguelike.Screens;
 
+import asciiPanel.AsciiPanel;
 import roguelike.Mob.BaseEntity;
 import roguelike.Mob.Player;
 import roguelike.levelBuilding.Tile;
@@ -26,7 +27,7 @@ public class FireWeaponScreen extends TargetingScreen{
             return false;
         }
     }
-	
+
 	@Override
 	public void selectCoordinate(Coord[] target) {
 		for(int i = 0; i < target.length; i++) {
@@ -39,7 +40,7 @@ public class FireWeaponScreen extends TargetingScreen{
                     break;
                 } else if (player.level().checkForMob(target[i].x, target[i].y) != null) {
                     BaseEntity otherEntity = player.level().checkForMob(target[i].x, target[i].y);
-                    player.rangedAttack(otherEntity, player.getRangedWeapon(), player.getRangedAmmunition());
+                    player.rangedAttack(otherEntity);
                     break;
                 }
                 else if(player.level().checkForMob(target[i].x, target[i].y) == null && i == target.length - 1){

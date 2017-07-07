@@ -35,7 +35,7 @@ public class InventoryScreen implements Screen{
 	}
 	
 	public void displayOutput(AsciiPanel terminal){
-		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma());
+		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
 		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.maxCarryWeight());
 		terminal.clear(' ', 0, 0, 88, 28);
 		terminal.writeCenter(stats, 1);

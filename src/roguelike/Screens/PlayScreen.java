@@ -43,8 +43,8 @@ public class PlayScreen implements Screen {
 		terminal.write(health, 0, mapHeight + 1);
 		String stats = "";
         stats = String.format("To Hit Bonus: +%d Damage: %dd%d+%d Armor: %d",
-                    world.getPlayer().toHitBonus(), world.getPlayer().diceInfo(),
-                    world.getPlayer().damageInfo(),
+                    world.getPlayer().toHitBonus(), world.getPlayer().getRightHandNumberOfDice(),
+                    world.getPlayer().getRightHandDamage(),
                     world.getPlayer().bonusToDamage(), world.getPlayer().armor());
 		terminal.write(stats, 0, mapHeight + 2);
 
