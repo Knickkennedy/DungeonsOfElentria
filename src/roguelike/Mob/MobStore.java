@@ -118,10 +118,9 @@ public class MobStore {
 			String tempLine = playerFile.nextLine();
 			tokens = tempLine.split(":");
 			if(!tokens[0].trim().equals("Name")) {
-                newPlayer.setAttribute(tokens[0].trim(), Integer.parseInt(tokens[1].trim()));
+                newPlayer.setAttribute(tokens[0].trim(), tokens[1].trim());
             }
 		}
-		newPlayer.initializeHero();
 		new playerAI(newPlayer, messages);
 		return newPlayer;
 	}

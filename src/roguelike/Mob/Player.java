@@ -15,57 +15,119 @@ public class Player extends BaseEntity {
     private int bonusToHit, leftHandDamage, rightHandDamage, bonusToDamage, leftHandNumberOfDice, rightHandNumberOfDice, rangedDamage, bonusRangedDamage, bonusRangedToHit, rangedNumberOfDice;
     private Item leftHand, rightHand, rangedWeapon, boots, greaves, cuisses, chestpiece, helmet;
     private List<Item> rangedAmmunition;
+    private ItemFactory itemStore;
 
     public Player(Level level, char glyph, Color color) {
         super(level, glyph, color);
-    }
-
-    void initializeHero() {
-        setIsPlayer(true);
+        itemStore = new ItemFactory(this.level);
         setInventory(this);
         setEquipment(this);
+        setIsPlayer(true);
         rangedAmmunition = new ArrayList<>();
-        initializeStartingGear();
         setName("Hero");
     }
 
-    void setAttribute(String attribute, int value) {
+    void setAttribute(String attribute, String value) {
         switch(attribute) {
-            case "Strength":{
-                setStrength(value);
+            case "Equipment":{
+                String equipmentArray[];
+                String equipment[] = value.split(", ");
+                int chances = 0;
+                double odds = 0.0;
+                for(String item : equipment){
+                    equipmentArray = item.split(" - ");
+                    if(equipmentArray.length > 1) {
+                        chances = Integer.parseInt(equipmentArray[1].trim());
+                        odds = Double.parseDouble(equipmentArray[2].trim());
+                        for (int i = 0; i < chances; i++) {
+                            double check = RandomGen.dRand(0.0, 100.0);
+                            if (check < odds) {
+                                Item newItem = itemStore.newItem(equipmentArray[0].trim());
+                                equipItem(newItem);
+                                equipment().add(newItem);
+                            }
+                        }
+                    }
+                    else{
+                        Item newItem = itemStore.newItem(equipmentArray[0].trim());
+                        equipItem(newItem);
+                        equipment().add(newItem);
+                    }
+                }
+                break;
+            }case "Inventory":{
+                String inventoryArray[];
+                String inventory[] = value.split(", ");
+                int chances = 0;
+                double odds = 0.0;
+                for(String drop : inventory){
+                    inventoryArray = drop.split(" - ");
+                    chances = Integer.parseInt(inventoryArray[1].trim());
+                    odds = Double.parseDouble(inventoryArray[2].trim());
+                    for(int i = 0; i < chances; i++){
+                        double check = RandomGen.dRand(0.0, 100.0);
+                        if(check < odds){
+                            if(inventoryArray[0].trim().equals("dangerOneItems")){
+                                int roll = RandomGen.rand(1, itemStore.dangerOneItems.size());
+                                inventory().add(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
+                            }
+                            else if(inventoryArray[0].trim().equals("dangerTwoItems")){
+                                int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
+                                inventory().add(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
+                            }
+                            else if(inventoryArray[0].trim().equals("dangerThreeItems")){
+                                int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
+                                inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+                            } else if(inventoryArray[0].trim().equals("arrows")){
+                                int roll = RandomGen.rand(1, itemStore.arrows.size());
+                                inventory().add(itemStore.newItem(itemStore.arrows.get(roll)));
+                            }
+                            else if(inventoryArray[0].trim().equals("stackableItems")){
+                                int roll = RandomGen.rand(1, itemStore.stackableItems.size());
+                                inventory().add(itemStore.newItem(itemStore.stackableItems.get(roll)));
+                            }
+                            else {
+                                inventory().add(itemStore.newItem(inventoryArray[0].trim()));
+                            }
+                        }
+                    }
+                }
+                break;
+            }case "Strength":{
+                setStrength(Integer.parseInt(value));
                 setMaxCarryWeight(this.strength * 15);
                 setBaseBonusToDamage();
                 setBaseBonusToHit();
                 break;
             }case "Constitution":{
-                setConstitution(value);
+                setConstitution(Integer.parseInt(value));
                 setPlayerHP();
                 break;
             }case "Dexterity": {
-                setDexterity(value);
+                setDexterity(Integer.parseInt(value));
                 setBaseBonusToDamage();
                 setBaseBonusToHit();
                 setDodgeChance();
                 break;
             }case "Intelligence": {
-                setIntelligence(value);
+                setIntelligence(Integer.parseInt(value));
                 setMaxMana((int) (intelligence * 2.5));
                 break;
             }case "Wisdom": {
-                setWisdom(value);
+                setWisdom(Integer.parseInt(value));
                 break;
             }case "Charisma": {
-                setCharisma(value);
+                setCharisma(Integer.parseInt(value));
                 break;
             }case "Perception": {
-                setPerception(value);
+                setPerception(Integer.parseInt(value));
                 setVisionRadius(perception / 2 + 1);
                 break;
             }case "HP Regen": {
-                setHealthRegenRate(value);
+                setHealthRegenRate(Integer.parseInt(value));
                 break;
             }case "Mana Regen": {
-                setManaRegenRate(value);
+                setManaRegenRate(Integer.parseInt(value));
                 break;
             }
         }
@@ -498,6 +560,28 @@ public class Player extends BaseEntity {
         rangedNumberOfDice = 0;
         rangedDamage = 0;
         rangedAmmunition.clear();
+    }
+
+    public void equipItem(Item itemToEquip) {
+        if (itemToEquip.itemType().contains("helmet")) {
+            equipHelmet(itemToEquip);
+        } else if (itemToEquip.itemType().contains("chestpiece")) {
+            equipChestpiece(itemToEquip);
+        } else if (itemToEquip.itemType().contains("melee weapon") && rightHand == null) {
+            equipRightHand(itemToEquip);
+        } else if (itemToEquip.itemType().contains("melee weapon") && rightHand != null) {
+            equipLeftHand(itemToEquip);
+        } else if (itemToEquip.itemType().contains("cuisses")) {
+            equipCuisses(itemToEquip);
+        } else if (itemToEquip.itemType().contains("greaves")) {
+            equipGreaves(itemToEquip);
+        } else if (itemToEquip.itemType().contains("boots")) {
+            equipBoots(itemToEquip);
+        } else if (itemToEquip.itemType().contains("ranged weapon")) {
+            equipRangedWeapon(itemToEquip);
+        } else if (itemToEquip.itemType().contains("ammunition")) {
+            equipRangedAmmunition(itemToEquip);
+        }
     }
 
     public void equipItem(Item itemToEquip, char input) {

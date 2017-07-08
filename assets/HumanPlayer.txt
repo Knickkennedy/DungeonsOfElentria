@@ -8,3 +8,5 @@ Charisma	    :	10
 Perception      :   15
 HP Regen        :   50
 Mana Regen      :   50
+Equipment       :   leather helmet, leather armor, leather pants, leather greaves, leather boots, short bow, iron shortsword, iron arrow - 30 - 80.0
+Inventory       :   potion of weak healing - 5 - 75.0
