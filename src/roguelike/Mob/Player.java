@@ -78,13 +78,18 @@ public class Player extends BaseEntity {
                             else if(inventoryArray[0].trim().equals("dangerThreeItems")){
                                 int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
                                 inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
-                            } else if(inventoryArray[0].trim().equals("arrows")){
-                                int roll = RandomGen.rand(1, itemStore.arrows.size());
-                                inventory().add(itemStore.newItem(itemStore.arrows.get(roll)));
-                            }
-                            else if(inventoryArray[0].trim().equals("stackableItems")){
-                                int roll = RandomGen.rand(1, itemStore.stackableItems.size());
-                                inventory().add(itemStore.newItem(itemStore.stackableItems.get(roll)));
+                            } else if(inventoryArray[0].trim().contains(":")){
+                                String[] temp = inventoryArray[0].trim().split(":");
+                                String itemType = temp[0].trim();
+                                int lowerEnd = Integer.parseInt(temp[1].trim());
+                                int upperEnd = Integer.parseInt(temp[2].trim());
+                                Item tempItem;
+                                do {
+                                    int roll = RandomGen.rand(0, itemStore.itemsByCategory.get(itemType).size() - 1);
+                                    tempItem = itemStore.newItem(itemStore.itemsByCategory.get(itemType).get(roll));
+                                }
+                                while(tempItem.getDanger() < lowerEnd && tempItem.getDanger() > upperEnd);
+                                inventory().add(tempItem);
                             }
                             else {
                                 inventory().add(itemStore.newItem(inventoryArray[0].trim()));
@@ -606,24 +611,6 @@ public class Player extends BaseEntity {
         }
     }
 
-    public void initializeStartingGear() {
-        ItemFactory startingItems = new ItemFactory(this.level());
-        equipItem(startingItems.newItem("iron shortsword"), 'C');
-        equipItem(startingItems.newItem("leather helmet"), 'A');
-        equipItem(startingItems.newItem("leather armor"), 'B');
-        equipItem(startingItems.newItem("leather pants"), 'E');
-        equipItem(startingItems.newItem("leather boots"), 'G');
-        equipItem(startingItems.newItem("leather greaves"), 'F');
-        equipItem(startingItems.newItem("short bow"), 'H');
-        for (int i = 0; i < 30; i++) {
-            equipItem(startingItems.newItem("iron arrow"), 'I');
-            inventory().add(startingItems.newItem("steel arrow"));
-            inventory().add(startingItems.newItem("rock"));
-        }
-        inventory().add(startingItems.newItem("potion of weak healing"));
-        inventory().add(startingItems.newItem("potion of weak poison"));
-    }
-
     public void move(int x, int y) {
         if (x == 0 && y == 0) {
             return;
@@ -758,7 +745,7 @@ public class Player extends BaseEntity {
 
     public boolean checkIfAmmunitionAndRangedWeaponMatch() {
         if (rangedWeapon != null && !rangedAmmunition.isEmpty()) {
-            return rangedWeapon.itemType().contains("bow") && rangedAmmunition.get(0).itemType().contains("bow");
+            return rangedWeapon.itemType().contains("Bow") && rangedAmmunition.get(0).itemType().contains("bow");
         } else if (rangedWeapon != null && rangedAmmunition.isEmpty()) {
             notify("You need something to shoot!");
             return false;

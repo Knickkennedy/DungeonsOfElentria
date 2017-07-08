@@ -50,7 +50,7 @@ dodge           :   10
 range           :   6
 ranged damage   :   6
 danger level    :   1
-drops           :   dangerOneItems - 3 - 30.0, arrows - 20 - 50.0
+drops           :   dangerOneItems - 3 - 30.0, Arrows:1:2 - 20 - 50.0
 
 name            :   goblin rockthrower
 symbol          :   g
@@ -67,7 +67,7 @@ dodge           :   5
 range           :   3
 ranged damage   :   6
 danger level    :   1
-drops           :   dangerOneItems - 5 - 25.0, stackableItems - 10 - 60.0
+drops           :   dangerOneItems - 5 - 25.0, Rocks:1:1 - 20 - 60.0
 
 name            :   goblin spearthrower
 symbol          :   g
@@ -84,7 +84,7 @@ dodge           :   5
 range           :   5
 ranged damage   :   8
 danger level    :   2
-drops           :   dangerOneItems - 5 - 25.0, iron spear - 1 - 80.0
+drops           :   dangerOneItems - 5 - 25.0, Spears:1:2 - 3 - 50.0
 
 name            :   goblin warrior
 symbol          :   g
@@ -159,7 +159,7 @@ symbol          :   o
 color           :   brightGreen
 AI              :   aggressive
 effects         :   none
-health          :   15
+health          :   10
 mana            :   0
 health regen    :   50
 mana regen      :   50

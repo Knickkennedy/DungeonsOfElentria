@@ -93,13 +93,18 @@ public class EnemyEntity extends BaseEntity{
                         else if(dropArray[0].trim().equals("dangerThreeItems")){
                             int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
                             inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
-                        } else if(dropArray[0].trim().equals("arrows")){
-                            int roll = RandomGen.rand(1, itemStore.arrows.size());
-                            inventory().add(itemStore.newItem(itemStore.arrows.get(roll)));
-                        }
-                        else if(dropArray[0].trim().equals("stackableItems")){
-                            int roll = RandomGen.rand(1, itemStore.stackableItems.size());
-                            inventory().add(itemStore.newItem(itemStore.stackableItems.get(roll)));
+                        } else if(dropArray[0].trim().contains(":")){
+                            String[] temp = dropArray[0].trim().split(":");
+                            String itemType = temp[0].trim();
+                            int lowerEnd = Integer.parseInt(temp[1].trim());
+                            int upperEnd = Integer.parseInt(temp[2].trim());
+                            Item tempItem;
+                            do {
+                                int roll = RandomGen.rand(0, itemStore.itemsByCategory.get(itemType).size() - 1);
+                                tempItem = itemStore.newItem(itemStore.itemsByCategory.get(itemType).get(roll));
+                            }
+                            while(tempItem.getDanger() < lowerEnd && tempItem.getDanger() > upperEnd);
+                            inventory().add(tempItem);
                         }
                         else {
                             inventory().add(itemStore.newItem(dropArray[0].trim()));

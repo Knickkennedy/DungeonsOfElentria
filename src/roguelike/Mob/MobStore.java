@@ -36,7 +36,7 @@ public class MobStore {
 			if((tempLine.isEmpty()) || (tempLine.contains("FAMILY")) || (tempLine.contains("BOSSES"))){
 				continue;
 			}
-			tokens = tempLine.split(":");
+			tokens = tempLine.split(":", 2);
 			if(tokens[0].trim().equals("name")) {
                 name = tokens[1].trim();
             }
@@ -79,7 +79,7 @@ public class MobStore {
         while (mobFile.hasNextLine()) {
 
             String tempLine = mobFile.nextLine();
-            tokens = tempLine.split(":");
+            tokens = tempLine.split(":", 2);
 
             if(found && tempLine.isEmpty()){
                 break;
@@ -116,7 +116,7 @@ public class MobStore {
         Player newPlayer = new Player(this.thisLevel, glyph, color);
 		while(playerFile.hasNextLine()){
 			String tempLine = playerFile.nextLine();
-			tokens = tempLine.split(":");
+			tokens = tempLine.split(":", 2);
 			if(!tokens[0].trim().equals("Name")) {
                 newPlayer.setAttribute(tokens[0].trim(), tokens[1].trim());
             }

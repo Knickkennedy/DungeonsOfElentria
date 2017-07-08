@@ -14,7 +14,6 @@ public class FireWeaponScreen extends TargetingScreen{
 
 	@Override
 	public boolean isAcceptable(Coord target) {
-        if (player.canSee(target.x, target.y)) {
             if((x == player.x) && (y == player.y)){
                 player.notify("You wouldn't want to hurt yourself, would you?");
                 return false;
@@ -22,10 +21,6 @@ public class FireWeaponScreen extends TargetingScreen{
             else {
                 return true;
             }
-        } else {
-            player.notify("You shouldn't shoot where you can't see!");
-            return false;
-        }
     }
 
 	@Override
@@ -36,7 +31,7 @@ public class FireWeaponScreen extends TargetingScreen{
                         || (player.level().glyph(target[i].x, target[i].y) == Tile.WALL.glyph())
                         || (player.level().glyph(target[i].x, target[i].y) == Tile.PERM_WALL.glyph())) {
                     player.notify("You hit a %s.", player.level().tile(target[i].x, target[i].y).details());
-                    player.consumeEquippedAmmunition(target[i].x, target[i].y);
+                    player.consumeEquippedAmmunition(target[i - 1].x, target[i - 1].y);
                     break;
                 } else if (player.level().checkForMob(target[i].x, target[i].y) != null) {
                     BaseEntity otherEntity = player.level().checkForMob(target[i].x, target[i].y);

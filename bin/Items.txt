@@ -35,22 +35,47 @@ effects         :   poison - 5 - 3 - 2
 danger          :   2
 
 <Melee Weapons>
+name            :   goblin spear
+item type       :   melee weapon - Spear
+symbol          :   (
+color           :   darkGreen
+to hit bonus    :   2
+dice rolled     :   1
+damage          :   6
+damage bonus    :   0
+dodge           :   5
+armor           :   0
+weight          :   4.0
+danger level    :   1
 
 name            :   iron spear
-item type       :   melee weapon
+item type       :   melee weapon - Spear
 symbol          :   (
 color           :   gray
 to hit bonus    :   0
 dice rolled     :   1
 damage          :   8
 damage bonus    :   0
+dodge           :   3
+armor           :   0
+weight          :   8.0
+danger level    :   1
+
+name            :   steel spear
+item type       :   melee weapon - Spear
+symbol          :   (
+color           :   gray
+to hit bonus    :   0
+dice rolled     :   1
+damage          :   8
+damage bonus    :   2
 dodge           :   5
 armor           :   0
 weight          :   8.0
 danger level    :   2
 
 name            :   iron shortsword
-item type       :   melee weapon
+item type       :   melee weapon - Sword
 symbol          :   (
 color           :   gray
 to hit bonus    :   1
@@ -63,7 +88,7 @@ weight          :   3.5
 danger level    :   1
 
 name            :   iron longsword
-item type       :   melee weapon
+item type       :   melee weapon - Sword
 symbol          :   (
 color           :   gray
 to hit bonus    :   1
@@ -76,7 +101,7 @@ weight          :   4.5
 danger level    :   1
 
 name            :   steel shortsword
-item type       :   melee weapon
+item type       :   melee weapon - Sword
 symbol          :   (
 color           :   white
 to hit bonus    :   0
@@ -89,7 +114,7 @@ weight          :   3.0
 danger level    :   2
 
 name            :   steel longsword
-item type       :   melee weapon
+item type       :   melee weapon - Sword
 symbol          :   (
 color           :   white
 to hit bonus    :   1
@@ -102,7 +127,7 @@ weight          :   4.0
 danger level    :   2
 
 name            :   mithril shortsword
-item type       :   melee weapon
+item type       :   melee weapon - Sword
 symbol          :   (
 color           :   blue
 to hit bonus    :   1
@@ -115,7 +140,7 @@ weight          :   2.5
 danger level    :   3
 
 name            :   mithril longsword
-item type       :   melee weapon
+item type       :   melee weapon - Sword
 symbol          :   (
 color           :   blue
 to hit bonus    :   1
@@ -130,7 +155,7 @@ danger level    :   3
 <Ranged Weapons>
 
 name            :   short bow
-item type       :   ranged weapon - bow
+item type       :   ranged weapon - Bow
 symbol          :   )
 color           :   brown
 to hit bonus    :   1
@@ -142,7 +167,7 @@ weight          :   3.0
 danger level    :   1
 
 name            :   long bow
-item type       :   ranged weapon - bow
+item type       :   ranged weapon - Bow
 symbol          :   )
 color           :   brown
 to hit bonus    :   1
@@ -164,7 +189,7 @@ dice rolled     :   1
 damage          :   6
 damage bonus    :   0
 weight          :   0.0
-danger level    :   arrows
+danger level    :   1
 
 name            :   steel arrow
 item type       :   bow ammunition
@@ -175,7 +200,7 @@ dice rolled     :   1
 damage          :   6
 damage bonus    :   1
 weight          :   0.0
-danger level    :   arrows
+danger level    :   2
 
 name            :   rock
 item type       :   thrown ammunition
@@ -185,7 +210,7 @@ to hit bonus    :   1
 dice rolled     :   1
 damage          :   4
 damage bonus    :   0
-danger level    :   stackable
+danger level    :   1
 
 <Chestpieces>
 

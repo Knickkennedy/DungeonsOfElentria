@@ -15,7 +15,7 @@ public class Item implements ItemInterface, Comparable <Item>{
 	private String name, appearance, itemType;
 	private char glyph;
 	private Color color;
-	private int armorValue, dodgeValue, toHitBonus, damageValue, damageBonus, numberOfDiceRolled, range;
+	private int armorValue, dodgeValue, toHitBonus, damageValue, damageBonus, numberOfDiceRolled, range, danger;
 	private double weight;
 	public int x, y;
 	private List<Effect> effects = new ArrayList<Effect>();
@@ -38,6 +38,9 @@ public class Item implements ItemInterface, Comparable <Item>{
 	public void setName(String value){ this.name = value; }
 	public String name(){ return this.name; }
 	public String details(){ return name(); }
+
+	public void setDanger(int value){ this.danger = value; }
+	public int getDanger(){ return this.danger; }
 
 	public void setItemType(String value){ this.itemType = value; }
 	public String itemType(){ return this.itemType; }
@@ -96,6 +99,9 @@ public class Item implements ItemInterface, Comparable <Item>{
         else if(attribute.equals("to hit bonus")){
 		    setToHitBonus(Integer.parseInt(value));
         }
+        else if(attribute.equals("danger")){
+        	setDanger(Integer.parseInt(value));
+		}
         else if(attribute.equals("damage")){
             setDamageValue(Integer.parseInt(value));
         }

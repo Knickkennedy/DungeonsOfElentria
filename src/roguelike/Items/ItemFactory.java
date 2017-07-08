@@ -2,7 +2,9 @@ package roguelike.Items;
 
 import java.awt.Color;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import asciiPanel.AsciiPanel;
@@ -16,8 +18,7 @@ public class ItemFactory {
 	public HashMap <Integer, String> dangerOneItems = new HashMap<>();
 	public HashMap <Integer, String> dangerTwoItems = new HashMap<>();
 	public HashMap <Integer, String> dangerThreeItems = new HashMap<>();
-	public HashMap <Integer, String> stackableItems = new HashMap<>();
-	public HashMap <Integer, String> arrows = new HashMap<>();
+	public HashMap <String, List<String>> itemsByCategory = new HashMap<>();
 	private int itemCount;
 	
 	public ItemFactory(Level level){
@@ -36,7 +37,17 @@ public class ItemFactory {
 		catch(FileNotFoundException e){
 			System.out.println(e.getMessage());
 		}
-		
+		itemsByCategory.put("Spears", new ArrayList<>());
+		itemsByCategory.put("Swords", new ArrayList<>());
+		itemsByCategory.put("Potions", new ArrayList<>());
+		itemsByCategory.put("Bows", new ArrayList<>());
+		itemsByCategory.put("Arrows", new ArrayList<>());
+		itemsByCategory.put("Rocks", new ArrayList<>());
+		itemsByCategory.put("Chestpieces", new ArrayList<>());
+		itemsByCategory.put("Helmets", new ArrayList<>());
+		itemsByCategory.put("Cuisses", new ArrayList<>());
+		itemsByCategory.put("Greaves", new ArrayList<>());
+		itemsByCategory.put("Boots", new ArrayList<>());
 		String name = null;
 		String[] tokens = null;
 		int danger = 0;
@@ -52,15 +63,56 @@ public class ItemFactory {
             if (tokens[0].trim().equals("name")) {
                 name = tokens[1].trim();
             }
+            if(tokens[0].trim().equals("item type")){
+                switch(tokens[1].trim()){
+                    case "melee weapon - Sword": {
+                        itemsByCategory.get("Swords").add(name);
+                        break;
+                    }
+                    case "melee weapon - Spear":{
+                        itemsByCategory.get("Spears").add(name);
+                        break;
+                    }
+                    case "potion":{
+                        itemsByCategory.get("Potions").add(name);
+                        break;
+                    }
+                    case "ranged weapon - Bow":{
+                        itemsByCategory.get("Bows").add(name);
+                        break;
+                    }
+                    case "bow ammunition":{
+                        itemsByCategory.get("Arrows").add(name);
+                        break;
+                    }
+                    case "thrown ammunition":{
+                        itemsByCategory.get("Rocks").add(name);
+                        break;
+                    }
+                    case "chestpiece":{
+                        itemsByCategory.get("Chestpieces").add(name);
+                        break;
+                    }
+                    case "helmet":{
+                        itemsByCategory.get("Helmets").add(name);
+                        break;
+                    }
+                    case "cuisses":{
+                        itemsByCategory.get("Cuisses").add(name);
+                        break;
+                    }
+                    case "greaves":{
+                        itemsByCategory.get("Greaves").add(name);
+                        break;
+                    }
+                    case "boots":{
+                        itemsByCategory.get("Boots").add(name);
+                        break;
+                    }
+                }
+            }
             if (tokens[0].trim().equals("danger level")) {
-                if (tokens[1].trim().equals("stackable")) {
-                    stackableItems.put(stackableItems.size() + 1, name);
-                } else if(tokens[1].trim().equals("arrows")){
-                    arrows.put(arrows.size() + 1, name);
-                }
-                else {
-                    danger = Integer.parseInt(tokens[1].trim());
-                }
+                danger = Integer.parseInt(tokens[1].trim());
                 if (danger == 1) {
                     dangerOneItems.put(dangerOneItems.size() + 1, name);
                 } else if (danger == 2) {
@@ -70,7 +122,7 @@ public class ItemFactory {
                 }
             }
         }
-		itemFile.close();
+        itemFile.close();
 	}
 	
 	public void initializeColors(){
