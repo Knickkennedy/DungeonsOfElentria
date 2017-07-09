@@ -306,7 +306,7 @@ public class BaseEntity implements EntityInterface {
         BaseEntity otherEntity = this.level.checkForMob(this.x + x, this.y + y);
         if (otherEntity == null) {
             if (this.level.hasItemAlready(this.x + x, this.y + y)) {
-                notify("You see %s here.", this.level.checkItems(this.x + x, this.y + y).name());
+                notify("You see a %s here.", this.level.checkItems(this.x + x, this.y + y).name());
             }
             ai.onEnter(this.x + x, this.y + y, this.level);
         } else if (!isPlayer() && !otherEntity.isPlayer()) {

@@ -56,7 +56,7 @@ public class Level{
 		this.dangerLevel = 1;
 		}
 
-	public Level(Tile[][] map, int screenWidth, int mapHeight){
+	public Level(Tile[][] map, int screenWidth, int mapHeight, String levelID){
 		this.width = screenWidth;
 		this.height = mapHeight;
 		pathMap = new char[width][height];
@@ -68,8 +68,10 @@ public class Level{
 		this.connected = new boolean[width][height];
 		this.roomFlag = new boolean[width][height];
 		this.revealed = new boolean[width][height];
-		this.levelID = "Surface";
+		this.levelID = levelID;
 		this.dangerLevel = 1;
+		stairsUp = findStairsUp();
+		initializeDoors();
 		setPathFinding();
 	}
 
@@ -102,7 +104,18 @@ public class Level{
 				bE.update();
 		}
 	}
-	
+
+	public void initializeDoors(){
+		for(int x = 0; x < width; x++){
+			for(int y = 0; y < height; y++){
+				if(tile(x, y).glyph() == '+'){
+					Door newDoor = new Door(x, y);
+					doors.add(newDoor);
+				}
+			}
+		}
+	}
+
 	public BaseEntity checkForMob(int x, int y){
 		for(BaseEntity bE : mobs){
 			if(bE.x == x && bE.y == y){ return bE; }
@@ -186,7 +199,19 @@ public class Level{
 			}
 		}
 	}
-	
+
+	public Point findStairsUp(){
+		for(int x = 0; x < this.width; x++) {
+			for(int y = 0; y < this.height; y++) {
+				if(tile(x, y).glyph() == '<'){
+					Point newPoint = new Point(x, y);
+					return newPoint;
+				}
+			}
+		}
+		return null;
+	}
+
 	public void removeAllDeadEnds(){
 		for(int i = 0; i < 100; i++){
 			removeDeadEnds();

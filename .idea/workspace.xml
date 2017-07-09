@@ -7,25 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/Item.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/Item.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" afterPath="$PROJECT_DIR$/bin/roguelike/Items/ItemFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/EnemyEntity.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/EnemyEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/MobStore.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/MobStore.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Mob/Player.class" afterPath="$PROJECT_DIR$/bin/roguelike/Mob/Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/FireWeaponScreen.class" afterPath="$PROJECT_DIR$/bin/roguelike/Screens/FireWeaponScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/HumanPlayer.txt" afterPath="$PROJECT_DIR$/assets/HumanPlayer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Items.txt" afterPath="$PROJECT_DIR$/assets/Items.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Mobs.txt" afterPath="$PROJECT_DIR$/assets/Mobs.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/HumanPlayer.txt" afterPath="$PROJECT_DIR$/bin/HumanPlayer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Items.txt" afterPath="$PROJECT_DIR$/bin/Items.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Mobs.txt" afterPath="$PROJECT_DIR$/bin/Mobs.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/Item.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/Item.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/surface.txt" afterPath="$PROJECT_DIR$/assets/surface.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Level/Level.java" afterPath="$PROJECT_DIR$/src/roguelike/Level/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/World/World.java" afterPath="$PROJECT_DIR$/src/roguelike/World/World.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,126 +24,88 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="257">
-                  <caret line="82" column="65" lean-forward="true" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FireWeaponScreen.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
-                  <caret line="33" column="82" lean-forward="false" selection-start-line="33" selection-start-column="82" selection-end-line="33" selection-end-column="82" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Inventory.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Items/Inventory.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="206">
-                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MobStore.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="329">
-                  <caret line="118" column="42" lean-forward="false" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Items/Item.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="468">
-                  <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="Items.txt" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/Items.txt">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="884">
-                  <caret line="205" column="37" lean-forward="false" selection-start-line="205" selection-start-column="37" selection-end-line="205" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Mobs.txt" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2737">
-                  <caret line="161" column="22" lean-forward="false" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ItemFactory.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-952">
-                  <caret line="19" column="72" lean-forward="false" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EnemyEntity.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="97" column="61" lean-forward="false" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="61" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/roguelike/World/World.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="214">
-                  <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HumanPlayer.txt" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/HumanPlayer.txt">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" column="77" lean-forward="true" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="82" column="65" lean-forward="true" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/Level/Level.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="58" column="77" lean-forward="false" selection-start-line="58" selection-start-column="77" selection-end-line="58" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseAI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/AI/BaseAI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="106" column="44" lean-forward="true" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MobStore.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="489">
+              <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mobs.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="199" column="22" lean-forward="false" selection-start-line="199" selection-start-column="22" selection-end-line="199" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="World.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/World/World.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="47" column="93" lean-forward="false" selection-start-line="47" selection-start-column="93" selection-end-line="47" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AggressiveAI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="21" column="78" lean-forward="true" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -198,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java" />
         <option value="$PROJECT_DIR$/src/roguelike/AI/RangedAI.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Screens/HelpScreen.java" />
-        <option value="$PROJECT_DIR$/src/roguelike/Level/Level.java" />
         <option value="$PROJECT_DIR$/src/roguelike/levelBuilding/Door.java" />
         <option value="$PROJECT_DIR$/src/roguelike/modifiers/Effect.java" />
         <option value="$PROJECT_DIR$/assets/testMob.txt" />
@@ -217,8 +165,6 @@
         <option value="$PROJECT_DIR$/src/roguelike/Items/BaseItem.java" />
         <option value="$PROJECT_DIR$/assets/Items2.txt" />
         <option value="$PROJECT_DIR$/src/roguelike/utility/RandomGen.java" />
-        <option value="$PROJECT_DIR$/src/roguelike/World/World.java" />
-        <option value="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" />
         <option value="$PROJECT_DIR$/src/roguelike/modifiers/Poison.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Screens/EquipmentScreen.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Screens/EquipScreen.java" />
@@ -232,12 +178,15 @@
         <option value="$PROJECT_DIR$/src/roguelike/Items/ItemFactory.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Items/Item.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Items/Inventory.java" />
-        <option value="$PROJECT_DIR$/assets/Mobs.txt" />
         <option value="$PROJECT_DIR$/assets/HumanPlayer.txt" />
-        <option value="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Mob/Player.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java" />
         <option value="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" />
+        <option value="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" />
+        <option value="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
+        <option value="$PROJECT_DIR$/assets/Mobs.txt" />
+        <option value="$PROJECT_DIR$/src/roguelike/Level/Level.java" />
+        <option value="$PROJECT_DIR$/src/roguelike/World/World.java" />
       </list>
     </option>
   </component>
@@ -935,13 +884,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29281184" sideWeight="0.54114586" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29281184" sideWeight="0.45885417" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29281184" sideWeight="0.45885417" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12552084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10520833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -976,31 +925,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/roguelike/utility/Point.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/modifiers/EffectInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/roguelike/AI/AggressiveAI.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1142,6 +1070,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="24" column="57" lean-forward="true" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+          <folding>
+            <element signature="e#218#219#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+            <element signature="e#281#282#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1149,6 +1083,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1178,30 +1113,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/AI/BaseAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Applications/ApplicationMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -1210,28 +1121,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="506" column="0" lean-forward="false" selection-start-line="506" selection-start-column="0" selection-end-line="506" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Items/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2737">
-          <caret line="161" column="22" lean-forward="false" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1252,34 +1145,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Items/Inventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/World/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/HumanPlayer.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="77" lean-forward="true" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="118" column="42" lean-forward="false" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1292,18 +1161,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Items/Inventory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="82" column="65" lean-forward="true" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
+        <state relative-caret-position="206">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="33" column="82" lean-forward="false" selection-start-line="33" selection-start-column="82" selection-end-line="33" selection-end-column="82" />
+        <state relative-caret-position="508">
+          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="308" column="34" lean-forward="false" selection-start-line="308" selection-start-column="34" selection-end-line="308" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/surface2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/StartScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/MobStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="106" column="44" lean-forward="true" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/Mobs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="199" column="22" lean-forward="false" selection-start-line="199" selection-start-column="22" selection-end-line="199" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/AI/BaseAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Mob/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="82" column="65" lean-forward="true" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="78" lean-forward="true" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/Level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="58" column="77" lean-forward="false" selection-start-line="58" selection-start-column="77" selection-end-line="58" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/World/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="47" column="93" lean-forward="false" selection-start-line="47" selection-start-column="93" selection-end-line="47" selection-end-column="93" />
           <folding />
         </state>
       </provider>

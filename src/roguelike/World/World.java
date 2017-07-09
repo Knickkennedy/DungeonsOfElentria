@@ -16,11 +16,13 @@ public class World {
 	private MobStore mobStore;
 	private ItemFactory itemStore;
 	private Level currentLevel;
-	private Point start;
+	private Point start, bossLocation;
 	public List <String> messages = new ArrayList <String> ();
-	private HashMap <Integer, Level> levels = new HashMap <Integer, Level> ();
+	private HashMap <Integer, Level> mainDungeon = new HashMap <Integer, Level> ();
 	private String surface = "/surface.txt";
-	private Scanner surfaceFile = null;
+	private String ElenaBossRoom = "/ElenasBossRoom.txt";
+	private Scanner surfaceLevel = null;
+	private Scanner bossLevel = null;
 	private Point entranceCoordinates;
 	
 	public MobStore getMobStore() {return mobStore;}
@@ -43,18 +45,18 @@ public class World {
 		this.screenWidth = screenWidth;
 		this.mapHeight = mapHeight;
 		this.messages = messages;
-		currentLevel = new Level(initializeSurfaceLevel(), screenWidth, mapHeight);
+		currentLevel = new Level(initializeSurfaceLevel(), screenWidth, mapHeight, "Surface");
 		mobStore = new MobStore(currentLevel, messages);
 		itemStore = new ItemFactory(currentLevel);
 		player = mobStore.newPlayer();
 		currentLevel.setPlayer(player);
 		currentLevel.levelNumber = 1;
 		currentLevel.addAtSpecificLocation(player, start.x, start.y);
-		levels.put(currentLevel.levelNumber, currentLevel);
+		mainDungeon.put(currentLevel.levelNumber, currentLevel);
 	}
 	
 	public Tile[][] initializeSurfaceLevel(){
-		try{ surfaceFile = openFile(surface); }
+		try{ surfaceLevel = openFile(surface); }
 		catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
 		
 		String levelLine = null;
@@ -69,46 +71,102 @@ public class World {
 			}
 		}
 
-		while(surfaceFile.hasNextLine() && index < 29){
-			levelLine = surfaceFile.nextLine();
-			tokens = levelLine.split("");
-			for(int i = 0; i < tokens.length; i++){
-				int x = Integer.parseInt(tokens[i]);
-				if(x == 0){
+		while(surfaceLevel.hasNextLine() && index < 29){
+			levelLine = surfaceLevel.nextLine();
+			for(int i = 0; i < levelLine.length(); i++){
+				char c = levelLine.charAt(i);
+				if(c == '='){
 					surfaceMap[i][index] = Tile.WATER;
 				}
-				else if(x == 1){
+				else if(c == '^'){
 					surfaceMap[i][index] = Tile.MOUNTAIN;
 				}
-				else if(x == 2){
+				else if(c == '"'){
 					surfaceMap[i][index] = Tile.GRASS;
 				}
-				else if(x == 3){
+				else if(c == '&'){
 					surfaceMap[i][index] = Tile.FOREST;
 				}
-				else if(x == 4){
+				else if(c == '.'){
 					surfaceMap[i][index] = Tile.ROAD;
 				}
-				else if(x == 5){
+				else if(c == '*'){
 					surfaceMap[i][index] = Tile.CAVE;
 				}
-				else if(x == 6){
+				else if(c == 'X'){
 					surfaceMap[i][index] = Tile.ROAD;
 					start = new Point(i, index);
 				}
 			}
 			index++;
 		}
-		
+
 		return surfaceMap;
 	}
+
+    public Tile[][] initializeBossRoom(){
+        try{ bossLevel = openFile(ElenaBossRoom); }
+        catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
+
+        String levelLine;
+        Tile[][] bossMap = new Tile[this.screenWidth][this.mapHeight];
+
+        int index = 0;
+
+        for (int x = 0; x < this.screenWidth; x++){
+            for(int y = 0; y < this.mapHeight; y++){
+                bossMap[x][y] = Tile.WALL;
+            }
+        }
+
+        while(bossLevel.hasNextLine() && index < 29){
+            levelLine = bossLevel.nextLine();
+            for(int i = 0; i < levelLine.length(); i++){
+                char c = levelLine.charAt(i);
+                if(c == '='){
+                    bossMap[i][index] = Tile.WATER;
+                }
+                else if(c == '#'){
+                    bossMap[i][index] = Tile.WALL;
+                }
+                else if(c == '^'){
+                    bossMap[i][index] = Tile.MOUNTAIN;
+                }
+                else if(c == '"'){
+                    bossMap[i][index] = Tile.GRASS;
+                }
+                else if(c == '&'){
+                    bossMap[i][index] = Tile.FOREST;
+                }
+                else if(c == '.'){
+                    bossMap[i][index] = Tile.FLOOR;
+                }
+                else if(c == '*'){
+                    bossMap[i][index] = Tile.CAVE;
+                }
+                else if(c == '<'){
+                    bossMap[i][index] = Tile.STAIRS_UP;
+                }
+                else if(c == '+'){
+                    bossMap[i][index] = Tile.DOOR_CLOSED;
+                }
+                else if(c == 'h'){
+                    bossMap[i][index] = Tile.FLOOR;
+                    bossLocation = new Point(i, index);
+                }
+            }
+            index++;
+        }
+
+        return bossMap;
+    }
 	
 	public void goUpALevel(){
-		if(levels.containsKey(getCurrentLevel().levelNumber - 1)){
-			levels.get(currentLevel.levelNumber - 1).mobs.add(player);
-			player.setLevel(levels.get(currentLevel.levelNumber - 1));
-			levels.get(currentLevel.levelNumber).mobs.remove(player);
-			setCurrentLevel(levels.get(getCurrentLevel().levelNumber - 1));
+		if(mainDungeon.containsKey(getCurrentLevel().levelNumber - 1)){
+			mainDungeon.get(currentLevel.levelNumber - 1).mobs.add(player);
+			player.setLevel(mainDungeon.get(currentLevel.levelNumber - 1));
+			mainDungeon.get(currentLevel.levelNumber).mobs.remove(player);
+			setCurrentLevel(mainDungeon.get(getCurrentLevel().levelNumber - 1));
 			getCurrentLevel().setPlayer(player);
 			if(getCurrentLevel().levelNumber == 1){
 				getCurrentLevel().addAtSpecificLocation(player, entranceCoordinates.x, entranceCoordinates.y);
@@ -123,15 +181,31 @@ public class World {
 	}
 	
 	public void goDownALevel(){
-		if(levels.containsKey(currentLevel.levelNumber + 1)){
-			player.setLevel(levels.get(currentLevel.levelNumber + 1));
-			levels.get(currentLevel.levelNumber).mobs.remove(player);
-			setCurrentLevel(levels.get(getCurrentLevel().levelNumber + 1));
+		if(mainDungeon.containsKey(currentLevel.levelNumber + 1)){
+			player.setLevel(mainDungeon.get(currentLevel.levelNumber + 1));
+			mainDungeon.get(currentLevel.levelNumber).mobs.remove(player);
+			setCurrentLevel(mainDungeon.get(getCurrentLevel().levelNumber + 1));
 			getCurrentLevel().setPlayer(player);
 			getCurrentLevel().addAtUpStaircase(player);
 		}
+		else if(currentLevel.levelNumber == 1){
+            Level tempLevel = new Level(initializeBossRoom(), screenWidth, mapHeight, "The Throne Room");
+            mobStore = new MobStore(tempLevel, messages);
+            itemStore = new ItemFactory(tempLevel);
+            tempLevel.setPlayer(player);
+            tempLevel.addAtUpStaircase(player);
+            player.setLevel(tempLevel);
+            currentLevel.remove(player);
+            tempLevel.levelNumber = currentLevel.levelNumber + 1;
+            tempLevel.dangerLevel = tempLevel.levelNumber / 2;
+            setCurrentLevel(tempLevel);
+            initializeBossRoomMobs();
+            initializeItemsOnLevel();
+            mainDungeon.put(currentLevel.levelNumber, currentLevel);
+            System.out.println("Success");
+        }
 		else{
-			if(currentLevel.levelNumber == 1){
+			if(currentLevel.levelNumber == 4){
 				entranceCoordinates = new Point(player.x, player.y);
 			}
 			Level tempLevel = new Level(screenWidth, mapHeight);
@@ -143,16 +217,54 @@ public class World {
 			player.setLevel(tempLevel);
 			currentLevel.remove(player);
 			tempLevel.levelNumber = currentLevel.levelNumber + 1;
-			if(tempLevel.levelNumber > 2){
-			    tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
-            }
+            tempLevel.dangerLevel = tempLevel.levelNumber / 2;
 			setCurrentLevel(tempLevel);
 			initializeMobsOnLevel();
 			initializeItemsOnLevel();
-			levels.put(currentLevel.levelNumber, currentLevel);
+			mainDungeon.put(currentLevel.levelNumber, currentLevel);
 		}
 	}
-	
+
+	public void initializeBossRoomMobs(){
+	    mobStore.newEnemyAtSpecificLocation("Elena", 86, 13);
+	    for(int i = 32; i < 46; i++){
+	        mobStore.newEnemyAtSpecificLocation("orc warrior", i, 13);
+        }
+        for(int i = 51; i < 66; i++){
+	        mobStore.newEnemyAtSpecificLocation("orc warrior", i, 13);
+        }
+        for(int i = 67; i < 72; i++){
+            for(int j = 121; j < 16; j++){
+                mobStore.newEnemyAtSpecificLocation("giant hornet warrior", i, j);
+            }
+        }
+        for(int i = 21; i < 26; i++){
+            for(int j = 1; j < 5; j++){
+                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
+            }
+        }
+        for(int i = 46; i < 51; i++){
+            for(int j = 1; j < 4; j++){
+                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
+            }
+        }
+        for(int i = 46; i < 51; i++){
+            for(int j = 24; j < 27; j++){
+                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
+            }
+        }
+        for(int i = 21; i < 26; i++){
+            for(int j = 22; j < 27; j++){
+                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
+            }
+        }
+        for(int i = 47; i < 50; i++){
+	        for(int in = 12; in < 15; in++){
+	            mobStore.newEnemyAtSpecificLocation("orc captain", i, in);
+            }
+        }
+    }
+
 	public void initializeItemsOnLevel(){
 		if(currentLevel.dangerLevel == 1){
 			for(int i = 0; i < 25; i++){

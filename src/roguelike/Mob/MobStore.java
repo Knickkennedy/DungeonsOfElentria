@@ -100,6 +100,39 @@ public class MobStore {
         mobFile.close();
         return newEnemy;
     }
+
+	public EnemyEntity newEnemyAtSpecificLocation(String entityName, int x, int y){
+		try{ mobFile = openMobFile(mobFileName); }
+		catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
+		String tokens[];
+		EnemyEntity newEnemy = new EnemyEntity(thisLevel);
+
+		boolean found = false;
+
+		while (mobFile.hasNextLine()) {
+
+			String tempLine = mobFile.nextLine();
+			tokens = tempLine.split(":", 2);
+
+			if(found && tempLine.isEmpty()){
+				break;
+			}
+			if ((tempLine.isEmpty()) || (tempLine.contains("<>"))) {
+				continue;
+			}
+			if (tokens[0].trim().equals("name") && tokens[1].trim().equals(entityName)) {
+				found = true;
+			}
+			if (found) {
+				newEnemy.setAttributes(tokens[0].trim(), tokens[1].trim());
+			}
+		}
+
+		thisLevel.addAtSpecificLocation(newEnemy, x, y);
+
+		mobFile.close();
+		return newEnemy;
+	}
 	
 	public Player newPlayer(){
 		try{

@@ -185,3 +185,19 @@ dodge           :   5
 range           :   0
 ranged damage   :   0
 danger level    :   2
+
+name            :   orc captain
+symbol          :   o
+color           :   darkGreen
+AI              :   aggressive
+effects         :   none
+health          :   20
+mana            :   0
+health regen    :   100
+mana regen      :   100
+damage          :   8
+armor           :   4
+dodge           :   10
+range           :   0
+ranged damage   :   0
+danger level    :   2
