@@ -5,8 +5,8 @@ import roguelike.Mob.BaseEntity;
 public class Poison extends Effect {
 	private int damage;
 
-	public Poison(int dam, int dur) {
-		super(dur);
+	public Poison(int dam, int dur, String eType) {
+		super(dur, eType);
 		this.damage = dam;
 	}
 

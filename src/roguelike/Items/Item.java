@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
+import roguelike.Mob.BaseEntity;
 import roguelike.modifiers.Effect;
 import roguelike.modifiers.Healing;
 import roguelike.modifiers.Poison;
@@ -79,20 +80,38 @@ public class Item implements ItemInterface, Comparable <Item>{
 		            for(int i = 0; i < numberOfDice; i++){
 		                healing += RandomGen.rand(1, diceSize);
                     }
-                    Healing heal = new Healing(healing, duration);
+                    Healing heal = new Healing(healing, duration, "Healing");
                     effects().add(heal);
                 }
                 else if(effect.contains("poison")){
-                    String tokens[] = effect.split(" - ");
-                    int numberOfDice = Integer.parseInt(tokens[1].trim());
-                    int diceSize = Integer.parseInt(tokens[2].trim());
-                    int damage = Integer.parseInt(tokens[3].trim());
-                    int duration = 0;
-                    for(int i = 0; i < numberOfDice; i++){
-                        duration += RandomGen.rand(1, diceSize);
-                    }
-                    Poison poison = new Poison(damage, duration);
-                    effects().add(poison);
+		        	if(effect.equals("cure poison")){
+		        		List <Effect> tempEffects = new ArrayList<>();
+		        		Effect newEffect = new Effect(1, "Cure Poison"){
+		        			public void start(BaseEntity entity){
+		        				for(Effect effect : entity.effects()){
+		        					if(effect.getEffectType().equals("Poison")){
+		        						tempEffects.add(effect);
+									}
+								}
+								for(Effect effect : tempEffects){
+		        					entity.effects().remove(effect);
+								}
+							}
+						};
+						effects().add(newEffect);
+					}
+					else {
+						String tokens[] = effect.split(" - ");
+						int numberOfDice = Integer.parseInt(tokens[1].trim());
+						int diceSize = Integer.parseInt(tokens[2].trim());
+						int damage = Integer.parseInt(tokens[3].trim());
+						int duration = 0;
+						for (int i = 0; i < numberOfDice; i++) {
+							duration += RandomGen.rand(1, diceSize);
+						}
+						Poison poison = new Poison(damage, duration, "Poison");
+						effects().add(poison);
+					}
                 }
             }
         }

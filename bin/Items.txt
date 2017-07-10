@@ -18,6 +18,14 @@ weight          :   1.0
 effects         :   healing - 4 - 6 - 1
 danger          :   2
 
+name            :   potion of poison antidote
+item type       :   potion
+symbol          :   (
+color           :   brightWhite
+weight          :   1.0
+effects         :   cure poison
+danger          :   1
+
 name            :   potion of weak poison
 item type       :   potion
 symbol          :   (

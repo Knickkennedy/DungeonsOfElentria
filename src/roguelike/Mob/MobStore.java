@@ -159,7 +159,6 @@ public class MobStore {
 	}
 	
 	private static Scanner openMobFile(String fileName) throws FileNotFoundException{
-		Scanner sc = new Scanner(MobStore.class.getResourceAsStream(fileName));
-		return sc;
+		return new Scanner(MobStore.class.getResourceAsStream(fileName));
 	}
 }

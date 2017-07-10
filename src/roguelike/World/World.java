@@ -23,7 +23,6 @@ public class World {
 	private String ElenaBossRoom = "/ElenasBossRoom.txt";
 	private Scanner surfaceLevel = null;
 	private Scanner bossLevel = null;
-	private Point entranceCoordinates;
 	
 	public MobStore getMobStore() {return mobStore;}
 	public void setMobStore(MobStore mobStore) {this.mobStore = mobStore;}
@@ -60,7 +59,6 @@ public class World {
 		catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
 		
 		String levelLine = null;
-		String[] tokens = null;
 		Tile[][] surfaceMap = new Tile[this.screenWidth][this.mapHeight];
 		
 		int index = 0;
@@ -169,7 +167,7 @@ public class World {
 			setCurrentLevel(mainDungeon.get(getCurrentLevel().levelNumber - 1));
 			getCurrentLevel().setPlayer(player);
 			if(getCurrentLevel().levelNumber == 1){
-				getCurrentLevel().addAtSpecificLocation(player, entranceCoordinates.x, entranceCoordinates.y);
+				getCurrentLevel().addAtSpecificLocation(player, currentLevel.stairsDown.x, currentLevel.stairsDown.y);
 			}
 			else{
 				getCurrentLevel().addAtDownStaircase(player);
@@ -188,7 +186,7 @@ public class World {
 			getCurrentLevel().setPlayer(player);
 			getCurrentLevel().addAtUpStaircase(player);
 		}
-		else if(currentLevel.levelNumber == 1){
+		else if(currentLevel.levelNumber == 4){
             Level tempLevel = new Level(initializeBossRoom(), screenWidth, mapHeight, "The Throne Room");
             mobStore = new MobStore(tempLevel, messages);
             itemStore = new ItemFactory(tempLevel);
@@ -205,9 +203,6 @@ public class World {
             System.out.println("Success");
         }
 		else{
-			if(currentLevel.levelNumber == 4){
-				entranceCoordinates = new Point(player.x, player.y);
-			}
 			Level tempLevel = new Level(screenWidth, mapHeight);
 			tempLevel.buildLevel();
 			mobStore = new MobStore(tempLevel, messages);
@@ -234,7 +229,7 @@ public class World {
 	        mobStore.newEnemyAtSpecificLocation("orc warrior", i, 13);
         }
         for(int i = 67; i < 72; i++){
-            for(int j = 121; j < 16; j++){
+            for(int j = 12; j < 16; j++){
                 mobStore.newEnemyAtSpecificLocation("giant hornet warrior", i, j);
             }
         }
@@ -336,7 +331,6 @@ public class World {
 	}
 	
 	private static Scanner openFile(String fileName) throws FileNotFoundException{
-		Scanner scanner = new Scanner(World.class.getResourceAsStream(fileName));
-		return scanner;
+		return new Scanner(World.class.getResourceAsStream(fileName));
 	}
 }

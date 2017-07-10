@@ -71,6 +71,7 @@ public class Level{
 		this.levelID = levelID;
 		this.dangerLevel = 1;
 		stairsUp = findStairsUp();
+		stairsDown = findStairsDown();
 		initializeDoors();
 		setPathFinding();
 	}
@@ -204,6 +205,26 @@ public class Level{
 		for(int x = 0; x < this.width; x++) {
 			for(int y = 0; y < this.height; y++) {
 				if(tile(x, y).glyph() == '<'){
+					Point newPoint = new Point(x, y);
+					return newPoint;
+				}
+			}
+		}
+		return null;
+	}
+
+	public Point findStairsDown(){
+		for(int x = 0; x < this.width; x++) {
+			for(int y = 0; y < this.height; y++) {
+				if(tile(x, y).glyph() == '>'){
+					Point newPoint = new Point(x, y);
+					return newPoint;
+				}
+			}
+		}
+		for(int x = 0; x < this.width; x++) {
+			for(int y = 0; y < this.height; y++) {
+				if(tile(x, y).glyph() == '*'){
 					Point newPoint = new Point(x, y);
 					return newPoint;
 				}

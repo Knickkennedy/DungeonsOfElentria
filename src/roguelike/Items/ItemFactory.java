@@ -168,7 +168,6 @@ public class ItemFactory {
     }
 	
 	private static Scanner openItemFile(String fileName) throws FileNotFoundException{
-		Scanner sc = new Scanner(ItemFactory.class.getResourceAsStream(fileName));
-		return sc;
+		return new Scanner(ItemFactory.class.getResourceAsStream(fileName));
 	}
 }

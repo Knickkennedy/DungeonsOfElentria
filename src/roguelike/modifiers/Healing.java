@@ -5,8 +5,8 @@ import roguelike.Mob.BaseEntity;
 public class Healing extends Effect {
 	private int heal;
 	
-	public Healing(int heal, int duration){
-	    super(duration);
+	public Healing(int heal, int duration, String eType){
+	    super(duration, eType);
 		this.heal = heal;
 	}
 	

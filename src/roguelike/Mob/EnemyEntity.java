@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.util.HashMap;
 
 import asciiPanel.AsciiPanel;
-import roguelike.AI.AggressiveAI;
-import roguelike.AI.RangedAI;
+import roguelike.AI.*;
 import roguelike.Items.Item;
 import roguelike.Items.ItemFactory;
 import roguelike.Level.Level;
@@ -53,6 +52,9 @@ public class EnemyEntity extends BaseEntity{
             else if(value.equals("ranged")){
                 new RangedAI(this);
             }
+            else if(value.equals("Elena")){
+                new ElenaAI(this);
+            }
         }
         else if(attribute.equals("effects")){
             if(value.equals("none")){
@@ -63,7 +65,7 @@ public class EnemyEntity extends BaseEntity{
                 for(String effect : effects){
                     if(effect.contains("poison")){
                         String tokens[] = effect.split(" - ");
-                        Poison newPoison = new Poison(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]));
+                        Poison newPoison = new Poison(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]), "Poison");
                         newPoison.setChanceToProc(Integer.parseInt(tokens[3].trim()));
                         addOffensiveEffect(newPoison);
                     }

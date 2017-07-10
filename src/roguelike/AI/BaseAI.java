@@ -55,7 +55,11 @@ public class BaseAI {
 		
 		mob.move(myX, myY);
 	}
-	
+
+	public void skipTurn(){
+		return;
+	}
+
 	public void wander(){
 		int x = RandomGen.rand(-1, 1);
 		int y = RandomGen.rand(-1, 1);
