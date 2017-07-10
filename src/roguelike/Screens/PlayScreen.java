@@ -98,7 +98,7 @@ public class PlayScreen implements Screen {
 	            		world.getCurrentLevel().revealed[x][y] = true;
 	            	}
 	            	else {
-	            		if(world.getCurrentLevel().revealed[x][y] == true && !world.getPlayer().canSee(x, y)) {
+	            		if(world.getCurrentLevel().revealed[x][y] && !world.getPlayer().canSee(x, y)) {
 	            			terminal.write(world.getCurrentLevel().baseGlyph(x, y), x, y, world.getCurrentLevel().baseColor(x, y));
 	            		}
 	            	}
