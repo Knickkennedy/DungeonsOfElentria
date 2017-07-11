@@ -1,12 +1,12 @@
 Name            :   Hero
 Strength	    :   10
-Constitution	:   99
+Constitution	:   10
 Dexterity	    :	10
 Intelligence	:	10
 Wisdom	        :	10
 Charisma	    :	10
-Perception      :   15
+Perception      :   10
 HP Regen        :   50
 Mana Regen      :   50
-Equipment       :   leather helmet, leather armor, leather pants, leather greaves, leather boots, short bow, iron shortsword, iron arrow - 30 - 80.0
+Equipment       :   leather helmet, iron breastplate, iron cuisses, leather greaves, leather boots, short bow, iron shortsword, iron arrow - 30 - 80.0
 Inventory       :   potion of weak healing - 5 - 75.0, Arrows:1:2 - 40 - 75.0, potion of weak poison - 5 - 75.0, potion of poison antidote - 5 - 75.0

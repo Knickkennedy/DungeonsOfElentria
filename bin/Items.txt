@@ -5,7 +5,7 @@
 name            :   potion of weak healing
 item type       :   potion
 symbol          :   (
-color           :   brightWhite
+color           :   white
 weight          :   1.0
 effects         :   healing - 4 - 3 - 1
 danger          :   1
@@ -13,7 +13,7 @@ danger          :   1
 name            :   potion of healing
 item type       :   potion
 symbol          :   (
-color           :   brightWhite
+color           :   white
 weight          :   1.0
 effects         :   healing - 4 - 6 - 1
 danger          :   2
@@ -21,7 +21,7 @@ danger          :   2
 name            :   potion of poison antidote
 item type       :   potion
 symbol          :   (
-color           :   brightWhite
+color           :   white
 weight          :   1.0
 effects         :   cure poison
 danger          :   1
@@ -29,7 +29,7 @@ danger          :   1
 name            :   potion of weak poison
 item type       :   potion
 symbol          :   (
-color           :   brightWhite
+color           :   white
 weight          :   1.0
 effects         :   poison - 5 - 3 - 1
 danger          :   1
@@ -37,7 +37,7 @@ danger          :   1
 name            :   potion of poison
 item type       :   potion
 symbol          :   (
-color           :   brightWhite
+color           :   white
 weight          :   1.0
 effects         :   poison - 5 - 3 - 2
 danger          :   2
@@ -46,7 +46,7 @@ danger          :   2
 name            :   goblin spear
 item type       :   melee weapon - Spear
 symbol          :   (
-color           :   darkGreen
+color           :   dark green
 to hit bonus    :   2
 dice rolled     :   1
 damage          :   6
@@ -213,7 +213,7 @@ danger level    :   2
 name            :   rock
 item type       :   thrown ammunition
 symbol          :   *
-color           :   gray
+color           :   dark gray
 to hit bonus    :   1
 dice rolled     :   1
 damage          :   4
@@ -239,7 +239,7 @@ symbol          :   [
 color           :   gray
 to hit bonus    :   0
 damage bonus    :   0
-armor           :   4
+armor           :   3
 dodge           :   0
 weight          :   25.0
 danger level    :   1

@@ -17,18 +17,28 @@ public class Player extends BaseEntity {
     private List<Item> rangedAmmunition;
     private ItemFactory itemStore;
 
-    public Player(Level level, char glyph, Color color) {
-        super(level, glyph, color);
+    public Player(Level level) {
+        super(level);
         itemStore = new ItemFactory(this.level);
         setInventory(this);
         setEquipment(this);
         setIsPlayer(true);
+        setExperience(0);
+        setExperienceLevel(1);
         rangedAmmunition = new ArrayList<>();
         setName("Hero");
     }
 
     void setAttribute(String attribute, String value) {
         switch(attribute) {
+            case "symbol":{
+                setGlyph(value.charAt(0));
+                break;
+            }
+            case "color":{
+                setColor(Colors.getColor(value));
+                break;
+            }
             case "Equipment":{
                 String equipmentArray[];
                 String equipment[] = value.split(", ");
@@ -621,7 +631,7 @@ public class Player extends BaseEntity {
         BaseEntity otherEntity = this.level.checkForMob(this.x + x, this.y + y);
         if (otherEntity == null) {
             if (this.level.hasItemAlready(this.x + x, this.y + y)) {
-                notify("You see %s here.", this.level.checkItems(this.x + x, this.y + y).name());
+                notify("You see a %s here.", this.level.checkItems(this.x + x, this.y + y).name());
             }
             getAi().onEnter(this.x + x, this.y + y, this.level);
         } else {

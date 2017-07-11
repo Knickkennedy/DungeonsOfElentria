@@ -48,12 +48,11 @@ public class Level{
 		map = new Tile[width][height];
 		this.minRoomSize = 3;
 		this.maxRoomSize = 9;
-		this.numRoomTries = 50;
+		this.numRoomTries = 25;
 		this.connected = new boolean[width][height];
 		this.roomFlag = new boolean[width][height];
 		this.revealed = new boolean[width][height];
 		this.levelID = "Dungeon Floor";
-		this.dangerLevel = 1;
 		}
 
 	public Level(Tile[][] map, int screenWidth, int mapHeight, String levelID){
@@ -62,14 +61,8 @@ public class Level{
 		pathMap = new char[width][height];
 		this.levelNumber = 0;
 		this.map = map;
-		this.minRoomSize = 3;
-		this.maxRoomSize = 9;
-		this.numRoomTries = 50;
-		this.connected = new boolean[width][height];
-		this.roomFlag = new boolean[width][height];
 		this.revealed = new boolean[width][height];
 		this.levelID = levelID;
-		this.dangerLevel = 1;
 		stairsUp = findStairsUp();
 		stairsDown = findStairsDown();
 		initializeDoors();

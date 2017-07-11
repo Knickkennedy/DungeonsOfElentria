@@ -110,7 +110,6 @@ public class MobStore {
 		boolean found = false;
 
 		while (mobFile.hasNextLine()) {
-
 			String tempLine = mobFile.nextLine();
 			tokens = tempLine.split(":", 2);
 
@@ -141,12 +140,10 @@ public class MobStore {
 		catch(FileNotFoundException e){
 			System.out.println(e.getMessage());
 		}
-		char glyph = 0;
-		Color color = null;
-		String tokens[] = null;
-        glyph = '@';
-        color = AsciiPanel.brightWhite;
-        Player newPlayer = new Player(this.thisLevel, glyph, color);
+		String tokens[];
+        Player newPlayer = new Player(this.thisLevel);
+        newPlayer.setAttribute("color", "white");
+        newPlayer.setAttribute("symbol", "@");
 		while(playerFile.hasNextLine()){
 			String tempLine = playerFile.nextLine();
 			tokens = tempLine.split(":", 2);

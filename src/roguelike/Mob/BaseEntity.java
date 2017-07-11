@@ -21,22 +21,12 @@ public class BaseEntity implements EntityInterface {
     private boolean isPlayer;
     public int x, y;
     private int maxHP, currentHP, currentMana, maxMana, healthRegen, manaRegen, healthRegenCooldown, manaRegenCooldown, attackDamage, range, rangedDamage, armor, dodge, visionRadius;
+    private int experienceLevel, experience;
     private double maxCarryWeight;
     private Inventory inventory;
     private Inventory equipment;
     private List<Effect> effects;
     private List<Effect> offensiveEffects;
-
-    public BaseEntity(Level level, char glyph, Color color) {
-        healthRegenCooldown = 1000;
-        manaRegenCooldown = 1000;
-        this.level = level;
-        this.glyph = glyph;
-        this.color = color;
-        this.isPlayer = false;
-        this.effects = new ArrayList<>();
-        offensiveEffects = new ArrayList<>();
-    }
 
     public BaseEntity(Level level) {
         healthRegenCooldown = 1000;
@@ -45,7 +35,14 @@ public class BaseEntity implements EntityInterface {
         this.isPlayer = false;
         this.effects = new ArrayList<>();
         offensiveEffects = new ArrayList<>();
+        this.experienceLevel = 1;
     }
+
+    public void setExperience(int value){ this.experience = value; }
+    public int getExperience(){ return this.experience; }
+
+    public void setExperienceLevel(int level){ this.experienceLevel = level; }
+    public int getExperienceLevel(){ return this.experienceLevel; }
 
     public BaseAI getAi() {
         return this.ai;
@@ -284,7 +281,7 @@ public class BaseEntity implements EntityInterface {
         this.level().addAtSpecificLocation(itemToDrop, this.x, this.y);
         this.inventory().remove(itemToDrop);
         if (isPlayer) {
-            this.notify("You drop %s", itemToDrop.name());
+            this.notify("You drop a %s", itemToDrop.name());
         }
     }
 
@@ -336,7 +333,7 @@ public class BaseEntity implements EntityInterface {
         } else if (damageAmount < 1) {
             doDeflectAction("deflect", otherEntity);
         } else {
-            doAttackAction("attack", otherEntity, damageAmount);
+            doAttackAction("shoot", otherEntity, damageAmount);
             specialAttack(otherEntity);
         }
     }
@@ -380,6 +377,14 @@ public class BaseEntity implements EntityInterface {
             otherEntity.notify("The %s %ss you for %d damage.", name(), action, damage);
         }
         otherEntity.modifyHP(-damage, "killed by a " + name());
+        if (otherEntity.currentHP() < 1) {
+            otherEntity.death();
+            gainExperience(otherEntity);
+        }
+    }
+
+    public void gainExperience(BaseEntity otherEntity){
+        this.experience += otherEntity.experience;
     }
 
     public void doMissAction(String action, BaseEntity otherEntity) {
@@ -401,9 +406,6 @@ public class BaseEntity implements EntityInterface {
     public void modifyHP(int amount, String causeOfDeath) {
         setCurrentHP(amount);
         this.causeOfDeath = causeOfDeath;
-        if (this.currentHP() < 1) {
-            death();
-        }
     }
 
     public void dropAllItems() {

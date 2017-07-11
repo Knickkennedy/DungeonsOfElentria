@@ -17,6 +17,7 @@ public class PlayScreen implements Screen {
 	private int screenWidth;
 	private int screenHeight;
 	private int mapHeight;
+	static int messageBuffer;
 	private List <String> messages;
 	private List <String> tempMessages;
 	private Screen subscreen;
@@ -27,7 +28,8 @@ public class PlayScreen implements Screen {
 	public PlayScreen(){
 		screenWidth = 88;
 		screenHeight = 32;
-		mapHeight = screenHeight - 4;
+		this.messageBuffer = 4;
+		mapHeight = screenHeight - 4 - messageBuffer;
 		messages = new ArrayList <String> ();
 		tempMessages = new ArrayList <String> ();
 		world = new World(screenWidth, mapHeight, messages);
@@ -40,7 +42,15 @@ public class PlayScreen implements Screen {
 		displayMessages(terminal, messages);
 
 		String health = String.format("Hp: %d/%d Mp: %d/%d", world.getPlayer().currentHP(), world.getPlayer().maxHP(), world.getPlayer().getCurrentMana(), world.getPlayer().getMaxMana());
-		terminal.write(health, 0, mapHeight + 1);
+		terminal.write(health, 0, mapHeight + messageBuffer + 1);
+		String defensiveStats = String.format("DV:%d/AV:%d", world.getPlayer().dodge(), world.getPlayer().armor());
+		terminal.write(defensiveStats, 0, mapHeight + messageBuffer + 2);
+
+        String temp = "Depth: " + String.valueOf(world.getCurrentLevel().levelNumber) + " Danger: " + String.valueOf(world.getCurrentLevel().dangerLevel + " Experience Points: " + world.getPlayer().getExperience());
+        terminal.write(temp, 0, mapHeight + messageBuffer);
+
+        String help = "Press ? for help";
+        terminal.write(help, screenWidth - help.length() - 1, screenHeight - 1);
 
 		if (subscreen != null) {
 			subscreen.displayOutput(terminal);
@@ -58,8 +68,8 @@ public class PlayScreen implements Screen {
 			messages.remove(s);
 		}
 		
-		for(int i = 0; i < messages.size() && mapHeight + i < terminal.getHeightInCharacters(); i++){
-			terminal.writeCenter(messages.get(i), mapHeight + i);
+		for(int i = 0; i < messages.size() && i < messageBuffer; i++){
+			terminal.writeCenter(messages.get(i), i);
 		}
 		if(subscreen == null){
 			messages.clear();
@@ -88,25 +98,22 @@ public class PlayScreen implements Screen {
 	
 	private void displayTiles(AsciiPanel terminal) {
 		resistanceMap = generateResistances(world.getCurrentLevel().pathMap);
-		double[][] light = new double[screenWidth][mapHeight];
+		double[][] light;
 		light = fov.calculateFOV(resistanceMap, world.getPlayer().x, world.getPlayer().y, world.getPlayer().visionRadius());
-		
-		for (int x = 0; x < screenWidth; x++){
-	        for (int y = 0; y < mapHeight; y++){
-	            	if(light[x][y] > 0.0f || world.getPlayer().canSee(x, y)) {
-	            		terminal.write(world.getCurrentLevel().glyph(x, y), x, y, world.getCurrentLevel().color(x, y));
-	            		world.getCurrentLevel().revealed[x][y] = true;
-	            	}
-	            	else {
-	            		if(world.getCurrentLevel().revealed[x][y] && !world.getPlayer().canSee(x, y)) {
-	            			terminal.write(world.getCurrentLevel().baseGlyph(x, y), x, y, world.getCurrentLevel().baseColor(x, y));
-	            		}
-	            	}
-	            }
-	        }
-		String temp = "Depth: " + String.valueOf(world.getCurrentLevel().levelNumber) + ", Danger: " + String.valueOf(world.getCurrentLevel().dangerLevel);
-		terminal.write(temp, 0, mapHeight);
-	}
+
+        for (int x = 0; x < screenWidth; x++) {
+            for (int y = 0; y < mapHeight; y++) {
+                if (light[x][y] > 0.0f || world.getPlayer().canSee(x, y)) {
+                    terminal.write(world.getCurrentLevel().glyph(x, y), x, y + messageBuffer, world.getCurrentLevel().color(x, y));
+                    world.getCurrentLevel().revealed[x][y] = true;
+                } else {
+                    if (world.getCurrentLevel().revealed[x][y] && !world.getPlayer().canSee(x, y)) {
+                        terminal.write(world.getCurrentLevel().baseGlyph(x, y), x, y + messageBuffer, world.getCurrentLevel().baseColor(x, y));
+                    }
+                }
+            }
+        }
+    }
 	
 	public void doAction(Point currentDirection){
 		if(world.getCurrentLevel().isClosedDoor(world.getPlayer().x + currentDirection.x, world.getPlayer().y + currentDirection.y)){

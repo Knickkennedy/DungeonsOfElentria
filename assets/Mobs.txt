@@ -5,42 +5,43 @@ symbol          :   E
 color           :   blue
 AI              :   Elena
 effects         :   poison - 2 - 15 - 90
-health          :   25
+health          :   40
 mana            :   25
 health regen    :   100
 mana regen      :   100
 damage          :   8
 armor           :   5
-dodge           :   10
+dodge           :   25
 range           :   0
 ranged damage   :   0
-danger level    :   3
+danger level    :   5
 
 <GOBLINS>
 
 name            :   goblin
 symbol          :   g
-color           :   brightGreen
+color           :   bright green
 AI              :   aggressive
 effects         :   none
-health          :   7
+health          :   3
 mana            :   0
 health regen    :   25
 mana regen      :   25
-damage          :   6
-armor           :   1
-dodge           :   5
+damage          :   4
+armor           :   0
+dodge           :   10
 range           :   0
 ranged damage   :   0
 danger level    :   1
-drops           :   dangerOneItems - 3 - 30.0, iron shortsword - 1 - 60.0
+experience      :   3
+drops           :   dangerOneItems - 3 - 30.0
 
 name            :   goblin archer
 symbol          :   g
-color           :   brightGreen
+color           :   bright green
 AI              :   ranged
 effects         :   none
-health          :   7
+health          :   2
 mana            :   0
 health regen    :   25
 mana regen      :   25
@@ -50,31 +51,33 @@ dodge           :   10
 range           :   6
 ranged damage   :   6
 danger level    :   1
-drops           :   dangerOneItems - 3 - 30.0, Arrows:1:2 - 20 - 50.0
+experience      :   4
+drops           :   dangerOneItems - 3 - 30.0, Arrows:1:2 - 10 - 50.0
 
 name            :   goblin rockthrower
 symbol          :   g
-color           :   brightGreen
+color           :   bright green
 AI              :   ranged
 effects         :   none
-health          :   7
+health          :   2
 mana            :   0
 health regen    :   25
 mana regen      :   25
 damage          :   4
-armor           :   1
-dodge           :   5
+armor           :   0
+dodge           :   10
 range           :   3
 ranged damage   :   6
 danger level    :   1
+experience      :   3
 drops           :   dangerOneItems - 5 - 25.0, Rocks:1:1 - 20 - 60.0
 
 name            :   goblin spearthrower
 symbol          :   g
-color           :   brightGreen
+color           :   bright green
 AI              :   ranged
 effects         :   none
-health          :   10
+health          :   3
 mana            :   0
 health regen    :   25
 mana regen      :   25
@@ -84,39 +87,42 @@ dodge           :   5
 range           :   5
 ranged damage   :   8
 danger level    :   2
+experience      :   5
 drops           :   dangerOneItems - 5 - 25.0, Spears:1:2 - 3 - 50.0
 
 name            :   goblin warrior
 symbol          :   g
-color           :   darkGreen
+color           :   dark green
 AI              :   aggressive
 effects         :   none
-health          :   10
+health          :   7
 mana            :   0
 health regen    :   30
 mana regen      :   30
 damage          :   6
 armor           :   2
-dodge           :   5
+dodge           :   10
 range           :   0
 ranged damage   :   0
 danger level    :   2
+experience      :   5
 
 name            :   goblin captain
 symbol          :   g
-color           :   darkGreen
+color           :   dark green
 AI              :   aggressive
 effects         :   none
-health          :   15
+health          :   9
 mana            :   0
 health regen    :   50
 mana regen      :   50
 damage          :   8
-armor           :   3
+armor           :   2
 dodge           :   10
 range           :   0
 ranged damage   :   0
-danger level    :   3
+danger level    :   2
+experience      :   6
 
 <INSECTS>
 
@@ -125,13 +131,13 @@ symbol          :   h
 color           :   white
 AI              :   aggressive
 effects         :   poison - 1 - 10 - 75, poison - 1 - 15 - 50
-health          :   7
+health          :   5
 mana            :   0
 health regen    :   25
 mana regen      :   25
 damage          :   6
 armor           :   0
-dodge           :   10
+dodge           :   25
 range           :   0
 ranged damage   :   0
 danger level    :   1
@@ -141,63 +147,66 @@ symbol          :   h
 color           :   gray
 AI              :   aggressive
 effects         :   poison - 2 - 10 - 50, poison - 1 - 10 - 50
-health          :   10
+health          :   7
 mana            :   0
 health regen    :   50
 mana regen      :   50
-damage          :   6
+damage          :   8
 armor           :   2
-dodge           :   15
+dodge           :   35
 range           :   0
 ranged damage   :   0
 danger level    :   2
 
 <ORCS>
 
-name            :   orc grunt
+name            :   orc
 symbol          :   o
-color           :   brightGreen
+color           :   bright green
+AI              :   aggressive
+effects         :   none
+health          :   5
+mana            :   0
+health regen    :   50
+mana regen      :   50
+damage          :   5
+armor           :   2
+dodge           :   10
+range           :   0
+ranged damage   :   0
+danger level    :   1
+experience      :   5
+
+name            :   orc warrior
+symbol          :   o
+color           :   dark green
 AI              :   aggressive
 effects         :   none
 health          :   10
 mana            :   0
-health regen    :   50
-mana regen      :   50
-damage          :   6
-armor           :   3
-dodge           :   5
-range           :   0
-ranged damage   :   0
-danger level    :   1
-
-name            :   orc warrior
-symbol          :   o
-color           :   darkGreen
-AI              :   aggressive
-effects         :   none
-health          :   15
-mana            :   0
 health regen    :   75
 mana regen      :   75
-damage          :   8
+damage          :   7
 armor           :   3
-dodge           :   5
-range           :   0
-ranged damage   :   0
-danger level    :   2
-
-name            :   orc captain
-symbol          :   o
-color           :   darkGreen
-AI              :   aggressive
-effects         :   none
-health          :   20
-mana            :   0
-health regen    :   100
-mana regen      :   100
-damage          :   8
-armor           :   4
 dodge           :   10
 range           :   0
 ranged damage   :   0
 danger level    :   2
+experience      :   6
+
+name            :   orc captain
+symbol          :   o
+color           :   dark green
+AI              :   aggressive
+effects         :   none
+health          :   15
+mana            :   0
+health regen    :   100
+mana regen      :   100
+damage          :   9
+armor           :   4
+dodge           :   15
+range           :   0
+ranged damage   :   0
+danger level    :   2
+experience      :   7

@@ -49,7 +49,7 @@ public class World {
 		itemStore = new ItemFactory(currentLevel);
 		player = mobStore.newPlayer();
 		currentLevel.setPlayer(player);
-		currentLevel.levelNumber = 1;
+		currentLevel.levelNumber = 0;
 		currentLevel.addAtSpecificLocation(player, start.x, start.y);
 		mainDungeon.put(currentLevel.levelNumber, currentLevel);
 	}
@@ -69,7 +69,7 @@ public class World {
 			}
 		}
 
-		while(surfaceLevel.hasNextLine() && index < 29){
+		while(surfaceLevel.hasNextLine() && index < mapHeight){
 			levelLine = surfaceLevel.nextLine();
 			for(int i = 0; i < levelLine.length(); i++){
 				char c = levelLine.charAt(i);
@@ -117,7 +117,7 @@ public class World {
             }
         }
 
-        while(bossLevel.hasNextLine() && index < 29){
+        while(bossLevel.hasNextLine() && index < mapHeight){
             levelLine = bossLevel.nextLine();
             for(int i = 0; i < levelLine.length(); i++){
                 char c = levelLine.charAt(i);
@@ -166,12 +166,7 @@ public class World {
 			mainDungeon.get(currentLevel.levelNumber).mobs.remove(player);
 			setCurrentLevel(mainDungeon.get(getCurrentLevel().levelNumber - 1));
 			getCurrentLevel().setPlayer(player);
-			if(getCurrentLevel().levelNumber == 1){
-				getCurrentLevel().addAtSpecificLocation(player, currentLevel.stairsDown.x, currentLevel.stairsDown.y);
-			}
-			else{
-				getCurrentLevel().addAtDownStaircase(player);
-			}
+			getCurrentLevel().addAtDownStaircase(player);
 		}
 		else{
 			player.notify("There's no way up from here.");
@@ -195,7 +190,7 @@ public class World {
             player.setLevel(tempLevel);
             currentLevel.remove(player);
             tempLevel.levelNumber = currentLevel.levelNumber + 1;
-            tempLevel.dangerLevel = tempLevel.levelNumber / 2;
+            tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
             setCurrentLevel(tempLevel);
             initializeBossRoomMobs();
             initializeItemsOnLevel();
@@ -212,7 +207,7 @@ public class World {
 			player.setLevel(tempLevel);
 			currentLevel.remove(player);
 			tempLevel.levelNumber = currentLevel.levelNumber + 1;
-            tempLevel.dangerLevel = tempLevel.levelNumber / 2;
+            tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
 			setCurrentLevel(tempLevel);
 			initializeMobsOnLevel();
 			initializeItemsOnLevel();
@@ -229,7 +224,7 @@ public class World {
 	        mobStore.newEnemyAtSpecificLocation("orc warrior", i, 13);
         }
         for(int i = 67; i < 72; i++){
-            for(int j = 12; j < 16; j++){
+            for(int j = 11; j < 16; j++){
                 mobStore.newEnemyAtSpecificLocation("giant hornet warrior", i, j);
             }
         }
@@ -244,12 +239,12 @@ public class World {
             }
         }
         for(int i = 46; i < 51; i++){
-            for(int j = 24; j < 27; j++){
+            for(int j = 20; j < 23; j++){
                 mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
             }
         }
         for(int i = 21; i < 26; i++){
-            for(int j = 22; j < 27; j++){
+            for(int j = 19; j < 23; j++){
                 mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
             }
         }

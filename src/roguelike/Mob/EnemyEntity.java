@@ -13,37 +13,28 @@ import roguelike.utility.RandomGen;
 
 public class EnemyEntity extends BaseEntity{
 
-    public HashMap<String, Color> colorDictionary = new HashMap <> ();
     private ItemFactory itemStore;
 
 	public EnemyEntity(Level level){
 	    super(level);
 	    itemStore = new ItemFactory(level);
-	    initializeColors();
 	    setMaxCarryWeight(9999);
 	    setInventory(this);
 	    setVisionRadius(5);
-    }
-
-    public void initializeColors(){
-        colorDictionary.put("brightGreen", AsciiPanel.brightGreen);
-        colorDictionary.put("blue", AsciiPanel.brightBlue.brighter().brighter().brighter());
-        colorDictionary.put("brightWhite", AsciiPanel.brightWhite);
-        colorDictionary.put("darkGreen", AsciiPanel.green.brighter());
-        colorDictionary.put("brown", new Color(102, 51, 0));
-        colorDictionary.put("gray", new Color(130, 130, 130));
-        colorDictionary.put("white", AsciiPanel.white);
     }
 
 	public void setAttributes(String attribute, String value){
 	    if(attribute.equals("name")){
 	        setName(value);
         }
+        else if(attribute.equals("experience")){
+                setExperience(Integer.parseInt(value));
+        }
         else if(attribute.equals("symbol")){
 	        setGlyph(value.charAt(0));
         }
         else if(attribute.equals("color")){
-            setColor(colorDictionary.get(value));
+            setColor(Colors.getColor(value));
         }
         else if(attribute.equals("AI")){
             if(value.equals("aggressive")){

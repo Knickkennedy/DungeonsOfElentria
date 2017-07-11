@@ -29,9 +29,9 @@ public class TargetingScreen implements Screen {
 			if (targetLine[i].x == player.x && targetLine[i].y == player.y && targetLine.length > 1) {
 				terminal.write(player.glyph(), player.x, player.y, player.color());
 			} else if (player.level().isGround(targetLine[i].x, targetLine[i].y)) {
-				terminal.write('X', targetLine[i].x, targetLine[i].y, AsciiPanel.brightYellow);
+				terminal.write('X', targetLine[i].x, targetLine[i].y + 4, AsciiPanel.brightYellow);
 			} else {
-				terminal.write('X', targetLine[i].x, targetLine[i].y, AsciiPanel.brightRed);
+				terminal.write('X', targetLine[i].x, targetLine[i].y + 4, AsciiPanel.brightRed);
 			}
 		}
 

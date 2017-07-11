@@ -6,6 +6,8 @@ import asciiPanel.AsciiFont;
 import asciiPanel.AsciiPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import roguelike.Mob.Colors;
 import roguelike.Screens.*;
 
 public class ApplicationMain extends JFrame implements KeyListener {
@@ -36,17 +38,17 @@ public class ApplicationMain extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) { }
-	
+
 	public static void main(String[] args) {
 		ApplicationMain app = new ApplicationMain();
-		
-			app.terminal = new AsciiPanel(88, 32, AsciiFont.CP437_9x16);
-			app.add(app.terminal);
-			app.pack();
-			app.screen = new StartScreen();
-			app.addKeyListener(app);
-			app.repaint();
-			app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			app.setVisible(true);
+		Colors.initializeColors();
+		app.terminal = new AsciiPanel(88, 32, AsciiFont.CP437_9x16);
+		app.add(app.terminal);
+		app.pack();
+		app.screen = new StartScreen();
+		app.addKeyListener(app);
+		app.repaint();
+		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		app.setVisible(true);
 	}
 }

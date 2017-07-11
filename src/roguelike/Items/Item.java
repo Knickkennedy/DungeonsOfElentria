@@ -7,6 +7,7 @@ import java.util.List;
 
 import asciiPanel.AsciiPanel;
 import roguelike.Mob.BaseEntity;
+import roguelike.Mob.Colors;
 import roguelike.modifiers.Effect;
 import roguelike.modifiers.Healing;
 import roguelike.modifiers.Poison;
@@ -20,20 +21,9 @@ public class Item implements ItemInterface, Comparable <Item>{
 	private double weight;
 	public int x, y;
 	private List<Effect> effects = new ArrayList<Effect>();
-	public HashMap <String, Color> colorDictionary = new HashMap<>();
 	
 	public Item(){
-		initializeColors();
-	}
 
-	public void initializeColors(){
-		colorDictionary.put("brightGreen", AsciiPanel.brightGreen);
-		colorDictionary.put("blue", AsciiPanel.brightBlue.brighter().brighter().brighter());
-		colorDictionary.put("brightWhite", AsciiPanel.brightWhite);
-		colorDictionary.put("darkGreen", AsciiPanel.green.brighter());
-		colorDictionary.put("brown", new Color(102, 51, 0));
-		colorDictionary.put("gray", new Color(130, 130, 130));
-		colorDictionary.put("white", AsciiPanel.white);
 	}
 
 	public void setName(String value){ this.name = value; }
@@ -63,7 +53,7 @@ public class Item implements ItemInterface, Comparable <Item>{
 			setGlyph(value.charAt(0));
 		}
 		else if(attribute.equals("color")){
-			setColor(colorDictionary.get(value));
+			setColor(Colors.getColorLibrary().get(value));
 		}
 		else if(attribute.equals("item type")){
 		    setItemType(value);

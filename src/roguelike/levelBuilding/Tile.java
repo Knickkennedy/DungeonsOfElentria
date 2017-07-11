@@ -2,24 +2,24 @@ package roguelike.levelBuilding;
 
 import java.awt.Color;
 import asciiPanel.AsciiPanel;
+import roguelike.Mob.Colors;
 
 public enum Tile {
-	WATER('=', AsciiPanel.brightBlue, "water"),
-	MOUNTAIN('^', AsciiPanel.white, "mountain"),
-	GRASS('"', AsciiPanel.brightGreen, "grass"),
-	FOREST('&', AsciiPanel.green, "forest"),
+	WATER('=', Colors.getColor("blue"), "water"),
+	MOUNTAIN('^', Colors.getColor("white"), "mountain"),
+	GRASS('"', Colors.getColor("bright green"), "grass"),
+	FOREST('&', Colors.getColor("dark green"), "forest"),
 	CAVE('*', Color.darkGray, "cave"),
 	START('X', Color.lightGray, "start"),
-	ROAD('.', new Color(139, 69, 19), "road"),
-    FLOOR('.', AsciiPanel.brightGreen, "stone floor"),
-    WALL('#', AsciiPanel.brightBlack, "wall"),
-    PERM_WALL('#', AsciiPanel.brightBlack, "wall"),
-    BOUNDS('X', AsciiPanel.black, ""),
-	STAIRS_DOWN('>', AsciiPanel.white, "stairs down"),
-    STAIRS_UP('<', AsciiPanel.white, "stairs up"),
-	DOOR_CLOSED('+', AsciiPanel.white, "door"),
-	UNKNOWN(' ', AsciiPanel.white, "unknown"),
-	DOOR_OPEN('/', AsciiPanel.white, "door");
+	ROAD('.', Colors.getColor("brown"), "road"),
+    FLOOR('.', Colors.getColor("gray"), "stone floor"),
+    WALL('#', Colors.getColor("dark gray"), "wall"),
+    PERM_WALL('#', Colors.getColor("dark gray"), "wall"),
+    BOUNDS('X', Colors.getColor("dark gray"), ""),
+	STAIRS_DOWN('>', Colors.getColor("light gray"), "stairs down"),
+    STAIRS_UP('<', Colors.getColor("light gray"), "stairs up"),
+	DOOR_CLOSED('+', Colors.getColor("light gray"), "door"),
+	DOOR_OPEN('/', Colors.getColor("light gray"), "door");
 
     private char glyph;
     public char glyph() { return glyph; }
