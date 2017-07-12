@@ -2,6 +2,7 @@ package roguelike.World;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap;
 import roguelike.Items.ItemFactory;
 import roguelike.Level.Level;
 import roguelike.Mob.MobStore;
@@ -19,6 +20,7 @@ public class World {
 	private Point start, bossLocation;
 	public List <String> messages = new ArrayList <String> ();
 	private HashMap <Integer, Level> mainDungeon = new HashMap <Integer, Level> ();
+	private HashMap <Point, String> bossMinions = new HashMap<>();
 	private String surface = "/surface.txt";
 	private String ElenaBossRoom = "/ElenasBossRoom.txt";
 	private Scanner surfaceLevel = null;
@@ -117,45 +119,51 @@ public class World {
             }
         }
 
-        while(bossLevel.hasNextLine() && index < mapHeight){
-            levelLine = bossLevel.nextLine();
-            for(int i = 0; i < levelLine.length(); i++){
-                char c = levelLine.charAt(i);
-                if(c == '='){
-                    bossMap[i][index] = Tile.WATER;
-                }
-                else if(c == '#'){
-                    bossMap[i][index] = Tile.WALL;
-                }
-                else if(c == '^'){
-                    bossMap[i][index] = Tile.MOUNTAIN;
-                }
-                else if(c == '"'){
-                    bossMap[i][index] = Tile.GRASS;
-                }
-                else if(c == '&'){
-                    bossMap[i][index] = Tile.FOREST;
-                }
-                else if(c == '.'){
-                    bossMap[i][index] = Tile.FLOOR;
-                }
-                else if(c == '*'){
-                    bossMap[i][index] = Tile.CAVE;
-                }
-                else if(c == '<'){
-                    bossMap[i][index] = Tile.STAIRS_UP;
-                }
-                else if(c == '+'){
-                    bossMap[i][index] = Tile.DOOR_CLOSED;
-                }
-                else if(c == 'h'){
-                    bossMap[i][index] = Tile.FLOOR;
-                    bossLocation = new Point(i, index);
-                }
-            }
-            index++;
-        }
-
+        while(bossLevel.hasNextLine()) {
+			levelLine = bossLevel.nextLine();
+				for (int i = 0; i < levelLine.length(); i++) {
+					char c = levelLine.charAt(i);
+					if (c == '=') {
+						bossMap[i][index] = Tile.WATER;
+					} else if (c == '#') {
+						bossMap[i][index] = Tile.WALL;
+					} else if (c == '^') {
+						bossMap[i][index] = Tile.MOUNTAIN;
+					} else if (c == '"') {
+						bossMap[i][index] = Tile.GRASS;
+					} else if (c == '1') {
+						bossMap[i][index] = Tile.FLOOR;
+						Point newPoint = new Point(i, index);
+						bossMinions.put(newPoint, "goblin warrior");
+					} else if (c == '2') {
+						bossMap[i][index] = Tile.FLOOR;
+						Point newPoint = new Point(i, index);
+						bossMinions.put(newPoint, "goblin");
+					} else if (c == 'o') {
+						bossMap[i][index] = Tile.FLOOR;
+						Point newPoint = new Point(i, index);
+						bossMinions.put(newPoint, "orc captain");
+					} else if (c == 'r') {
+						bossMap[i][index] = Tile.FLOOR;
+						Point newPoint = new Point(i, index);
+						bossMinions.put(newPoint, "orc warrior");
+					} else if (c == '&') {
+						bossMap[i][index] = Tile.FOREST;
+					} else if (c == '.') {
+						bossMap[i][index] = Tile.FLOOR;
+					} else if (c == '*') {
+						bossMap[i][index] = Tile.CAVE;
+					} else if (c == '<') {
+						bossMap[i][index] = Tile.STAIRS_UP;
+					} else if (c == '+') {
+						bossMap[i][index] = Tile.DOOR_CLOSED;
+					} else if (c == 'h') {
+						bossMap[i][index] = Tile.FLOOR;
+						bossLocation = new Point(i, index);
+					}
+				}
+				index++;
+		}
         return bossMap;
     }
 	
@@ -181,7 +189,7 @@ public class World {
 			getCurrentLevel().setPlayer(player);
 			getCurrentLevel().addAtUpStaircase(player);
 		}
-		else if(currentLevel.levelNumber == 4){
+		else if(currentLevel.levelNumber == 0){
             Level tempLevel = new Level(initializeBossRoom(), screenWidth, mapHeight, "The Throne Room");
             mobStore = new MobStore(tempLevel, messages);
             itemStore = new ItemFactory(tempLevel);
@@ -195,7 +203,7 @@ public class World {
             initializeBossRoomMobs();
             initializeItemsOnLevel();
             mainDungeon.put(currentLevel.levelNumber, currentLevel);
-            System.out.println("Success");
+            System.out.println("Success!");
         }
 		else{
 			Level tempLevel = new Level(screenWidth, mapHeight);
@@ -216,43 +224,13 @@ public class World {
 	}
 
 	public void initializeBossRoomMobs(){
-	    mobStore.newEnemyAtSpecificLocation("Elena", 86, 13);
-	    for(int i = 32; i < 46; i++){
-	        mobStore.newEnemyAtSpecificLocation("orc warrior", i, 13);
-        }
-        for(int i = 51; i < 66; i++){
-	        mobStore.newEnemyAtSpecificLocation("orc warrior", i, 13);
-        }
-        for(int i = 67; i < 72; i++){
-            for(int j = 11; j < 16; j++){
-                mobStore.newEnemyAtSpecificLocation("giant hornet warrior", i, j);
-            }
-        }
-        for(int i = 21; i < 26; i++){
-            for(int j = 1; j < 5; j++){
-                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
-            }
-        }
-        for(int i = 46; i < 51; i++){
-            for(int j = 1; j < 4; j++){
-                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
-            }
-        }
-        for(int i = 46; i < 51; i++){
-            for(int j = 20; j < 23; j++){
-                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
-            }
-        }
-        for(int i = 21; i < 26; i++){
-            for(int j = 19; j < 23; j++){
-                mobStore.newEnemyAtSpecificLocation("goblin captain", i, j);
-            }
-        }
-        for(int i = 47; i < 50; i++){
-	        for(int in = 12; in < 15; in++){
-	            mobStore.newEnemyAtSpecificLocation("orc captain", i, in);
-            }
-        }
+	    mobStore.newEnemyAtSpecificLocation("Elena", bossLocation.x, bossLocation.y);
+	    Set<HashMap.Entry<Point, String>> allKeys = bossMinions.entrySet();
+	    Iterator<HashMap.Entry<Point, String>> pointIterator = allKeys.iterator();
+	    while(pointIterator.hasNext()){
+	    	HashMap.Entry<Point, String> mob = pointIterator.next();
+	    	mobStore.newEnemyAtSpecificLocation(mob.getValue(), mob.getKey().x, mob.getKey().y);
+		}
     }
 
 	public void initializeItemsOnLevel(){

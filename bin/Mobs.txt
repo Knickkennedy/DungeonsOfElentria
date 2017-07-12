@@ -16,22 +16,6 @@ range           :   0
 ranged damage   :   0
 danger level    :   5
 
-name            :   Neer
-symbol          :   N
-color           :   brown
-AI              :   Elena
-effects         :   poison - 2 - 15 - 90
-health          :   40
-mana            :   25
-health regen    :   100
-mana regen      :   100
-damage          :   8
-armor           :   5
-dodge           :   25
-range           :   0
-ranged damage   :   0
-danger level    :   1
-
 <GOBLINS>
 
 name            :   goblin
