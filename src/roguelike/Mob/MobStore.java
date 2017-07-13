@@ -9,6 +9,8 @@ import java.util.Scanner;
 import asciiPanel.AsciiPanel;
 import roguelike.AI.playerAI;
 import roguelike.Level.Level;
+import roguelike.modifiers.Healing;
+import roguelike.utility.Point;
 
 public class MobStore {
 	public String mobFileName = "/Mobs.txt";
@@ -151,6 +153,9 @@ public class MobStore {
                 newPlayer.setAttribute(tokens[0].trim(), tokens[1].trim());
             }
 		}
+
+		newPlayer.learnNewSpell(new Spell("Healing Hands", 8, new Healing(16, 1, "Healing")));
+
 		new playerAI(newPlayer, messages);
 		return newPlayer;
 	}

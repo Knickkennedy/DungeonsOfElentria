@@ -18,8 +18,8 @@ public class World {
 	private ItemFactory itemStore;
 	private Level currentLevel;
 	private Point start, bossLocation;
-	public List <String> messages = new ArrayList <String> ();
-	private HashMap <Integer, Level> mainDungeon = new HashMap <Integer, Level> ();
+	public List <String> messages = new ArrayList <> ();
+	private HashMap <Integer, Level> mainDungeon = new HashMap <> ();
 	private HashMap <Point, String> bossMinions = new HashMap<>();
 	private String surface = "/surface.txt";
 	private String ElenaBossRoom = "/ElenasBossRoom.txt";
@@ -60,7 +60,7 @@ public class World {
 		try{ surfaceLevel = openFile(surface); }
 		catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
 		
-		String levelLine = null;
+		String levelLine;
 		Tile[][] surfaceMap = new Tile[this.screenWidth][this.mapHeight];
 		
 		int index = 0;
@@ -71,7 +71,7 @@ public class World {
 			}
 		}
 
-		while(surfaceLevel.hasNextLine() && index < mapHeight){
+		while(surfaceLevel.hasNextLine()){
 			levelLine = surfaceLevel.nextLine();
 			for(int i = 0; i < levelLine.length(); i++){
 				char c = levelLine.charAt(i);
@@ -119,8 +119,37 @@ public class World {
             }
         }
 
+        String one = null, two = null, three = null, four = null;
+
         while(bossLevel.hasNextLine()) {
 			levelLine = bossLevel.nextLine();
+			String[] tokens = levelLine.split(":");
+			if(tokens.length > 1){
+			    switch(tokens[0].trim().charAt(0)){
+                    case '1':{
+                        one = tokens[1].trim();
+                        break;
+                    }
+                    case '2':{
+                        two = tokens[1].trim();
+                        break;
+                    }
+                    case '3':{
+                        three = tokens[1].trim();
+                        break;
+                    }
+                    case '4':{
+                        four = tokens[1].trim();
+                        break;
+                    }
+                }
+			    continue;
+            }
+
+            if(levelLine.isEmpty()){
+			    continue;
+            }
+
 				for (int i = 0; i < levelLine.length(); i++) {
 					char c = levelLine.charAt(i);
 					if (c == '=') {
@@ -134,19 +163,19 @@ public class World {
 					} else if (c == '1') {
 						bossMap[i][index] = Tile.FLOOR;
 						Point newPoint = new Point(i, index);
-						bossMinions.put(newPoint, "goblin warrior");
+						bossMinions.put(newPoint, one);
 					} else if (c == '2') {
 						bossMap[i][index] = Tile.FLOOR;
 						Point newPoint = new Point(i, index);
-						bossMinions.put(newPoint, "goblin");
-					} else if (c == 'o') {
+						bossMinions.put(newPoint, two);
+					} else if (c == '3') {
 						bossMap[i][index] = Tile.FLOOR;
 						Point newPoint = new Point(i, index);
-						bossMinions.put(newPoint, "orc captain");
-					} else if (c == 'r') {
+						bossMinions.put(newPoint, three);
+					} else if (c == '4') {
 						bossMap[i][index] = Tile.FLOOR;
 						Point newPoint = new Point(i, index);
-						bossMinions.put(newPoint, "orc warrior");
+						bossMinions.put(newPoint, four);
 					} else if (c == '&') {
 						bossMap[i][index] = Tile.FOREST;
 					} else if (c == '.') {
@@ -160,6 +189,7 @@ public class World {
 					} else if (c == 'h') {
 						bossMap[i][index] = Tile.FLOOR;
 						bossLocation = new Point(i, index);
+						bossMinions.put(bossLocation, "Elena");
 					}
 				}
 				index++;
@@ -189,7 +219,7 @@ public class World {
 			getCurrentLevel().setPlayer(player);
 			getCurrentLevel().addAtUpStaircase(player);
 		}
-		else if(currentLevel.levelNumber == 0){
+		else if(currentLevel.levelNumber == 4){
             Level tempLevel = new Level(initializeBossRoom(), screenWidth, mapHeight, "The Throne Room");
             mobStore = new MobStore(tempLevel, messages);
             itemStore = new ItemFactory(tempLevel);
@@ -200,7 +230,7 @@ public class World {
             tempLevel.levelNumber = currentLevel.levelNumber + 1;
             tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
             setCurrentLevel(tempLevel);
-            initializeBossRoomMobs();
+            initializeMonstersOnLevel(bossMinions);
             initializeItemsOnLevel();
             mainDungeon.put(currentLevel.levelNumber, currentLevel);
             System.out.println("Success!");
@@ -223,14 +253,13 @@ public class World {
 		}
 	}
 
-	public void initializeBossRoomMobs(){
-	    mobStore.newEnemyAtSpecificLocation("Elena", bossLocation.x, bossLocation.y);
-	    Set<HashMap.Entry<Point, String>> allKeys = bossMinions.entrySet();
-	    Iterator<HashMap.Entry<Point, String>> pointIterator = allKeys.iterator();
-	    while(pointIterator.hasNext()){
-	    	HashMap.Entry<Point, String> mob = pointIterator.next();
-	    	mobStore.newEnemyAtSpecificLocation(mob.getValue(), mob.getKey().x, mob.getKey().y);
-		}
+	public void initializeMonstersOnLevel(HashMap<Point, String> minions){
+        Set<HashMap.Entry<Point, String>> allKeys = minions.entrySet();
+        Iterator<HashMap.Entry<Point, String>> pointIterator = allKeys.iterator();
+        while(pointIterator.hasNext()){
+            HashMap.Entry<Point, String> mob = pointIterator.next();
+            mobStore.newEnemyAtSpecificLocation(mob.getValue(), mob.getKey().x, mob.getKey().y);
+        }
     }
 
 	public void initializeItemsOnLevel(){

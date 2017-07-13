@@ -166,5 +166,7 @@ public class Item implements ItemInterface, Comparable <Item>{
 	public void modifyNumberOfDiceRolled(int modification){ this.numberOfDiceRolled += modification; }
 
 	@Override
-	public int compareTo(Item otherItem){ return this.name().compareToIgnoreCase(otherItem.name()); }
+	public int compareTo(Item otherItem){
+		return this.name().compareToIgnoreCase(otherItem.name());
+	}
 }

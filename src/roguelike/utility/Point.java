@@ -31,6 +31,11 @@ public class Point{
 		parent = p;
 	}
 
+	public void add(Point other){
+		this.x += other.x;
+		this.y += other.y;
+	}
+
 public List<Point> neighbors8(){
 	List<Point> points = new ArrayList<Point>();
 	

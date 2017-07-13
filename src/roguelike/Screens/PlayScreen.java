@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
+import roguelike.Mob.Spell;
 import roguelike.World.World;
 import roguelike.levelBuilding.Tile;
+import roguelike.modifiers.Healing;
 import roguelike.utility.Point;
 import squidpony.squidgrid.FOV;
 
@@ -67,10 +69,25 @@ public class PlayScreen implements Screen {
 		for(String s : tempMessages){
 			messages.remove(s);
 		}
-		
-		for(int i = 0; i < messages.size() && i < messageBuffer; i++){
-			terminal.writeCenter(messages.get(i), i);
-		}
+
+		String tempString = "";
+
+        for(String message: messages){
+            tempString += message + " ";
+        }
+
+		int b = 0;
+        int y = 0;
+
+        for(int i = 0; i < messages.size(); i++){
+		    if(b + messages.get(i).length() > screenWidth){
+		        y++;
+		        b = 0;
+            }
+		    terminal.write(messages.get(i), b, y);
+		    b += messages.get(i).length() + 1;
+        }
+
 		if(subscreen == null){
 			messages.clear();
 			tempMessages.clear();
@@ -206,6 +223,10 @@ public class PlayScreen implements Screen {
                     if (world.getPlayer().checkIfAmmunitionAndRangedWeaponMatch()) {
                         subscreen = new FireWeaponScreen(world.getCurrentLevel().player);
                     }
+                    break;
+                }
+                case 'c':{
+                    subscreen = new CastSpellScreen(world.getPlayer());
                     break;
                 }
                 case '>': {

@@ -10,6 +10,7 @@ import roguelike.Items.Inventory;
 import roguelike.Level.Level;
 import roguelike.levelBuilding.Tile;
 import roguelike.modifiers.*;
+import roguelike.utility.Point;
 import roguelike.utility.RandomGen;
 
 public class BaseEntity implements EntityInterface {
@@ -20,6 +21,7 @@ public class BaseEntity implements EntityInterface {
     private BaseAI ai;
     private boolean isPlayer;
     public int x, y;
+    private Point location;
     private int maxHP, currentHP, currentMana, maxMana, healthRegen, manaRegen, healthRegenCooldown, manaRegenCooldown, attackDamage, range, rangedDamage, armor, dodge, visionRadius;
     private int experienceLevel, experience;
     private double maxCarryWeight;
@@ -27,6 +29,7 @@ public class BaseEntity implements EntityInterface {
     private Inventory equipment;
     private List<Effect> effects;
     private List<Effect> offensiveEffects;
+    private List <Spell> knownSpells;
 
     public BaseEntity(Level level) {
         healthRegenCooldown = 1000;
@@ -35,8 +38,23 @@ public class BaseEntity implements EntityInterface {
         this.isPlayer = false;
         this.effects = new ArrayList<>();
         offensiveEffects = new ArrayList<>();
+        knownSpells = new ArrayList<>();
         this.experienceLevel = 1;
     }
+
+    public void learnNewSpell(Spell spell){
+        knownSpells.add(spell);
+    }
+
+    public List <Spell> getKnownSpells(){
+        return this.knownSpells;
+    }
+
+    public void setLocation(Point here){
+        this.location = here;
+    }
+
+    public Point getLocation(){ return this.location; }
 
     public void setExperience(int value){ this.experience = value; }
     public int getExperience(){ return this.experience; }
@@ -465,6 +483,24 @@ public class BaseEntity implements EntityInterface {
         }
 
         effects.removeAll(done);
+    }
+
+    public BaseEntity entityAt(Point location){
+        return level.checkForMob(location.x, location.y);
+    }
+
+    public void castSpell(Spell spell, Point location){
+        BaseEntity target = entityAt(location);
+        if(spell.getManaCost() > currentMana){
+            notify("Nope!");
+        }
+        else if(target == null){
+            notify("Still nope!");
+        }
+        else{
+            target.addEffect(spell.getEffect());
+            modifyMana(-spell.getManaCost());
+        }
     }
 
     public void drink(Item item) {
