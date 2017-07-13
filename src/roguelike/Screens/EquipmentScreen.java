@@ -1,6 +1,9 @@
 package roguelike.Screens;
 
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import asciiPanel.AsciiPanel;
 import roguelike.Mob.Player;
@@ -8,14 +11,16 @@ import roguelike.Mob.Player;
 public class EquipmentScreen implements Screen{
 	public Player player;
 	private Screen subscreen;
-	//private String alphabet = "abcdefghijklmnopqrstuvwxyz";
+	private String alphabet;
 	
 	public EquipmentScreen(Player player){
 		this.player = player;
+		alphabet = "abcdefghijklmnopqrstuvwxyz";
 	}
 	
 	public void displayOutput(AsciiPanel terminal){
-		
+		List <String> lines = new ArrayList<>();
+		int y = 1;
 		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
 		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.maxCarryWeight());
 		String helmet = String.format(" a - %-15s : - %s", "Helmet", player.helmetString());
@@ -27,27 +32,29 @@ public class EquipmentScreen implements Screen{
 		String boots = String.format(" g - %-15s : - %s", "Boots", player.bootsString());
 		String ranged = String.format(" h - %-15s : - %s", "Ranged Weapon", player.rangedWeaponString());
 		String arrows = String.format(" i - %-15s : - %s", "Ammunition", player.rangedAmmunitionString());
+		lines.add(helmet);
+		lines.add(armor);
+		lines.add(rightHand);
+		lines.add(leftHand);
+		lines.add(legs);
+		lines.add(ankles);
+		lines.add(boots);
+		lines.add(ranged);
+		lines.add(arrows);
 		terminal.clear(' ', 0, 0, 88, 28);
-		terminal.writeCenter(stats, 1);
-		terminal.writeCenter(weight, 2);
-		terminal.write(helmet, 0, 4);
-		terminal.write(armor, 0, 5);
-		terminal.write(rightHand, 0, 6);
-		terminal.write(leftHand, 0, 7);
-		terminal.write(legs, 0, 8);
-		terminal.write(ankles, 0, 9);
-		terminal.write(boots, 0, 10);
-		terminal.write(ranged, 0, 11);
-		terminal.write(arrows, 0, 12);
+		terminal.writeCenter(stats, y++);
+		terminal.writeCenter(weight, y++);
 		for(int i = 5; i < 83; i++){
-			terminal.write('_', i, 3);
+			terminal.write('_', i, y);
 		}
-		
+		for(String line : lines){
+			terminal.write(line, 0, ++y);
+		}
 		if(subscreen != null){
 			subscreen.displayOutput(terminal);
 		}
 	}
-	
+
 	public Screen respondToUserInput(KeyEvent key){
 		
 		if(subscreen != null){

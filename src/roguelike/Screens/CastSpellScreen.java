@@ -33,9 +33,8 @@ public class CastSpellScreen implements Screen {
         for(int i = 5; i < 83; i++){
             terminal.write('_', i, y);
         }
-        y++;
         for(String line : lines){
-            terminal.write(line, 1, y++);
+            terminal.write(line, 1, ++y);
         }
     }
 
