@@ -6,21 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/roguelike/Screens/PlayScreen.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/World/World.class" afterPath="$PROJECT_DIR$/bin/roguelike/World/World.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/ElenasBossRoom.txt" afterPath="$PROJECT_DIR$/assets/ElenasBossRoom.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/HumanPlayer.txt" afterPath="$PROJECT_DIR$/assets/HumanPlayer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/ElenasBossRoom.txt" afterPath="$PROJECT_DIR$/bin/ElenasBossRoom.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/HumanPlayer.txt" afterPath="$PROJECT_DIR$/bin/HumanPlayer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Items/Item.java" afterPath="$PROJECT_DIR$/src/roguelike/Items/Item.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" afterPath="$PROJECT_DIR$/src/roguelike/Mob/MobStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/World/World.java" afterPath="$PROJECT_DIR$/src/roguelike/World/World.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roguelike/utility/Point.java" afterPath="$PROJECT_DIR$/src/roguelike/utility/Point.java" />
-    </list>
+    <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
