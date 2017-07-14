@@ -12,11 +12,11 @@ import java.util.ArrayList;
 /**
  * Created by knich on 7/13/2017.
  */
-public class CastSpellScreen implements Screen {
+public class SelectSpellScreen implements Screen {
     private Player player;
     private String letters;
 
-    public CastSpellScreen(Player player){
+    public SelectSpellScreen(Player player){
         this.player = player;
         this.letters = "abcdefghijklmnopqrstuvwxyz";
     }
@@ -53,7 +53,12 @@ public class CastSpellScreen implements Screen {
         char c = key.getKeyChar();
 
         if(letters.indexOf(c) > -1 && player.getKnownSpells().get(letters.indexOf(c)) != null){
-            player.castSpell(player.getKnownSpells().get(letters.indexOf(c)), new Point(player.x, player.y));
+            if(player.getKnownSpells().get(letters.indexOf(c)).isSelfTargeting()){
+                player.castSpell(player.getKnownSpells().get(letters.indexOf(c)), new Point(player.x, player.y));
+            }
+            else{
+                return new SelectDirectionScreen(player, player.getKnownSpells().get(letters.indexOf(c)));
+            }
         }
         return null;
     }

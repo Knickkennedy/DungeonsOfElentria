@@ -1,8 +1,7 @@
 package roguelike.Mob;
 
-import java.awt.Color;
-
 import roguelike.Items.*;
+import roguelike.World.Factory;
 import roguelike.Level.Level;
 import roguelike.utility.RandomGen;
 
@@ -15,11 +14,11 @@ public class Player extends BaseEntity {
     private int bonusToHit, leftHandDamage, rightHandDamage, bonusToDamage, leftHandNumberOfDice, rightHandNumberOfDice, rangedDamage, bonusRangedDamage, bonusRangedToHit, rangedNumberOfDice;
     private Item leftHand, rightHand, rangedWeapon, boots, greaves, cuisses, chestpiece, helmet;
     private List<Item> rangedAmmunition;
-    private ItemFactory itemStore;
+    private Factory itemStore;
 
     public Player(Level level) {
         super(level);
-        itemStore = new ItemFactory(this.level);
+        itemStore = new Factory(this.level);
         setInventory(this);
         setEquipment(this);
         setIsPlayer(true);
@@ -29,7 +28,7 @@ public class Player extends BaseEntity {
         setName("Hero");
     }
 
-    void setAttribute(String attribute, String value) {
+    public void setAttribute(String attribute, String value) {
         switch(attribute) {
             case "symbol":{
                 setGlyph(value.charAt(0));

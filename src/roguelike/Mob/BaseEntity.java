@@ -12,6 +12,8 @@ import roguelike.levelBuilding.Tile;
 import roguelike.modifiers.*;
 import roguelike.utility.Point;
 import roguelike.utility.RandomGen;
+import squidpony.squidmath.Bresenham;
+import squidpony.squidmath.Coord;
 
 public class BaseEntity implements EntityInterface {
     public Level level;
@@ -489,17 +491,47 @@ public class BaseEntity implements EntityInterface {
         return level.checkForMob(location.x, location.y);
     }
 
-    public void castSpell(Spell spell, Point location){
-        BaseEntity target = entityAt(location);
+    public void castSpell(Spell spell, Point direction){
+        Point current = new Point(this.x, this.y);
+        Point dir = new Point(direction.x, direction.y);
         if(spell.getManaCost() > currentMana){
             notify("Nope!");
         }
-        else if(target == null){
-            notify("Still nope!");
-        }
         else{
-            target.addEffect(spell.getEffect());
-            modifyMana(-spell.getManaCost());
+            if(spell.isSelfTargeting()) {
+                addEffect(spell.getEffect());
+                modifyMana(-spell.getManaCost());
+            }
+            else{
+                for (int i = 0; i < spell.getRange(); i++) {
+                    current.add(dir);
+                    BaseEntity target = level.checkForMob(current.x, current.y);
+                    if (target != null) {
+                        target.addEffect(spell.getEffect());
+                        if (target.currentHP() < 1) {
+                            target.death();
+                            gainExperience(target);
+                        }
+                    }
+                    if (level.tile(current.x + dir.x, current.y).glyph() == '#') {
+                        if(spell.isReflective()) {
+                            dir.flipHorizontally();
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    if (level.tile(current.x, current.y + dir.y).glyph() == '#') {
+                        if(spell.isReflective()) {
+                            dir.flipVertically();
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+                modifyMana(-spell.getManaCost());
+            }
         }
     }
 

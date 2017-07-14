@@ -2,10 +2,8 @@ package roguelike.World;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import com.sun.corba.se.impl.oa.poa.ActiveObjectMap;
-import roguelike.Items.ItemFactory;
+import roguelike.AI.playerAI;
 import roguelike.Level.Level;
-import roguelike.Mob.MobStore;
 import roguelike.Mob.Player;
 import roguelike.levelBuilding.Tile;
 import roguelike.utility.Point;
@@ -14,8 +12,8 @@ import roguelike.utility.RandomGen;
 public class World {
 	public int screenWidth, mapHeight;
 	private Player player;
-	private MobStore mobStore;
-	private ItemFactory itemStore;
+	private Factory factory;
+	private Factory itemStore;
 	private Level currentLevel;
 	private Point start, bossLocation;
 	public List <String> messages = new ArrayList <> ();
@@ -25,12 +23,13 @@ public class World {
 	private String ElenaBossRoom = "/ElenasBossRoom.txt";
 	private Scanner surfaceLevel = null;
 	private Scanner bossLevel = null;
+	private int mobThreshHold, mobRefreshThreshHold;
 	
-	public MobStore getMobStore() {return mobStore;}
-	public void setMobStore(MobStore mobStore) {this.mobStore = mobStore;}
+	public Factory getFactory() {return factory;}
+	public void setFactory(Factory factory) {this.factory = factory;}
 
-	public ItemFactory getItemStore() {return itemStore;}
-	public void setItemStore(ItemFactory itemStore) {this.itemStore = itemStore;}
+	public Factory getItemStore() {return itemStore;}
+	public void setItemStore(Factory itemStore) {this.itemStore = itemStore;}
 
 	public Level getCurrentLevel() {return currentLevel;}
 	public void setCurrentLevel(Level currentLevel) {this.currentLevel = currentLevel;}
@@ -47,13 +46,15 @@ public class World {
 		this.mapHeight = mapHeight;
 		this.messages = messages;
 		currentLevel = new Level(initializeSurfaceLevel(), screenWidth, mapHeight, "Surface");
-		mobStore = new MobStore(currentLevel, messages);
-		itemStore = new ItemFactory(currentLevel);
-		player = mobStore.newPlayer();
+		factory = new Factory(currentLevel);
+		player = factory.newPlayer();
+		new playerAI(player, messages);
 		currentLevel.setPlayer(player);
 		currentLevel.levelNumber = 0;
 		currentLevel.addAtSpecificLocation(player, start.x, start.y);
 		mainDungeon.put(currentLevel.levelNumber, currentLevel);
+		mobThreshHold = 25;
+		mobRefreshThreshHold = 15;
 	}
 	
 	public Tile[][] initializeSurfaceLevel(){
@@ -221,8 +222,7 @@ public class World {
 		}
 		else if(currentLevel.levelNumber == 4){
             Level tempLevel = new Level(initializeBossRoom(), screenWidth, mapHeight, "The Throne Room");
-            mobStore = new MobStore(tempLevel, messages);
-            itemStore = new ItemFactory(tempLevel);
+            factory = new Factory(tempLevel);
             tempLevel.setPlayer(player);
             tempLevel.addAtUpStaircase(player);
             player.setLevel(tempLevel);
@@ -231,15 +231,13 @@ public class World {
             tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
             setCurrentLevel(tempLevel);
             initializeMonstersOnLevel(bossMinions);
-            initializeItemsOnLevel();
             mainDungeon.put(currentLevel.levelNumber, currentLevel);
             System.out.println("Success!");
         }
 		else{
 			Level tempLevel = new Level(screenWidth, mapHeight);
 			tempLevel.buildLevel();
-			mobStore = new MobStore(tempLevel, messages);
-			itemStore = new ItemFactory(tempLevel);
+			factory = new Factory(tempLevel);
 			tempLevel.setPlayer(player);
 			tempLevel.addAtUpStaircase(player);
 			player.setLevel(tempLevel);
@@ -248,7 +246,6 @@ public class World {
             tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
 			setCurrentLevel(tempLevel);
 			initializeMobsOnLevel();
-			initializeItemsOnLevel();
 			mainDungeon.put(currentLevel.levelNumber, currentLevel);
 		}
 	}
@@ -258,76 +255,41 @@ public class World {
         Iterator<HashMap.Entry<Point, String>> pointIterator = allKeys.iterator();
         while(pointIterator.hasNext()){
             HashMap.Entry<Point, String> mob = pointIterator.next();
-            mobStore.newEnemyAtSpecificLocation(mob.getValue(), mob.getKey().x, mob.getKey().y);
+            factory.newEnemyAtSpecificLocation(mob.getValue(), mob.getKey().x, mob.getKey().y);
         }
     }
 
-	public void initializeItemsOnLevel(){
-		if(currentLevel.dangerLevel == 1){
-			for(int i = 0; i < 25; i++){
-				int dangerCheck = RandomGen.rand(1, 100);
-				if(dangerCheck < 98) {
-					int roll = RandomGen.rand(1, itemStore.dangerOneItems.size());
-					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
-				}
-				else{
-					int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
-					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
-				}
-			}
-		}
-		else if(currentLevel.dangerLevel == 2){
-			for(int i = 0; i < 25; i++){
-				int dangerCheck = RandomGen.rand(1, 100);
-				if(dangerCheck < 98) {
-					int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
-					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
-				}
-				else{
-					int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
-					getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
-				}
-			}
-		}
-		else{
-			for(int i = 0; i < 25; i++){
-				int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
-				getCurrentLevel().addAtEmptyLocation(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
-			}
-		}
-	}
-	
 	public void initializeMobsOnLevel(){
 		if(currentLevel.dangerLevel == 1){
-			for(int i = 0; i < 25; i++){
+			for(int i = 0; i < mobThreshHold; i++){
 			    int dangerCheck = RandomGen.rand(1, 100);
 			    if(dangerCheck < 98) {
-                    int roll = RandomGen.rand(1, mobStore.dangerOneEnemies.size());
-                    mobStore.newEnemy(mobStore.dangerOneEnemies.get(roll));
+                    int roll = RandomGen.rand(1, factory.dangerOneEnemies.size());
+                    factory.newEnemy(factory.dangerOneEnemies.get(roll));
                 }
                 else{
-			        int roll = RandomGen.rand(1, mobStore.dangerTwoEnemies.size());
-			        mobStore.newEnemy(mobStore.dangerTwoEnemies.get(roll));
+			        int roll = RandomGen.rand(1, factory.dangerTwoEnemies.size());
+			        factory.newEnemy(factory.dangerTwoEnemies.get(roll));
                 }
             }
 		}
 		else if(currentLevel.dangerLevel == 2){
-		    for(int i = 0; i < 25; i++){
+		    for(int i = 0; i < mobThreshHold; i++){
                 int dangerCheck = RandomGen.rand(1, 100);
                 if(dangerCheck < 98) {
-                    int roll = RandomGen.rand(1, mobStore.dangerTwoEnemies.size());
-                    mobStore.newEnemy(mobStore.dangerTwoEnemies.get(roll));
+                    int roll = RandomGen.rand(1, factory.dangerTwoEnemies.size());
+                    factory.newEnemy(factory.dangerTwoEnemies.get(roll));
                 }
                 else{
-                    int roll = RandomGen.rand(1, mobStore.dangerThreeEnemies.size());
-                    mobStore.newEnemy(mobStore.dangerThreeEnemies.get(roll));
+                    int roll = RandomGen.rand(1, factory.dangerThreeEnemies.size());
+                    factory.newEnemy(factory.dangerThreeEnemies.get(roll));
                 }
             }
         }
         else{
-            for(int i = 0; i < 25; i++){
-                int roll = RandomGen.rand(1, mobStore.dangerThreeEnemies.size());
-                mobStore.newEnemy(mobStore.dangerThreeEnemies.get(roll));
+            for(int i = 0; i < mobThreshHold; i++){
+                int roll = RandomGen.rand(1, factory.dangerThreeEnemies.size());
+                factory.newEnemy(factory.dangerThreeEnemies.get(roll));
             }
         }
 	}

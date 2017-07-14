@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Mob.Spell;
 import roguelike.World.World;
 import roguelike.levelBuilding.Tile;
-import roguelike.modifiers.Healing;
 import roguelike.utility.Point;
 import squidpony.squidgrid.FOV;
 
@@ -16,9 +14,9 @@ public class PlayScreen implements Screen {
 	
 	public Point currentDirection = new Point(0, 0);
 	
-	private int screenWidth;
-	private int screenHeight;
-	private int mapHeight;
+	static int screenWidth;
+	static int screenHeight;
+	static int mapHeight;
 	static int messageBuffer;
 	private List <String> messages;
 	private List <String> tempMessages;
@@ -80,7 +78,7 @@ public class PlayScreen implements Screen {
         int y = 0;
 
         for(int i = 0; i < messages.size(); i++){
-		    if(b + messages.get(i).length() > screenWidth){
+		    if(b + messages.get(i).length() >= screenWidth){
 		        y++;
 		        b = 0;
             }
@@ -226,7 +224,7 @@ public class PlayScreen implements Screen {
                     break;
                 }
                 case 'c':{
-                    subscreen = new CastSpellScreen(world.getPlayer());
+                    subscreen = new SelectSpellScreen(world.getPlayer());
                     break;
                 }
                 case '>': {

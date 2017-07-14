@@ -1,23 +1,19 @@
 package roguelike.Mob;
 
-import java.awt.Color;
-import java.util.HashMap;
-
-import asciiPanel.AsciiPanel;
 import roguelike.AI.*;
 import roguelike.Items.Item;
-import roguelike.Items.ItemFactory;
+import roguelike.World.Factory;
 import roguelike.Level.Level;
 import roguelike.modifiers.*;
 import roguelike.utility.RandomGen;
 
 public class EnemyEntity extends BaseEntity{
 
-    private ItemFactory itemStore;
+    private Factory itemStore;
 
 	public EnemyEntity(Level level){
 	    super(level);
-	    itemStore = new ItemFactory(level);
+	    itemStore = new Factory(level);
 	    setMaxCarryWeight(9999);
 	    setInventory(this);
 	    setVisionRadius(5);

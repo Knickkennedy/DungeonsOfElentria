@@ -106,6 +106,7 @@ range           :   0
 ranged damage   :   0
 danger level    :   2
 experience      :   5
+drop            :   dangerOneItems - 5 - 35.0, dangerTwoItems - 2 - 50.0
 
 name            :   goblin captain
 symbol          :   g

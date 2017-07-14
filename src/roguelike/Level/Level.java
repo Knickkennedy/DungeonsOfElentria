@@ -243,7 +243,11 @@ public class Level{
 	public boolean isDownStaircase(int x, int y){
 		return map[x][y] == Tile.STAIRS_DOWN;
 	}
-	
+
+	public int numOfEnemies(){
+		return mobs.size();
+	}
+
 	public void addAtSpecificLocation(Item item, int x, int y){
 		item.x = x;
 		item.y = y;
