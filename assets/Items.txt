@@ -1,10 +1,19 @@
+<Books>
+name			:	Book of Magic Missiles
+item type		:	book
+symbol			:	"
+color			:	brown
+weight			:	3.5
+effects			:	none
+danger			:	1
+
 <Potions>
 <Healing effect numbers are - number of dice - dice size - duration>
 <Poison effect numbers are - number of dice - dice size - damage per tick>
 
 name            :   potion of weak healing
 item type       :   potion
-symbol          :   (
+symbol          :   !
 color           :   white
 weight          :   1.0
 effects         :   healing - 4 - 3 - 1
@@ -12,7 +21,7 @@ danger          :   1
 
 name            :   potion of healing
 item type       :   potion
-symbol          :   (
+symbol          :   !
 color           :   white
 weight          :   1.0
 effects         :   healing - 4 - 6 - 1
@@ -20,7 +29,7 @@ danger          :   2
 
 name            :   potion of poison antidote
 item type       :   potion
-symbol          :   (
+symbol          :   !
 color           :   white
 weight          :   1.0
 effects         :   cure poison
@@ -28,7 +37,7 @@ danger          :   1
 
 name            :   potion of weak poison
 item type       :   potion
-symbol          :   (
+symbol          :   !
 color           :   white
 weight          :   1.0
 effects         :   poison - 5 - 3 - 1
