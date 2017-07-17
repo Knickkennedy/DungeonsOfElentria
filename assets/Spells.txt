@@ -1,0 +1,5 @@
+NAME			TYPE	DUR		DICE	MANA	RANGE	SELF	REFL
+Magic Missiles	MAGIC	1		2D4		10		6		NO		YES
+Flame Bolt		FIRE	1		1D8		15		6		NO		NO
+Healing Hands	HEALING	1		1D8		8		1		YES		NO
+Poison Spit		POISON	2D4		1D2		10		3		NO		NO

@@ -19,10 +19,13 @@ public class BaseAI {
 	public BaseAI(BaseEntity mob){
 		this.mob = mob;
 		this.mob.setMobAi(this);
+	}
+
+	public void initializePathFinding(){
 		path = new DijkstraMap(mob.level().pathMap, DijkstraMap.Measurement.EUCLIDEAN);
 		los = new ELOS();
 	}
-	
+
 	public boolean canSee(int wx, int wy) {
 		int radius = (mob.x - wx)*(mob.x - wx) + (mob.y - wy)*(mob.y - wy);
 		if(radius > mob.visionRadius()*mob.visionRadius()) {

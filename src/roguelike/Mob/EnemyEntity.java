@@ -11,9 +11,9 @@ public class EnemyEntity extends BaseEntity{
 
     private Factory itemStore;
 
-	public EnemyEntity(Level level){
-	    super(level);
-	    itemStore = new Factory(level);
+	public EnemyEntity(){
+	    super();
+	    itemStore = new Factory();
 	    setMaxCarryWeight(9999);
 	    setInventory(this);
 	    setVisionRadius(5);

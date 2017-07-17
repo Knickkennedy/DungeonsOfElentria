@@ -94,8 +94,7 @@ public class Level{
 	public void update(){
 		List <BaseEntity> toUpdate = new ArrayList <> (mobs);
 		for(BaseEntity bE : toUpdate){
-			if(player.currentHP() < 1) { return;	}
-				bE.update();
+			bE.update();
 		}
 	}
 
@@ -254,9 +253,11 @@ public class Level{
 		items.add(item);
 	}
 	
-	public void addAtSpecificLocation(BaseEntity entity, int x, int y){
+	public void newEntityAtSpecificLocation(BaseEntity entity, int x, int y){
 		entity.x = x;
 		entity.y = y;
+		entity.setLevel(this);
+		entity.getAi().initializePathFinding();
 		mobs.add(entity);
 	}
 	
@@ -283,7 +284,7 @@ public class Level{
 		return false;
 	}
 	
-	public void addAtEmptyLocation(BaseEntity Entity){
+	public void newEntityAtEmptyLocation(BaseEntity entity){
 		int x;
 		int y;
 		do{
@@ -292,21 +293,27 @@ public class Level{
 		}
 		while(!isGround(x, y) || checkForMob(x,y) != null);
 		
-		Entity.x = x;
-		Entity.y = y;
-		mobs.add(Entity);
+		entity.x = x;
+		entity.y = y;
+		entity.setLevel(this);
+		entity.getAi().initializePathFinding();
+		mobs.add(entity);
 	}
 	
-	public void addAtUpStaircase(BaseEntity Entity){
-		Entity.x = stairsUp.x;
-		Entity.y = stairsUp.y;
-		mobs.add(Entity);
+	public void addAtUpStaircase(BaseEntity entity){
+		entity.x = stairsUp.x;
+		entity.y = stairsUp.y;
+		entity.setLevel(this);
+		entity.getAi().initializePathFinding();
+		mobs.add(entity);
 	}
 	
-	public void addAtDownStaircase(BaseEntity Entity){
-		Entity.x = stairsDown.x;
-		Entity.y = stairsDown.y;
-		mobs.add(Entity);
+	public void addAtDownStaircase(BaseEntity entity){
+		entity.x = stairsDown.x;
+		entity.y = stairsDown.y;
+		entity.setLevel(this);
+		entity.getAi().initializePathFinding();
+		mobs.add(entity);
 	}
 	
 	public void placeStairs(){

@@ -7,19 +7,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import roguelike.Items.Item;
-import roguelike.Level.Level;
 import roguelike.Mob.*;
-import roguelike.modifiers.Effect;
-import roguelike.modifiers.Healing;
-import roguelike.utility.RandomGen;
 
 public class Factory {
 	private String itemFileName = "/Items.txt";
     private String mobFileName = "/Mobs.txt";
+    private String spellFileName = "/Spells.txt";
     private Scanner itemFile = null;
     private Scanner mobFile = null;
     private Scanner playerFile = null;
-    private Level thisLevel;
+    private Scanner spellFile = null;
 	public HashMap <Integer, String> dangerOneItems = new HashMap<>();
 	public HashMap <Integer, String> dangerTwoItems = new HashMap<>();
 	public HashMap <Integer, String> dangerThreeItems = new HashMap<>();
@@ -28,14 +25,31 @@ public class Factory {
     public HashMap <Integer, String> dangerTwoEnemies = new HashMap <> ();
     public HashMap <Integer, String> dangerThreeEnemies = new HashMap <> ();
 	
-	public Factory(Level level){
+	public Factory(){
 		initializeItemDictionary();
 		initializeEnemyDictionary();
-		this.thisLevel = level;
 	}
 
-    public void setLevel(Level level){
-        this.thisLevel = level;
+    public Spell getSpell(String spellName){
+        try{ spellFile = openFile(spellFileName); }
+        catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
+
+        Spell spellToReturn = null;
+        String[] parameters = null;
+
+        while(spellFile.hasNextLine()){
+            String line = spellFile.nextLine();
+            String[] input = line.split("\\t+");
+            if(input[0].trim().equalsIgnoreCase("NAME")){
+                parameters = input;
+            }
+            if(input[0].trim().equalsIgnoreCase(spellName)){
+                spellToReturn = new Spell(parameters, input);
+            }
+        }
+
+        spellFile.close();
+        return spellToReturn;
     }
 
     private void initializeEnemyDictionary(){
@@ -73,11 +87,11 @@ public class Factory {
         mobFile.close();
     }
 
-    public void newEnemy(String entityName){
+    public EnemyEntity newEnemy(String entityName){
         try{ mobFile = openFile(mobFileName); }
         catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
         String tokens[];
-        EnemyEntity newEnemy = new EnemyEntity(thisLevel);
+        EnemyEntity newEnemy = new EnemyEntity();
 
         boolean found = false;
 
@@ -100,38 +114,8 @@ public class Factory {
             }
         }
 
-        thisLevel.addAtEmptyLocation(newEnemy);
         mobFile.close();
-    }
-
-    public void newEnemyAtSpecificLocation(String entityName, int x, int y){
-        try{ mobFile = openFile(mobFileName); }
-        catch(FileNotFoundException e){ System.out.println(e.getMessage()); }
-        String tokens[];
-        EnemyEntity newEnemy = new EnemyEntity(thisLevel);
-
-        boolean found = false;
-
-        while (mobFile.hasNextLine()) {
-            String tempLine = mobFile.nextLine();
-            tokens = tempLine.split(":", 2);
-
-            if(found && tempLine.isEmpty()){
-                break;
-            }
-            if ((tempLine.isEmpty()) || (tempLine.contains("<>"))) {
-                continue;
-            }
-            if (tokens[0].trim().equals("name") && tokens[1].trim().equals(entityName)) {
-                found = true;
-            }
-            if (found) {
-                newEnemy.setAttributes(tokens[0].trim(), tokens[1].trim());
-            }
-        }
-
-        thisLevel.addAtSpecificLocation(newEnemy, x, y);
-        mobFile.close();
+        return newEnemy;
     }
 
     public Player newPlayer(){
@@ -143,7 +127,7 @@ public class Factory {
             System.out.println(e.getMessage());
         }
         String tokens[];
-        Player newPlayer = new Player(this.thisLevel);
+        Player newPlayer = new Player();
         newPlayer.setAttribute("color", "white");
         newPlayer.setAttribute("symbol", "@");
         while(playerFile.hasNextLine()){
@@ -154,19 +138,10 @@ public class Factory {
             }
         }
 
-        newPlayer.learnNewSpell(new Spell("Healing Hands", new Healing(16, 1, "Healing"), 8, 1, true, false));
-        newPlayer.learnNewSpell(new Spell("Burning Hands", new Effect(1, "Fire Damage"){
-            public void start(BaseEntity entity){
-                if(entity.isPlayer()){
-                    entity.doAction("burn!");
-                    entity.modifyHP(-RandomGen.rand(1, 8), "by fire");
-                }
-                else{
-                    entity.doAction("The %s burns!", entity.name());
-                    entity.modifyHP(-RandomGen.rand(1, 8), "by fire");
-                }
-            }
-        }, 4, 5, false, false));
+        newPlayer.learnNewSpell(getSpell("magic missiles"));
+        newPlayer.learnNewSpell(getSpell("flame bolt"));
+        newPlayer.learnNewSpell(getSpell("healing hands"));
+        newPlayer.learnNewSpell(getSpell("poison spit"));
 
         return newPlayer;
     }

@@ -16,9 +16,9 @@ public class Player extends BaseEntity {
     private List<Item> rangedAmmunition;
     private Factory itemStore;
 
-    public Player(Level level) {
-        super(level);
-        itemStore = new Factory(this.level);
+    public Player() {
+        super();
+        itemStore = new Factory();
         setInventory(this);
         setEquipment(this);
         setIsPlayer(true);

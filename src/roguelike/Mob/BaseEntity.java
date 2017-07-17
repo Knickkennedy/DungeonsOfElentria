@@ -33,10 +33,9 @@ public class BaseEntity implements EntityInterface {
     private List<Effect> offensiveEffects;
     private List <Spell> knownSpells;
 
-    public BaseEntity(Level level) {
+    public BaseEntity() {
         healthRegenCooldown = 1000;
         manaRegenCooldown = 1000;
-        this.level = level;
         this.isPlayer = false;
         this.effects = new ArrayList<>();
         offensiveEffects = new ArrayList<>();
@@ -441,9 +440,15 @@ public class BaseEntity implements EntityInterface {
     }
 
     public void death() {
-        doAction("die");
-        dropAllItems();
-        level.remove(this);
+        if(isPlayer()){
+            doAction("die");
+            level.remove(this);
+        }
+        else {
+            doAction("die");
+            dropAllItems();
+            level.remove(this);
+        }
     }
 
     public void modifyMana(int amount) {
@@ -516,6 +521,7 @@ public class BaseEntity implements EntityInterface {
                     if (level.tile(current.x + dir.x, current.y).glyph() == '#') {
                         if(spell.isReflective()) {
                             dir.flipHorizontally();
+                            i++;
                         }
                         else{
                             break;
@@ -524,6 +530,7 @@ public class BaseEntity implements EntityInterface {
                     if (level.tile(current.x, current.y + dir.y).glyph() == '#') {
                         if(spell.isReflective()) {
                             dir.flipVertically();
+                            i++;
                         }
                         else{
                             break;

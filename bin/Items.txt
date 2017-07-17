@@ -1,10 +1,11 @@
 <Books>
-name			:	Book of Magic Missiles
+name			:	book of magic missiles
 item type		:	book
 symbol			:	"
 color			:	brown
 weight			:	3.5
-effects			:	none
+spell           :   magic missiles
+chance to learn :   25.0
 danger			:	1
 
 <Potions>

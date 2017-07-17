@@ -1,6 +1,7 @@
 package roguelike.modifiers;
 
 import roguelike.Mob.BaseEntity;
+import roguelike.utility.RandomGen;
 
 public class Effect implements EffectInterface{
     private int duration, chanceToProc;
@@ -11,6 +12,11 @@ public class Effect implements EffectInterface{
         this.effectType = eType;
     }
 
+    public Effect(String eType, int durDice, int durSize){
+        this.effectType = eType;
+        setDuration(durDice, durSize);
+    }
+
     public void setEffectType(String type){ this.effectType = type; }
     public String getEffectType(){ return this.effectType; }
 
@@ -18,6 +24,11 @@ public class Effect implements EffectInterface{
     public int getChanceToProc(){ return this.chanceToProc; }
 
     public int duration(){ return duration; }
+    public void setDuration(int numOfDice, int diceSize){
+        for(int i = 0; i < numOfDice; i++){
+            duration += RandomGen.rand(1, diceSize);
+        }
+    }
     public void updateDuration(int update){ duration -= update; }
 
     public void start(BaseEntity entity){}

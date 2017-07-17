@@ -4,6 +4,7 @@ import java.util.*;
 
 import roguelike.AI.playerAI;
 import roguelike.Level.Level;
+import roguelike.Mob.EnemyEntity;
 import roguelike.Mob.Player;
 import roguelike.levelBuilding.Tile;
 import roguelike.utility.Point;
@@ -46,12 +47,11 @@ public class World {
 		this.mapHeight = mapHeight;
 		this.messages = messages;
 		currentLevel = new Level(initializeSurfaceLevel(), screenWidth, mapHeight, "Surface");
-		factory = new Factory(currentLevel);
+		factory = new Factory();
 		player = factory.newPlayer();
 		new playerAI(player, messages);
-		currentLevel.setPlayer(player);
 		currentLevel.levelNumber = 0;
-		currentLevel.addAtSpecificLocation(player, start.x, start.y);
+		currentLevel.newEntityAtSpecificLocation(player, start.x, start.y);
 		mainDungeon.put(currentLevel.levelNumber, currentLevel);
 		mobThreshHold = 25;
 		mobRefreshThreshHold = 15;
@@ -201,7 +201,6 @@ public class World {
 	public void goUpALevel(){
 		if(mainDungeon.containsKey(getCurrentLevel().levelNumber - 1)){
 			mainDungeon.get(currentLevel.levelNumber - 1).mobs.add(player);
-			player.setLevel(mainDungeon.get(currentLevel.levelNumber - 1));
 			mainDungeon.get(currentLevel.levelNumber).mobs.remove(player);
 			setCurrentLevel(mainDungeon.get(getCurrentLevel().levelNumber - 1));
 			getCurrentLevel().setPlayer(player);
@@ -214,7 +213,6 @@ public class World {
 	
 	public void goDownALevel(){
 		if(mainDungeon.containsKey(currentLevel.levelNumber + 1)){
-			player.setLevel(mainDungeon.get(currentLevel.levelNumber + 1));
 			mainDungeon.get(currentLevel.levelNumber).mobs.remove(player);
 			setCurrentLevel(mainDungeon.get(getCurrentLevel().levelNumber + 1));
 			getCurrentLevel().setPlayer(player);
@@ -222,25 +220,20 @@ public class World {
 		}
 		else if(currentLevel.levelNumber == 4){
             Level tempLevel = new Level(initializeBossRoom(), screenWidth, mapHeight, "The Throne Room");
-            factory = new Factory(tempLevel);
             tempLevel.setPlayer(player);
             tempLevel.addAtUpStaircase(player);
-            player.setLevel(tempLevel);
             currentLevel.remove(player);
             tempLevel.levelNumber = currentLevel.levelNumber + 1;
             tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
             setCurrentLevel(tempLevel);
             initializeMonstersOnLevel(bossMinions);
             mainDungeon.put(currentLevel.levelNumber, currentLevel);
-            System.out.println("Success!");
         }
 		else{
 			Level tempLevel = new Level(screenWidth, mapHeight);
 			tempLevel.buildLevel();
-			factory = new Factory(tempLevel);
 			tempLevel.setPlayer(player);
 			tempLevel.addAtUpStaircase(player);
-			player.setLevel(tempLevel);
 			currentLevel.remove(player);
 			tempLevel.levelNumber = currentLevel.levelNumber + 1;
             tempLevel.dangerLevel = currentLevel.dangerLevel + 1;
@@ -255,7 +248,8 @@ public class World {
         Iterator<HashMap.Entry<Point, String>> pointIterator = allKeys.iterator();
         while(pointIterator.hasNext()){
             HashMap.Entry<Point, String> mob = pointIterator.next();
-            factory.newEnemyAtSpecificLocation(mob.getValue(), mob.getKey().x, mob.getKey().y);
+            EnemyEntity newEnemy = factory.newEnemy(mob.getValue());
+            currentLevel.newEntityAtSpecificLocation(newEnemy, mob.getKey().x, mob.getKey().y);
         }
     }
 
@@ -265,11 +259,13 @@ public class World {
 			    int dangerCheck = RandomGen.rand(1, 100);
 			    if(dangerCheck < 98) {
                     int roll = RandomGen.rand(1, factory.dangerOneEnemies.size());
-                    factory.newEnemy(factory.dangerOneEnemies.get(roll));
+                    EnemyEntity newEnemy = factory.newEnemy(factory.dangerOneEnemies.get(roll));
+                    currentLevel.newEntityAtEmptyLocation(newEnemy);
                 }
                 else{
 			        int roll = RandomGen.rand(1, factory.dangerTwoEnemies.size());
-			        factory.newEnemy(factory.dangerTwoEnemies.get(roll));
+			        EnemyEntity newEnemy = factory.newEnemy(factory.dangerTwoEnemies.get(roll));
+					currentLevel.newEntityAtEmptyLocation(newEnemy);
                 }
             }
 		}
@@ -278,18 +274,21 @@ public class World {
                 int dangerCheck = RandomGen.rand(1, 100);
                 if(dangerCheck < 98) {
                     int roll = RandomGen.rand(1, factory.dangerTwoEnemies.size());
-                    factory.newEnemy(factory.dangerTwoEnemies.get(roll));
+                    EnemyEntity newEnemy = factory.newEnemy(factory.dangerTwoEnemies.get(roll));
+					currentLevel.newEntityAtEmptyLocation(newEnemy);
                 }
                 else{
                     int roll = RandomGen.rand(1, factory.dangerThreeEnemies.size());
-                    factory.newEnemy(factory.dangerThreeEnemies.get(roll));
+                    EnemyEntity newEnemy = factory.newEnemy(factory.dangerThreeEnemies.get(roll));
+					currentLevel.newEntityAtEmptyLocation(newEnemy);
                 }
             }
         }
         else{
             for(int i = 0; i < mobThreshHold; i++){
                 int roll = RandomGen.rand(1, factory.dangerThreeEnemies.size());
-                factory.newEnemy(factory.dangerThreeEnemies.get(roll));
+				EnemyEntity newEnemy = factory.newEnemy(factory.dangerThreeEnemies.get(roll));
+				currentLevel.newEntityAtEmptyLocation(newEnemy);
             }
         }
 	}
