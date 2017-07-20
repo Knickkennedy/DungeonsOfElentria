@@ -13,7 +13,7 @@ public class Effect implements EffectInterface{
     }
 
     public Effect(String eType, int durDice, int durSize){
-        this.effectType = eType;
+        setEffectType(eType);
         setDuration(durDice, durSize);
     }
 

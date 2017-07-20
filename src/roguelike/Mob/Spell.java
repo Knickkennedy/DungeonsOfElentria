@@ -5,13 +5,13 @@ import roguelike.utility.RandomGen;
 
 public class Spell {
     private String name;
+    private String castType;
     private int manaCost;
     private int range;
     private boolean fireDamage;
     private boolean magicDamage;
     private boolean healing;
     private boolean poison;
-    private boolean selfTargeting;
     private boolean reflective;
 
     private Effect effect;
@@ -41,10 +41,8 @@ public class Spell {
                     setRange(Integer.parseInt(input[i].trim()));
                     break;
                 }
-                case "SELF":{
-                    if(input[i].trim().equalsIgnoreCase("yes")){
-                        setSelfTargeting(true);
-                    }
+                case "CAST":{
+                    setCastType(input[i].trim());
                     break;
                 }
                 case "REFL":{
@@ -55,16 +53,6 @@ public class Spell {
                 }
             }
         }
-        /*setName(input[0].trim());
-        setSpellType(input[1].trim(), input[2].trim(), input[3].trim());
-        setManaCost(Integer.parseInt(input[4].trim()));
-        setRange(Integer.parseInt(input[5].trim()));
-        if(input[6].trim().equalsIgnoreCase("yes")){
-            setSelfTargeting(true);
-        }
-        if(input[7].trim().equalsIgnoreCase("yes")){
-            setReflective(true);
-        }*/
     }
 
     public void setSpellType(String type, String duration, String dice){
@@ -184,6 +172,9 @@ public class Spell {
         }
     }
 
+    public void setCastType(String type){ this.castType = type; }
+    public String getCastType(){ return this.castType; }
+
     public void setPoison(boolean poison){ this.poison = poison; }
     public boolean isPoison(){ return this.poison; }
 
@@ -226,14 +217,6 @@ public class Spell {
 
     public void setRange(int range) {
         this.range = range;
-    }
-
-    public boolean isSelfTargeting() {
-        return selfTargeting;
-    }
-
-    public void setSelfTargeting(boolean selfTargeting) {
-        this.selfTargeting = selfTargeting;
     }
 
     public boolean isReflective() {

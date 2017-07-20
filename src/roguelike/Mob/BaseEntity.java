@@ -503,11 +503,7 @@ public class BaseEntity implements EntityInterface {
             notify("Nope!");
         }
         else{
-            if(spell.isSelfTargeting()) {
-                addEffect(spell.getEffect());
-                modifyMana(-spell.getManaCost());
-            }
-            else{
+            if(spell.getCastType().equals("LINE")){
                 for (int i = 0; i < spell.getRange(); i++) {
                     current.add(dir);
                     BaseEntity target = level.checkForMob(current.x, current.y);
