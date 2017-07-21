@@ -1,13 +1,13 @@
 package roguelike.Mob;
 
-import roguelike.modifiers.Effect;
+import roguelike.modifiers.*;
 import roguelike.utility.RandomGen;
 
 public class Spell {
     private String name;
     private String castType;
     private String castEffect;
-    private String onCast;
+    private String onCast, onUpdate, onEnd;
     private String deathMessage;
     private int manaCost;
     private int range;
@@ -67,18 +67,30 @@ public class Spell {
                     break;
                 }
                 case "ON-CAST":{
-                    setOnCastString(input[i].trim());
+                    setOnCast(input[i].trim());
+                    break;
+                }
+                case "ON-UPDATE":{
+                    setOnUpdate(input[i].trim());
+                    break;
+                }
+                case "ON-END":{
+                    setOnEnd(input[i].trim());
+                    break;
                 }
                 case "DEATH":{
                     setDeathMessage(input[i].trim());
+                    break;
                 }
             }
         }
     }
 
-    public void setOnCastString(String onCast){
+    public void setOnCast(String onCast){
         this.onCast = onCast;
     }
+    public void setOnUpdate(String onUpdate){ this.onUpdate = onUpdate; }
+    public void setOnEnd(String onEnd){ this.onEnd = onEnd; }
 
     public void setDeathMessage(String death){
         this.deathMessage = death;
@@ -91,52 +103,19 @@ public class Spell {
         String deathMessage = this.deathMessage;
         switch(this.castEffect){
             case "DAMAGE":{
-                this.effect = new Effect(this.castType, this.duration[0], this.duration[1]){
-                    @Override
-                    public void start(BaseEntity entity){
-                        int effectValue = 0;
-                        entity.doAction(onCast);
-                        for(int i = 0; i < eDice; i++){
-                            effectValue += RandomGen.rand(1, eSize);
-                        }
-                        entity.modifyHP(-effectValue, deathMessage);
-                    }
-                };
+                this.effect = new Damage(castType, onCast, onUpdate, onEnd, deathMessage, duration[0], duration[1], diceStats[0], diceStats[1]);
                 break;
             }
             case "HEALING":{
-                this.effect = new Effect(this.castType, this.duration[0], this.duration[1]) {
-                    @Override
-                    public void start(BaseEntity entity) {
-                        int effectValue = 0;
-                        if(entity.isPlayer()){
-                            entity.doAction("feel " + onCast);
-                        }
-                        else {
-                            entity.doAction("look " + onCast);
-                        }
-                        for(int i = 0; i < eDice; i++){
-                            effectValue += RandomGen.rand(1, eSize);
-                        }
-                        entity.modifyHP(effectValue, deathMessage);
-                    }
-                };
+                this.effect = new Healing(castType, onCast, onUpdate, onEnd, duration[0], duration[1], diceStats[0], diceStats[1]);
                 break;
                 }
             case "INVISIBILITY":{
-                this.effect = new Effect(this.castType, this.duration[0], this.duration[1]) {
-                    @Override
-                    public void start(BaseEntity entity) {
-                        entity.doAction(onCast);
-                        entity.setInvisible(true);
-                    }
-
-                    @Override
-                    public void end(BaseEntity entity){
-                        entity.doAction("fade back into existence");
-                        entity.setInvisible(false);
-                    }
-                };
+                this.effect = new Invisibility(castType, onCast, onUpdate, onEnd, duration[0], duration[1]);
+                break;
+            }
+            case "POISON":{
+                this.effect = new Poison(castType, onCast, onUpdate, onEnd, duration[0], duration[1], diceStats[0], diceStats[1]);
                 break;
             }
             }

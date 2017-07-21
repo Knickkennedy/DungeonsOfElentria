@@ -16,7 +16,7 @@ import roguelike.modifiers.Poison;
 import roguelike.utility.RandomGen;
 
 public class Item implements ItemInterface, Comparable <Item>{
-	private String name, appearance, itemType;
+	private String name, appearance, itemType, onUse, onUpdate, onEnd;
 	private char glyph;
 	private Color color;
 	private int armorValue, dodgeValue, toHitBonus, damageValue, damageBonus, numberOfDiceRolled, range, danger;
@@ -47,6 +47,18 @@ public class Item implements ItemInterface, Comparable <Item>{
 	public void setWeight(double value){ this.weight = value; }
 	public double weight(){ return this.weight; }
 
+	public String getOnUse() { return onUse; }
+
+	public void setOnUse(String onUse) { this.onUse = onUse; }
+
+	public String getOnUpdate() { return onUpdate; }
+
+	public void setOnUpdate(String onUpdate) { this.onUpdate = onUpdate; }
+
+	public String getOnEnd() { return onEnd; }
+
+	public void setOnEnd(String onEnd) { this.onEnd = onEnd; }
+
 	public void setAttribute(String attribute, String value){
 		if(attribute.equals("name")){
 			setName(value);
@@ -63,19 +75,23 @@ public class Item implements ItemInterface, Comparable <Item>{
         else if(attribute.equals("spell")){
 			setSpell(value.trim());
 		}
+		else if(attribute.equalsIgnoreCase("on use")){
+        	setOnUse(value.trim());
+		}
+		else if(attribute.equalsIgnoreCase("on update")){
+			setOnUpdate(value.trim());
+		}
+		else if(attribute.equalsIgnoreCase("on end")){
+			setOnEnd(value.trim());
+		}
         else if(attribute.equals("effects")){
 		    String effects[] = value.split(", ");
 		    for(String effect : effects){
 		        if(effect.contains("healing")){
 		            String tokens[] = effect.split(" - ");
-		            int numberOfDice = Integer.parseInt(tokens[1].trim());
-		            int diceSize = Integer.parseInt(tokens[2].trim());
-		            int duration = Integer.parseInt(tokens[3].trim());
-		            int healing = 0;
-		            for(int i = 0; i < numberOfDice; i++){
-		                healing += RandomGen.rand(1, diceSize);
-                    }
-                    Healing heal = new Healing(healing, duration, "Healing");
+		            String[] durStats = tokens[1].trim().split("D");
+		            String[] effectStats = tokens[2].trim().split("D");
+                    Healing heal = new Healing("Healing", onUse, onUpdate, onEnd, Integer.parseInt(durStats[0]), Integer.parseInt(durStats[1]), Integer.parseInt(effectStats[0]), Integer.parseInt(effectStats[1]));
                     effects().add(heal);
                 }
                 else if(effect.contains("poison")){
@@ -96,16 +112,11 @@ public class Item implements ItemInterface, Comparable <Item>{
 						effects().add(newEffect);
 					}
 					else {
-						String tokens[] = effect.split(" - ");
-						int numberOfDice = Integer.parseInt(tokens[1].trim());
-						int diceSize = Integer.parseInt(tokens[2].trim());
-						int damage = Integer.parseInt(tokens[3].trim());
-						int duration = 0;
-						for (int i = 0; i < numberOfDice; i++) {
-							duration += RandomGen.rand(1, diceSize);
-						}
-						Poison poison = new Poison(damage, duration, "Poison");
-						effects().add(poison);
+							String tokens[] = effect.split(" - ");
+							String[] durStats = tokens[1].trim().split("D");
+							String[] effectStats = tokens[2].trim().split("D");
+							Poison poison = new Poison("Poison", onUse, onUpdate, onEnd, Integer.parseInt(durStats[0]), Integer.parseInt(durStats[1]), Integer.parseInt(effectStats[0]), Integer.parseInt(effectStats[1]));
+							effects().add(poison);
 					}
                 }
             }

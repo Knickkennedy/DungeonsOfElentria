@@ -51,9 +51,11 @@ public class EnemyEntity extends BaseEntity{
                 String effects[] = value.split(", ");
                 for(String effect : effects){
                     if(effect.contains("poison")){
-                        String tokens[] = effect.split(" - ");
-                        Poison newPoison = new Poison(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]), "Poison");
-                        newPoison.setChanceToProc(Integer.parseInt(tokens[3].trim()));
+                        String[] tokens = effect.split(" - ");
+                        String[] durStats = tokens[1].trim().split("D");
+                        String[] effectStats = tokens[2].trim().split("D");
+                        double chanceToProc = Double.parseDouble(tokens[3].trim());
+                        Poison newPoison = new Poison("Poison", "feel sick", "feel poison pumping through your body", "feel relieved", Integer.parseInt(durStats[0]), Integer.parseInt(durStats[1]), Integer.parseInt(effectStats[0]), Integer.parseInt(effectStats[1]), chanceToProc);
                         addOffensiveEffect(newPoison);
                     }
                     if(effect.equalsIgnoreCase("invisibility")){

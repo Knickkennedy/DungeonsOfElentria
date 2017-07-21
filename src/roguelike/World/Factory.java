@@ -144,6 +144,7 @@ public class Factory {
         newPlayer.learnNewSpell(getSpell("poison spit"));
         newPlayer.learnNewSpell(getSpell("fireball"));
         newPlayer.learnNewSpell(getSpell("invisibility"));
+        newPlayer.learnNewSpell(getSpell("soothing breeze"));
 
         return newPlayer;
     }

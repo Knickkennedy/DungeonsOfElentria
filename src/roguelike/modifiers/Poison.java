@@ -3,40 +3,45 @@ package roguelike.modifiers;
 import roguelike.Mob.BaseEntity;
 
 public class Poison extends Effect {
-	private int damage;
 
-	public Poison(int dam, int dur, String eType) {
-		super(dur, eType);
-		this.damage = dam;
+	public Poison(String eType, String onCast, String onUpdate, String onEnd, int durNumDice, int durDiceSize, int healNumDice, int healDiceSize){
+		super(eType, onCast, onUpdate, onEnd);
+		setDurationDice(durNumDice);
+		setDurationDiceSize(durDiceSize);
+		setEffectDice(healNumDice);
+		setEffectDiceSize(healDiceSize);
+		setEffectChance(100.0);
 	}
 
-	public int damage() {
-		return this.damage;
+	public Poison(String eType, String onCast, String onUpdate, String onEnd, int durNumDice, int durDiceSize, int healNumDice, int healDiceSize, double value){
+		super(eType, onCast, onUpdate, onEnd);
+		setDurationDice(durNumDice);
+		setDurationDiceSize(durDiceSize);
+		setEffectDice(healNumDice);
+		setEffectDiceSize(healDiceSize);
+		setEffectChance(value);
 	}
 
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
-	public void start(BaseEntity entity) {
-		if (entity.isPlayer()) {
-			entity.doAction("feel sick.");
-		} else {
-			entity.doAction("The %s looks sick.", entity.name());
+	@Override
+	public void start(BaseEntity entity){
+		setDuration();
+		setEffectValue();
+		if(entity.isPlayer()){
+			entity.doAction("feel " + getOnCast());
+		}
+		else{
+			entity.doAction("look " + getOnCast(), entity.name());
 		}
 	}
 
-	public void update(BaseEntity entity) {
-		updateDuration(1);
-		entity.modifyHP(-damage(), "died of poison.");
-	}
-
-	public void end(BaseEntity entity) {
-		if (entity.isPlayer()) {
-			entity.doAction("feel better.");
-		} else {
-			entity.doAction("The %s looks relieved.", entity.name());
+	@Override
+	public void update(BaseEntity entity){
+		subtractFromDuration(1);
+		setEffectValue();
+		if(!getOnUpdate().equalsIgnoreCase("none")){
+			entity.doAction(getOnUpdate());
 		}
+		entity.modifyHP(-getEffectValue(), "from virulent evil coursing through your veins.");
 	}
 
 }

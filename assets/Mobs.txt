@@ -4,7 +4,7 @@ name            :   Elena
 symbol          :   E
 color           :   blue
 AI              :   Elena
-effects         :   poison - 2 - 15 - 90
+effects         :   poison - 3D6 - 2D1 - 50.0
 health          :   40
 mana            :   25
 health regen    :   100
@@ -131,7 +131,7 @@ name            :   giant hornet drone
 symbol          :   h
 color           :   white
 AI              :   aggressive
-effects         :   poison - 1 - 10 - 75, poison - 1 - 15 - 50
+effects         :   poison - 3D4 - 1D1 - 50.0
 health          :   5
 mana            :   0
 health regen    :   25
@@ -147,7 +147,7 @@ name            :   giant hornet warrior
 symbol          :   h
 color           :   gray
 AI              :   aggressive
-effects         :   poison - 2 - 10 - 50, poison - 1 - 10 - 50
+effects         :   poison - 2D1 - 3D4 - 50.0
 health          :   7
 mana            :   0
 health regen    :   50

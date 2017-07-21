@@ -3,27 +3,34 @@ package roguelike.modifiers;
 import roguelike.Mob.BaseEntity;
 
 public class Healing extends Effect {
-	private int heal;
 	
-	public Healing(int heal, int duration, String eType){
-	    super(duration, eType);
-		this.heal = heal;
+	public Healing(String eType, String onCast, String onUpdate, String onEnd, int durNumDice, int durDiceSize, int healNumDice, int healDiceSize){
+	    super(eType, onCast, onUpdate, onEnd);
+	    setDurationDice(durNumDice);
+	    setDurationDiceSize(durDiceSize);
+	    setEffectDice(healNumDice);
+	    setEffectDiceSize(healDiceSize);
 	}
-	
-	public int healing(){ return this.heal; }
-	public void setHealing(int heal){ this.heal = heal; }
-	
+
+	@Override
 	public void start(BaseEntity entity){
+		setDuration();
+		setEffectValue();
 		if(entity.isPlayer()){
-			entity.doAction("feel better.");
+			entity.doAction("feel " + getOnCast());
 		}
 		else{
-			entity.doAction("The %s looks better.", entity.name());
+			entity.doAction("look " + getOnCast(), entity.name());
 		}
 	}
-	
+
+	@Override
 	public void update(BaseEntity entity){
-		updateDuration(1);
-		entity.modifyHP(heal, "died of healing?");
+		subtractFromDuration(1);
+		setEffectValue();
+		if(!getOnUpdate().equalsIgnoreCase("none")){
+			entity.doAction(getOnUpdate());
+		}
+		entity.modifyHP(getEffectValue(), "died of healing?");
 	}
 }

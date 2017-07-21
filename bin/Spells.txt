@@ -1,18 +1,20 @@
-NAME				TYPE	DUR		DICE	MANA	RANGE	CAST	REFL	EFFECT			ON-CAST			DEATH
+NAME				TYPE	DUR		DICE	MANA	RANGE	CAST	REFL	EFFECT			ON-CAST					ON-UPDATE				ON-END					DEATH
 
-Invisibility		MAGIC	5D6		1D1		5		1		LINE	NO		INVISIBILITY	fade away		by fading away?		
+Invisibility		MAGIC	5D6		1D1		5		1		LINE	NO		INVISIBILITY	fade away				none					fade back into view		by fading away?		
 
-Arcane Blast		MAGIC	1		3D4		3		1		LINE	NO		DAMAGE			sizzle			by overpowering magic!
-Magic Missiles		MAGIC	1		2D4		5		6		LINE	YES		DAMAGE			sizzle			by overpowering magic!
+Arcane Blast		MAGIC	1		3D4		3		1		LINE	NO		DAMAGE			sizzle					none					none					by overpowering magic!
+Magic Missiles		MAGIC	1		2D4		5		6		LINE	YES		DAMAGE			sizzle					none					none					by overpowering magic!
 
-Burning Hands		FIRE	1		1D6		3		1		LINE	NO		DAMAGE			burn			burned to a crisp!
-Flame Bolt			FIRE	1		1D8		5		6		LINE	NO		DAMAGE			burn			burned to a crisp!
-Fireball			FIRE	1		2D8		8		1		AOE		NO		DAMAGE			burn			incinerated!
+Burning Hands		FIRE	1		1D6		3		1		LINE	NO		DAMAGE			burn					none					none					burned to a crisp!
+Flame Bolt			FIRE	2D1		1D2		3		2		LINE	NO		DAMAGE			burn					none					none					burned to a crisp!
+Fireball			FIRE	1		2D8		8		1		AOE		NO		DAMAGE			burn					none					none					incinerated!
 
-Icy Touch			ICE		1		2D3		3		1		LINE	NO		DAMAGE			freeze			splintered into a thousand pieces!
-Ice Bolt			ICE		1		1D8		5		6		LINE	NO		DAMAGE			freeze			shattered into pieces!
+Icy Touch			ICE		1		2D3		3		1		LINE	NO		DAMAGE			freeze					none					none					splintered into a thousand pieces!
+Ice Bolt			ICE		1		1D8		5		6		LINE	NO		DAMAGE			freeze					none					none					shattered into pieces!
+Iceball				ICE		1		2D8		8		1		AOE		NO		DAMAGE			freeze					none					none					freeze to death
 
-Healing Hands		HEALING	1		1D6		3		1		LINE	NO		HEALING			relieved		by overhealing?
-Heal Minor Wounds	HEALING	1		2D4		5		1		LINE	NO		HEALING			better			by overhealing?
+Healing Hands		HEALING	1		1D6		3		1		LINE	NO		HEALING			relieved				none					none					by overhealing?
+Heal Minor Wounds	HEALING	1		2D4		5		1		LINE	NO		HEALING			better					none					none					by overhealing?
+Soothing Breeze		HEALING	3D4		1D2		6		1		LINE	NO		HEALING			better					none					none					by overhealing?
 
-Poison Spit			POISON	2D4		1D2		5		3		LINE	NO		DAMAGE			puke			by virulent poisons!
+Poison Spit			POISON	2D4		1D2		5		3		LINE	NO		POISON			sick					none					none					by virulent poisons!

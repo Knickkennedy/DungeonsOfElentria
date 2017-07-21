@@ -12,10 +12,8 @@ import roguelike.levelBuilding.Tile;
 import roguelike.modifiers.*;
 import roguelike.utility.Point;
 import roguelike.utility.RandomGen;
-import squidpony.squidmath.Bresenham;
-import squidpony.squidmath.Coord;
 
-public class BaseEntity implements EntityInterface {
+public class BaseEntity{
     public Level level;
     public char glyph;
     private Color color;
@@ -392,8 +390,8 @@ public class BaseEntity implements EntityInterface {
 
     public void specialAttack(BaseEntity otherEntity) {
         for (Effect effect : offensiveEffects) {
-            int specialAttackRoll = RandomGen.rand(1, 100);
-            if (specialAttackRoll < effect.getChanceToProc()) {
+            double specialAttackRoll = RandomGen.dRand(1.0, 100.0);
+            if (specialAttackRoll < effect.getEffectChance()) {
                 effect.start(otherEntity);
                 otherEntity.effects().add(effect);
             }
@@ -559,10 +557,12 @@ public class BaseEntity implements EntityInterface {
         List<Effect> done = new ArrayList<Effect>();
 
         for (Effect effect : effects) {
-            effect.update(this);
             if (effect.isDone()) {
                 effect.end(this);
                 done.add(effect);
+            }
+            else{
+                effect.update(this);
             }
         }
 

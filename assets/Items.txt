@@ -9,7 +9,7 @@ chance to learn :   25.0
 danger			:	1
 
 <Potions>
-<Healing effect numbers are - number of dice - dice size - duration>
+<Healing effect numbers are - healing - duration>
 <Poison effect numbers are - number of dice - dice size - damage per tick>
 
 name            :   potion of weak healing
@@ -17,7 +17,10 @@ item type       :   potion
 symbol          :   !
 color           :   white
 weight          :   1.0
-effects         :   healing - 4 - 3 - 1
+on use			:	better
+on update		:	better
+on end			:	none
+effects         :   healing - 1D1 - 3D3
 danger          :   1
 
 name            :   potion of healing
@@ -25,7 +28,10 @@ item type       :   potion
 symbol          :   !
 color           :   white
 weight          :   1.0
-effects         :   healing - 4 - 6 - 1
+on use			:	better
+on update		:	better
+on end			:	none
+effects         :   healing - 1D1 - 4D4
 danger          :   2
 
 name            :   potion of poison antidote
@@ -41,7 +47,10 @@ item type       :   potion
 symbol          :   !
 color           :   white
 weight          :   1.0
-effects         :   poison - 5 - 3 - 1
+on use			:	sick
+on update		:	sick
+on end			:	none
+effects         :   poison - 4D3 - 1D1
 danger          :   1
 
 name            :   potion of poison
@@ -49,7 +58,10 @@ item type       :   potion
 symbol          :   (
 color           :   white
 weight          :   1.0
-effects         :   poison - 5 - 3 - 2
+on use			:	sick
+on update		:	sick
+on end			:	none
+effects         :   poison - 5D3 - 2D1
 danger          :   2
 
 <Melee Weapons>
