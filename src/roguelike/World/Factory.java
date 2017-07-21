@@ -142,6 +142,8 @@ public class Factory {
         newPlayer.learnNewSpell(getSpell("flame bolt"));
         newPlayer.learnNewSpell(getSpell("healing hands"));
         newPlayer.learnNewSpell(getSpell("poison spit"));
+        newPlayer.learnNewSpell(getSpell("fireball"));
+        newPlayer.learnNewSpell(getSpell("invisibility"));
 
         return newPlayer;
     }

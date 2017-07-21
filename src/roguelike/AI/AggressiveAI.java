@@ -15,7 +15,7 @@ public class AggressiveAI extends BaseAI{
 	
 	public void onUpdate(){
 		this.player = mob.level().player;
-		if(this.canSee(player.x, player.y) || hasSeenPlayer){
+		if(this.canSee(player) || hasSeenPlayer){
 			hunt(player);
 			hasSeenPlayer = true;
 		}

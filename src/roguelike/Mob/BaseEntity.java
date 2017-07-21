@@ -17,11 +17,13 @@ import squidpony.squidmath.Coord;
 
 public class BaseEntity implements EntityInterface {
     public Level level;
-    private char glyph;
+    public char glyph;
     private Color color;
     private String name, causeOfDeath;
     private BaseAI ai;
     private boolean isPlayer;
+
+    private boolean isInvisible;
     public int x, y;
     private Point location;
     private int maxHP, currentHP, currentMana, maxMana, healthRegen, manaRegen, healthRegenCooldown, manaRegenCooldown, attackDamage, range, rangedDamage, armor, dodge, visionRadius;
@@ -41,6 +43,14 @@ public class BaseEntity implements EntityInterface {
         offensiveEffects = new ArrayList<>();
         knownSpells = new ArrayList<>();
         this.experienceLevel = 1;
+    }
+
+    public boolean isInvisible() {
+        return isInvisible;
+    }
+
+    public void setInvisible(boolean invisible) {
+        isInvisible = invisible;
     }
 
     public void learnNewSpell(Spell spell){
@@ -176,11 +186,15 @@ public class BaseEntity implements EntityInterface {
     }
 
     public Color color() {
-        return this.color;
+        if(isInvisible){
+            return level.baseColor(this.x, this.y);
+        }else return this.color;
     }
 
     public char glyph() {
-        return this.glyph;
+        if(isInvisible){
+            return level.baseGlyph(this.x, this.y);
+        }else return this.glyph;
     }
 
     public int maxHP() {
@@ -285,7 +299,7 @@ public class BaseEntity implements EntityInterface {
         Item itemToPickUp = this.level().checkItems(this.x, this.y);
         if (itemToPickUp != null) {
             if (currentCarryWeight() + itemToPickUp.weight() < maxCarryWeight()) {
-                this.notify("You pick up the %s.", itemToPickUp.name());
+                doAction("pick up", itemToPickUp);
                 inventory().add(itemToPickUp);
                 this.level().removeItem(itemToPickUp);
             } else {
@@ -299,9 +313,7 @@ public class BaseEntity implements EntityInterface {
     public void dropItem(Item itemToDrop) {
         this.level().addAtSpecificLocation(itemToDrop, this.x, this.y);
         this.inventory().remove(itemToDrop);
-        if (isPlayer) {
-            this.notify("You drop a %s", itemToDrop.name());
-        }
+        if(isPlayer) doAction("drop", itemToDrop);
     }
 
     public boolean canSee(int x, int y) {
@@ -316,16 +328,14 @@ public class BaseEntity implements EntityInterface {
         if (x == 0 && y == 0) {
             return;
         }
-        if (this.level.isWall(this.x + x, this.y + y)) {
-            notify("You bump into the %s.", level.tile(this.x + x, this.y + y).details());
-        }
         BaseEntity otherEntity = this.level.checkForMob(this.x + x, this.y + y);
         if (otherEntity == null) {
             if (this.level.hasItemAlready(this.x + x, this.y + y)) {
-                notify("You see a %s here.", this.level.checkItems(this.x + x, this.y + y).name());
+                doAction("see", this.level.checkItems(this.x + x, this.y + y));
             }
             ai.onEnter(this.x + x, this.y + y, this.level);
         } else if (!isPlayer() && !otherEntity.isPlayer()) {
+            ai.initializePathFinding();
             return;
         } else {
             meleeAttack(otherEntity);
@@ -346,13 +356,14 @@ public class BaseEntity implements EntityInterface {
         int damageAmount = diceRoll - otherEntity.armor();
 
         if (toHitRoll < 25) {
-            doMissAction("miss", otherEntity);
+            doAttackAction("miss", otherEntity);
         } else if (toHitRoll > 25 && toHitRoll < 25 + otherEntity.dodge) {
-            doDeflectAction("dodge", otherEntity);
+            doAttackAction("dodge", otherEntity);
         } else if (damageAmount < 1) {
-            doDeflectAction("deflect", otherEntity);
+            doAttackAction("barely scratch", otherEntity);
         } else {
-            doAttackAction("shoot", otherEntity, damageAmount);
+            doAttackAction("hit", otherEntity);
+            otherEntity.modifyHP(-damageAmount, "killed by a ");
             specialAttack(otherEntity);
         }
     }
@@ -389,41 +400,15 @@ public class BaseEntity implements EntityInterface {
         }
     }
 
-    public void doAttackAction(String action, BaseEntity otherEntity, int damage) {
-        if (isPlayer()) {
-            this.notify("You %s the %s for %d damage.", action, otherEntity.name(), damage);
-        } else {
-            otherEntity.notify("The %s %ss you for %d damage.", name(), action, damage);
-        }
-        otherEntity.modifyHP(-damage, "killed by a " + name());
-        if (otherEntity.currentHP() < 1) {
-            otherEntity.death();
-            gainExperience(otherEntity);
-        }
-    }
-
     public void gainExperience(BaseEntity otherEntity){
         this.experience += otherEntity.experience;
     }
 
-    public void doMissAction(String action, BaseEntity otherEntity) {
-        if (isPlayer()) {
-            notify("You %s the %s.", action, otherEntity.name());
-        } else {
-            otherEntity.notify("The %s %ses you.", name(), action);
-        }
-    }
-
-    public void doDeflectAction(String action, BaseEntity otherEntity) {
-        if (isPlayer()) {
-            this.notify("The %s %ss your attack.", otherEntity.name(), action);
-        } else {
-            otherEntity.notify("You %s the %s's attack.", action, name());
-        }
-    }
-
     public void modifyHP(int amount, String causeOfDeath) {
         setCurrentHP(amount);
+        if (currentHP() < 1) {
+            death();
+        }
         this.causeOfDeath = causeOfDeath;
     }
 
@@ -455,20 +440,94 @@ public class BaseEntity implements EntityInterface {
         setCurrentMana(amount);
     }
 
+    public void doAction(String message){
+        for(BaseEntity entity : level.mobs){
+            if(entity == this){
+                entity.notify("You %s.", message);
+            }
+            else{
+                entity.notify("The %s %s.", name, makeSecondPerson(message));
+            }
+        }
+    }
+
+    public void doAction(String message, Item itemToInteractWith){
+        for(BaseEntity entity : level.mobs) {
+            if(entity == this) {
+                if(itemToInteractWith.name().endsWith("s")){
+                    if (beginsWithVowel(itemToInteractWith.name())) {
+                        notify("You %s %s.", message, itemToInteractWith.name());
+                    } else {
+                        notify("You %s %s.", message, itemToInteractWith.name());
+                    }
+                }else {
+                    if (beginsWithVowel(itemToInteractWith.name())) {
+                        notify("You %s an %s.", message, itemToInteractWith.name());
+                    } else {
+                        notify("You %s a %s.", message, itemToInteractWith.name());
+                    }
+                }
+            }
+            else{
+                if(itemToInteractWith.name().endsWith("s")){
+                    if (beginsWithVowel(itemToInteractWith.name())) {
+                        entity.notify("The %s %s %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                    } else {
+                        entity.notify("The %s %s %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                    }
+                }
+                else {
+                    if (beginsWithVowel(itemToInteractWith.name())) {
+                        entity.notify("The %s %s an %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                    } else {
+                        entity.notify("The %s %s a %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean beginsWithVowel(String word){
+        if(word.toLowerCase().matches("^[aeiou].*")){
+            return true;
+        }
+        else return false;
+    }
+
     public void doAction(String message, Object... params) {
-        for (BaseEntity otherEntity : this.level.mobs) {
-            if (otherEntity == this) {
-                otherEntity.notify("You " + message, params);
-            } else {
-                otherEntity.notify(String.format("The %s %s.", name(), makeSecondPerson(message)), params);
+        for (BaseEntity entity : this.level.mobs) {
+            if (entity == this) entity.notify("You " + message, params);
+            else entity.notify(String.format("The %s %s.", name(), makeSecondPerson(message)), params);
+        }
+    }
+
+    public void doAttackAction(String action, BaseEntity otherEntity) {
+        for(BaseEntity entity : level.mobs){
+            if(entity == this){
+                entity.notify("You %s the %s.", action, otherEntity.name());
+            }
+            else{
+                entity.notify("The %s %s you.", name, makeSecondPerson(action));
             }
         }
     }
 
     private String makeSecondPerson(String message) {
         String[] words = message.split(" ");
-        words[0] = words[0] + "s";
-
+        if(isAnAdverb(words[0])){
+            if (shouldEndWithES(words[1])) {
+                words[1] = words[1] + "es";
+            } else {
+                words[1] = words[1] + "s";
+            }
+        }
+        else {
+            if (shouldEndWithES(words[0])) {
+                words[0] = words[0] + "es";
+            } else {
+                words[0] = words[0] + "s";
+            }
+        }
         StringBuilder builder = new StringBuilder();
         for (String word : words) {
             builder.append(" ");
@@ -476,6 +535,24 @@ public class BaseEntity implements EntityInterface {
         }
 
         return builder.toString().trim();
+    }
+
+    private boolean isAnAdverb(String word){
+        if(word.toLowerCase().matches(".*(ly)")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean shouldEndWithES(String word){
+        if(word.toLowerCase().matches(".*(s|sh|x|ch|z)")){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private void updateEffects() {
@@ -504,36 +581,56 @@ public class BaseEntity implements EntityInterface {
         }
         else{
             if(spell.getCastType().equals("LINE")){
-                for (int i = 0; i < spell.getRange(); i++) {
-                    current.add(dir);
-                    BaseEntity target = level.checkForMob(current.x, current.y);
-                    if (target != null) {
-                        target.addEffect(spell.getEffect());
-                        if (target.currentHP() < 1) {
-                            target.death();
-                            gainExperience(target);
-                        }
-                    }
-                    if (level.tile(current.x + dir.x, current.y).glyph() == '#') {
-                        if(spell.isReflective()) {
-                            dir.flipHorizontally();
-                            i++;
-                        }
-                        else{
-                            break;
-                        }
-                    }
-                    if (level.tile(current.x, current.y + dir.y).glyph() == '#') {
-                        if(spell.isReflective()) {
-                            dir.flipVertically();
-                            i++;
-                        }
-                        else{
-                            break;
-                        }
-                    }
-                }
+                castLineSpell(spell, current, dir);
                 modifyMana(-spell.getManaCost());
+            }
+            else if(spell.getCastType().equals("AOE")){
+                castAOESpell(spell, current);
+                modifyMana(-spell.getManaCost());
+            }
+        }
+    }
+
+    public void castAOESpell(Spell spell, Point current){
+        for(int x = -spell.getRange(); x <= spell.getRange(); x++){
+            for(int y = -spell.getRange(); y <= spell.getRange(); y++){
+                if(x == 0 && y == 0) {
+                    continue;
+                }
+                if(this.x + x < 0 || this.x + x >= level.width) {
+                    continue;
+                }
+                if(this.y + y < 0 || this.y + y >= level.height) {
+                    continue;
+                }
+                BaseEntity target = level.checkForMob(this.x + x, this.y + y);
+                if(target != null) target.addEffect(spell.getEffect());
+            }
+        }
+    }
+
+    public void castLineSpell(Spell spell, Point current, Point dir){
+        for (int i = 0; i < spell.getRange(); i++) {
+            current.add(dir);
+            BaseEntity target = level.checkForMob(current.x, current.y);
+            if (target != null) {
+                target.addEffect(spell.getEffect());
+            }
+            if (level.tile(current.x + dir.x, current.y).glyph() == '#') {
+                if (spell.isReflective()) {
+                    dir.flipHorizontally();
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            if (level.tile(current.x, current.y + dir.y).glyph() == '#') {
+                if (spell.isReflective()) {
+                    dir.flipVertically();
+                    i++;
+                } else {
+                    break;
+                }
             }
         }
     }

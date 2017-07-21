@@ -1,5 +1,5 @@
 <Books>
-name			:	book of magic missiles
+name			:	spellbook of magic missile
 item type		:	book
 symbol			:	"
 color			:	brown

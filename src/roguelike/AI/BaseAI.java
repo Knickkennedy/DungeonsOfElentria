@@ -39,6 +39,14 @@ public class BaseAI {
 		}
 	}
 
+	public boolean canSee(BaseEntity entity) {
+		int radius = (mob.x - entity.x)*(mob.x - entity.x) + (mob.y - entity.y)*(mob.y - entity.y);
+		if(entity.isInvisible()) return false;
+		if(radius > mob.visionRadius()*mob.visionRadius()) return false;
+		else if(los.isReachable(mob.level().pathMap, mob.x, mob.y, entity.x, entity.y)) return true;
+		else return false;
+	}
+
 	public void hunt(BaseEntity target){
 		path.setGoal(target.x, target.y);
 		ArrayList <Coord> coords = new ArrayList <Coord> ();

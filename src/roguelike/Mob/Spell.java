@@ -6,18 +6,23 @@ import roguelike.utility.RandomGen;
 public class Spell {
     private String name;
     private String castType;
+    private String castEffect;
+    private String onCast;
+    private String deathMessage;
     private int manaCost;
     private int range;
+    private int[] duration = new int[2];
+    private int[] diceStats = new int[2];
     private boolean fireDamage;
     private boolean magicDamage;
     private boolean healing;
     private boolean poison;
     private boolean reflective;
-
     private Effect effect;
 
     public Spell(String[] parameters, String[] input){
         setParameters(parameters, input);
+        setEffect();
     }
 
     public void setParameters(String[] parameters, String[] input){
@@ -28,9 +33,7 @@ public class Spell {
                     break;
                 }
                 case "TYPE":{
-                    setSpellType(input[i].trim(), input[i + 1].trim(), input[i + 2].trim());
-                    i++;
-                    i++;
+                    setSpellType(input[i].trim());
                     break;
                 }
                 case "MANA":{
@@ -39,6 +42,14 @@ public class Spell {
                 }
                 case "RANGE":{
                     setRange(Integer.parseInt(input[i].trim()));
+                    break;
+                }
+                case "DUR":{
+                    setDuration(input[i].trim());
+                    break;
+                }
+                case "DICE":{
+                    setDiceStats(input[i].trim());
                     break;
                 }
                 case "CAST":{
@@ -51,122 +62,126 @@ public class Spell {
                     }
                     break;
                 }
+                case "EFFECT":{
+                    setCastEffect(input[i].trim());
+                    break;
+                }
+                case "ON-CAST":{
+                    setOnCastString(input[i].trim());
+                }
+                case "DEATH":{
+                    setDeathMessage(input[i].trim());
+                }
             }
         }
     }
 
-    public void setSpellType(String type, String duration, String dice){
-        String[] diceStats = dice.split("D");
-        int numberOfDice = Integer.parseInt(diceStats[0]);
-        int diceSize = Integer.parseInt(diceStats[1]);
+    public void setOnCastString(String onCast){
+        this.onCast = onCast;
+    }
 
-        String[] dur = duration.split("D");
-        int durDice = 1;
-        int durSize = 1;
-        int totalDuration = 0;
-        if(dur.length > 1){
-            durDice = Integer.parseInt(dur[0]);
-            durSize = Integer.parseInt(dur[1]);
-        }
-        switch (type){
-            case "MAGIC":{
-                setMagicDamage(true);
-                this.effect = new Effect(type, durDice, durSize){
+    public void setDeathMessage(String death){
+        this.deathMessage = death;
+    }
+
+    public void setEffect(){
+        int eDice = this.diceStats[0];
+        int eSize = this.diceStats[1];
+        String onCast = this.onCast;
+        String deathMessage = this.deathMessage;
+        switch(this.castEffect){
+            case "DAMAGE":{
+                this.effect = new Effect(this.castType, this.duration[0], this.duration[1]){
                     @Override
                     public void start(BaseEntity entity){
-                        if(entity.isPlayer()){
-                            entity.doAction("sizzle!");
-                            int damage = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                damage += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(-damage, "by overpowering magical energies");
+                        int effectValue = 0;
+                        entity.doAction(onCast);
+                        for(int i = 0; i < eDice; i++){
+                            effectValue += RandomGen.rand(1, eSize);
                         }
-                        else{
-                            entity.doAction("The %s sizzles!", entity.name());
-                            int damage = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                damage += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(-damage, "by overpowering magical energies");
-                        }
-                    }
-                };
-                break;
-            }
-            case "FIRE":{
-                setFireDamage(true);
-                this.effect = new Effect(type, durDice, durSize){
-                    @Override
-                    public void start(BaseEntity entity){
-                        if(entity.isPlayer()){
-                            entity.doAction("burn!");
-                            int damage = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                damage += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(-damage, "burned to a crisp");
-                        }
-                        else{
-                            entity.doAction("The %s burns!", entity.name());
-                            int damage = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                damage += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(-damage, "burned to a crisp");
-                        }
+                        entity.modifyHP(-effectValue, deathMessage);
                     }
                 };
                 break;
             }
             case "HEALING":{
-                setHealing(true);
-                this.effect = new Effect(type, durDice, durSize){
+                this.effect = new Effect(this.castType, this.duration[0], this.duration[1]) {
                     @Override
-                    public void start(BaseEntity entity){
+                    public void start(BaseEntity entity) {
+                        int effectValue = 0;
                         if(entity.isPlayer()){
-                            entity.doAction("feel relieved!");
-                            int healing = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                healing += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(healing, "by overhealing?");
+                            entity.doAction("feel " + onCast);
                         }
-                        else{
-                            entity.doAction("The %s looks relieved!", entity.name());
-                            int healing = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                healing += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(healing, "by overhealing?");
+                        else {
+                            entity.doAction("look " + onCast);
                         }
+                        for(int i = 0; i < eDice; i++){
+                            effectValue += RandomGen.rand(1, eSize);
+                        }
+                        entity.modifyHP(effectValue, deathMessage);
+                    }
+                };
+                break;
+                }
+            case "INVISIBILITY":{
+                this.effect = new Effect(this.castType, this.duration[0], this.duration[1]) {
+                    @Override
+                    public void start(BaseEntity entity) {
+                        entity.doAction(onCast);
+                        entity.setInvisible(true);
+                    }
+
+                    @Override
+                    public void end(BaseEntity entity){
+                        entity.doAction("fade back into existence");
+                        entity.setInvisible(false);
                     }
                 };
                 break;
             }
+            }
+        }
+
+    public void setCastEffect(String castEffect) {
+        this.castEffect = castEffect;
+    }
+
+    public void setDiceStats(String values){
+        String[] diceStats = values.split("D");
+        this.diceStats[0] = Integer.parseInt(diceStats[0]);
+        this.diceStats[1] = Integer.parseInt(diceStats[1]);
+    }
+
+    public void setDuration(String values){
+        String[] dur = values.split("D");
+        if(dur.length > 1){
+            this.duration[0] = Integer.parseInt(dur[0]);
+            this.duration[1] = Integer.parseInt(dur[1]);
+        }
+        else{
+            this.duration[0] = 1;
+            this.duration[1] = 1;
+        }
+    }
+
+    public int[] getDuration(){ return this.duration; }
+
+    public void setSpellType(String type){
+        switch (type){
+            case "MAGIC":{
+                setMagicDamage(true);
+                break;
+            }
+            case "FIRE":{
+                setFireDamage(true);
+                break;
+            }
+            case "HEALING":{
+                setHealing(true);
+                break;
+            }
             case "POISON":{
                 setPoison(true);
-                this.effect = new Effect(type, durDice, durSize){
-                    @Override
-                    public void start(BaseEntity entity){
-                        if(entity.isPlayer()){
-                            entity.doAction("are poisoned!");
-                            int damage = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                damage += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(-damage, "with virulent poison through your veins");
-                        }
-                        else{
-                            entity.doAction("The %s is poisoned!", entity.name());
-                            int damage = 0;
-                            for(int i = 0; i < numberOfDice; i++){
-                                damage += RandomGen.rand(1, diceSize);
-                            }
-                            entity.modifyHP(-damage, "with virulent poison in their veins");
-                        }
-                    }
-                };
                 break;
             }
         }
@@ -205,10 +220,6 @@ public class Spell {
 
     public Effect getEffect() {
         return effect;
-    }
-
-    public void setEffect(Effect effect) {
-        this.effect = effect;
     }
 
     public int getRange() {

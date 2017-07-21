@@ -52,9 +52,13 @@ public class SelectSpellScreen implements Screen {
     public Screen respondToUserInput(KeyEvent key) {
         char c = key.getKeyChar();
 
-        if(letters.indexOf(c) > -1 && player.getKnownSpells().get(letters.indexOf(c)) != null){
+        if(key.getKeyCode() == KeyEvent.VK_ESCAPE){
+            return null;
+        }
+
+        if(player.getKnownSpells().size() > letters.indexOf(c) && letters.indexOf(c) > -1 && player.getKnownSpells().get(letters.indexOf(c)) != null){
             return new SelectDirectionScreen(player, player.getKnownSpells().get(letters.indexOf(c)));
         }
-        return null;
+        return this;
     }
 }

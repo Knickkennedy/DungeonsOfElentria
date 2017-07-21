@@ -28,6 +28,12 @@ public class Player extends BaseEntity {
         setName("Hero");
     }
 
+    @Override
+    public char glyph(){
+        if(isInvisible()) return '_';
+        else return this.glyph;
+    }
+
     public void setAttribute(String attribute, String value) {
         switch(attribute) {
             case "symbol":{
@@ -620,27 +626,25 @@ public class Player extends BaseEntity {
         }
     }
 
-    public void move(int x, int y) {
-        if (x == 0 && y == 0) {
+    public void move(int xx, int yy) {
+        if (xx == 0 && yy == 0) {
             return;
         }
-        if (this.level.isWall(this.x + x, this.y + y)) {
-            notify("You bump into the %s.", level.tile(this.x + x, this.y + y).details());
-        }
-        BaseEntity otherEntity = this.level.checkForMob(this.x + x, this.y + y);
+        BaseEntity otherEntity = level.checkForMob(x + xx, y + yy);
         if (otherEntity == null) {
-            if (this.level.hasItemAlready(this.x + x, this.y + y)) {
-                notify("You see a %s here.", this.level.checkItems(this.x + x, this.y + y).name());
+            if (level.hasItemAlready(x + xx, y + yy)) {
+                if(level.checkItems(x + xx, y + yy).name().toLowerCase().matches("^[aeiou].*")){
+                    doAction("see", level.checkItems(x + xx, y + yy));
+                }else doAction("see", level.checkItems(x + xx, y + yy));
             }
-            getAi().onEnter(this.x + x, this.y + y, this.level);
+            if (!level.isGround(x + xx, y + yy)) {
+                doAction(String.format("bump into the %s", level.tile(x + xx, y + yy).details()));
+            }
+            getAi().onEnter(x + xx, y + yy, level);
         } else {
-            if (rightHand != null && leftHand != null) {
-                dualWieldAttack(otherEntity, leftHand, rightHand);
-            } else if (rightHand == null && leftHand != null) {
-                meleeAttack(otherEntity, leftHand);
-            } else if (rightHand != null) {
-                meleeAttack(otherEntity, rightHand);
-            }
+            if (rightHand != null && leftHand != null) dualWieldAttack(otherEntity, leftHand, rightHand);
+            else if (rightHand == null && leftHand != null) meleeAttack(otherEntity, leftHand);
+            else if (rightHand != null) meleeAttack(otherEntity, rightHand);
         }
     }
 
@@ -688,13 +692,14 @@ public class Player extends BaseEntity {
         int damageAmount = tempDamage - otherEntity.armor();
 
         if (toHitRoll < 25) {
-            doMissAction("miss", otherEntity);
+            doAttackAction("miss", otherEntity);
         } else if (toHitRoll > 25 && toHitRoll < 25 + otherEntity.dodge()) {
-            doDeflectAction("dodge", otherEntity);
+            doAttackAction("dodge", otherEntity);
         } else if (damageAmount < 1) {
-            doDeflectAction("deflect", otherEntity);
+            doAttackAction("block", otherEntity);
         } else {
-            doAttackAction("attack", otherEntity, damageAmount);
+            doAttackAction("hit", otherEntity);
+            otherEntity.modifyHP(-damageAmount, "killed by a ");
         }
     }
 
@@ -726,28 +731,30 @@ public class Player extends BaseEntity {
         rightDamage -= otherEntity.armor();
 
         if (rightToHit < 25) {
-            notify("You miss the %s.", otherEntity.name());
+            doAttackAction("miss", otherEntity);
         } else if (rightToHit > 25 && rightToHit < 25 + otherEntity.dodge()) {
-            doDeflectAction("dodge", otherEntity);
+            doAttackAction("dodge", otherEntity);
         } else {
             if (rightDamage < 1) {
-                doDeflectAction("deflect", otherEntity);
+                doAttackAction("block", otherEntity);
             } else {
-                doAttackAction("attack", otherEntity, rightDamage);
+                doAttackAction("hit", otherEntity);
+                otherEntity.modifyHP(-rightDamage, "killed by a ");
             }
         }
         if(otherEntity.currentHP() < 1){
             return;
         }
         if (leftToHit < 25) {
-            notify("You miss the %s.", otherEntity.name());
+            doAttackAction("miss", otherEntity);
         } else if (leftToHit > 25 && leftToHit < 25 + otherEntity.dodge()) {
-            doDeflectAction("dodge", otherEntity);
+            doAttackAction("dodge", otherEntity);
         } else {
             if (leftDamage < 1) {
-                doDeflectAction("deflect", otherEntity);
+                doAttackAction("block", otherEntity);
             } else {
-                doAttackAction("attack", otherEntity, leftDamage);
+                doAttackAction("hit", otherEntity);
+                otherEntity.modifyHP(-leftDamage, "killed by a ");
             }
         }
     }
@@ -780,20 +787,16 @@ public class Player extends BaseEntity {
         }
         tempDamage += bonusRangedDamage;
         int damageAmount = tempDamage - otherEntity.armor();
-        String action;
 
         consumeEquippedAmmunition(otherEntity.x, otherEntity.y);
 
         if (toHitRoll < otherEntity.dodge()) {
-            action = "dodge";
-            doDeflectAction(action, otherEntity);
+            doAttackAction("dodge", otherEntity);
         } else if (damageAmount < 1) {
-            action = "deflect";
-            doDeflectAction(action, otherEntity);
+            doAttackAction("barely scratch", otherEntity);
         } else {
-            action = "attack";
-            doAttackAction(action, otherEntity, damageAmount);
-            otherEntity.modifyHP(-damageAmount, "killed by a " + name());
+            doAttackAction("hit", otherEntity);
+            otherEntity.modifyHP(-damageAmount, "killed by a ");
         }
     }
 

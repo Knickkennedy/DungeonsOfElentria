@@ -1,11 +1,18 @@
-NAME			TYPE	DUR		DICE	MANA	RANGE	CAST	REFL	EFFECT
+NAME				TYPE	DUR		DICE	MANA	RANGE	CAST	REFL	EFFECT			ON-CAST			DEATH
 
-Arcane Blast	MAGIC	1		3D4		3		1		LINE	NO		DAMAGE
-Magic Missiles	MAGIC	1		2D4		10		6		LINE	YES		DAMAGE
+Invisibility		MAGIC	5D6		1D1		5		1		LINE	NO		INVISIBILITY	fade away		by fading away?		
 
-Burning Hands	FIRE	1		1D6		8		1		LINE	NO		DAMAGE
-Flame Bolt		FIRE	1		1D8		15		6		LINE	NO		DAMAGE
+Arcane Blast		MAGIC	1		3D4		3		1		LINE	NO		DAMAGE			sizzle			by overpowering magic!
+Magic Missiles		MAGIC	1		2D4		5		6		LINE	YES		DAMAGE			sizzle			by overpowering magic!
 
-Healing Hands	HEALING	1		1D8		8		1		LINE	NO		HEALING
+Burning Hands		FIRE	1		1D6		3		1		LINE	NO		DAMAGE			burn			burned to a crisp!
+Flame Bolt			FIRE	1		1D8		5		6		LINE	NO		DAMAGE			burn			burned to a crisp!
+Fireball			FIRE	1		2D8		8		1		AOE		NO		DAMAGE			burn			incinerated!
 
-Poison Spit		POISON	2D4		1D2		10		3		LINE	NO		DAMAGE
+Icy Touch			ICE		1		2D3		3		1		LINE	NO		DAMAGE			freeze			splintered into a thousand pieces!
+Ice Bolt			ICE		1		1D8		5		6		LINE	NO		DAMAGE			freeze			shattered into pieces!
+
+Healing Hands		HEALING	1		1D6		3		1		LINE	NO		HEALING			relieved		by overhealing?
+Heal Minor Wounds	HEALING	1		2D4		5		1		LINE	NO		HEALING			better			by overhealing?
+
+Poison Spit			POISON	2D4		1D2		5		3		LINE	NO		DAMAGE			puke			by virulent poisons!

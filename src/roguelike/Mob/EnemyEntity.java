@@ -56,6 +56,9 @@ public class EnemyEntity extends BaseEntity{
                         newPoison.setChanceToProc(Integer.parseInt(tokens[3].trim()));
                         addOffensiveEffect(newPoison);
                     }
+                    if(effect.equalsIgnoreCase("invisibility")){
+                        setInvisible(true);
+                    }
                 }
             }
         }

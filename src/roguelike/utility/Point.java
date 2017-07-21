@@ -1,10 +1,11 @@
 package roguelike.utility;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Point{
+public class Point {
 
 	public static final Point NORTH_WEST = new Point(-1, -1);
 	public static final Point NORTH = new Point(0, -1);
@@ -14,13 +15,15 @@ public class Point{
 	public static final Point SOUTH = new Point(0, 1);
 	public static final Point SOUTH_WEST = new Point(-1, 1);
 	public static final Point WEST = new Point(-1, 0);
+	public static final List <Point> directions = Arrays.asList(NORTH_WEST, NORTH, NORTH_EAST,
+													EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST);
 	public static final Point WAIT = new Point(0, 0);
 
 	public int x;
 	public int y;
 	public Point parent;
 
-	public Point(int x, int y){
+	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -31,31 +34,29 @@ public class Point{
 		parent = p;
 	}
 
-	public void add(Point other){
+	public void add(Point other) {
 		this.x += other.x;
 		this.y += other.y;
 	}
 
-	public void flipHorizontally(){
+	public Point getNeighbor(Point direction){
+		return new Point(x + direction.x, y + direction.y);
+	}
+	public List <Point> neighbors(){
+		List <Point> neighbors = new ArrayList<>();
+		for(Point direction : directions){
+			neighbors.add(getNeighbor(direction));
+		}
+
+		return neighbors;
+	}
+
+	public void flipHorizontally() {
 		this.x *= -1;
 	}
-	public void flipVertically(){
+
+	public void flipVertically() {
 		this.y *= -1;
 	}
 
-	public List<Point> neighbors8() {
-		List<Point> points = new ArrayList<Point>();
-
-		for (int ox = -1; ox < 2; ox++) {
-			for (int oy = -1; oy < 2; oy++) {
-				if (ox == 0 && oy == 0)
-					continue;
-
-				points.add(new Point(x + ox, y + oy));
-			}
-		}
-
-		Collections.shuffle(points);
-		return points;
-	}
 }
