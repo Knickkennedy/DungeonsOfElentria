@@ -57,7 +57,11 @@ public class SelectSpellScreen implements Screen {
         }
 
         if(player.getKnownSpells().size() > letters.indexOf(c) && letters.indexOf(c) > -1 && player.getKnownSpells().get(letters.indexOf(c)) != null){
-            return new SelectDirectionScreen(player, player.getKnownSpells().get(letters.indexOf(c)));
+            if(player.getKnownSpells().get(letters.indexOf(c)).getCastType().equalsIgnoreCase("line")) return new SelectDirectionScreen(player, player.getKnownSpells().get(letters.indexOf(c)));
+            else {
+                player.castSpell(player.getKnownSpells().get(letters.indexOf(c)), Point.WAIT);
+                return null;
+            }
         }
         return this;
     }

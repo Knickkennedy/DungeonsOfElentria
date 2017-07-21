@@ -3,7 +3,7 @@ package roguelike.modifiers;
 import roguelike.Mob.BaseEntity;
 import roguelike.utility.RandomGen;
 
-public class Effect implements EffectInterface{
+public class Effect{
     private int duration, effectValue;
     private double effectChance;
     private String effectType;
