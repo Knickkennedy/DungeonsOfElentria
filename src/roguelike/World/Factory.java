@@ -138,7 +138,6 @@ public class Factory {
             }
         }
 
-        newPlayer.learnNewSpell(getSpell("magic missiles"));
         newPlayer.learnNewSpell(getSpell("flame bolt"));
         newPlayer.learnNewSpell(getSpell("healing hands"));
         newPlayer.learnNewSpell(getSpell("poison spit"));

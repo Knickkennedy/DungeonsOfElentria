@@ -155,6 +155,8 @@ public class Item implements ItemInterface, Comparable <Item>{
 		spell = factory.getSpell(spellName);
 	}
 
+	public Spell getSpell(){ return this.spell; }
+
 	public List <Effect> effects(){ return this.effects; }
 	public void addEffect(Effect effect){ this.effects.add(effect); }
 	

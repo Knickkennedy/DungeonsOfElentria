@@ -197,6 +197,10 @@ public class PlayScreen implements Screen {
                 }
 
             switch (key.getKeyChar()) {
+                case 'c':{
+                    subscreen = new SelectSpellScreen(world.getPlayer());
+                    break;
+                }
                 case 'd': {
                     subscreen = new DropScreen(world.getPlayer());
                     break;
@@ -217,14 +221,14 @@ public class PlayScreen implements Screen {
                     world.getPlayer().pickupItem();
                     break;
                 }
+                case 'r':{
+                    subscreen = new ReadScreen(world.getCurrentLevel().player);
+                    break;
+                }
                 case 't': {
                     if (world.getPlayer().checkIfAmmunitionAndRangedWeaponMatch()) {
                         subscreen = new FireWeaponScreen(world.getCurrentLevel().player);
                     }
-                    break;
-                }
-                case 'c':{
-                    subscreen = new SelectSpellScreen(world.getPlayer());
                     break;
                 }
                 case '>': {

@@ -3,6 +3,7 @@ package roguelike.Mob;
 import roguelike.Items.*;
 import roguelike.World.Factory;
 import roguelike.Level.Level;
+import roguelike.modifiers.Effect;
 import roguelike.utility.RandomGen;
 
 import java.util.ArrayList;
@@ -32,6 +33,18 @@ public class Player extends BaseEntity {
     public char glyph(){
         if(isInvisible()) return '_';
         else return this.glyph;
+    }
+
+    public void read(Item itemToRead){
+        if(itemToRead.itemType().equalsIgnoreCase("book")){
+            learnNewSpell(itemToRead.getSpell());
+            inventory().remove(itemToRead);
+        }
+        else{
+            for(Effect effect : itemToRead.effects()){
+                addEffect(effect);
+            }
+        }
     }
 
     public void setAttribute(String attribute, String value) {
