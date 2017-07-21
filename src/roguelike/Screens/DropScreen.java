@@ -25,7 +25,7 @@ public class DropScreen implements Screen{
 	}
 	
 	public void initializeTempList(){
-		for(Item itemToRead : player.inventory().getInventory()){
+		for(Item itemToRead : player.inventory().getItems()){
 			Integer frequency = tempList.get(itemToRead.name());
 			if(frequency == null){
 				tempList.put(itemToRead.name(), new Integer(1));

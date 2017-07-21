@@ -20,7 +20,7 @@ public class Inventory {
 		return currentWeight;
 	}
 	
-	public List<Item> getInventory(){ return this.inventory; }
+	public List<Item> getItems(){ return this.inventory; }
 	
 	public void add(Item item){
 		if(owner.currentCarryWeight() + item.weight() <= owner.maxCarryWeight()){

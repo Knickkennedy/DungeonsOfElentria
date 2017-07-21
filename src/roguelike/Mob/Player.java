@@ -2,7 +2,6 @@ package roguelike.Mob;
 
 import roguelike.Items.*;
 import roguelike.World.Factory;
-import roguelike.Level.Level;
 import roguelike.modifiers.Effect;
 import roguelike.utility.RandomGen;
 
@@ -562,7 +561,7 @@ public class Player extends BaseEntity {
 
     public void equipRangedAmmunition(Item ammunition) {
         List<Item> tempList = new ArrayList<>();
-        for (Item item : inventory().getInventory()) {
+        for (Item item : inventory().getItems()) {
             if (item.name().equalsIgnoreCase(ammunition.name())) {
                 tempList.add(item);
             }

@@ -28,7 +28,7 @@ public class EquipScreen implements Screen{
 	}
 	
 	public void initializeTempList(){
-		for(Item possibleItems : player.inventory().getInventory()){
+		for(Item possibleItems : player.inventory().getItems()){
 			if(possibleItems.itemType().contains(itemToEquip)){
 				Integer frequency = tempList.get(possibleItems.name());
 				if(frequency == null){

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
+import roguelike.Mob.Player;
 import roguelike.World.World;
 import roguelike.levelBuilding.Tile;
 import roguelike.utility.Point;
@@ -22,6 +23,7 @@ public class PlayScreen implements Screen {
 	private List <String> tempMessages;
 	private Screen subscreen;
 	private World world;
+	private Player player;
 	private FOV fov;
 	private double[][] resistanceMap;
 	
@@ -35,7 +37,7 @@ public class PlayScreen implements Screen {
 		world = new World(screenWidth, mapHeight, messages);
 		fov = new FOV(FOV.SHADOW);
 		}
-	
+
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
 		displayTiles(terminal);

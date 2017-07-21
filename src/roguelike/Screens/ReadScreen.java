@@ -10,16 +10,18 @@ import java.util.*;
 public class ReadScreen implements Screen{
     public Player player;
     public String alphabet = "abcdefghijklmnopqrstuvwxyz";
-    public TreeMap<String, Integer> tempList = new TreeMap <String, Integer> ();
-    public List<Item> useList = new ArrayList<Item>();
+    public TreeMap<String, Integer> tempList;
+    public List<Item> useList;
 
     public ReadScreen(Player player){
         this.player = player;
+        tempList = new TreeMap<>();
+        useList = new ArrayList<>();
         initializeTempList();
     }
 
     public void initializeTempList(){
-        for(Item possibleItems : player.inventory().getInventory()){
+        for(Item possibleItems : player.inventory().getItems()){
             if(possibleItems.itemType().equalsIgnoreCase("book") || possibleItems.itemType().equalsIgnoreCase("scroll")){
                 Integer frequency = tempList.get(possibleItems.name());
                 if(frequency == null){

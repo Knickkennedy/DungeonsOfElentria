@@ -52,6 +52,7 @@ public class World {
 		new playerAI(player, messages);
 		currentLevel.levelNumber = 0;
 		currentLevel.newEntityAtSpecificLocation(player, start.x, start.y);
+		currentLevel.setPlayer(player);
 		mainDungeon.put(currentLevel.levelNumber, currentLevel);
 		mobThreshHold = 25;
 		mobRefreshThreshHold = 15;

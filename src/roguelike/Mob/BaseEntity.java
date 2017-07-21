@@ -412,7 +412,7 @@ public class BaseEntity{
 
     public void dropAllItems() {
         List<Item> tempList = new ArrayList<>();
-        for (Item item : inventory().getInventory()) {
+        for (Item item : inventory().getItems()) {
             tempList.add(item);
         }
 
