@@ -577,7 +577,7 @@ public class BaseEntity{
         Point current = new Point(this.x, this.y);
         Point dir = new Point(direction.x, direction.y);
         if(spell.getManaCost() > currentMana){
-            notify("Nope!");
+            doAction("wiggle fingers helplessly");
         }
         else{
             if(spell.getCastType().equals("LINE")){
@@ -585,13 +585,13 @@ public class BaseEntity{
                 modifyMana(-spell.getManaCost());
             }
             else if(spell.getCastType().equals("AOE")){
-                castAOESpell(spell, current);
+                castAOESpell(spell);
                 modifyMana(-spell.getManaCost());
             }
         }
     }
 
-    public void castAOESpell(Spell spell, Point current){
+    public void castAOESpell(Spell spell){
         for(int x = -spell.getRange(); x <= spell.getRange(); x++){
             for(int y = -spell.getRange(); y <= spell.getRange(); y++){
                 if(x == 0 && y == 0) {
@@ -611,14 +611,14 @@ public class BaseEntity{
 
     public void castLineSpell(Spell spell, Point current, Point dir){
         for (int i = 0; i < spell.getRange(); i++) {
-            current.add(dir);
-            BaseEntity target = level.checkForMob(current.x, current.y);
-            if (target != null) {
-                target.addEffect(spell.getEffect());
+            if (level.tile(current.x + dir.x, current.y + dir.y).glyph() != '#'){
+                current.add(dir);
             }
             if (level.tile(current.x + dir.x, current.y).glyph() == '#') {
                 if (spell.isReflective()) {
+                    current.add(dir);
                     dir.flipHorizontally();
+                    current.x += dir.x;
                     i++;
                 } else {
                     break;
@@ -626,11 +626,17 @@ public class BaseEntity{
             }
             if (level.tile(current.x, current.y + dir.y).glyph() == '#') {
                 if (spell.isReflective()) {
+                    current.add(dir);
                     dir.flipVertically();
+                    current.y += dir.y;
                     i++;
                 } else {
                     break;
                 }
+            }
+            BaseEntity target = level.checkForMob(current.x, current.y);
+            if (target != null) {
+                target.addEffect(spell.getEffect());
             }
         }
     }
