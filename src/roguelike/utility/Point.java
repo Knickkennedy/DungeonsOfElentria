@@ -2,7 +2,6 @@ package roguelike.utility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Point {
@@ -15,7 +14,8 @@ public class Point {
 	public static final Point SOUTH = new Point(0, 1);
 	public static final Point SOUTH_WEST = new Point(-1, 1);
 	public static final Point WEST = new Point(-1, 0);
-	public static final List <Point> directions = Arrays.asList(NORTH_WEST, NORTH, NORTH_EAST,
+	public static final List <Point> cardinal = Arrays.asList(NORTH, EAST, WEST, SOUTH);
+	public static final List <Point> direction = Arrays.asList(NORTH_WEST, NORTH, NORTH_EAST,
 													EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST);
 	public static final Point WAIT = new Point(0, 0);
 
@@ -42,9 +42,10 @@ public class Point {
 	public Point getNeighbor(Point direction){
 		return new Point(x + direction.x, y + direction.y);
 	}
+
 	public List <Point> neighbors(){
 		List <Point> neighbors = new ArrayList<>();
-		for(Point direction : directions){
+		for(Point direction : direction){
 			neighbors.add(getNeighbor(direction));
 		}
 

@@ -151,11 +151,7 @@ public class Level{
 	}
 	
 	public boolean isGround(int x, int y){
-		return ((map[x][y] == Tile.FLOOR) || (map[x][y] == Tile.STAIRS_DOWN)
-				|| (map[x][y] == Tile.STAIRS_UP) || (map[x][y] == Tile.DOOR_OPEN)
-				|| (map[x][y] == Tile.GRASS) || (map[x][y] == Tile.FOREST)
-				|| (map[x][y] == Tile.ROAD) || (map[x][y] == Tile.START)
-				|| (map[x][y] == Tile.CAVE) || (map[x][y] == Tile.WATER)); 
+		return !(map[x][y] == Tile.DOOR_CLOSED || map[x][y] == Tile.WALL || map[x][y] == Tile.PERM_WALL || map[x][y] == Tile.MOUNTAIN);
 	}
 	
 	public Color color(int x, int y){
@@ -234,18 +230,6 @@ public class Level{
 	public boolean isClosedDoor(int x, int y){
 		return map[x][y] == Tile.DOOR_CLOSED;
 	}
-	
-	public boolean isUpStaircase(int x, int y){
-		return map[x][y] == Tile.STAIRS_UP;
-	}
-	
-	public boolean isDownStaircase(int x, int y){
-		return map[x][y] == Tile.STAIRS_DOWN;
-	}
-
-	public int numOfEnemies(){
-		return mobs.size();
-	}
 
 	public void addAtSpecificLocation(Item item, int x, int y){
 		item.x = x;
@@ -259,20 +243,6 @@ public class Level{
 		entity.setLevel(this);
 		entity.getAi().initializePathFinding();
 		mobs.add(entity);
-	}
-	
-	public void addAtEmptyLocation(Item item){
-		int x;
-		int y;
-		do{
-			x = RandomGen.rand(0, width - 1);
-			y = RandomGen.rand(0, height - 1);
-		}
-		while((!isGround(x, y)) || (hasItemAlready(x, y)));
-		
-		item.x = x;
-		item.y = y;
-		items.add(item);
 	}
 	
 	public boolean hasItemAlready(int x, int y){
