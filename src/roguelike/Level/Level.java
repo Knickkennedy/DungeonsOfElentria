@@ -18,7 +18,7 @@ public class Level{
 	public int dangerLevel;
 	public String levelID;
 	public int levelNumber;
-	public Point start, current, cave;
+	public Point start;
 	public List <Point> frontier = new ArrayList <Point> ();
 	public List <Point> toRemove = new ArrayList <Point> ();
 	public List <Point> deadEnds = new ArrayList <Point> ();
@@ -299,7 +299,23 @@ public class Level{
 		stairsUp = new Point(x1, y1);
 		stairsDown = new Point(x2, y2);
 	}
-	
+
+	public void initializeMap(){
+		for (int x = 0; x < this.width; x++){
+			for(int y = 0; y < this.height; y++){
+				map[x][y] = Tile.WALL;
+				connected[x][y] = false;
+				revealed[x][y] = false;
+			}
+		}
+	}
+
+	public void placeRooms(){
+		for(int i = 0; i < numRoomTries; i++){
+			placeRoom();
+		}
+	}
+
 	public void placeAllDoors(){
 		int start = RandomGen.rand(0, rooms.size() - 1);
 		Room tempRoom = rooms.get(start);
@@ -310,20 +326,6 @@ public class Level{
 			removeExtraConnectors();
 		}
 		createExtraDoors();
-	}
-	public void initializeMap(){
-		for (int x = 0; x < this.width; x++){
-			for(int y = 0; y < this.height; y++){
-				map[x][y] = Tile.WALL;
-				connected[x][y] = false;
-				revealed[x][y] = false;
-			}
-		}
-	}
-	public void placeRooms(){
-		for(int i = 0; i < numRoomTries; i++){
-			placeRoom();
-		}
 	}
 	
 	public void createExtraDoors(){
@@ -463,7 +465,19 @@ public class Level{
 			updateFrontier();
 		}
 	}
-	
+
+	public boolean isInBounds(int x, int y){
+		return isHorizontallyInBounds(x) && isVerticallyInBounds(y);
+	}
+
+	public boolean isHorizontallyInBounds(int x){
+		return x > 0 || x < width - 1;
+	}
+
+	public boolean isVerticallyInBounds(int y){
+		return y > 0 || y < height - 1;
+	}
+
 	public void buildFrontier(Point p){
 		if((p.x + 2 <= width - 1) && (p.y - 1 >= 0) && (p.y + 1 <= height - 1)){ // East
 			if(map[p.x + 1][p.y] == Tile.WALL){
