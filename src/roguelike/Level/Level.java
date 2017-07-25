@@ -20,11 +20,9 @@ public class Level{
 	public int levelNumber;
 	public Point start;
 	public List <Point> frontier = new ArrayList <Point> ();
-	public List <Point> toRemove = new ArrayList <Point> ();
 	public List <Point> deadEnds = new ArrayList <Point> ();
 	public List <Point> potentialDoors = new ArrayList <Point> ();
 	public List <Point> connections = new ArrayList <Point> ();
-	public List <String> test = new ArrayList <String> ();
 	public List <Room> rooms = new ArrayList <Room> ();
 	public List <Door> doors = new ArrayList <Door> ();
 	public List <Point> cTR = new ArrayList<Point> ();
@@ -82,11 +80,11 @@ public class Level{
 	public Player getPlayer(){
 		return this.player;
 	}
-	
-	public boolean isWall(int x, int y){
-		return map[x][y] == Tile.WALL || map[x][y] == Tile.PERM_WALL;
+
+	public boolean isWall(Point p){
+		return map[p.x][p.y] == Tile.WALL || map[p.x][p.y] == Tile.PERM_WALL;
 	}
-	
+
 	public void remove(BaseEntity otherEntity){
 		mobs.remove(otherEntity);
 	}
@@ -128,11 +126,6 @@ public class Level{
 	public void removeItem(Item item){
 		items.remove(item);
 	}
-	public int getWidth(){
-		return this.width;}
-	
-	public int getHeight(){
-		return this.height;}
 	
 	public char glyph(int x, int y){
 		BaseEntity Entity = checkForMob(x, y);
@@ -172,11 +165,12 @@ public class Level{
 	
 	public Level buildLevel(){
 		initializeMap();
+		placeRoom();
 		placeRooms();
 		startMaze();
 		findConnections();
-		placeAllDoors();
-		removeAllDeadEnds();
+		/*placeAllDoors();
+		removeAllDeadEnds();*/
 		placeStairs();
 		setPathFinding();
 		return this;}
@@ -317,8 +311,7 @@ public class Level{
 	}
 
 	public void placeAllDoors(){
-		int start = RandomGen.rand(0, rooms.size() - 1);
-		Room tempRoom = rooms.get(start);
+		Room tempRoom = rooms.get(RandomGen.rand(0, rooms.size() - 1));
 		floodFill(tempRoom.centerX, tempRoom.centerY);
 		while(!connections.isEmpty()){
 			findDoors();
@@ -454,16 +447,20 @@ public class Level{
 	}
 	
 	public void generateMaze(int x, int y){
-		Point start = new Point(x, y, null);
-		map[start.x][start.y] = Tile.FLOOR;
+		Point start = new Point(x, y);
 		buildFrontier(start);
+		carvePath(start);
 		updateFrontier();
 		while(!frontier.isEmpty()){
 			Point current = frontier.remove(RandomGen.rand(0, frontier.size() - 1));
-			carvePath(current);
 			buildFrontier(current);
+			carvePath(current);
 			updateFrontier();
 		}
+	}
+
+	public boolean isInBounds(Point p){
+		return isHorizontallyInBounds(p.x) && isVerticallyInBounds(p.y);
 	}
 
 	public boolean isInBounds(int x, int y){
@@ -471,166 +468,57 @@ public class Level{
 	}
 
 	public boolean isHorizontallyInBounds(int x){
-		return x > 0 || x < width - 1;
+		return x > 0 && x < width - 1;
 	}
 
 	public boolean isVerticallyInBounds(int y){
-		return y > 0 || y < height - 1;
+		return y > 0 && y < height - 1;
+	}
+
+	public boolean isDirectionallySolid(Point p, Point direction){
+		List <Point> directionalNeighbors = p.getDirectionalNeighbors(direction);
+		for(Point toCheck : directionalNeighbors){
+			if(isInBounds(toCheck) && !isWall(toCheck)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void buildFrontier(Point p){
-		if((p.x + 2 <= width - 1) && (p.y - 1 >= 0) && (p.y + 1 <= height - 1)){ // East
-			if(map[p.x + 1][p.y] == Tile.WALL){
-				if(map[p.x + 2][p.y] != Tile.FLOOR){
-					if(map[p.x + 1][p.y - 1] != Tile.FLOOR){
-						if(map[p.x + 1][p.y + 1] != Tile.FLOOR){
-							if(map[p.x + 2][p.y + 1] != Tile.FLOOR){
-								if(map[p.x + 2][p.y - 1] != Tile.FLOOR){
-									frontier.add(new Point(p.x + 1, p.y, p));
-								}
-							}
-						}
-					}
+		for(Point direction : Point.cardinal){
+			if(isInBounds(p.getNeighbor(direction))){
+				if(isDirectionallySolid(p, direction)){
+					frontier.add(p.getNeighbor(direction));
 				}
 			}
-		}
-		if((p.x - 2 >= 0) && (p.y - 1 >= 0) && (p.y + 1 <= height - 1)){ // West
-			if(map[p.x - 1][p.y] == Tile.WALL){
-				if(map[p.x - 2][p.y] != Tile.FLOOR){
-					if(map[p.x - 1][p.y - 1] != Tile.FLOOR){
-						if(map[p.x - 1][p.y + 1] != Tile.FLOOR){
-							if(map[p.x - 2][p.y + 1] != Tile.FLOOR){
-								if(map[p.x - 2][p.y - 1] != Tile.FLOOR){
-									frontier.add(new Point(p.x - 1, p.y, p));
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		if((p.x - 1 >= 0) && (p.x + 1 <= width - 1) && (p.y - 2 >= 0)){ // North
-			if(map[p.x][p.y - 1] == Tile.WALL){
-				if(map[p.x][p.y - 2] != Tile.FLOOR){
-					if(map[p.x - 1][p.y - 1] != Tile.FLOOR){
-						if(map[p.x + 1][p.y - 1] != Tile.FLOOR){
-							if(map[p.x + 1][p.y - 2] != Tile.FLOOR){
-								if(map[p.x - 1][p.y - 2] != Tile.FLOOR){
-									frontier.add(new Point(p.x, p.y - 1, p));
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		if((p.x - 1 >= 0) && (p.x + 1 <= width - 1) && (p.y + 2 <= height - 1)){ // South
-			if(map[p.x][p.y + 1] == Tile.WALL){
-				if(map[p.x][p.y + 2] != Tile.FLOOR){
-					if(map[p.x - 1][p.y + 1] != Tile.FLOOR){
-						if(map[p.x + 1][p.y + 1] != Tile.FLOOR){
-							if(map[p.x + 1][p.y + 2] != Tile.FLOOR){
-								if(map[p.x - 1][p.y + 2] != Tile.FLOOR){
-									frontier.add(new Point(p.x, p.y + 1, p));
-								}
-							}
-						}
-					}
-				}
-			}
+			else continue;
 		}
 	}
 	
 	public void updateFrontier(){
-		for(int i = 0; i < frontier.size() - 1; i++){
-			int floorCount = 0;
-			if(frontier.get(i).x > frontier.get(i).parent.x){
-				if(map[frontier.get(i).x + 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x + 1][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x + 1][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
+		List <Point> toRemove = new ArrayList<>();
+		for(Point p : frontier){
+			if(!isValidMazeLocation(p)){
+				toRemove.add(p);
 			}
-			if(frontier.get(i).x < frontier.get(i).parent.x){
-				if(map[frontier.get(i).x + 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-			}
-			if(frontier.get(i).y < frontier.get(i).parent.y){
-				if(map[frontier.get(i).x + 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x + 1][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-			}
-			if(frontier.get(i).y > frontier.get(i).parent.y){
-				if(map[frontier.get(i).x + 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x][frontier.get(i).y - 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x - 1][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-				if(map[frontier.get(i).x + 1][frontier.get(i).y + 1] == Tile.FLOOR){
-					floorCount++;
-				}
-			}
-				if(floorCount > 1){
-					toRemove.add(frontier.get(i));
-				}
 		}
-		for(Point p : toRemove){
-			frontier.remove(p);
+		for(Point point : toRemove){
+			frontier.remove(point);
 		}
+	}
+
+	public boolean isValidMazeLocation(Point p){
+		List <Point> neighbors = p.getFrontierNeighbors(p.directionFromParent);
+		int floorCount = 0;
+		for(Point point : neighbors){
+			if(isInBounds(point)) {
+				if (tile(point) == Tile.FLOOR) {
+					floorCount++;
+				}
+			}
+		}
+		return floorCount == 0;
 	}
 	
 	public void carvePath(Point s){
@@ -645,8 +533,8 @@ public class Level{
 		if(w % 2 == 0){
 			w = w + 1;
 		}
-		int x = RandomGen.rand(1, (this.width - w - 2));
-		int y = RandomGen.rand(1, (this.height - h - 2));
+		int x = RandomGen.rand(0, (this.width - w - 2));
+		int y = RandomGen.rand(0, (this.height - h - 2));
 		if(x % 2 == 0){
 			x += 1;
 		}
@@ -724,7 +612,11 @@ public class Level{
 		}
 		deadEnds.clear();
 	}
-	
+
+	public Tile tile(Point p){
+		return map[p.x][p.y];
+	}
+
 	public Tile tile(int x, int y){
 		if (x < 0 || x >= width || y < 0 || y >= height)
 			return Tile.BOUNDS;

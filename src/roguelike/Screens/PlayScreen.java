@@ -118,7 +118,13 @@ public class PlayScreen implements Screen {
 		double[][] light;
 		light = fov.calculateFOV(resistanceMap, world.getPlayer().x, world.getPlayer().y, world.getPlayer().visionRadius());
 
-        for (int x = 0; x < screenWidth; x++) {
+		for(int x = 0; x < screenWidth; x++){
+		    for(int y = 0; y < mapHeight; y++){
+                terminal.write(world.getCurrentLevel().glyph(x, y), x, y + messageBuffer, world.getCurrentLevel().color(x, y));
+            }
+        }
+
+        /*for (int x = 0; x < screenWidth; x++) {
             for (int y = 0; y < mapHeight; y++) {
                 if (light[x][y] > 0.0f || world.getPlayer().canSee(x, y)) {
                     terminal.write(world.getCurrentLevel().glyph(x, y), x, y + messageBuffer, world.getCurrentLevel().color(x, y));
@@ -129,7 +135,7 @@ public class PlayScreen implements Screen {
                     }
                 }
             }
-        }
+        }*/
     }
 	
 	public void doAction(Point currentDirection){
@@ -191,6 +197,9 @@ public class PlayScreen implements Screen {
                         currentDirection = Point.WAIT;
                         doAction(currentDirection);
                         break;
+                    }
+                    case KeyEvent.VK_ENTER:{
+                        return new WinScreen();
                     }
                     default: {
                         currentDirection = Point.WAIT;

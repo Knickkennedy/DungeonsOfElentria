@@ -1,5 +1,7 @@
 package roguelike.levelBuilding;
 
+import roguelike.utility.RandomGen;
+
 public class Room{
 	// The four corners of the room
 	public int x1;
@@ -94,7 +96,7 @@ public class Room{
 	}
 	
 	public boolean intersects(Room newRoom){
-		return (this.x1 <= newRoom.getX2() + 1 && this.x2 + 1 >= newRoom.getX1()
-				&& this.y1 <= newRoom.getY2() + 1 && this.getY2() + 1 >= newRoom.getY1());
+		return (this.x1 <= newRoom.getX2() + RandomGen.rand(3, 5) && this.x2 + RandomGen.rand(3, 5) >= newRoom.getX1()
+				&& this.y1 <= newRoom.getY2() + RandomGen.rand(3, 5) && this.getY2() + RandomGen.rand(3, 5) >= newRoom.getY1());
 	}
 }

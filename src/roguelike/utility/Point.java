@@ -21,17 +21,17 @@ public class Point {
 
 	public int x;
 	public int y;
-	public Point parent;
+	public Point directionFromParent;
 
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	public Point(int x, int y, Point p) {
+	public Point(int x, int y, Point directionFromParent){
 		this.x = x;
 		this.y = y;
-		parent = p;
+		this.directionFromParent = directionFromParent;
 	}
 
 	public void add(Point other) {
@@ -40,16 +40,144 @@ public class Point {
 	}
 
 	public Point getNeighbor(Point direction){
-		return new Point(x + direction.x, y + direction.y);
+
+		return new Point(x + direction.x, y + direction.y, direction);
 	}
 
-	public List <Point> neighbors(){
+	public List <Point> cardinalNeighbors(){
 		List <Point> neighbors = new ArrayList<>();
-		for(Point direction : direction){
+		for(Point direction : cardinal){
 			neighbors.add(getNeighbor(direction));
 		}
+		return neighbors;
+	}
+
+	public List <Point> getDirectionalNeighbors(Point direction){
+
+		if(direction.equals(NORTH)) return getNorthNeighbors();
+		if(direction.equals(SOUTH)) return getSouthNeighbors();
+		if(direction.equals(EAST)) return getEastNeighbors();
+		if(direction.equals(WEST)) return getWestNeighbors();
+
+		return null;
+	}
+
+	public List <Point> getFrontierNeighbors(Point direction){
+
+		if(direction.equals(NORTH)) return getNorth();
+		if(direction.equals(SOUTH)) return getSouth();
+		if(direction.equals(EAST)) return getEast();
+		if(direction.equals(WEST)) return getWest();
+
+		return null;
+	}
+
+	public List <Point> getNorth(){
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(WEST));
+		neighbors.add(getNeighbor(EAST));
+		neighbors.add(getNeighbor(NORTH));
+		neighbors.add(getNeighbor(NORTH_EAST));
+		neighbors.add(getNeighbor(NORTH_WEST));
 
 		return neighbors;
+	}
+
+	public List <Point> getSouth(){
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(WEST));
+		neighbors.add(getNeighbor(EAST));
+		neighbors.add(getNeighbor(SOUTH));
+		neighbors.add(getNeighbor(SOUTH_EAST));
+		neighbors.add(getNeighbor(SOUTH_WEST));
+
+		return neighbors;
+	}
+
+	public List <Point> getEast(){
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(NORTH));
+		neighbors.add(getNeighbor(EAST));
+		neighbors.add(getNeighbor(SOUTH));
+		neighbors.add(getNeighbor(SOUTH_EAST));
+		neighbors.add(getNeighbor(NORTH_EAST));
+
+		return neighbors;
+	}
+
+	public List <Point> getWest(){
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(NORTH));
+		neighbors.add(getNeighbor(WEST));
+		neighbors.add(getNeighbor(SOUTH));
+		neighbors.add(getNeighbor(SOUTH_WEST));
+		neighbors.add(getNeighbor(NORTH_WEST));
+
+		return neighbors;
+	}
+
+	public List <Point> getWestNeighbors(){
+
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(WEST));
+		neighbors.add(getNeighbor(NORTH_WEST));
+		neighbors.add(getNeighbor(SOUTH_WEST));
+		neighbors.add(new Point(this.x - 2, this.y));
+		neighbors.add(new Point(this.x - 2, this.y - 1));
+		neighbors.add(new Point(this.x - 2, this.y + 1));
+
+		return neighbors;
+	}
+
+	public List <Point> getEastNeighbors(){
+
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(EAST));
+		neighbors.add(getNeighbor(NORTH_EAST));
+		neighbors.add(getNeighbor(SOUTH_EAST));
+		neighbors.add(new Point(this.x + 2, this.y));
+		neighbors.add(new Point(this.x + 2, this.y - 1));
+		neighbors.add(new Point(this.x + 2, this.y + 1));
+
+		return neighbors;
+	}
+
+	public List <Point> getSouthNeighbors(){
+
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(SOUTH));
+		neighbors.add(getNeighbor(SOUTH_WEST));
+		neighbors.add(getNeighbor(SOUTH_EAST));
+		neighbors.add(new Point(this.x, this.y + 2));
+		neighbors.add(new Point(this.x - 1, this.y + 2));
+		neighbors.add(new Point(this.x + 1, this.y + 2));
+
+		return neighbors;
+	}
+
+	public List <Point> getNorthNeighbors(){
+
+		List <Point> neighbors = new ArrayList<>();
+		neighbors.add(getNeighbor(NORTH));
+		neighbors.add(getNeighbor(NORTH_WEST));
+		neighbors.add(getNeighbor(NORTH_EAST));
+		neighbors.add(new Point(this.x, this.y - 2));
+		neighbors.add(new Point(this.x - 1, this.y - 2));
+		neighbors.add(new Point(this.x + 1, this.y - 2));
+
+		return neighbors;
+	}
+
+	@Override
+	public String toString(){
+		return String.format("(%s, %s)", this.x, this.y);
+	}
+
+	@Override
+	public boolean equals(Object obj){
+
+		Point p = (Point)obj;
+		return this.x == p.x && this.y == p.y;
 	}
 
 	public void flipHorizontally() {
