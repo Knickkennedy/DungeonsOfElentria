@@ -24,7 +24,6 @@ public class Level{
 	public List <Point> potentialDoors = new ArrayList <Point> ();
 	public List <Point> connections = new ArrayList <Point> ();
 	public List <Room> rooms = new ArrayList <Room> ();
-	public List <Door> doors = new ArrayList <Door> ();
 	public List <Point> cTR = new ArrayList<Point> ();
 	public List <BaseEntity> mobs = new ArrayList <BaseEntity> ();
 	public List <Point> extraDoors = new ArrayList <Point> ();
@@ -45,8 +44,8 @@ public class Level{
 		this.levelNumber = 0;
 		map = new Tile[width][height];
 		this.minRoomSize = 3;
-		this.maxRoomSize = 9;
-		this.numRoomTries = 25;
+		this.maxRoomSize = 7;
+		this.numRoomTries = 100;
 		this.connected = new boolean[width][height];
 		this.roomFlag = new boolean[width][height];
 		this.revealed = new boolean[width][height];
@@ -63,7 +62,6 @@ public class Level{
 		this.levelID = levelID;
 		stairsUp = findStairsUp();
 		stairsDown = findStairsDown();
-		initializeDoors();
 		setPathFinding();
 	}
 
@@ -93,17 +91,6 @@ public class Level{
 		List <BaseEntity> toUpdate = new ArrayList <> (mobs);
 		for(BaseEntity bE : toUpdate){
 			bE.update();
-		}
-	}
-
-	public void initializeDoors(){
-		for(int x = 0; x < width; x++){
-			for(int y = 0; y < height; y++){
-				if(tile(x, y).glyph() == '+'){
-					Door newDoor = new Door(x, y);
-					doors.add(newDoor);
-				}
-			}
 		}
 	}
 
@@ -169,8 +156,8 @@ public class Level{
 		placeRooms();
 		startMaze();
 		findConnections();
-		/*placeAllDoors();
-		removeAllDeadEnds();*/
+		placeAllDoors();
+		removeAllDeadEnds();
 		placeStairs();
 		setPathFinding();
 		return this;}
@@ -323,28 +310,15 @@ public class Level{
 	
 	public void createExtraDoors(){
 		for(Point p : extraDoors){
-			boolean failed = false;
-			Door newDoor = new Door(p.x, p.y);
-			for(Door d : doors){
-				if(newDoor.overlaps(d)){
-					failed = true;
-					break;
-				}
+			map[p.x][p.y] = Tile.DOOR_CLOSED;
 			}
-			if(!failed){
-				map[p.x][p.y] = newDoor.close();
-				doors.add(newDoor);
-			}
-				
-		}
 	}
+
 	public void placeDoor(){
-		int door = RandomGen.rand(0, potentialDoors.size() - 1);
-		Door newDoor = new Door(potentialDoors.get(door).x, potentialDoors.get(door).y);
-		map[potentialDoors.get(door).x][potentialDoors.get(door).y] = newDoor.close();
+		Point door = potentialDoors.get(RandomGen.rand(0, potentialDoors.size() - 1));
+		map[door.x][door.y] = Tile.DOOR_CLOSED;
 		potentialDoors.clear();
-		doors.add(newDoor);
-		floodFill(newDoor.x, newDoor.y);
+		floodFill(door.x, door.y);
 	}
 	public void findDoors(){
 		Collections.shuffle(connections);
@@ -364,23 +338,12 @@ public class Level{
 		}
 	}
 	public void removeExtraConnectors(){
-		Collections.shuffle(connections);
 		for(Point p : connections){
 			if(connected[p.x - 1][p.y] && connected[p.x + 1][p.y]){
-				double saveChance = Math.random();
 				cTR.add(p);
-				if(saveChance > .95){
-					extraDoors.add(p);
-				}
-				continue;
 			}
 			if(connected[p.x][p.y - 1] && connected[p.x][p.y + 1]){
-				double saveChance = Math.random();
 				cTR.add(p);
-				if(saveChance > .95){
-					extraDoors.add(p);
-				}
-				continue;	
 			}
 		}
 		for(Point p : cTR){

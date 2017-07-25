@@ -140,7 +140,7 @@ public class PlayScreen implements Screen {
 	
 	public void doAction(Point currentDirection){
 		if(world.getCurrentLevel().isClosedDoor(world.getPlayer().x + currentDirection.x, world.getPlayer().y + currentDirection.y)){
-			subscreen = new OpenDoorDialog(world.getCurrentLevel(), currentDirection.x, currentDirection.y);
+			subscreen = new OpenDoorDialog(world.getCurrentLevel(), world.getPlayer().x + currentDirection.x, world.getPlayer().y + currentDirection.y);
 		}
 		else{
 			world.getPlayer().move(currentDirection.x, currentDirection.y);

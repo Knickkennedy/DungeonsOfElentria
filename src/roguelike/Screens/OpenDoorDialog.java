@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import asciiPanel.AsciiPanel;
 import roguelike.Level.Level;
 import roguelike.levelBuilding.Door;
+import roguelike.levelBuilding.Tile;
 
 public class OpenDoorDialog implements Screen{
 	public int x, y;
@@ -17,7 +18,7 @@ public class OpenDoorDialog implements Screen{
 	}
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.writeCenter("Open this door? (y/n)", 28);
+		terminal.writeCenter("Open this door? (y/n)", PlayScreen.messageBuffer - 1);
 	}
 
 	@Override
@@ -25,12 +26,8 @@ public class OpenDoorDialog implements Screen{
 		switch(key.getKeyChar()){
 		case 'y':{
 			level.player.notify("You open the door.");
-			for(Door d : level.doors){
-				if(d.x == level.player.x + this.x && d.y == level.player.y + this.y){
-					level.map[level.player.x + this.x][level.player.y + this.y] = d.open();
-					level.setPathFinding();
-				}
-			}
+			level.map[x][y] = Tile.DOOR_OPEN;
+			level.setPathFinding();
 			break;
 		}
 		case 'n':{
