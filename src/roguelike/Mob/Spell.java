@@ -1,7 +1,6 @@
-package roguelike.Mob;
+package roguelike.mob;
 
 import roguelike.modifiers.*;
-import roguelike.utility.RandomGen;
 
 public class Spell {
     private String name;

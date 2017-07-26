@@ -1,12 +1,11 @@
-package roguelike.Level;
+package roguelike.level;
 
 import java.awt.Color;
 import java.util.*;
 import roguelike.utility.*;
-import roguelike.Items.*;
-import roguelike.Mob.BaseEntity;
-import roguelike.Mob.Player;
-import roguelike.levelBuilding.*;
+import roguelike.items.*;
+import roguelike.mob.BaseEntity;
+import roguelike.mob.Player;
 
 public class Level{
 	public Tile[][] map;
@@ -150,7 +149,7 @@ public class Level{
 		return tile(x, y).color();
 	}
 	
-	public Level buildLevel(){
+	public Level buildStandardLevel(){
 		initializeMap();
 		placeRoom();
 		placeRooms();
@@ -303,22 +302,38 @@ public class Level{
 		while(!connections.isEmpty()){
 			findDoors();
 			placeDoor();
+			createExtraDoors();
 			removeExtraConnectors();
 		}
-		createExtraDoors();
 	}
 	
 	public void createExtraDoors(){
-		for(Point p : extraDoors){
-			map[p.x][p.y] = Tile.DOOR_CLOSED;
+		Collections.shuffle(extraDoors);
+		for(int i = 0; i < RandomGen.rand(1, 3); i++){
+			Point check = extraDoors.get(RandomGen.rand(0, extraDoors.size() - 1));
+			if(!hasDoorNeighbor(check)){
+				map[check.x][check.y] = Tile.DOOR_CLOSED;
 			}
+		}
+		extraDoors.clear();
+	}
+
+	public boolean hasDoorNeighbor(Point p){
+		for(Point direction : Point.cardinal){
+			if(tile(p.getNeighbor(direction)) == Tile.DOOR_CLOSED) return true;
+		}
+		return false;
 	}
 
 	public void placeDoor(){
 		Point door = potentialDoors.get(RandomGen.rand(0, potentialDoors.size() - 1));
+		while (hasDoorNeighbor(door)) {
+			door = potentialDoors.get(RandomGen.rand(0, potentialDoors.size() - 1));
+		}
 		map[door.x][door.y] = Tile.DOOR_CLOSED;
-		potentialDoors.clear();
 		floodFill(door.x, door.y);
+		extraDoors.addAll(potentialDoors);
+		potentialDoors.clear();
 	}
 	public void findDoors(){
 		Collections.shuffle(connections);

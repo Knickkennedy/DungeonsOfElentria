@@ -1,12 +1,12 @@
-package roguelike.World;
+package roguelike.world;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 import roguelike.AI.playerAI;
-import roguelike.Level.Level;
-import roguelike.Mob.EnemyEntity;
-import roguelike.Mob.Player;
-import roguelike.levelBuilding.Tile;
+import roguelike.level.Level;
+import roguelike.mob.EnemyEntity;
+import roguelike.mob.Player;
+import roguelike.level.Tile;
 import roguelike.utility.Point;
 import roguelike.utility.RandomGen;
 
@@ -232,7 +232,7 @@ public class World {
         }
 		else{
 			Level tempLevel = new Level(screenWidth, mapHeight);
-			tempLevel.buildLevel();
+			tempLevel.buildStandardLevel();
 			tempLevel.setPlayer(player);
 			tempLevel.addAtUpStaircase(player);
 			currentLevel.remove(player);

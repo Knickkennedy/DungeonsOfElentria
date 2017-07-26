@@ -1,9 +1,9 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Mob.Player;
+import roguelike.mob.Player;
 import roguelike.utility.Point;
 import squidpony.squidmath.Bresenham;
 import squidpony.squidmath.Coord;

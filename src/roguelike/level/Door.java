@@ -1,4 +1,4 @@
-package roguelike.levelBuilding;
+package roguelike.level;
 
 public class Door {
 	public int x;

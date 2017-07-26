@@ -1,10 +1,10 @@
-package roguelike.Items;
+package roguelike.items;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import roguelike.Mob.BaseEntity;
+import roguelike.mob.BaseEntity;
 
 public class Inventory {
 	private List <Item> inventory;

@@ -1,8 +1,7 @@
 package roguelike.AI;
 
-import roguelike.AI.BaseAI;
-import roguelike.Mob.BaseEntity;
-import roguelike.Mob.Player;
+import roguelike.mob.BaseEntity;
+import roguelike.mob.Player;
 
 public class ElenaAI extends BaseAI{
     Player player;

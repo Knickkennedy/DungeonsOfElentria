@@ -1,8 +1,8 @@
 package roguelike.AI;
 
 import java.util.*;
-import roguelike.Level.Level;
-import roguelike.Mob.BaseEntity;
+import roguelike.level.Level;
+import roguelike.mob.BaseEntity;
 
 public class playerAI extends BaseAI{
 	private List <String> messages;

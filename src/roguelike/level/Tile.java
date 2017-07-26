@@ -1,8 +1,8 @@
-package roguelike.levelBuilding;
+package roguelike.level;
 
 import java.awt.Color;
-import asciiPanel.AsciiPanel;
-import roguelike.Mob.Colors;
+
+import roguelike.mob.Colors;
 
 public enum Tile {
 	WATER('=', Colors.getColor("blue"), "water"),

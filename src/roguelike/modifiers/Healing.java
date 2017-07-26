@@ -1,6 +1,6 @@
 package roguelike.modifiers;
 
-import roguelike.Mob.BaseEntity;
+import roguelike.mob.BaseEntity;
 
 public class Healing extends Effect {
 	

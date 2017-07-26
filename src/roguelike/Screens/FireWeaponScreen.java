@@ -1,9 +1,8 @@
-package roguelike.Screens;
+package roguelike.screens;
 
-import asciiPanel.AsciiPanel;
-import roguelike.Mob.BaseEntity;
-import roguelike.Mob.Player;
-import roguelike.levelBuilding.Tile;
+import roguelike.mob.BaseEntity;
+import roguelike.mob.Player;
+import roguelike.level.Tile;
 import squidpony.squidmath.Coord;
 
 public class FireWeaponScreen extends TargetingScreen{

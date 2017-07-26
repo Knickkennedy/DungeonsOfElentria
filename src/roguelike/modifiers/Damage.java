@@ -1,6 +1,6 @@
 package roguelike.modifiers;
 
-import roguelike.Mob.BaseEntity;
+import roguelike.mob.BaseEntity;
 
 public class Damage extends Effect{
     public Damage(String eType, String onCast, String onUpdate, String onEnd, String killMessage, int durNumDice, int durDiceSize, int healNumDice, int healDiceSize){

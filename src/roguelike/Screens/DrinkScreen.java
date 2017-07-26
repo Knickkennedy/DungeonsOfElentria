@@ -1,4 +1,4 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Items.Item;
-import roguelike.Mob.Player;
+import roguelike.items.Item;
+import roguelike.mob.Player;
 
 public class DrinkScreen implements Screen{
 	public Player player;

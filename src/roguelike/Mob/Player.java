@@ -1,7 +1,7 @@
-package roguelike.Mob;
+package roguelike.mob;
 
-import roguelike.Items.*;
-import roguelike.World.Factory;
+import roguelike.items.*;
+import roguelike.world.Factory;
 import roguelike.modifiers.Effect;
 import roguelike.utility.RandomGen;
 

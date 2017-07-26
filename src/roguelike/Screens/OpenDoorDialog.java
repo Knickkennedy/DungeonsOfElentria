@@ -1,11 +1,10 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Level.Level;
-import roguelike.levelBuilding.Door;
-import roguelike.levelBuilding.Tile;
+import roguelike.level.Level;
+import roguelike.level.Tile;
 
 public class OpenDoorDialog implements Screen{
 	public int x, y;
@@ -28,14 +27,14 @@ public class OpenDoorDialog implements Screen{
 			level.player.notify("You open the door.");
 			level.map[x][y] = Tile.DOOR_OPEN;
 			level.setPathFinding();
-			break;
+			return null;
 		}
 		case 'n':{
-			level.player.notify("You decide to not open the door."); 
-		} break;
+			level.player.notify("You decide to not open the door.");
+			return null;
 		}
-		level.update();
-		return null;
+		}
+		return this;
 	}
 	
 }

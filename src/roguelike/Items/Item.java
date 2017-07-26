@@ -1,19 +1,16 @@
-package roguelike.Items;
+package roguelike.items;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import asciiPanel.AsciiPanel;
-import roguelike.Mob.BaseEntity;
-import roguelike.Mob.Colors;
-import roguelike.Mob.Spell;
-import roguelike.World.Factory;
+import roguelike.mob.BaseEntity;
+import roguelike.mob.Colors;
+import roguelike.mob.Spell;
+import roguelike.world.Factory;
 import roguelike.modifiers.Effect;
 import roguelike.modifiers.Healing;
 import roguelike.modifiers.Poison;
-import roguelike.utility.RandomGen;
 
 public class Item implements ItemInterface, Comparable <Item>{
 	private String name, appearance, itemType, onUse, onUpdate, onEnd;

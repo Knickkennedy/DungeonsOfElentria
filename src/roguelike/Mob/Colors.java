@@ -1,6 +1,4 @@
-package roguelike.Mob;
-
-import asciiPanel.AsciiPanel;
+package roguelike.mob;
 
 import java.awt.*;
 import java.util.HashMap;

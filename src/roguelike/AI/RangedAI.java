@@ -1,7 +1,7 @@
 package roguelike.AI;
 
-import roguelike.Mob.Player;
-import roguelike.Mob.EnemyEntity;
+import roguelike.mob.Player;
+import roguelike.mob.EnemyEntity;
 
 public class RangedAI extends BaseAI{
 

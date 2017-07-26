@@ -1,14 +1,14 @@
-package roguelike.Mob;
+package roguelike.mob;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import roguelike.AI.BaseAI;
-import roguelike.Items.Item;
-import roguelike.Items.Inventory;
-import roguelike.Level.Level;
-import roguelike.levelBuilding.Tile;
+import roguelike.items.Item;
+import roguelike.items.Inventory;
+import roguelike.level.Level;
+import roguelike.level.Tile;
 import roguelike.modifiers.*;
 import roguelike.utility.Point;
 import roguelike.utility.RandomGen;

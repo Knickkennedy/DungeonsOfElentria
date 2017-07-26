@@ -1,13 +1,13 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Mob.Player;
-import roguelike.World.World;
-import roguelike.levelBuilding.Tile;
+import roguelike.mob.Player;
+import roguelike.world.World;
+import roguelike.level.Tile;
 import roguelike.utility.Point;
 import squidpony.squidgrid.FOV;
 

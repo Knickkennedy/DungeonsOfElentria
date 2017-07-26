@@ -1,14 +1,14 @@
-package roguelike.Applications;
+package roguelike.applications;
 
 import javax.swing.JFrame;
 
 import asciiPanel.AsciiFont;
 import asciiPanel.AsciiPanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import roguelike.Mob.Colors;
-import roguelike.Screens.*;
+import roguelike.mob.Colors;
+import roguelike.screens.*;
 
 public class ApplicationMain extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1060623638149583738L;
@@ -39,7 +39,7 @@ public class ApplicationMain extends JFrame implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) { }
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		ApplicationMain app = new ApplicationMain();
 		Colors.initializeColors();
 		app.terminal = new AsciiPanel(88, 32, AsciiFont.CP437_9x16);
@@ -50,5 +50,6 @@ public class ApplicationMain extends JFrame implements KeyListener {
 		app.repaint();
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.setVisible(true);
+
 	}
 }

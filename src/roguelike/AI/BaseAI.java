@@ -1,14 +1,14 @@
 package roguelike.AI;
 
-import roguelike.levelBuilding.*;
+import roguelike.level.Door;
 import roguelike.utility.*;
 import squidpony.squidai.DijkstraMap;
 import squidpony.squidmath.Coord;
 
 import java.util.ArrayList;
 
-import roguelike.Level.Level;
-import roguelike.Mob.BaseEntity;
+import roguelike.level.Level;
+import roguelike.mob.BaseEntity;
 
 public class BaseAI {
 	protected BaseEntity mob;

@@ -1,4 +1,4 @@
-package roguelike.levelBuilding;
+package roguelike.level;
 
 import roguelike.utility.RandomGen;
 

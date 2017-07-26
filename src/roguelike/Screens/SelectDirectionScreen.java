@@ -1,8 +1,8 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Mob.Player;
-import roguelike.Mob.Spell;
+import roguelike.mob.Player;
+import roguelike.mob.Spell;
 import roguelike.utility.Point;
 
 import java.awt.event.KeyEvent;

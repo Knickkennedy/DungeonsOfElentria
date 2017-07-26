@@ -1,9 +1,8 @@
-package roguelike.Mob;
+package roguelike.mob;
 
 import roguelike.AI.*;
-import roguelike.Items.Item;
-import roguelike.World.Factory;
-import roguelike.Level.Level;
+import roguelike.items.Item;
+import roguelike.world.Factory;
 import roguelike.modifiers.*;
 import roguelike.utility.RandomGen;
 

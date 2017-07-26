@@ -1,7 +1,7 @@
 package roguelike.AI;
 
-import roguelike.Mob.EnemyEntity;
-import roguelike.Mob.Player;
+import roguelike.mob.EnemyEntity;
+import roguelike.mob.Player;
 
 public class AggressiveAI extends BaseAI{
 	

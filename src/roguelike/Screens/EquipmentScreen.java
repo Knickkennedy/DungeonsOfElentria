@@ -1,12 +1,11 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Mob.Player;
+import roguelike.mob.Player;
 
 public class EquipmentScreen implements Screen{
 	public Player player;

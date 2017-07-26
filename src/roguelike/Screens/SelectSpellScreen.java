@@ -1,12 +1,10 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Mob.Player;
-import roguelike.Mob.Spell;
+import roguelike.mob.Player;
 import roguelike.utility.Point;
 
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

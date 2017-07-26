@@ -1,4 +1,4 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import asciiPanel.AsciiPanel;
 import java.util.List;

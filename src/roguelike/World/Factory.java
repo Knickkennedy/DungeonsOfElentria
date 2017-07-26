@@ -1,4 +1,4 @@
-package roguelike.World;
+package roguelike.world;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import roguelike.Items.Item;
-import roguelike.Mob.*;
+import roguelike.items.Item;
+import roguelike.mob.*;
 
 public class Factory {
 	private String itemFileName = "/Items.txt";

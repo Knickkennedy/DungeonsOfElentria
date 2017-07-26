@@ -1,4 +1,4 @@
-package roguelike.Screens;
+package roguelike.screens;
 
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Items.*;
-import roguelike.Mob.Player;
+import roguelike.items.*;
+import roguelike.mob.Player;
 
 public class InventoryScreen implements Screen{
 	private Player player;
