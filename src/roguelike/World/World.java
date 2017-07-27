@@ -1,14 +1,13 @@
 package roguelike.world;
-import java.io.FileNotFoundException;
-import java.util.*;
-
 import roguelike.AI.playerAI;
 import roguelike.level.Level;
+import roguelike.level.Tile;
 import roguelike.mob.EnemyEntity;
 import roguelike.mob.Player;
-import roguelike.level.Tile;
 import roguelike.utility.Point;
 import roguelike.utility.RandomGen;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class World {
 	public int screenWidth, mapHeight;
