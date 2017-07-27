@@ -123,12 +123,12 @@ public @Data class BaseEntity{
     public void pickupItem() {
         Item itemToPickUp = this.getLevel().checkItems(this.x, this.y);
         if (itemToPickUp != null) {
-            if (currentCarryWeight() + itemToPickUp.weight() < getMaxCarryWeight()) {
+            if (currentCarryWeight() + itemToPickUp.getWeight() < getMaxCarryWeight()) {
                 doAction("pick up", itemToPickUp);
                 getInventory().add(itemToPickUp);
                 this.getLevel().removeItem(itemToPickUp);
             } else {
-                this.notify("You are carrying too much to pick up the %s.", itemToPickUp.name());
+                this.notify("You are carrying too much to pick up the %s.", itemToPickUp.getName());
             }
         } else {
             this.notify("There is nothing to pick up here.");
@@ -279,33 +279,33 @@ public @Data class BaseEntity{
     public void doAction(String message, Item itemToInteractWith){
         for(BaseEntity entity : level.mobs) {
             if(entity == this) {
-                if(itemToInteractWith.name().endsWith("s")){
-                    if (beginsWithVowel(itemToInteractWith.name())) {
-                        notify("You %s %s.", message, itemToInteractWith.name());
+                if(itemToInteractWith.getName().endsWith("s")){
+                    if (beginsWithVowel(itemToInteractWith.getName())) {
+                        notify("You %s %s.", message, itemToInteractWith.getName());
                     } else {
-                        notify("You %s %s.", message, itemToInteractWith.name());
+                        notify("You %s %s.", message, itemToInteractWith.getName());
                     }
                 }else {
-                    if (beginsWithVowel(itemToInteractWith.name())) {
-                        notify("You %s an %s.", message, itemToInteractWith.name());
+                    if (beginsWithVowel(itemToInteractWith.getName())) {
+                        notify("You %s an %s.", message, itemToInteractWith.getName());
                     } else {
-                        notify("You %s a %s.", message, itemToInteractWith.name());
+                        notify("You %s a %s.", message, itemToInteractWith.getName());
                     }
                 }
             }
             else{
-                if(itemToInteractWith.name().endsWith("s")){
-                    if (beginsWithVowel(itemToInteractWith.name())) {
-                        entity.notify("The %s %s %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                if(itemToInteractWith.getName().endsWith("s")){
+                    if (beginsWithVowel(itemToInteractWith.getName())) {
+                        entity.notify("The %s %s %s.", name, makeSecondPerson(message), itemToInteractWith.getName());
                     } else {
-                        entity.notify("The %s %s %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                        entity.notify("The %s %s %s.", name, makeSecondPerson(message), itemToInteractWith.getName());
                     }
                 }
                 else {
-                    if (beginsWithVowel(itemToInteractWith.name())) {
-                        entity.notify("The %s %s an %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                    if (beginsWithVowel(itemToInteractWith.getName())) {
+                        entity.notify("The %s %s an %s.", name, makeSecondPerson(message), itemToInteractWith.getName());
                     } else {
-                        entity.notify("The %s %s a %s.", name, makeSecondPerson(message), itemToInteractWith.name());
+                        entity.notify("The %s %s a %s.", name, makeSecondPerson(message), itemToInteractWith.getName());
                     }
                 }
             }
@@ -469,7 +469,7 @@ public @Data class BaseEntity{
     }
 
     public void drink(Item item) {
-        doAction("drink a " + item.name());
+        doAction("drink a " + item.getName());
         consume(item);
     }
 

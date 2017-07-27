@@ -1,5 +1,6 @@
 package roguelike.mob;
 
+import lombok.Data;
 import roguelike.items.*;
 import roguelike.world.Factory;
 import roguelike.modifiers.Effect;
@@ -8,7 +9,7 @@ import roguelike.utility.RandomGen;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends BaseEntity {
+public @Data class Player extends BaseEntity {
 
     private int strength, constitution, dexterity, intelligence, wisdom, charisma, perception;
     private int bonusToHit, leftHandDamage, rightHandDamage, bonusToDamage, leftHandNumberOfDice, rightHandNumberOfDice, rangedDamage, bonusRangedDamage, bonusRangedToHit, rangedNumberOfDice;
@@ -35,7 +36,7 @@ public class Player extends BaseEntity {
     }
 
     public void read(Item itemToRead){
-        if(itemToRead.itemType().equalsIgnoreCase("book")){
+        if(itemToRead.getItemType().equalsIgnoreCase("book")){
             learnNewSpell(itemToRead.getSpell());
             getInventory().remove(itemToRead);
         }
@@ -166,156 +167,44 @@ public class Player extends BaseEntity {
         }
     }
 
-    public Item getLeftHand() {
-        return this.leftHand;
-    }
-
-    public Item getRightHand() {
-        return this.rightHand;
-    }
-
-    public Item getRangedWeapon() {
-        return this.rangedWeapon;
-    }
-
-    public Item getBoots() {
-        return this.boots;
-    }
-
-    public Item getGreaves() {
-        return this.greaves;
-    }
-
-    public Item getCuisses() {
-        return this.cuisses;
-    }
-
-    public Item getChestpiece() {
-        return this.chestpiece;
-    }
-
-    public Item getHelmet() {
-        return this.helmet;
-    }
-
-    public List<Item> getRangedAmmunition() {
-        return this.rangedAmmunition;
-    }
-
     public String helmetString() {
-        return this.helmet == null ? "" : this.helmet.name();
+        return this.helmet == null ? "" : this.helmet.getName();
     }
 
     public String chestpieceString() {
-        return this.chestpiece == null ? "" : this.chestpiece.name();
+        return this.chestpiece == null ? "" : this.chestpiece.getName();
     }
 
     public String cuissesString() {
-        return this.cuisses == null ? "" : this.cuisses.name();
+        return this.cuisses == null ? "" : this.cuisses.getName();
     }
 
     public String greavesString() {
-        return this.greaves == null ? "" : this.greaves.name();
+        return this.greaves == null ? "" : this.greaves.getName();
     }
 
     public String bootsString() {
-        return this.boots == null ? "" : this.boots.name();
+        return this.boots == null ? "" : this.boots.getName();
     }
 
     public String leftHandString() {
-        return this.leftHand == null ? "" : this.leftHand.name();
+        return this.leftHand == null ? "" : this.leftHand.getName();
     }
 
     public String rightHandString() {
-        return this.rightHand == null ? "" : this.rightHand.name();
+        return this.rightHand == null ? "" : this.rightHand.getName();
     }
 
     public String rangedWeaponString() {
-        return this.rangedWeapon == null ? "" : this.rangedWeapon.name();
+        return this.rangedWeapon == null ? "" : this.rangedWeapon.getName();
     }
 
     public String rangedAmmunitionString() {
         if (rangedAmmunition.isEmpty()) {
             return "";
         } else {
-            return rangedAmmunition.get(0).name() + " x " + rangedAmmunition.size();
+            return rangedAmmunition.get(0).getName() + " x " + rangedAmmunition.size();
         }
-    }
-
-    public int strength() {
-        return this.strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int constitution() {
-        return this.constitution;
-    }
-
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
-    }
-
-    public int dexterity() {
-        return this.dexterity;
-    }
-
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
-    }
-
-    public int intelligence() {
-        return this.intelligence;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public int wisdom() {
-        return this.wisdom;
-    }
-
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
-    }
-
-    public int charisma() {
-        return this.charisma;
-    }
-
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
-    }
-
-    public int perception() {
-        return this.perception;
-    }
-
-    public void setPerception(int perception) {
-        this.perception = perception;
-    }
-
-    public int getLeftHandDamage(){
-        return this.leftHandDamage;
-    }
-
-    public int getLeftHandNumberOfDice(){
-        return this.leftHandNumberOfDice;
-    }
-
-    public int getRightHandDamage(){
-        return this.rightHandDamage;
-    }
-
-    public int getRightHandNumberOfDice(){
-        return this.rightHandNumberOfDice;
-    }
-
-    public int bonusToDamage() {
-        return this.bonusToDamage;
     }
 
     public void setBaseBonusToDamage() {
@@ -325,10 +214,6 @@ public class Player extends BaseEntity {
 
     public void updateBonusToDamage(int damageBonus) {
         this.bonusToDamage += damageBonus;
-    }
-
-    public int toHitBonus() {
-        return this.bonusToHit;
     }
 
     public void setBaseBonusToHit() {
@@ -348,27 +233,16 @@ public class Player extends BaseEntity {
         int maxHealth = this.constitution * 2;
         int random = RandomGen.rand(1, 100);
 
-        if (random <= 10) {
-            maxHealth -= 5;
-        } else if (random > 10 && random <= 20) {
-            maxHealth -= 4;
-        } else if (random > 20 && random <= 30) {
-            maxHealth -= 3;
-        } else if (random > 30 && random <= 40) {
-            maxHealth -= 2;
-        } else if (random > 40 && random <= 50) {
-            maxHealth -= 1;
-        } else if (random > 50 && random <= 60) {
-            maxHealth += 1;
-        } else if (random > 60 && random <= 70) {
-            maxHealth += 2;
-        } else if (random > 70 && random <= 80) {
-            maxHealth += 3;
-        } else if (random > 80 && random <= 90) {
-            maxHealth += 4;
-        } else if (random > 90) {
-            maxHealth += 5;
-        }
+        if (random <= 10) maxHealth -= 5;
+        else if (random <= 20) maxHealth -= 4;
+        else if (random <= 30) maxHealth -= 3;
+        else if (random <= 40) maxHealth -= 2;
+        else if (random <= 50) maxHealth -= 1;
+        else if (random <= 60) maxHealth += 1;
+        else if (random <= 70) maxHealth += 2;
+        else if (random <= 80) maxHealth += 3;
+        else if (random <= 90) maxHealth += 4;
+        else maxHealth += 5;
         setMaxHP(maxHealth);
         setCurrentHP(getMaxHP());
     }
@@ -564,7 +438,7 @@ public class Player extends BaseEntity {
     public void equipRangedAmmunition(Item ammunition) {
         List<Item> tempList = new ArrayList<>();
         for (Item item : getInventory().getItems()) {
-            if (item.name().equalsIgnoreCase(ammunition.name())) {
+            if (item.equals(ammunition)) {
                 tempList.add(item);
             }
         }
@@ -597,23 +471,23 @@ public class Player extends BaseEntity {
     }
 
     public void equipItem(Item itemToEquip) {
-        if (itemToEquip.itemType().contains("helmet")) {
+        if (itemToEquip.getItemType().contains("helmet")) {
             equipHelmet(itemToEquip);
-        } else if (itemToEquip.itemType().contains("chestpiece")) {
+        } else if (itemToEquip.getItemType().contains("chestpiece")) {
             equipChestpiece(itemToEquip);
-        } else if (itemToEquip.itemType().contains("melee weapon") && rightHand == null) {
+        } else if (itemToEquip.getItemType().contains("melee weapon") && rightHand == null) {
             equipRightHand(itemToEquip);
-        } else if (itemToEquip.itemType().contains("melee weapon") && rightHand != null) {
+        } else if (itemToEquip.getItemType().contains("melee weapon") && rightHand != null) {
             equipLeftHand(itemToEquip);
-        } else if (itemToEquip.itemType().contains("cuisses")) {
+        } else if (itemToEquip.getItemType().contains("cuisses")) {
             equipCuisses(itemToEquip);
-        } else if (itemToEquip.itemType().contains("greaves")) {
+        } else if (itemToEquip.getItemType().contains("greaves")) {
             equipGreaves(itemToEquip);
-        } else if (itemToEquip.itemType().contains("boots")) {
+        } else if (itemToEquip.getItemType().contains("boots")) {
             equipBoots(itemToEquip);
-        } else if (itemToEquip.itemType().contains("ranged weapon")) {
+        } else if (itemToEquip.getItemType().contains("ranged weapon")) {
             equipRangedWeapon(itemToEquip);
-        } else if (itemToEquip.itemType().contains("ammunition")) {
+        } else if (itemToEquip.getItemType().contains("ammunition")) {
             equipRangedAmmunition(itemToEquip);
         }
     }
@@ -647,7 +521,7 @@ public class Player extends BaseEntity {
         BaseEntity otherEntity = level.checkForMob(x + xx, y + yy);
         if (otherEntity == null) {
             if (level.hasItemAlready(x + xx, y + yy)) {
-                if(level.checkItems(x + xx, y + yy).name().toLowerCase().matches("^[aeiou].*")){
+                if(level.checkItems(x + xx, y + yy).getName().toLowerCase().matches("^[aeiou].*")){
                     doAction("see", level.checkItems(x + xx, y + yy));
                 }else doAction("see", level.checkItems(x + xx, y + yy));
             }
@@ -689,7 +563,7 @@ public class Player extends BaseEntity {
     private void commonAttack(BaseEntity otherEntity, Item weaponUsed) {
         int toHitRoll = RandomGen.rand(1, 100);
         int diceRoll, tempDamage = 0;
-        toHitRoll += toHitBonus();
+        toHitRoll += getBonusToHit();
 
         if (weaponUsed.equals(leftHand)) {
             for (int numberOfDice = 0; numberOfDice < leftHandNumberOfDice; numberOfDice++) {
@@ -702,7 +576,7 @@ public class Player extends BaseEntity {
                 tempDamage += diceRoll;
             }
         }
-        tempDamage += bonusToDamage();
+        tempDamage += getBonusToDamage();
         int damageAmount = tempDamage - otherEntity.getArmor();
 
         if (toHitRoll < 25) {
@@ -721,14 +595,14 @@ public class Player extends BaseEntity {
         int leftToHit = RandomGen.rand(1, 100);
         int rightToHit = RandomGen.rand(1, 100);
         int diceRoll;
-        if (leftWeapon.weight() > 5.0) {
+        if (leftWeapon.getWeight() > 5.0) {
             leftToHit -= 5;
         }
-        if (rightWeapon.weight() > 5.0) {
+        if (rightWeapon.getWeight() > 5.0) {
             rightToHit -= 5;
         }
-        leftToHit += toHitBonus();
-        rightToHit += toHitBonus();
+        leftToHit += getBonusRangedToHit();
+        rightToHit += getBonusRangedToHit();
 
         int leftDamage = 0;
         int rightDamage = 0;
@@ -775,15 +649,15 @@ public class Player extends BaseEntity {
 
     public boolean checkIfAmmunitionAndRangedWeaponMatch() {
         if (rangedWeapon != null && !rangedAmmunition.isEmpty()) {
-            return rangedWeapon.itemType().contains("Bow") && rangedAmmunition.get(0).itemType().contains("bow");
+            return rangedWeapon.getItemType().contains("Bow") && rangedAmmunition.get(0).getItemType().contains("bow");
         } else if (rangedWeapon != null && rangedAmmunition.isEmpty()) {
             notify("You need something to shoot!");
             return false;
         } else if (rangedWeapon == null && !rangedAmmunition.isEmpty()) {
-            if (rangedAmmunition.get(0).itemType().contains("thrown")) {
+            if (rangedAmmunition.get(0).getItemType().contains("thrown")) {
                 return true;
             } else {
-                notify("You can't throw %ss!", rangedAmmunition.get(0).name());
+                notify("You can't throw %ss!", rangedAmmunition.get(0).getName());
                 return false;
             }
         } else {

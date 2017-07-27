@@ -20,7 +20,7 @@ public class EquipmentScreen implements Screen{
 	public void displayOutput(AsciiPanel terminal){
 		List <String> lines = new ArrayList<>();
 		int y = 1;
-		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
+		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.getConstitution(), player.getStrength(), player.getDexterity(), player.getIntelligence(), player.getWisdom(), player.getCharisma(), player.getPerception());
 		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.getMaxCarryWeight());
 		String helmet = String.format(" a - %-15s : - %s", "Helmet", player.helmetString());
 		String armor = String.format(" b - %-15s : - %s", "Chest Piece", player.chestpieceString());

@@ -65,10 +65,6 @@ public class Level{
 	}
 
 	public void setDangerLevel(int depth){ this.dangerLevel = depth; }
-
-	public Level getLevel(){
-		return this;
-	}
 	
 	public void setPlayer(Player player){
 		this.player = player;
@@ -120,7 +116,7 @@ public class Level{
 			return Entity.glyph();
 		}
 		if(item != null){
-			return item.glyph();
+			return item.getGlyph();
 		}
 		return tile(x, y).glyph();
 		}
@@ -140,7 +136,7 @@ public class Level{
 			return Entity.color();
 		}
 		if(item != null){
-			return item.color();
+			return item.getColor();
 		}
 		return tile(x, y).color();
 	}

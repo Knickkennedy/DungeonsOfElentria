@@ -23,7 +23,7 @@ public class SelectSpellScreen implements Screen {
     public void displayOutput(AsciiPanel terminal) {
         ArrayList <String> lines = getList();
         int y = 1;
-        String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
+        String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.getConstitution(), player.getStrength(), player.getDexterity(), player.getIntelligence(), player.getWisdom(), player.getCharisma(), player.getPerception());
         String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.getMaxCarryWeight());
         terminal.clear(' ', 0, 0, 88, 28);
         terminal.writeCenter(stats, y++);

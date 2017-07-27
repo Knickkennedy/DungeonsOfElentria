@@ -17,7 +17,7 @@ public class EquipScreen implements Screen{
 	public String alphabet = "abcdefghijklmnopqrstuvwxyz";
 	public String itemToEquip;
 	public char input;
-	public TreeMap <String, Integer> tempList = new TreeMap <> ();
+	public TreeMap <Item, Integer> tempList = new TreeMap <> ();
 	public List <Item> equipList = new ArrayList <> ();
 	
 	public EquipScreen(Player player, String itemToEquip, char inp){
@@ -29,32 +29,32 @@ public class EquipScreen implements Screen{
 	
 	public void initializeTempList(){
 		for(Item possibleItems : player.getInventory().getItems()){
-			if(possibleItems.itemType().contains(itemToEquip)){
-				Integer frequency = tempList.get(possibleItems.name());
+			if(possibleItems.getItemType().contains(itemToEquip)){
+				Integer frequency = tempList.get(possibleItems);
 				if(frequency == null){
-					tempList.put(possibleItems.name(), new Integer(1));
-					equipList.add(possibleItems);
+					tempList.put(possibleItems, new Integer(1));
 				}
 				else{
 					frequency++;
-					tempList.put(possibleItems.name(), frequency);
+					tempList.put(possibleItems, frequency);
 				}
 			}
 		}
 	}
 	
 	public void displayOutput(AsciiPanel terminal){
-		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
+		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.getConstitution(), player.getStrength(), player.getDexterity(), player.getIntelligence(), player.getWisdom(), player.getCharisma(), player.getPerception());
 		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.getMaxCarryWeight());
 		terminal.clear(' ', 0, 4, 88, 24);
 		terminal.writeCenter(stats, 1);
 		terminal.writeCenter(weight, 2);
-		Set<Map.Entry<String, Integer>> allItems = tempList.entrySet();
-		Iterator<Map.Entry<String, Integer>> keyIterator = allItems.iterator();
+		Set<Map.Entry<Item, Integer>> allItems = tempList.entrySet();
+		Iterator<Map.Entry<Item, Integer>> keyIterator = allItems.iterator();
 		int i = 0;
 		while(keyIterator.hasNext()){
-			Map.Entry<String, Integer> element = keyIterator.next();
-			terminal.write(alphabet.charAt(i) + " - " + element.getKey() + " x " + element.getValue(), 1, 4 + i);
+			Map.Entry<Item, Integer> element = keyIterator.next();
+			equipList.add(element.getKey());
+			terminal.write(alphabet.charAt(i) + " - " + element.getKey().getName() + " x " + element.getValue(), 1, 4 + i);
 			i++;
 		}
 	}
@@ -65,8 +65,15 @@ public class EquipScreen implements Screen{
 		if(alphabet.indexOf(characterInput) > -1
 			&& tempList.size() > alphabet.indexOf(characterInput)){
 			player.equipItem(equipList.get(alphabet.indexOf(characterInput)), input);
+			return null;
+		}
+
+		switch(key.getKeyCode()){
+			case KeyEvent.VK_ESCAPE: {
+				return null;
+			}
 		}
 		
-		return null;
+		return this;
 	}
 }

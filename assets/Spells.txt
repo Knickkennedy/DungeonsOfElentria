@@ -6,7 +6,7 @@ Arcane Blast		MAGIC	1		3D4		3		1		LINE	NO		DAMAGE			sizzle					none					none				
 Magic Missiles		MAGIC	1		2D4		5		6		LINE	YES		DAMAGE			sizzle					none					none					by overpowering magic!
 
 Burning Hands		FIRE	1		1D6		3		1		LINE	NO		DAMAGE			burn					none					none					burned to a crisp!
-Flame Bolt			FIRE	1		1D8		3		2		LINE	NO		DAMAGE			burn					none					none					burned to a crisp!
+Flame Bolt			FIRE	1		1D8		3		6		LINE	NO		DAMAGE			burn					none					none					burned to a crisp!
 Fireball			FIRE	1		2D8		8		1		AOE		NO		DAMAGE			burn					none					none					incinerated!
 
 Icy Touch			ICE		1		2D3		3		1		LINE	NO		DAMAGE			freeze					none					none					splintered into a thousand pieces!

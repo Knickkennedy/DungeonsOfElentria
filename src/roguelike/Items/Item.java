@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
 import roguelike.mob.BaseEntity;
 import roguelike.mob.Colors;
 import roguelike.mob.Spell;
@@ -12,7 +13,7 @@ import roguelike.modifiers.Effect;
 import roguelike.modifiers.Healing;
 import roguelike.modifiers.Poison;
 
-public class Item implements ItemInterface, Comparable <Item>{
+public @Data class Item implements Comparable <Item>{
 	private String name, appearance, itemType, onUse, onUpdate, onEnd;
 	private char glyph;
 	private Color color;
@@ -25,36 +26,7 @@ public class Item implements ItemInterface, Comparable <Item>{
 	
 	public Item(){}
 
-	public void setName(String value){ this.name = value; }
-	public String name(){ return this.name; }
-	public String details(){ return name(); }
-
-	public void setDanger(int value){ this.danger = value; }
-	public int getDanger(){ return this.danger; }
-
-	public void setItemType(String value){ this.itemType = value; }
-	public String itemType(){ return this.itemType; }
-
-	public void setGlyph(char value){ this.glyph = value; }
-	public char glyph(){ return this.glyph; }
-
-	public void setColor(Color color){ this.color = color; }
-	public Color color(){ return this.color; }
-
-	public void setWeight(double value){ this.weight = value; }
-	public double weight(){ return this.weight; }
-
-	public String getOnUse() { return onUse; }
-
-	public void setOnUse(String onUse) { this.onUse = onUse; }
-
-	public String getOnUpdate() { return onUpdate; }
-
-	public void setOnUpdate(String onUpdate) { this.onUpdate = onUpdate; }
-
-	public String getOnEnd() { return onEnd; }
-
-	public void setOnEnd(String onEnd) { this.onEnd = onEnd; }
+	public String details(){ return getName(); }
 
 	public void setAttribute(String attribute, String value){
 		if(attribute.equals("name")){
@@ -187,6 +159,6 @@ public class Item implements ItemInterface, Comparable <Item>{
 
 	@Override
 	public int compareTo(Item otherItem){
-		return this.name().compareToIgnoreCase(otherItem.name());
+		return this.getName().compareToIgnoreCase(otherItem.getName());
 	}
 }

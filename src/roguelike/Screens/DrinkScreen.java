@@ -25,22 +25,22 @@ public class DrinkScreen implements Screen{
 	
 	public void initializeTempList(){
 		for(Item possibleItems : player.getInventory().getItems()){
-			if(possibleItems.itemType().equals("potion")){
-				Integer frequency = tempList.get(possibleItems.name());
+			if(possibleItems.getItemType().equals("potion")){
+				Integer frequency = tempList.get(possibleItems.getName());
 				if(frequency == null){
-					tempList.put(possibleItems.name(), new Integer(1));
+					tempList.put(possibleItems.getName(), new Integer(1));
 					useList.add(possibleItems);
 				}
 				else{
 					frequency++;
-					tempList.put(possibleItems.name(), frequency);
+					tempList.put(possibleItems.getName(), frequency);
 				}
 			}
 		}
 	}
 	
 	public void displayOutput(AsciiPanel terminal){
-		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
+		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.getConstitution(), player.getStrength(), player.getDexterity(), player.getIntelligence(), player.getWisdom(), player.getCharisma(), player.getPerception());
 		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.getMaxCarryWeight());
 		terminal.clear(' ', 0, 0, 88, 28);
 		terminal.writeCenter(stats, 1);

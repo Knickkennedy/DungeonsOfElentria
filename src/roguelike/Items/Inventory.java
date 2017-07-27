@@ -23,10 +23,9 @@ public class Inventory {
 	public List<Item> getItems(){ return this.inventory; }
 	
 	public void add(Item item){
-		if(owner.currentCarryWeight() + item.weight() <= owner.getMaxCarryWeight()){
+		if(owner.currentCarryWeight() + item.getWeight() <= owner.getMaxCarryWeight()){
 			inventory.add(item);
-			Collections.sort(inventory);
-            currentWeight += item.weight();
+            currentWeight += item.getWeight();
 		}
 	}
 
@@ -39,7 +38,7 @@ public class Inventory {
 		else{
 			owner.notify("Remove what?");
 		}
-		currentWeight -= item.weight();
+		currentWeight -= item.getWeight();
 	}
 	
 	public boolean contains(Item item){
