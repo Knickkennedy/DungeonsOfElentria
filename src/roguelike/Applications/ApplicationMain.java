@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 
 import asciiPanel.AsciiFont;
 import asciiPanel.AsciiPanel;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import roguelike.mob.Colors;

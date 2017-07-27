@@ -43,9 +43,9 @@ public class PlayScreen implements Screen {
 		displayTiles(terminal);
 		displayMessages(terminal, messages);
 
-		String health = String.format("Hp: %d/%d Mp: %d/%d", world.getPlayer().currentHP(), world.getPlayer().maxHP(), world.getPlayer().getCurrentMana(), world.getPlayer().getMaxMana());
+		String health = String.format("Hp: %d/%d Mp: %d/%d", world.getPlayer().getCurrentHP(), world.getPlayer().getMaxHP(), world.getPlayer().getCurrentMana(), world.getPlayer().getMaxMana());
 		terminal.write(health, 0, mapHeight + messageBuffer + 1);
-		String defensiveStats = String.format("DV:%d/AV:%d", world.getPlayer().dodge(), world.getPlayer().armor());
+		String defensiveStats = String.format("DV:%d/AV:%d", world.getPlayer().getDodge(), world.getPlayer().getArmor());
 		terminal.write(defensiveStats, 0, mapHeight + messageBuffer + 2);
 
         String temp = "Depth: " + String.valueOf(world.getCurrentLevel().levelNumber) + " Danger: " + String.valueOf(world.getCurrentLevel().dangerLevel + " Experience Points: " + world.getPlayer().getExperience());
@@ -116,7 +116,7 @@ public class PlayScreen implements Screen {
 	private void displayTiles(AsciiPanel terminal) {
 		resistanceMap = generateResistances(world.getCurrentLevel().pathMap);
 		double[][] light;
-		light = fov.calculateFOV(resistanceMap, world.getPlayer().x, world.getPlayer().y, world.getPlayer().visionRadius());
+		light = fov.calculateFOV(resistanceMap, world.getPlayer().x, world.getPlayer().y, world.getPlayer().getVisionRadius());
 
 		for(int x = 0; x < screenWidth; x++){
 		    for(int y = 0; y < mapHeight; y++){
@@ -266,7 +266,7 @@ public class PlayScreen implements Screen {
             }
         }
 
-        if(world.getPlayer().currentHP() < 1) { return new LoseScreen(); }
+        if(world.getPlayer().getCurrentHP() < 1) { return new LoseScreen(); }
 		
 		if(subscreen == null && !key.isShiftDown()){ world.getCurrentLevel().update();}
 		

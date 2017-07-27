@@ -22,16 +22,16 @@ public class BaseAI {
 	}
 
 	public void initializePathFinding(){
-		path = new DijkstraMap(mob.level().pathMap, DijkstraMap.Measurement.EUCLIDEAN);
+		path = new DijkstraMap(mob.getLevel().pathMap, DijkstraMap.Measurement.EUCLIDEAN);
 		los = new ELOS();
 	}
 
 	public boolean canSee(int wx, int wy) {
 		int radius = (mob.x - wx)*(mob.x - wx) + (mob.y - wy)*(mob.y - wy);
-		if(radius > mob.visionRadius()*mob.visionRadius()) {
+		if(radius > mob.getVisionRadius()*mob.getVisionRadius()) {
 			return false;
 		}
-		else if(los.isReachable(mob.level().pathMap, mob.x, mob.y, wx, wy)) {
+		else if(los.isReachable(mob.getLevel().pathMap, mob.x, mob.y, wx, wy)) {
 			return true;
 		}
 		else {
@@ -42,8 +42,8 @@ public class BaseAI {
 	public boolean canSee(BaseEntity entity) {
 		int radius = (mob.x - entity.x)*(mob.x - entity.x) + (mob.y - entity.y)*(mob.y - entity.y);
 		if(entity.isInvisible()) return false;
-		if(radius > mob.visionRadius()*mob.visionRadius()) return false;
-		else if(los.isReachable(mob.level().pathMap, mob.x, mob.y, entity.x, entity.y)) return true;
+		if(radius > mob.getVisionRadius()*mob.getVisionRadius()) return false;
+		else if(los.isReachable(mob.getLevel().pathMap, mob.x, mob.y, entity.x, entity.y)) return true;
 		else return false;
 	}
 
@@ -52,7 +52,7 @@ public class BaseAI {
 		ArrayList <Coord> coords = new ArrayList <Coord> ();
 		ArrayList <Coord> blocked = new ArrayList <Coord> ();
 		
-		for(BaseEntity entity : mob.level().mobs) {
+		for(BaseEntity entity : mob.getLevel().mobs) {
 			if(!entity.isPlayer()) {
 				blocked.add(Coord.get(entity.x, entity.y));
 			}
@@ -74,8 +74,8 @@ public class BaseAI {
 	public void wander(){
 		int x = RandomGen.rand(-1, 1);
 		int y = RandomGen.rand(-1, 1);
-		BaseEntity otherEntity = mob.level().checkForMob(mob.x + x, mob.y + y);
-		if(otherEntity != null || !mob.level().isGround(mob.x + x, mob.y + y)){
+		BaseEntity otherEntity = mob.getLevel().checkForMob(mob.x + x, mob.y + y);
+		if(otherEntity != null || !mob.getLevel().isGround(mob.x + x, mob.y + y)){
 			return;
 		}
 		else{

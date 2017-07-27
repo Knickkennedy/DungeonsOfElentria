@@ -96,13 +96,13 @@ public class Item implements ItemInterface, Comparable <Item>{
 		        		List <Effect> tempEffects = new ArrayList<>();
 		        		Effect newEffect = new Effect(1, "Cure Poison"){
 		        			public void start(BaseEntity entity){
-		        				for(Effect effect : entity.effects()){
+		        				for(Effect effect : entity.getEffects()){
 		        					if(effect.getEffectType().equals("Poison")){
 		        						tempEffects.add(effect);
 									}
 								}
 								for(Effect effect : tempEffects){
-		        					entity.effects().remove(effect);
+		        					entity.getEffects().remove(effect);
 								}
 							}
 						};

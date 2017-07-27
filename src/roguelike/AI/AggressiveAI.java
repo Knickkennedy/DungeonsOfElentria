@@ -14,12 +14,12 @@ public class AggressiveAI extends BaseAI{
 	}
 	
 	public void onUpdate(){
-		this.player = mob.level().player;
+		this.player = mob.getLevel().player;
 		if(this.canSee(player) || hasSeenPlayer){
 			hunt(player);
 			hasSeenPlayer = true;
 		}
-		else if(mob.level().hasItemAlready(mob.x, mob.y)){ mob.pickupItem(); }
+		else if(mob.getLevel().hasItemAlready(mob.x, mob.y)){ mob.pickupItem(); }
 		else{
 			wander();
 		}

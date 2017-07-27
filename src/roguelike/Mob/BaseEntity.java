@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
 import roguelike.AI.BaseAI;
 import roguelike.items.Item;
 import roguelike.items.Inventory;
@@ -13,7 +14,7 @@ import roguelike.modifiers.*;
 import roguelike.utility.Point;
 import roguelike.utility.RandomGen;
 
-public class BaseEntity{
+public @Data class BaseEntity{
     public Level level;
     public char glyph;
     private Color color;
@@ -43,144 +44,48 @@ public class BaseEntity{
         this.experienceLevel = 1;
     }
 
-    public boolean isInvisible() {
-        return isInvisible;
+    public void setMobAi(BaseAI ai){
+        this.ai = ai;
     }
 
-    public void setInvisible(boolean invisible) {
-        isInvisible = invisible;
+    public void setInventory(BaseEntity entity){
+        this.inventory = new Inventory(entity);
+    }
+
+    public void setEquipment(BaseEntity entity){
+        this.equipment = new Inventory(entity);
     }
 
     public void learnNewSpell(Spell spell){
         knownSpells.add(spell);
     }
 
-    public List <Spell> getKnownSpells(){
-        return this.knownSpells;
-    }
-
-    public void setLocation(Point here){
-        this.location = here;
-    }
-
-    public Point getLocation(){ return this.location; }
-
-    public void setExperience(int value){ this.experience = value; }
-    public int getExperience(){ return this.experience; }
-
-    public void setExperienceLevel(int level){ this.experienceLevel = level; }
-    public int getExperienceLevel(){ return this.experienceLevel; }
-
-    public BaseAI getAi() {
-        return this.ai;
-    }
-
-    public void setGlyph(char glyph) {
-        this.glyph = glyph;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public Tile realTile(int x, int y) {
-        return this.level().tile(x, y);
-    }
-
-    public List<Effect> effects() {
-        return this.effects;
-    }
-
-    public List<Effect> getOffensiveEffects() {
-        return this.offensiveEffects;
-    }
-
-    public void setOffensiveEffects(List<Effect> effects) {
-        this.offensiveEffects = effects;
+        return this.getLevel().tile(x, y);
     }
 
     public void addOffensiveEffect(Effect offensiveEffect) {
         this.offensiveEffects.add(offensiveEffect);
     }
 
-    public void setMaxCarryWeight(int carryWeight) {
-        this.maxCarryWeight = carryWeight;
-    }
-
-    public double maxCarryWeight() {
-        return this.maxCarryWeight;
-    }
-
     public double currentCarryWeight() {
-        if (this.equipment() != null && this.inventory() != null) {
-            return this.equipment().CurrentWeight() + this.inventory().CurrentWeight();
+        if (this.getEquipment() != null && this.getInventory() != null) {
+            return this.getEquipment().CurrentWeight() + this.getInventory().CurrentWeight();
         } else {
-            return this.inventory().CurrentWeight();
+            return this.getInventory().CurrentWeight();
         }
-    }
-
-    public Inventory inventory() {
-        return this.inventory;
-    }
-
-    public void setInventory(BaseEntity Entity) {
-        this.inventory = new Inventory(Entity);
-    }
-
-    public Inventory equipment() {
-        return this.equipment;
-    }
-
-    public void setEquipment(BaseEntity Entity) {
-        this.equipment = new Inventory(Entity);
-    }
-
-    public Level level() {
-        return this.level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-
-    public int getRange() {
-        return this.range;
-    }
-
-    public void setRange(int amount) {
-        this.range = amount;
-    }
-
-    public int getRangedDamage() {
-        return this.rangedDamage;
-    }
-
-    public void setRangedDamage(int amount) {
-        this.rangedDamage = amount;
     }
 
     public void updateRangedDamage(int update) {
         this.rangedDamage += update;
     }
 
-    public String name() {
-        return this.name;
+    public void updateArmor(int armor) {
+        this.armor += armor;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String causeOfDeath() {
-        return this.causeOfDeath;
-    }
-
-    public boolean isPlayer() {
-        return this.isPlayer;
-    }
-
-    public void setIsPlayer(boolean isPlayer) {
-        this.isPlayer = isPlayer;
+    public void updateDodge(int update) {
+        this.dodge += update;
     }
 
     public Color color() {
@@ -195,46 +100,12 @@ public class BaseEntity{
         }else return this.glyph;
     }
 
-    public int maxHP() {
-        return this.maxHP;
-    }
-
-    public void setMaxHP(int amount) {
-        this.maxHP = amount;
-        this.currentHP = amount;
-    }
-
-    public void setHealthRegenRate(int regenRate) {
-        this.healthRegen = regenRate;
-    }
-
-    public int getMaxMana() {
-        return this.maxMana;
-    }
-
-    public void setMaxMana(int amount) {
-        this.maxMana = amount;
-        this.currentMana = amount;
-    }
-
-    public void setManaRegenRate(int regenRate) {
-        this.manaRegen = regenRate;
-    }
-
-    public int getCurrentMana() {
-        return this.currentMana;
-    }
-
     public void setCurrentMana(int amount) {
         if (this.currentMana + amount > this.maxMana) {
             this.currentMana = this.maxMana;
         } else {
             this.currentMana += amount;
         }
-    }
-
-    public int currentHP() {
-        return this.currentHP;
     }
 
     public void setCurrentHP(int amount) {
@@ -245,61 +116,17 @@ public class BaseEntity{
         }
     }
 
-    public int attackDamage() {
-        return this.attackDamage;
-    }
-
-    public void setAttack(int damage) {
-        this.attackDamage = damage;
-    }
-
-    public int armor() {
-        return this.armor;
-    }
-
-    public void setArmor(int armor) {
-        this.armor = armor;
-    }
-
-    public void updateArmor(int armor) {
-        this.armor += armor;
-    }
-
-    public int dodge() {
-        return this.dodge;
-    }
-
-    public void setDodge(int dodge) {
-        this.dodge = dodge;
-    }
-
-    public void updateDodge(int update) {
-        this.dodge += update;
-    }
-
-    public int visionRadius() {
-        return this.visionRadius;
-    }
-
-    public void setVisionRadius(int visionRadius) {
-        this.visionRadius = visionRadius;
-    }
-
-    public void setMobAi(BaseAI ai) {
-        this.ai = ai;
-    }
-
     public void notify(String message, Object... params) {
         ai.onNotify(String.format(message, params));
     }
 
     public void pickupItem() {
-        Item itemToPickUp = this.level().checkItems(this.x, this.y);
+        Item itemToPickUp = this.getLevel().checkItems(this.x, this.y);
         if (itemToPickUp != null) {
-            if (currentCarryWeight() + itemToPickUp.weight() < maxCarryWeight()) {
+            if (currentCarryWeight() + itemToPickUp.weight() < getMaxCarryWeight()) {
                 doAction("pick up", itemToPickUp);
-                inventory().add(itemToPickUp);
-                this.level().removeItem(itemToPickUp);
+                getInventory().add(itemToPickUp);
+                this.getLevel().removeItem(itemToPickUp);
             } else {
                 this.notify("You are carrying too much to pick up the %s.", itemToPickUp.name());
             }
@@ -309,8 +136,8 @@ public class BaseEntity{
     }
 
     public void dropItem(Item itemToDrop) {
-        this.level().addAtSpecificLocation(itemToDrop, this.x, this.y);
-        this.inventory().remove(itemToDrop);
+        this.getLevel().addAtSpecificLocation(itemToDrop, this.x, this.y);
+        this.getInventory().remove(itemToDrop);
         if(isPlayer) doAction("drop", itemToDrop);
     }
 
@@ -341,7 +168,7 @@ public class BaseEntity{
     }
 
     public void meleeAttack(BaseEntity otherEntity) {
-        commonAttack(otherEntity, this.attackDamage());
+        commonAttack(otherEntity, this.getAttackDamage());
     }
 
     public void rangedAttack(BaseEntity otherEntity) {
@@ -351,7 +178,7 @@ public class BaseEntity{
     private void commonAttack(BaseEntity otherEntity, int attackDamage) {
         int toHitRoll = RandomGen.rand(1, 100);
         int diceRoll = RandomGen.rand(1, attackDamage);
-        int damageAmount = diceRoll - otherEntity.armor();
+        int damageAmount = diceRoll - otherEntity.getArmor();
 
         if (toHitRoll < 25) {
             doAttackAction("miss", otherEntity);
@@ -393,7 +220,7 @@ public class BaseEntity{
             double specialAttackRoll = RandomGen.dRand(1.0, 100.0);
             if (specialAttackRoll < effect.getEffectChance()) {
                 effect.start(otherEntity);
-                otherEntity.effects().add(effect);
+                otherEntity.getEffects().add(effect);
             }
         }
     }
@@ -404,7 +231,7 @@ public class BaseEntity{
 
     public void modifyHP(int amount, String causeOfDeath) {
         setCurrentHP(amount);
-        if (currentHP() < 1) {
+        if (getCurrentHP() < 1) {
             death();
         }
         this.causeOfDeath = causeOfDeath;
@@ -412,7 +239,7 @@ public class BaseEntity{
 
     public void dropAllItems() {
         List<Item> tempList = new ArrayList<>();
-        for (Item item : inventory().getItems()) {
+        for (Item item : getInventory().getItems()) {
             tempList.add(item);
         }
 
@@ -495,14 +322,14 @@ public class BaseEntity{
     public void doAction(String message, Object... params) {
         for (BaseEntity entity : this.level.mobs) {
             if (entity == this) entity.notify("You " + message, params);
-            else entity.notify(String.format("The %s %s.", name(), makeSecondPerson(message)), params);
+            else entity.notify(String.format("The %s %s.", getName(), makeSecondPerson(message)), params);
         }
     }
 
     public void doAttackAction(String action, BaseEntity otherEntity) {
         for(BaseEntity entity : level.mobs){
             if(entity == this){
-                entity.notify("You %s the %s.", action, otherEntity.name());
+                entity.notify("You %s the %s.", action, otherEntity.getName());
             }
             else{
                 entity.notify("The %s %s you.", name, makeSecondPerson(action));
@@ -650,7 +477,7 @@ public class BaseEntity{
         for (Effect effect : item.effects()) {
             addEffect(effect);
         }
-        inventory().remove(item);
+        getInventory().remove(item);
     }
 
     public void addEffect(Effect effect) {

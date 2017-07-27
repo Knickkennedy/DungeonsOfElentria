@@ -21,7 +21,7 @@ public class Player extends BaseEntity {
         itemStore = new Factory();
         setInventory(this);
         setEquipment(this);
-        setIsPlayer(true);
+        setPlayer(true);
         setExperience(0);
         setExperienceLevel(1);
         rangedAmmunition = new ArrayList<>();
@@ -37,7 +37,7 @@ public class Player extends BaseEntity {
     public void read(Item itemToRead){
         if(itemToRead.itemType().equalsIgnoreCase("book")){
             learnNewSpell(itemToRead.getSpell());
-            inventory().remove(itemToRead);
+            getInventory().remove(itemToRead);
         }
         else{
             for(Effect effect : itemToRead.effects()){
@@ -71,14 +71,14 @@ public class Player extends BaseEntity {
                             if (check < odds) {
                                 Item newItem = itemStore.newItem(equipmentArray[0].trim());
                                 equipItem(newItem);
-                                equipment().add(newItem);
+                                getEquipment().add(newItem);
                             }
                         }
                     }
                     else{
                         Item newItem = itemStore.newItem(equipmentArray[0].trim());
                         equipItem(newItem);
-                        equipment().add(newItem);
+                        getEquipment().add(newItem);
                     }
                 }
                 break;
@@ -96,15 +96,15 @@ public class Player extends BaseEntity {
                         if(check < odds){
                             if(inventoryArray[0].trim().equals("dangerOneItems")){
                                 int roll = RandomGen.rand(1, itemStore.dangerOneItems.size());
-                                inventory().add(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
+                                getInventory().add(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
                             }
                             else if(inventoryArray[0].trim().equals("dangerTwoItems")){
                                 int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
-                                inventory().add(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
+                                getInventory().add(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
                             }
                             else if(inventoryArray[0].trim().equals("dangerThreeItems")){
                                 int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
-                                inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+                                getInventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
                             } else if(inventoryArray[0].trim().contains(":")){
                                 String[] temp = inventoryArray[0].trim().split(":");
                                 String itemType = temp[0].trim();
@@ -116,10 +116,10 @@ public class Player extends BaseEntity {
                                     tempItem = itemStore.newItem(itemStore.itemsByCategory.get(itemType).get(roll));
                                 }
                                 while(tempItem.getDanger() < lowerEnd && tempItem.getDanger() > upperEnd);
-                                inventory().add(tempItem);
+                                getInventory().add(tempItem);
                             }
                             else {
-                                inventory().add(itemStore.newItem(inventoryArray[0].trim()));
+                                getInventory().add(itemStore.newItem(inventoryArray[0].trim()));
                             }
                         }
                     }
@@ -144,6 +144,7 @@ public class Player extends BaseEntity {
             }case "Intelligence": {
                 setIntelligence(Integer.parseInt(value));
                 setMaxMana((int) (intelligence * 2.5));
+                setCurrentMana(getMaxMana());
                 break;
             }case "Wisdom": {
                 setWisdom(Integer.parseInt(value));
@@ -156,10 +157,10 @@ public class Player extends BaseEntity {
                 setVisionRadius(perception / 2 + 1);
                 break;
             }case "HP Regen": {
-                setHealthRegenRate(Integer.parseInt(value));
+                setHealthRegen(Integer.parseInt(value));
                 break;
             }case "Mana Regen": {
-                setManaRegenRate(Integer.parseInt(value));
+                setManaRegen(Integer.parseInt(value));
                 break;
             }
         }
@@ -368,12 +369,13 @@ public class Player extends BaseEntity {
         } else if (random > 90) {
             maxHealth += 5;
         }
-        this.setMaxHP(maxHealth);
+        setMaxHP(maxHealth);
+        setCurrentHP(getMaxHP());
     }
 
     public void unequipLeftHand() {
-        equipment().remove(leftHand);
-        inventory().add(leftHand);
+        getEquipment().remove(leftHand);
+        getInventory().add(leftHand);
         leftHandDamage = 3;
         bonusToDamage -= leftHand.damageBonus();
         bonusToHit -= leftHand.getToHitBonus();
@@ -384,8 +386,8 @@ public class Player extends BaseEntity {
     }
 
     private void equipLeftHand(Item weapon) {
-        if (inventory().contains(weapon)) {
-            inventory().remove(weapon);
+        if (getInventory().contains(weapon)) {
+            getInventory().remove(weapon);
         }
         this.leftHand = weapon;
         leftHandDamage = leftHand.damageValue();
@@ -395,12 +397,12 @@ public class Player extends BaseEntity {
         updateDodge(leftHand.dodgeValue());
         leftHandNumberOfDice = leftHand.numberOfDiceRolled();
 
-        equipment().add(weapon);
+        getEquipment().add(weapon);
     }
 
     public void unequipRightHand() {
-        equipment().remove(rightHand);
-        inventory().add(rightHand);
+        getEquipment().remove(rightHand);
+        getInventory().add(rightHand);
         rightHandDamage = 3;
         bonusToDamage -= rightHand.damageBonus();
         bonusToHit -= rightHand.getToHitBonus();
@@ -411,8 +413,8 @@ public class Player extends BaseEntity {
     }
 
     private void equipRightHand(Item weapon) {
-        if (inventory().contains(weapon)) {
-            inventory().remove(weapon);
+        if (getInventory().contains(weapon)) {
+            getInventory().remove(weapon);
         }
         this.rightHand = weapon;
         rightHandDamage = rightHand.damageValue();
@@ -422,12 +424,12 @@ public class Player extends BaseEntity {
         updateDodge(rightHand.dodgeValue());
         rightHandNumberOfDice = rightHand.numberOfDiceRolled();
 
-        equipment().add(weapon);
+        getEquipment().add(weapon);
     }
 
     public void unequipRangedWeapon() {
-        equipment().remove(rangedWeapon);
-        inventory().add(rangedWeapon);
+        getEquipment().remove(rangedWeapon);
+        getInventory().add(rangedWeapon);
         bonusRangedToHit -= rangedWeapon.getToHitBonus();
         bonusRangedDamage -= rangedWeapon.damageBonus();
         updateArmor(-rangedWeapon.armorValue());
@@ -437,21 +439,21 @@ public class Player extends BaseEntity {
     }
 
     private void equipRangedWeapon(Item weapon) {
-        if (inventory().contains(weapon)) {
-            inventory().remove(weapon);
+        if (getInventory().contains(weapon)) {
+            getInventory().remove(weapon);
         }
         this.rangedWeapon = weapon;
         bonusRangedToHit += rangedWeapon.getToHitBonus();
         bonusRangedDamage += rangedWeapon.damageBonus();
         updateArmor(rangedWeapon.armorValue());
         updateDodge(rangedWeapon.dodgeValue());
-        equipment().add(weapon);
+        getEquipment().add(weapon);
         setRange(weapon.getRange());
     }
 
     public void unequipHelmet() {
-        equipment().remove(helmet);
-        inventory().add(helmet);
+        getEquipment().remove(helmet);
+        getInventory().add(helmet);
         updateArmor(-helmet.armorValue());
         updateToHitBonus(-helmet.getToHitBonus());
         updateBonusToDamage(-helmet.damageBonus());
@@ -460,20 +462,20 @@ public class Player extends BaseEntity {
     }
 
     public void equipHelmet(Item helmet) {
-        if (inventory().contains(helmet)) {
-            inventory().remove(helmet);
+        if (getInventory().contains(helmet)) {
+            getInventory().remove(helmet);
         }
         this.helmet = helmet;
         updateArmor(helmet.armorValue());
         updateToHitBonus(helmet.getToHitBonus());
         updateBonusToDamage(helmet.damageBonus());
         updateDodge(helmet.dodgeValue());
-        equipment().add(helmet);
+        getEquipment().add(helmet);
     }
 
     public void unequipChestpiece() {
-        equipment().remove(chestpiece);
-        inventory().add(chestpiece);
+        getEquipment().remove(chestpiece);
+        getInventory().add(chestpiece);
         updateArmor(-chestpiece.armorValue());
         updateToHitBonus(-chestpiece.getToHitBonus());
         updateBonusToDamage(-chestpiece.damageBonus());
@@ -482,20 +484,20 @@ public class Player extends BaseEntity {
     }
 
     public void equipChestpiece(Item chestpiece) {
-        if (inventory().contains(chestpiece)) {
-            inventory().remove(chestpiece);
+        if (getInventory().contains(chestpiece)) {
+            getInventory().remove(chestpiece);
         }
         this.chestpiece = chestpiece;
         updateArmor(chestpiece.armorValue());
         updateToHitBonus(chestpiece.getToHitBonus());
         updateBonusToDamage(chestpiece.damageBonus());
         updateDodge(chestpiece.dodgeValue());
-        equipment().add(chestpiece);
+        getEquipment().add(chestpiece);
     }
 
     public void unequipCuisses() {
-        equipment().remove(cuisses);
-        inventory().add(cuisses);
+        getEquipment().remove(cuisses);
+        getInventory().add(cuisses);
         updateArmor(-cuisses.armorValue());
         updateToHitBonus(-cuisses.getToHitBonus());
         updateBonusToDamage(-cuisses.damageBonus());
@@ -504,20 +506,20 @@ public class Player extends BaseEntity {
     }
 
     public void equipCuisses(Item cuisses) {
-        if (inventory().contains(cuisses)) {
-            inventory().remove(cuisses);
+        if (getInventory().contains(cuisses)) {
+            getInventory().remove(cuisses);
         }
         this.cuisses = cuisses;
         updateArmor(cuisses.armorValue());
         updateToHitBonus(cuisses.getToHitBonus());
         updateBonusToDamage(cuisses.damageBonus());
         updateDodge(cuisses.dodgeValue());
-        equipment().add(cuisses);
+        getEquipment().add(cuisses);
     }
 
     public void unequipBoots() {
-        equipment().remove(boots);
-        inventory().add(boots);
+        getEquipment().remove(boots);
+        getInventory().add(boots);
         updateArmor(-boots.armorValue());
         updateToHitBonus(-boots.getToHitBonus());
         updateBonusToDamage(-boots.damageBonus());
@@ -526,20 +528,20 @@ public class Player extends BaseEntity {
     }
 
     public void equipBoots(Item boots) {
-        if (inventory().contains(boots)) {
-            inventory().remove(boots);
+        if (getInventory().contains(boots)) {
+            getInventory().remove(boots);
         }
         this.boots = boots;
         updateArmor(boots.armorValue());
         updateToHitBonus(boots.getToHitBonus());
         updateBonusToDamage(boots.damageBonus());
         updateDodge(boots.dodgeValue());
-        equipment().add(boots);
+        getEquipment().add(boots);
     }
 
     public void unequipGreaves() {
-        equipment().remove(greaves);
-        inventory().add(greaves);
+        getEquipment().remove(greaves);
+        getInventory().add(greaves);
         updateArmor(-greaves.armorValue());
         updateToHitBonus(-greaves.getToHitBonus());
         updateBonusToDamage(-greaves.damageBonus());
@@ -548,32 +550,32 @@ public class Player extends BaseEntity {
     }
 
     public void equipGreaves(Item greaves) {
-        if (inventory().contains(greaves)) {
-            inventory().remove(greaves);
+        if (getInventory().contains(greaves)) {
+            getInventory().remove(greaves);
         }
         this.greaves = greaves;
         updateArmor(greaves.armorValue());
         updateToHitBonus(greaves.getToHitBonus());
         updateBonusToDamage(greaves.damageBonus());
         updateDodge(greaves.dodgeValue());
-        equipment().add(greaves);
+        getEquipment().add(greaves);
     }
 
     public void equipRangedAmmunition(Item ammunition) {
         List<Item> tempList = new ArrayList<>();
-        for (Item item : inventory().getItems()) {
+        for (Item item : getInventory().getItems()) {
             if (item.name().equalsIgnoreCase(ammunition.name())) {
                 tempList.add(item);
             }
         }
         if (!tempList.isEmpty()) {
             for (Item item : tempList) {
-                equipment().add(item);
+                getEquipment().add(item);
                 rangedAmmunition.add(item);
-                inventory().remove(item);
+                getInventory().remove(item);
             }
         } else {
-            equipment().add(ammunition);
+            getEquipment().add(ammunition);
             rangedAmmunition.add(ammunition);
         }
         bonusRangedDamage += rangedAmmunition.get(0).damageBonus();
@@ -584,8 +586,8 @@ public class Player extends BaseEntity {
 
     public void unequipRangedAmmunition() {
         for (Item arrow : rangedAmmunition) {
-            equipment().remove(arrow);
-            inventory().add(arrow);
+            getEquipment().remove(arrow);
+            getInventory().add(arrow);
         }
         bonusRangedDamage -= rangedAmmunition.get(0).damageBonus();
         bonusRangedToHit -= rangedAmmunition.get(0).getToHitBonus();
@@ -663,11 +665,11 @@ public class Player extends BaseEntity {
     public void consumeEquippedAmmunition(int x, int y) {
         int roll = RandomGen.rand(1, 100);
         if (roll > 25) {
-            level().addAtSpecificLocation(rangedAmmunition.get(0), x, y);
-            equipment().remove(rangedAmmunition.get(0));
+            getLevel().addAtSpecificLocation(rangedAmmunition.get(0), x, y);
+            getEquipment().remove(rangedAmmunition.get(0));
             rangedAmmunition.remove(0);
         } else {
-            equipment().remove(rangedAmmunition.get(0));
+            getEquipment().remove(rangedAmmunition.get(0));
             rangedAmmunition.remove(0);
         }
     }
@@ -701,11 +703,11 @@ public class Player extends BaseEntity {
             }
         }
         tempDamage += bonusToDamage();
-        int damageAmount = tempDamage - otherEntity.armor();
+        int damageAmount = tempDamage - otherEntity.getArmor();
 
         if (toHitRoll < 25) {
             doAttackAction("miss", otherEntity);
-        } else if (toHitRoll > 25 && toHitRoll < 25 + otherEntity.dodge()) {
+        } else if (toHitRoll > 25 && toHitRoll < 25 + otherEntity.getDodge()) {
             doAttackAction("dodge", otherEntity);
         } else if (damageAmount < 1) {
             doAttackAction("block", otherEntity);
@@ -739,12 +741,12 @@ public class Player extends BaseEntity {
             diceRoll = RandomGen.rand(1, rightHandDamage);
             rightDamage += diceRoll;
         }
-        leftDamage -= otherEntity.armor();
-        rightDamage -= otherEntity.armor();
+        leftDamage -= otherEntity.getArmor();
+        rightDamage -= otherEntity.getArmor();
 
         if (rightToHit < 25) {
             doAttackAction("miss", otherEntity);
-        } else if (rightToHit > 25 && rightToHit < 25 + otherEntity.dodge()) {
+        } else if (rightToHit > 25 && rightToHit < 25 + otherEntity.getDodge()) {
             doAttackAction("dodge", otherEntity);
         } else {
             if (rightDamage < 1) {
@@ -754,12 +756,12 @@ public class Player extends BaseEntity {
                 otherEntity.modifyHP(-rightDamage, "killed by a ");
             }
         }
-        if(otherEntity.currentHP() < 1){
+        if(otherEntity.getCurrentHP() < 1){
             return;
         }
         if (leftToHit < 25) {
             doAttackAction("miss", otherEntity);
-        } else if (leftToHit > 25 && leftToHit < 25 + otherEntity.dodge()) {
+        } else if (leftToHit > 25 && leftToHit < 25 + otherEntity.getDodge()) {
             doAttackAction("dodge", otherEntity);
         } else {
             if (leftDamage < 1) {
@@ -798,11 +800,11 @@ public class Player extends BaseEntity {
             tempDamage += diceRoll;
         }
         tempDamage += bonusRangedDamage;
-        int damageAmount = tempDamage - otherEntity.armor();
+        int damageAmount = tempDamage - otherEntity.getArmor();
 
         consumeEquippedAmmunition(otherEntity.x, otherEntity.y);
 
-        if (toHitRoll < otherEntity.dodge()) {
+        if (toHitRoll < otherEntity.getDodge()) {
             doAttackAction("dodge", otherEntity);
         } else if (damageAmount < 1) {
             doAttackAction("barely scratch", otherEntity);

@@ -77,15 +77,15 @@ public class EnemyEntity extends BaseEntity{
                     if(check < odds){
                         if(dropArray[0].trim().equals("dangerOneItems")){
                             int roll = RandomGen.rand(1, itemStore.dangerOneItems.size());
-                            inventory().add(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
+                            getInventory().add(itemStore.newItem(itemStore.dangerOneItems.get(roll)));
                         }
                         else if(dropArray[0].trim().equals("dangerTwoItems")){
                             int roll = RandomGen.rand(1, itemStore.dangerTwoItems.size());
-                            inventory().add(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
+                            getInventory().add(itemStore.newItem(itemStore.dangerTwoItems.get(roll)));
                         }
                         else if(dropArray[0].trim().equals("dangerThreeItems")){
                             int roll = RandomGen.rand(1, itemStore.dangerThreeItems.size());
-                            inventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
+                            getInventory().add(itemStore.newItem(itemStore.dangerThreeItems.get(roll)));
                         } else if(dropArray[0].trim().contains(":")){
                             String[] temp = dropArray[0].trim().split(":");
                             String itemType = temp[0].trim();
@@ -97,10 +97,10 @@ public class EnemyEntity extends BaseEntity{
                                 tempItem = itemStore.newItem(itemStore.itemsByCategory.get(itemType).get(roll));
                             }
                             while(tempItem.getDanger() < lowerEnd && tempItem.getDanger() > upperEnd);
-                            inventory().add(tempItem);
+                            getInventory().add(tempItem);
                         }
                         else {
-                            inventory().add(itemStore.newItem(dropArray[0].trim()));
+                            getInventory().add(itemStore.newItem(dropArray[0].trim()));
                         }
                     }
                 }
@@ -108,18 +108,20 @@ public class EnemyEntity extends BaseEntity{
         }
         else if(attribute.equals("health")){
             setMaxHP(Integer.parseInt(value));
+            setCurrentHP(getMaxHP());
         }
         else if(attribute.equals("mana")){
             setMaxMana(Integer.parseInt(value));
+            setCurrentMana(getMaxMana());
         }
         else if(attribute.equals("health regen")){
-            setHealthRegenRate(Integer.parseInt(value));
+            setHealthRegen(Integer.parseInt(value));
         }
         else if(attribute.equals("mana regen")){
-            setManaRegenRate(Integer.parseInt(value));
+            setManaRegen(Integer.parseInt(value));
         }
         else if(attribute.equals("damage")){
-            setAttack(Integer.parseInt(value));
+            setAttackDamage(Integer.parseInt(value));
         }
         else if(attribute.equals("armor")){
             setArmor(Integer.parseInt(value));

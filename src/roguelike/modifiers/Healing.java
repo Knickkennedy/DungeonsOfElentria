@@ -20,7 +20,7 @@ public class Healing extends Effect {
 			entity.doAction("feel " + getOnCast());
 		}
 		else{
-			entity.doAction("look " + getOnCast(), entity.name());
+			entity.doAction("look " + getOnCast(), entity.getName());
 		}
 	}
 

@@ -21,7 +21,7 @@ public class ReadScreen implements Screen{
     }
 
     public void initializeTempList(){
-        for(Item possibleItems : player.inventory().getItems()){
+        for(Item possibleItems : player.getInventory().getItems()){
             if(possibleItems.itemType().equalsIgnoreCase("book") || possibleItems.itemType().equalsIgnoreCase("scroll")){
                 Integer frequency = tempList.get(possibleItems.name());
                 if(frequency == null){
@@ -38,7 +38,7 @@ public class ReadScreen implements Screen{
 
     public void displayOutput(AsciiPanel terminal){
         String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
-        String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.maxCarryWeight());
+        String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.getMaxCarryWeight());
         terminal.clear(' ', 0, 0, 88, 28);
         terminal.writeCenter(stats, 1);
         terminal.writeCenter(weight, 2);

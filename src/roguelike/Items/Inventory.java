@@ -23,7 +23,7 @@ public class Inventory {
 	public List<Item> getItems(){ return this.inventory; }
 	
 	public void add(Item item){
-		if(owner.currentCarryWeight() + item.weight() <= owner.maxCarryWeight()){
+		if(owner.currentCarryWeight() + item.weight() <= owner.getMaxCarryWeight()){
 			inventory.add(item);
 			Collections.sort(inventory);
             currentWeight += item.weight();

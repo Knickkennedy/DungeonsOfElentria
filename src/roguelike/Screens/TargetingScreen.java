@@ -28,7 +28,7 @@ public class TargetingScreen implements Screen {
 		for (int i = 0; i < targetLine.length; i++) {
 			if (targetLine[i].x == player.x && targetLine[i].y == player.y && targetLine.length > 1) {
 				terminal.write(player.glyph(), player.x, player.y, player.color());
-			} else if (player.level().isGround(targetLine[i].x, targetLine[i].y)) {
+			} else if (player.getLevel().isGround(targetLine[i].x, targetLine[i].y)) {
 				terminal.write('X', targetLine[i].x, targetLine[i].y + 4, AsciiPanel.brightYellow);
 			} else {
 				terminal.write('X', targetLine[i].x, targetLine[i].y + 4, AsciiPanel.brightRed);
@@ -41,9 +41,9 @@ public class TargetingScreen implements Screen {
 	}
 
 	public void updateTargetLine(Point direction) {
-		if (x + direction.x >= player.level().width || x + direction.x < 0) {
+		if (x + direction.x >= player.getLevel().width || x + direction.x < 0) {
 			x += 0;
-		} else if (y + direction.y >= player.level().height || y + direction.y < 0) {
+		} else if (y + direction.y >= player.getLevel().height || y + direction.y < 0) {
 			y += 0;
 		} else if (x + direction.x > player.x + player.getRange()) {
 			x += 0;

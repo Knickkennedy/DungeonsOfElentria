@@ -12,7 +12,7 @@ public class ElenaAI extends BaseAI{
     }
 
     public void onUpdate(){
-        this.player = mob.level().player;
+        this.player = mob.getLevel().player;
         if(canSee(player.x, player.y) && !hasSeenPlayer){
             player.notify("You hear a booming voice echo through your head!");
             player.notify("\"You approach doom, mortal!\"");

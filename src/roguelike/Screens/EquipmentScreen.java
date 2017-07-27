@@ -21,7 +21,7 @@ public class EquipmentScreen implements Screen{
 		List <String> lines = new ArrayList<>();
 		int y = 1;
 		String stats = String.format("Con: %s Str: %s Dex: %s Int: %s Wis: %s Cha: %s Per: %s", player.constitution(), player.strength(), player.dexterity(), player.intelligence(), player.wisdom(), player.charisma(), player.perception());
-		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.maxCarryWeight());
+		String weight = String.format("Currently Carrying: %s      Carrying Capacity: %s", player.currentCarryWeight(), player.getMaxCarryWeight());
 		String helmet = String.format(" a - %-15s : - %s", "Helmet", player.helmetString());
 		String armor = String.format(" b - %-15s : - %s", "Chest Piece", player.chestpieceString());
 		String rightHand = String.format(" c - %-15s : - %s", "Right Hand", player.rightHandString());
