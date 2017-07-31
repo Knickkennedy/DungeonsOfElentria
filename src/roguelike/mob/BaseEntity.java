@@ -56,7 +56,7 @@ public @Data class BaseEntity{
         this.equipment = new Inventory(entity);
     }
 
-    public void learnNewSpell(Spell spell){
+    public void learnNewSpell(roguelike.mob.Spell spell){
         knownSpells.add(spell);
     }
 
