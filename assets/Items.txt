@@ -1,11 +1,30 @@
 <Books>
+
 name			:	spellbook of magic missile
 item type		:	book
 symbol			:	"
 color			:	brown
 weight			:	3.5
 spell           :   magic missiles
-chance to learn :   25.0
+chance to learn :   100.0
+danger			:	1
+
+name			:	spellbook of firebolt
+item type		:	book
+symbol			:	"
+color			:	brown
+weight			:	3.5
+spell           :   firebolt
+chance to learn :   100.0
+danger			:	1
+
+name			:	spellbook of minor healing touch
+item type		:	book
+symbol			:	"
+color			:	brown
+weight			:	3.5
+spell           :   healing hands
+chance to learn :   100.0
 danger			:	1
 
 <Potions>

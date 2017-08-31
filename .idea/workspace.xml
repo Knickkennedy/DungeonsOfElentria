@@ -7,25 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8996c6d-fcc1-4522-be3b-f74b80b3550f" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Applications/ApplicationMain.java" afterPath="$PROJECT_DIR$/src/roguelike/applications/ApplicationMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Items/Inventory.java" afterPath="$PROJECT_DIR$/src/roguelike/items/Inventory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Items/Item.java" afterPath="$PROJECT_DIR$/src/roguelike/items/Item.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Level/Level.java" afterPath="$PROJECT_DIR$/src/roguelike/level/Level.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Mob/BaseEntity.java" afterPath="$PROJECT_DIR$/src/roguelike/mob/BaseEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Mob/Colors.java" afterPath="$PROJECT_DIR$/src/roguelike/mob/Colors.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Mob/EnemyEntity.java" afterPath="$PROJECT_DIR$/src/roguelike/mob/EnemyEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Mob/Player.java" afterPath="$PROJECT_DIR$/src/roguelike/mob/Player.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Mob/Spell.java" afterPath="$PROJECT_DIR$/src/roguelike/mob/Spell.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Screens/EquipmentScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/screens/EquipmentScreen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Screens/FireWeaponScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/screens/FireWeaponScreen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Screens/HelpScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/screens/HelpScreen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Screens/LoseScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/screens/LoseScreen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Screens/PlayScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/screens/PlayScreen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/Screens/WinScreen.java" afterPath="$PROJECT_DIR$/src/roguelike/screens/WinScreen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/World/Factory.java" afterPath="$PROJECT_DIR$/src/roguelike/world/Factory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roguelike/World/World.java" afterPath="$PROJECT_DIR$/src/roguelike/world/World.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/roguelike/Applications/ApplicationMain.class" afterPath="$PROJECT_DIR$/bin/roguelike/Applications/ApplicationMain.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Items.txt" afterPath="$PROJECT_DIR$/assets/Items.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Mobs.txt" afterPath="$PROJECT_DIR$/assets/Mobs.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +22,6 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DungeonsOfElentria$Dungeons_Of_Elentria.coverage" NAME="Dungeons Of Elentria Coverage Results" MODIFIED="1500671715929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="DungeonsOfElentria" />
   </component>
@@ -53,13 +36,24 @@
       <file leaf-file-name="BaseEntity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/roguelike/mob/BaseEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2160">
+            <state relative-caret-position="-11009">
               <caret line="63" column="19" lean-forward="false" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11963#11971#0" expanded="true" />
+                <element signature="e#1798#1799#0" expanded="true" />
+                <element signature="e#1847#1848#0" expanded="true" />
                 <marker date="1501511081689" expanded="true" signature="15067:15097" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AggressiveAI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -67,7 +61,7 @@
       <file leaf-file-name="PlayScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/screens/PlayScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5600">
+            <state relative-caret-position="3920">
               <caret line="149" column="13" lean-forward="false" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
               <folding>
                 <marker date="1501510508580" expanded="true" signature="9763:9913" ph="{...}" />
@@ -79,7 +73,7 @@
       <file leaf-file-name="StartScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/screens/StartScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
+            <state relative-caret-position="112">
               <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
@@ -89,8 +83,8 @@
       <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/level/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3120">
-              <caret line="91" column="4" lean-forward="false" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+            <state relative-caret-position="751">
+              <caret line="87" column="24" lean-forward="true" selection-start-line="87" selection-start-column="24" selection-end-line="87" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -99,7 +93,7 @@
       <file leaf-file-name="Inventory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/items/Inventory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="800">
+            <state relative-caret-position="560">
               <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
               <folding>
                 <marker date="1501510508481" expanded="true" signature="883:894" ph="{...}" />
@@ -111,9 +105,11 @@
       <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/items/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5600">
-              <caret line="151" column="13" lean-forward="false" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="3668">
+              <caret line="142" column="4" lean-forward="true" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
+              <folding>
+                <element signature="e#712#720#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,7 +117,7 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/mob/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12200">
+            <state relative-caret-position="8540">
               <caret line="334" column="27" lean-forward="false" selection-start-line="334" selection-start-column="27" selection-end-line="334" selection-end-column="27" />
               <folding>
                 <marker date="1501510508525" expanded="true" signature="26099:26117" ph="{...}" />
@@ -133,7 +129,7 @@
       <file leaf-file-name="EquipScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/screens/EquipScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
+            <state relative-caret-position="588">
               <caret line="31" column="63" lean-forward="false" selection-start-line="31" selection-start-column="63" selection-end-line="31" selection-end-column="63" />
               <folding>
                 <marker date="1501510508545" expanded="true" signature="2493:2497" ph="{...}" />
@@ -145,7 +141,7 @@
       <file leaf-file-name="InventoryScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roguelike/screens/InventoryScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="336">
               <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
                 <marker date="1501510508564" expanded="true" signature="1327:1950" ph="{...}" />
@@ -262,7 +258,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-16" />
     <option name="y" value="-16" />
-    <option name="width" value="3872" />
+    <option name="width" value="3856" />
     <option name="height" value="2092" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -366,56 +362,74 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DungeonsOfElentria" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DungeonsOfElentria" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DungeonsOfElentria" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DungeonsOfElentria" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roguelike" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DungeonsOfElentria" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DungeonsOfElentria" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="AI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="items" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="level" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="mob" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DungeonsOfElentria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DungeonsOfElentria" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="modifiers" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -460,12 +474,100 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Dungeons Of Elentria">
+    <configuration name="Dungeons Of Elentria" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="roguelike.applications.ApplicationMain" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Dungeons of Elentria" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
-      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="" />
@@ -522,29 +624,6 @@
       </Profilers>
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-      <method />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -559,27 +638,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -628,60 +686,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="false" name="Dungeons Of Elentria" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="roguelike.applications.ApplicationMain" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Dungeons of Elentria" />
-      <envs />
-      <method />
-    </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.Dungeons Of Elentria" />
-    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -731,24 +735,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
+    <frame x="-16" y="-16" width="3856" height="2092" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.49573562" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29284164" sideWeight="0.6143229" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2950276" sideWeight="0.6143229" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29175705" sideWeight="0.38567707" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4914712" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.48294243" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16971758" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -756,8 +759,10 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39872748" sideWeight="0.49166667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286334" sideWeight="0.35" order="10" side_tool="false" content_ui="tabs" />
@@ -880,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="10" column="70" lean-forward="false" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -920,9 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,7 +1022,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/screens/InventoryScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="336">
           <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <marker date="1501510508564" expanded="true" signature="1327:1950" ph="{...}" />
@@ -1029,37 +1030,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/mob/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12200">
-          <caret line="334" column="27" lean-forward="false" selection-start-line="334" selection-start-column="27" selection-end-line="334" selection-end-column="27" />
-          <folding>
-            <marker date="1501510508525" expanded="true" signature="26099:26117" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/items/Inventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding>
-            <marker date="1501510508481" expanded="true" signature="883:894" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/items/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5600">
-          <caret line="151" column="13" lean-forward="false" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/screens/EquipScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
+        <state relative-caret-position="588">
           <caret line="31" column="63" lean-forward="false" selection-start-line="31" selection-start-column="63" selection-end-line="31" selection-end-column="63" />
           <folding>
             <marker date="1501510508545" expanded="true" signature="2493:2497" ph="{...}" />
@@ -1067,16 +1040,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/screens/StartScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
+        <state relative-caret-position="112">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
@@ -1091,7 +1057,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/screens/PlayScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5600">
+        <state relative-caret-position="3920">
           <caret line="149" column="13" lean-forward="false" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
           <folding>
             <marker date="1501510508580" expanded="true" signature="9763:9913" ph="{...}" />
@@ -1099,21 +1065,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/items/Inventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <marker date="1501510508481" expanded="true" signature="883:894" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/items/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3668">
+          <caret line="142" column="4" lean-forward="true" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
+          <folding>
+            <element signature="e#712#720#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/mob/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8540">
+          <caret line="334" column="27" lean-forward="false" selection-start-line="334" selection-start-column="27" selection-end-line="334" selection-end-column="27" />
+          <folding>
+            <marker date="1501510508525" expanded="true" signature="26099:26117" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/level/Level.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3120">
-          <caret line="91" column="4" lean-forward="false" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+        <state relative-caret-position="751">
+          <caret line="87" column="24" lean-forward="true" selection-start-line="87" selection-start-column="24" selection-end-line="87" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roguelike/AI/AggressiveAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roguelike/mob/BaseEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
+        <state relative-caret-position="-11009">
           <caret line="63" column="19" lean-forward="false" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11963#11971#0" expanded="true" />
+            <element signature="e#1798#1799#0" expanded="true" />
+            <element signature="e#1847#1848#0" expanded="true" />
             <marker date="1501511081689" expanded="true" signature="15067:15097" ph="{...}" />
           </folding>
         </state>
