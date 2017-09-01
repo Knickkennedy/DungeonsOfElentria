@@ -9,12 +9,12 @@ spell           :   magic missiles
 chance to learn :   100.0
 danger			:	1
 
-name			:	spellbook of firebolt
+name			:	spellbook of flame bolt
 item type		:	book
 symbol			:	"
 color			:	brown
 weight			:	3.5
-spell           :   firebolt
+spell           :   flame bolt
 chance to learn :   100.0
 danger			:	1
 

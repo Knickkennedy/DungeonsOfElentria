@@ -15,6 +15,8 @@ dodge           :   25
 range           :   0
 ranged damage   :   0
 danger level    :   5
+experience		:	25
+drops			:	amulet of victory
 
 <GOBLINS>
 
