@@ -19,15 +19,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/library/asciiPanel.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/library/squidlib-util-3.0.0-b8.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -38,6 +29,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/library/lombok.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/library/VTerminal-2.2.0-BETA.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
