@@ -1,54 +1,32 @@
 package roguelike.applications;
 
-import javax.swing.JFrame;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
-import asciiPanel.AsciiFont;
-import asciiPanel.AsciiPanel;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import com.valkryst.VTerminal.Panel;
+import com.valkryst.VTerminal.builder.PanelBuilder;
+import com.valkryst.VTerminal.font.Font;
+import com.valkryst.VTerminal.font.FontLoader;
 import roguelike.mob.Colors;
 import roguelike.screens.*;
 
-public class ApplicationMain extends JFrame implements KeyListener {
-	private static final long serialVersionUID = 1060623638149583738L;
-	
-	private AsciiPanel terminal;
-	private Screen screen;
-	
-	public ApplicationMain(){
-		super();
-	}
-	
-	@Override
-	public void repaint(){
-		terminal.clear();
-		screen.displayOutput(terminal);
-		super.repaint();
-	}
+public class ApplicationMain{
+	public static void main(final String[] args) throws IOException, URISyntaxException, InterruptedException {
+		final Font font = FontLoader.loadFontFromJar("Fonts/DejaVu Sans Mono/18pt/bitmap.png",
+				"Fonts/DejaVu Sans Mono/18pt/data.fnt",
+				1);
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		screen = screen.respondToUserInput(e);
-		repaint();
-	}
+		final PanelBuilder builder = new PanelBuilder();
+		builder.setFont(font);
+		builder.setWidthInCharacters(88);
+		builder.setHeightInCharacters(32);
 
-	@Override
-	public void keyReleased(KeyEvent e) { }
+		final Panel panel = builder.build();
 
-	@Override
-	public void keyTyped(KeyEvent e) { }
+		Thread.sleep(50);
 
-	public static void main(String[] args){
-		ApplicationMain app = new ApplicationMain();
-		Colors.initializeColors();
-		app.terminal = new AsciiPanel(88, 32, AsciiFont.CP437_9x16);
-		app.add(app.terminal);
-		app.pack();
-		app.screen = new StartScreen();
-		app.addKeyListener(app);
-		app.repaint();
-		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		app.setVisible(true);
+		final MainMenuScreen mainMenu = new MainMenuScreen(panel);
+		panel.draw();
 
 	}
 }
